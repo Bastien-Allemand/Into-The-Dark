@@ -38,6 +38,8 @@ public class MovePlayer : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         //cameraTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
         initialScale = transform.localScale;
         crouchScale = initialScale.y * 0.65f;
@@ -81,7 +83,7 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 moveTarget = new Vector3(moveInputX,0f,moveInputZ) * speed;
+        Vector3 moveTarget = (transform.forward * moveInputZ + transform.right * moveInputX) * speed;
         Move(moveTarget);
 
         CheckIsCeilingAbove();
