@@ -84,23 +84,7 @@ public class MovePlayer : MonoBehaviour
         Vector3 moveTarget = new Vector3(moveInputX,0f,moveInputZ) * speed;
         Move(moveTarget);
 
-        Vector3 origin = transform.position + new Vector3(0f, playerCollider.center.y, 0f);
-
-        Color rayColor = Color.green;
-
-        float castLength = (standHeight / 2f) + ceilingCheckDistance;
-
-        if (Physics.Raycast(origin, Vector3.up, castLength, layerMask))
-        {
-            isCeilingAbove = true;
-            rayColor = Color.red; 
-        }
-        else
-        {
-            isCeilingAbove = false;
-        }
-
-        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
+        CheckIsCeilingAbove();
     }
 
     void Move(Vector3 targetVel)
@@ -122,6 +106,27 @@ public class MovePlayer : MonoBehaviour
             isCrouched = true;
         }
         
+    }
+
+    void CheckIsCeilingAbove()
+    {
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+
+        Color rayColor = Color.green;
+
+        float castLength = standHeight + ceilingCheckDistance;
+
+        if (Physics.Raycast(origin, Vector3.up, castLength, layerMask))
+        {
+            isCeilingAbove = true;
+            rayColor = Color.red;
+        }
+        else
+        {
+            isCeilingAbove = false;
+        }
+
+        Debug.DrawRay(origin, Vector3.up, rayColor);
     }
 
     void StandUp()
