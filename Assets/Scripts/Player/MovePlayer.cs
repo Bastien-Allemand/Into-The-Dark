@@ -15,8 +15,8 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float standHeight = 2f;
     [SerializeField] private float standCenterY = 0f;
     [SerializeField] private float crouchHeight = 1.2f;
-    [SerializeField] private float crouchCenterY = -0.6f;
-    [SerializeField] private bool isCrouched = false;
+    [SerializeField] private float crouchCenterY = -0.2f;
+    [SerializeField] private float ceilingCheckDistance = 1.0f;
     [Space(10)]
 
     [Header("Reference")]
@@ -25,6 +25,9 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     [Space(10)]
+    [Header("State (Debug)")]
+    [SerializeField] private bool isCrouched = false;
+    [SerializeField] private bool isCeilingAbove = false;
 
     //TO REMOVE
     private float crouchScale;
@@ -80,6 +83,24 @@ public class MovePlayer : MonoBehaviour
     {
         Vector3 moveTarget = new Vector3(moveInputX,0f,moveInputZ) * speed;
         Move(moveTarget);
+
+        Vector3 origin = transform.position + new Vector3(0f, playerCollider.center.y, 0f);
+
+        Color rayColor = Color.green;
+
+        float castLength = (standHeight / 2f) + ceilingCheckDistance;
+
+        if (Physics.Raycast(origin, Vector3.up, castLength, layerMask))
+        {
+            isCeilingAbove = true;
+            rayColor = Color.red; 
+        }
+        else
+        {
+            isCeilingAbove = false;
+        }
+
+        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
     }
 
     void Move(Vector3 targetVel)
@@ -105,8 +126,9 @@ public class MovePlayer : MonoBehaviour
 
     void StandUp()
     {
+        if (isCeilingAbove) return;
 
-        if(isCrouched == true)
+        if (isCrouched == true)
         {
                 //To remove
                 transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
