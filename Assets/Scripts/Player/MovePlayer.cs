@@ -37,6 +37,8 @@ public class MovePlayer : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         //cameraTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
         initialScale = transform.localScale;
         crouchScale = initialScale.y * 0.65f;
