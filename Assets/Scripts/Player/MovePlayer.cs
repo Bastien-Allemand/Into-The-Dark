@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEngine.UI.Image;
 public class MovePlayer : MonoBehaviour
 {
@@ -51,7 +52,6 @@ public class MovePlayer : MonoBehaviour
     void Update()
     {
         //cameraTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
-
         moveInputX = 0f;
         moveInputZ = 0f;
 
