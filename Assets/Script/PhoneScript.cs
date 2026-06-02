@@ -2,23 +2,29 @@ using System;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhoneScript : MonoBehaviour
 {
     public GameObject phone;
+    public GameObject battery;
     public Light phoneLight;
     public TextMeshProUGUI textBattery;
+    public BatteryScript batteryScript;
 
     public float maxBattery = 100; // Max Battery (percentage)
     public float currentBattery = 0; // Current Battery (percentage)
     public float maxTime = 60; // Time in seconds
     public float currentTimer = 0; // Current Timer  
+    public bool haveBattery = true;
 
-    private void Start()
+    void Start()
     {
         currentBattery = maxBattery;
         currentTimer = maxTime;
         textBattery.text = ((int)currentBattery).ToString() + "%";
+
+        batteryScript.SetMaxBattery((int)maxBattery);
     }
 
     void Update()
@@ -26,9 +32,10 @@ public class PhoneScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             phone.SetActive(!phone.activeSelf);
+            battery.SetActive(!battery.activeSelf);
             textBattery.enabled = !textBattery.enabled;
 
-            if (!phone.activeSelf)
+            if (!phone.activeSelf || haveBattery == false)
             {
                 phoneLight.enabled = false;
             }
@@ -36,14 +43,19 @@ public class PhoneScript : MonoBehaviour
 
         if (phoneLight.enabled == true)
         {
-            currentTimer -= 8 * Time.deltaTime;
+            currentTimer -= 5 * Time.deltaTime;
+
+            currentBattery = currentTimer * maxBattery / maxTime;
+            batteryScript.SetBattery((int)currentBattery);
         }
         else if (phone.activeSelf)
         {
             currentTimer -= Time.deltaTime;
+
+            currentBattery = currentTimer * maxBattery / maxTime;
+            batteryScript.SetBattery((int)currentBattery);
         }
 
-        currentBattery = currentTimer * maxBattery / maxTime;
         textBattery.text = ((int)currentBattery).ToString() + "%";
 
         if (Input.GetMouseButtonDown(0) && phone.activeSelf)
@@ -54,7 +66,8 @@ public class PhoneScript : MonoBehaviour
         if(currentBattery <= 0)
         {
             currentBattery = 0;
-            phone.SetActive(false);
+            haveBattery = false;
+            phoneLight.enabled = false;
             textBattery.enabled = false;
         }
     }
