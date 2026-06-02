@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class GhostPatrolState : IState
+public class GhostChaseState : IState
 {
     private GhostStateMachine stateMachine;
+    private Pathfinding pathfinding;
 
-    public GhostPatrolState(GhostStateMachine stateMachine)
+    public GhostChaseState(GhostStateMachine stateMachine, Pathfinding pathfinding)
     {
         this.stateMachine = stateMachine;
+        this.pathfinding = pathfinding;
     }
 
     public void Enter()

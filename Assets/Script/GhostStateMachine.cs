@@ -3,10 +3,12 @@ using UnityEngine;
 public class GhostStateMachine : MonoBehaviour
 {
     private IState currentState;
+    private Pathfinding pathfinding;
 
     void Start()
     {
-        ChangeState(new GhostIdleState(this));
+        pathfinding = GetComponent<Pathfinding>();
+        ChangeState(new GhostPatrolState(this,pathfinding));
     }
 
     void Update()
@@ -16,6 +18,11 @@ public class GhostStateMachine : MonoBehaviour
             currentState.Update();
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Collision.getComponent<GameObject>()
     }
     public void ChangeState(IState newState)
     {
