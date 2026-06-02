@@ -23,7 +23,6 @@ public class MovePlayer : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private Transform cameraTransform;
 
     [Space(10)]
     [Header("State (Debug)")]
@@ -69,12 +68,12 @@ public class MovePlayer : MonoBehaviour
             else if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
                 moveInputZ = -1f;
 
-            if(Keyboard.current.leftCtrlKey.isPressed)
+            if(Keyboard.current.cKey.isPressed)
             {
                 Crouch();
             }
             
-            if(Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
+            if(Keyboard.current.cKey.wasReleasedThisFrame)
             {
                 StandUp();
             }
@@ -109,10 +108,9 @@ public class MovePlayer : MonoBehaviour
         }
         
     }
-
     void CheckIsCeilingAbove()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
         Color rayColor = Color.green;
 
