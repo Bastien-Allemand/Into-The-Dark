@@ -113,7 +113,7 @@ public class MovePlayer : MonoBehaviour
                 Crouch();
             }
             
-            if(Keyboard.current.cKey.wasReleasedThisFrame)
+            if(Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
             {
                 StandUp();
             }
