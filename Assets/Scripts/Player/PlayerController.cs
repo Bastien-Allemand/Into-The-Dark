@@ -6,11 +6,19 @@ public class PlayerController : MonoBehaviour
 
     [Space(5)]
 
+    [Header("Move Settings")]
+    [SerializeField] float speed;
+    [Header("Debug")]
+    [SerializeField] float currentSpeed;
+    [SerializeField] private Vector2 moveInput;
+
+    [Space(5)]
+
     [Header("Look Settings")]
     [SerializeField] Camera _camera;
     [SerializeField] float sensitivity = 100f;
     [SerializeField] float XMaxAngle = 60;
-    [Header("Debug (just look)")]
+    [Header("Debug")]
     [SerializeField] private Vector2 targetRotation;
     [SerializeField] private Vector2 currentRotation;
 
@@ -22,6 +30,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchHeight = 1.2f;
     [SerializeField] private float crouchCenterY = -0.2f;
     [SerializeField] private float ceilingCheckDistance = 1.0f;
+
+    //TO REMOVE
+    private float crouchScale;
+    private Vector3 initialScale;
 
     [Space(10)]
 
@@ -35,6 +47,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isCrouched = false;
     [SerializeField] private bool isCeilingAbove = false;
 
+
+
+    PlayerAction controls;
+
+    private void Awake()
+    {
+        controls = new PlayerAction();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,6 +69,8 @@ public class PlayerController : MonoBehaviour
 
     void Look()
     {
+        //Vector2 move = controls.GamePlay.Look.ReadValue<Vector2>() * 100f * Time.deltaTime;
+
         float mouseX = Input.GetAxis("Mouse X") * 100f * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * 100f * Time.deltaTime;
 
@@ -77,6 +99,39 @@ public class PlayerController : MonoBehaviour
     }
 
     void Move()
+    {
+        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
+        if (moveInput == Vector2.zero)
+            return;
+
+        rb.MovePosition(
+            rb.position +
+            (transform.forward * moveInput.y + transform.right * moveInput.x)
+            * speed * Time.fixedDeltaTime
+        );
+
+        /*
+        Vector3 moveTarget = (transform.forward * moveInputZ + transform.right * moveInputX) * speed;
+        Vector3 currentVel = rb.linearVelocity;
+        Vector3 desiredVel = new Vector3(moveTarget.x, currentVel.y, moveTarget.z);
+        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, moveTarget, ref velocity, 0.05f);
+         */
+    }
+
+    void Crouch()
+    {
+        if (isCrouched == false)
+        {
+            //To remove
+            transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
+            //
+            playerCollider.height = crouchHeight;
+            playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
+            isCrouched = true;
+        }
+    }
+
+    void Run()
     {
 
     }

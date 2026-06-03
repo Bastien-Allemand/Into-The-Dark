@@ -81,19 +81,6 @@ public class MovePlayer : MonoBehaviour
         rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVel, ref velocity, 0.05f);
     }
 
-    void Crouch()
-    {
-        if(isCrouched == false)
-        { 
-           //To remove
-           transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
-            //
-            playerCollider.height = crouchHeight;
-            playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
-            isCrouched = true;
-        }
-        
-    }
     void CheckIsCeilingAbove()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
