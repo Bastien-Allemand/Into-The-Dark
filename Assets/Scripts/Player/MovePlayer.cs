@@ -72,6 +72,11 @@ public class MovePlayer : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (playerCollider == null) playerCollider = GetComponent<CapsuleCollider>();
     }
+
+    void OnEnable()
+    {
+           
+    }
     void Update()
     {
         //cameraTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
@@ -114,14 +119,14 @@ public class MovePlayer : MonoBehaviour
                 StopSprinting();
             }
 
-            if (Keyboard.current.leftCtrlKey.isPressed)
+            if (Keyboard.current.cKey.isPressed)
             {
                 Crouch();
                 canSprint = false;
                 StopSprinting();
             }
             
-            if(Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
+            if(Keyboard.current.cKey.wasReleasedThisFrame)
             {
                 StandUp();
                 canSprint = true;
@@ -197,10 +202,10 @@ public class MovePlayer : MonoBehaviour
         { 
            //To remove
            transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
-            //
-            playerCollider.height = crouchHeight;
-            playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
-            isCrouched = true;
+           //
+           playerCollider.height = crouchHeight;
+           playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
+           isCrouched = true;
         }
         
     }
