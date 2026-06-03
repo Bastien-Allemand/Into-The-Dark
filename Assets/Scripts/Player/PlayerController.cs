@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("State (Debug)")]
     [SerializeField] private bool isCrouched = false;
+    [SerializeField] private bool wantToSprint = false;
     [SerializeField] private bool isCeilingAbove = false;
 
 
@@ -55,47 +56,60 @@ public class PlayerController : MonoBehaviour
     {
         controls = new PlayerAction();
     }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Look();
+    }
+    private void FixedUpdate()
+    {
+        UpdateState();
+        Move();
     }
 
+    void UpdateState()
+    {
+        //  Crouch
+        if (!isCrouched)
+            isCrouched = controls.GamePlay.Crouch.ReadValue<bool>();
+        else
+        {
+            //  look isCeilingAbove
+
+           
+        }
+        wantToSprint = controls.GamePlay.Sprint.ReadValue<bool>();
+    }
     void Look()
     {
-        //Vector2 move = controls.GamePlay.Look.ReadValue<Vector2>() * 100f * Time.deltaTime;
+        Vector2 mouse = controls.GamePlay.Look.ReadValue<Vector2>() * sensitivity;
 
-        float mouseX = Input.GetAxis("Mouse X") * 100f * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * 100f * Time.deltaTime;
+        targetRotation.x -= mouse.y;
+        targetRotation.y += mouse.x;
 
-        transform.Rotate(0, mouseX, 0);
+        targetRotation.x = Mathf.Clamp(targetRotation.x, -XMaxAngle, XMaxAngle);
 
-        float bufferX = targetRotation.x;
+        currentRotation.x = Mathf.Lerp(currentRotation.x, targetRotation.x, 10f * Time.deltaTime);
+        currentRotation.y = Mathf.Lerp(currentRotation.y, targetRotation.y, 10f * Time.deltaTime);
 
-        targetRotation.x -= mouseY;
-        targetRotation.x = Mathf.Clamp(targetRotation.x, -90f, 90f);
-
-        targetRotation.y += mouseX;
-
-        float test = targetRotation.x * sensitivity / 10 + transform.rotation.x;
-
-        if (test > XMaxAngle || test < -XMaxAngle)
-            targetRotation.x = bufferX;
-
-        currentRotation.x = Mathf.Lerp(currentRotation.x, targetRotation.x, 100f * Time.deltaTime);
-        currentRotation.y = Mathf.Lerp(currentRotation.y, targetRotation.y, 100f * Time.deltaTime);
-
-        _camera.transform.localRotation =
-            Quaternion.Euler(currentRotation.x * sensitivity / 10, 0, 0);
-
-        transform.localRotation =
-            Quaternion.Euler(0, currentRotation.y * sensitivity / 10, 0);
+        _camera.transform.localRotation = Quaternion.Euler(currentRotation.x, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, currentRotation.y, 0);
     }
 
     void Move()
@@ -104,18 +118,18 @@ public class PlayerController : MonoBehaviour
         if (moveInput == Vector2.zero)
             return;
 
-        rb.MovePosition(
-            rb.position +
-            (transform.forward * moveInput.y + transform.right * moveInput.x)
-            * speed * Time.fixedDeltaTime
-        );
-
-        /*
-        Vector3 moveTarget = (transform.forward * moveInputZ + transform.right * moveInputX) * speed;
-        Vector3 currentVel = rb.linearVelocity;
-        Vector3 desiredVel = new Vector3(moveTarget.x, currentVel.y, moveTarget.z);
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, moveTarget, ref velocity, 0.05f);
-         */
+        if (!isCrouched && controls.GamePlay.Crouch.ReadValue<bool>())
+        {
+            Run();
+        }
+        else
+        {
+            rb.MovePosition(
+                rb.position +
+                (transform.forward * moveInput.y + transform.right * moveInput.x)
+                * speed * Time.fixedDeltaTime
+            );
+        }
     }
 
     void Crouch()
