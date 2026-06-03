@@ -339,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 1112331364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5300001, z: 0.51}
+  m_LocalPosition: {x: 0, y: 0.5300001, z: -6.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -619,6 +619,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
   speed: 2.5
+  sprintingMultiplier: 0
+  isSprinting: 0
+  sprintTimeLeft: 0
   standHeight: 2
   standCenterY: 0
   crouchHeight: 1.2
