@@ -1,16 +1,20 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
 public class MovePlayer : MonoBehaviour
 {
+
+   
+
     private float initialSpeed;
-    private float sprintTime;
+    private float initalStaminaTime;
     [SerializeField] private float staminaLeft = 5f;
     [SerializeField] private float speed;
     [SerializeField] private bool isSprinting = false;
     [SerializeField] private float sprintingMultiplier;
-    
+
     private bool isOutOfStamina = false;
     private bool canSprint = false;
     [SerializeField] private float staminaIncreasingTotalTime = 1.5f;
@@ -18,10 +22,10 @@ public class MovePlayer : MonoBehaviour
 
     private bool movingX = false;
     private bool movingZ = false;
-    
+
     private float moveInputX;
     private float moveInputZ;
-   
+
     private Vector3 velocity = Vector3.zero;
 
     [Space(5)]
@@ -49,7 +53,7 @@ public class MovePlayer : MonoBehaviour
     private float crouchScale;
     private Vector3 initialScale;
 
-    LayerMask layerMask;
+    [SerializeField] private LayerMask layerMask;
 
     void Start()
     {
@@ -61,8 +65,8 @@ public class MovePlayer : MonoBehaviour
         initialSpeed = 5f;
         sprintingMultiplier = 1.4f;
         speed = initialSpeed;
-        sprintTime = 5f;
-        staminaLeft = sprintTime;
+        initalStaminaTime = 5f;
+        staminaLeft = initalStaminaTime;
         sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
     void Awake()
@@ -75,7 +79,7 @@ public class MovePlayer : MonoBehaviour
 
     void OnEnable()
     {
-           
+
     }
     void Update()
     {
@@ -125,14 +129,14 @@ public class MovePlayer : MonoBehaviour
                 canSprint = false;
                 StopSprinting();
             }
-            
-            if(Keyboard.current.cKey.wasReleasedThisFrame)
+
+            if (Keyboard.current.cKey.wasReleasedThisFrame)
             {
                 StandUp();
                 canSprint = true;
             }
 
-            if(Keyboard.current.leftShiftKey.isPressed)
+            if (Keyboard.current.leftShiftKey.isPressed)
             {
                 StartSprinting();
             }
@@ -145,7 +149,7 @@ public class MovePlayer : MonoBehaviour
             if (isSprinting)
             {
 
-               
+
                 staminaIncreasingCurrentTime = 0f;
                 DecreaseStamina();
                 if (staminaLeft <= 0f)
@@ -169,7 +173,7 @@ public class MovePlayer : MonoBehaviour
                         staminaIncreasingCurrentTime += Time.deltaTime;
                     else if (staminaIncreasingCurrentTime >= staminaIncreasingTotalTime)
                         IncreaseStamina();
-                        
+
                 }
                 if (staminaLeft >= 5f)
                 {
@@ -177,7 +181,7 @@ public class MovePlayer : MonoBehaviour
                 }
             }
 
-                
+
         }
     }
 
@@ -198,16 +202,16 @@ public class MovePlayer : MonoBehaviour
 
     void Crouch()
     {
-        if(isCrouched == false)
-        { 
-           //To remove
-           transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
-           //
-           playerCollider.height = crouchHeight;
-           playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
-           isCrouched = true;
+        if (isCrouched == false)
+        {
+            //To remove
+            transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
+            //
+            playerCollider.height = crouchHeight;
+            playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
+            isCrouched = true;
         }
-        
+
     }
 
     void StandUp()
@@ -223,7 +227,7 @@ public class MovePlayer : MonoBehaviour
             playerCollider.center = new Vector3(0f, standCenterY, 0f);
             isCrouched = false;
         }
-        
+
     }
     void CheckIsCeilingAbove()
     {
@@ -252,7 +256,7 @@ public class MovePlayer : MonoBehaviour
             return;
         if (isOutOfStamina)
             return;
-        if ( isSprinting == false)
+        if (isSprinting == false)
         {
             speed = initialSpeed * sprintingMultiplier;
             isSprinting = true;
@@ -271,15 +275,15 @@ public class MovePlayer : MonoBehaviour
     void DecreaseStamina()
     {
         staminaLeft -= Time.deltaTime;
-        float purcentLeft = (staminaLeft / sprintTime);
-        sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+        float purcentLeft = (staminaLeft / initalStaminaTime);
+        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
     }
 
     void IncreaseStamina()
     {
         staminaLeft += Time.deltaTime / 2;
-        float purcentLeft = (staminaLeft / sprintTime);
-        sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+        float purcentLeft = (staminaLeft / initalStaminaTime);
+        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
     }
 }
 
