@@ -5,13 +5,16 @@ using static UnityEngine.UI.Image;
 public class MovePlayer : MonoBehaviour
 {
     private float initialSpeed;
-    [SerializeField] private float speed;
-    [SerializeField] private float sprintingMultiplier;
-    [SerializeField] private bool isSprinting = false;
     private float sprintTime;
-    [SerializeField] private float staminaLeft;
+    [SerializeField] private float staminaLeft = 5f;
+    [SerializeField] private float speed;
+    [SerializeField] private bool isSprinting = false;
+    [SerializeField] private float sprintingMultiplier;
+    
     private bool isOutOfStamina = false;
     private bool canSprint = false;
+    [SerializeField] private float staminaIncreasingTotalTime = 1.5f;
+    private float staminaIncreasingCurrentTime = 0f;
 
     private bool movingX = false;
     private bool movingZ = false;
@@ -114,11 +117,14 @@ public class MovePlayer : MonoBehaviour
             if (Keyboard.current.leftCtrlKey.isPressed)
             {
                 Crouch();
+                canSprint = false;
+                StopSprinting();
             }
             
             if(Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
             {
                 StandUp();
+                canSprint = true;
             }
 
             if(Keyboard.current.leftShiftKey.isPressed)
@@ -133,9 +139,10 @@ public class MovePlayer : MonoBehaviour
 
             if (isSprinting)
             {
-                staminaLeft -= Time.deltaTime;
-                float purcentLeft = (staminaLeft / sprintTime);
-                sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+
+               
+                staminaIncreasingCurrentTime = 0f;
+                DecreaseStamina();
                 if (staminaLeft <= 0f)
                 {
                     staminaLeft = 0f;
@@ -151,14 +158,21 @@ public class MovePlayer : MonoBehaviour
                     if (staminaLeft > 3f)
                         isOutOfStamina = false;
                 }
-                if (staminaLeft < sprintTime)
-                    staminaLeft += Time.deltaTime / 2;
-                if (staminaLeft > sprintTime)
-                    staminaLeft = sprintTime;
-
-                float purcentLeft = (staminaLeft / sprintTime);
-                sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+                if (staminaLeft < 5f)
+                {
+                    if (staminaIncreasingCurrentTime < staminaIncreasingTotalTime)
+                        staminaIncreasingCurrentTime += Time.deltaTime;
+                    else if (staminaIncreasingCurrentTime >= staminaIncreasingTotalTime)
+                        IncreaseStamina();
+                        
+                }
+                if (staminaLeft >= 5f)
+                {
+                    staminaLeft = 5f;
+                }
             }
+
+                
         }
     }
 
@@ -247,6 +261,21 @@ public class MovePlayer : MonoBehaviour
             speed = initialSpeed;
             isSprinting = false;
         }
+    }
+
+    void DecreaseStamina()
+    {
+        staminaLeft -= Time.deltaTime;
+        float purcentLeft = (staminaLeft / sprintTime);
+        sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+    }
+
+    void IncreaseStamina()
+    {
+        staminaLeft += Time.deltaTime / 2;
+        float purcentLeft = (staminaLeft / sprintTime);
+        sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+    }
     }
 }
 
