@@ -6,6 +6,8 @@ public class GhostPatrolState : IState
 {
     private GhostStateMachine stateMachine;
     private Pathfinding pathfinding;
+    private float swapRoom = 20f;
+    private int choiceroom = 0;
 
     public GhostPatrolState(GhostStateMachine stateMachine, Pathfinding pathfinding)
     {
@@ -20,13 +22,15 @@ public class GhostPatrolState : IState
 
     public void Update()
     {
-        if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
+        swapRoom -= Time.deltaTime;
+        if (swapRoom < 0f)
         {
-            pathfinding.agent.SetDestination(RandomPosition(pathfinding.rooms[pathfinding.actualRoom]));
-            Debug.Log("Room : " + pathfinding.actualRoom);
+            swapRoom = 20f;
+            choiceroom = Random.Range(0, pathfinding.rooms.Count);
+            Debug.Log("Room :" + choiceroom);
         }
-        else
-            pathfinding.actualRoom = (int)(Random.value % pathfinding.rooms.Count);
+        if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
+            pathfinding.agent.SetDestination(RandomPosition(pathfinding.rooms[choiceroom]));
     }
 
     public void Exit()

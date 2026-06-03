@@ -10,17 +10,13 @@ public class Room
 
 public class Pathfinding : MonoBehaviour
 {
-    private List<Room> rooms = new List<Room>();
-    public int actualRoom;
+    public List<Room> rooms = new List<Room>();
     private Vector3 position = Vector3.zero;
     public Transform target;
     public NavMeshAgent agent { get; private set; }
-    private float swapRoom = 20f;
-    private int choiceroom = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        actualRoom = 0;
         Room room = new Room();
         room.max = new Vector3(-15.02f, 4f, 1.81f);
         room.min = new Vector3(-5.89f, 0f, 11.17f);
@@ -52,17 +48,6 @@ public class Pathfinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        swapRoom -= Time.deltaTime;
-        if (swapRoom < 0f)
-        {
-            swapRoom = 20f;
-            choiceroom = Random.Range(0, 6);
-            Debug.Log("Room :" + choiceroom);
-        }
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            agent.SetDestination(RandomPosition(rooms[choiceroom]));
-
-
     }
 
 }
