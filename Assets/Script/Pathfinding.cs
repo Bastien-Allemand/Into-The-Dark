@@ -17,30 +17,35 @@ public class Pathfinding : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Room room = new Room();
-        room.max = new Vector3(-23.83f, 4f, 5.11f);
-        room.min = new Vector3(-8.63f, 0f, 20.91f);
-        rooms.Add(room);
+        Room room0 = new Room();
+        room0.max = new Vector3(-23.83f, 4f, 5.11f);
+        room0.min = new Vector3(-8.63f, 0f, 20.91f);
+        rooms.Add(room0);
 
-        room.max = new Vector3(-7.16f, 4f, -0.84f);
-        room.min = new Vector3(6.03f, 0f, 12.09f);
-        rooms.Add(room);
+        Room room1 = new Room();
+        room1.max = new Vector3(-7.16f, 4f, -0.84f);
+        room1.min = new Vector3(6.03f, 0f, 12.09f);
+        rooms.Add(room1);
 
-        room.max = new Vector3(7.32f, 4f, -0.02f);
-        room.min = new Vector3(19.75f, 0f, 12.08f);
-        rooms.Add(room);
+        Room room2 = new Room();
+        room2.max = new Vector3(7.32f, 4f, -0.02f);
+        room2.min = new Vector3(19.75f, 0f, 12.08f);
+        rooms.Add(room2);
 
-        room.max = new Vector3(7.3f, 4f, -16.48f);
-        room.min = new Vector3(25.36f, 0f, -1.72f);
-        rooms.Add(room);
+        Room room3 = new Room();
+        room3.max = new Vector3(7.3f, 4f, -16.48f);
+        room3.min = new Vector3(25.36f, 0f, -1.72f);
+        rooms.Add(room3);
 
-        room.max = new Vector3(-26.42f, 4f, -16.09f);
-        room.min = new Vector3(6.07f, 0f, -1.12f);
-        rooms.Add(room);
+        Room room4 = new Room();
+        room4.max = new Vector3(-26.42f, 4f, -16.09f);
+        room4.min = new Vector3(6.07f, 0f, -1.12f);
+        rooms.Add(room4);
 
-        room.max = new Vector3(-25.72f, 4f, -2.58f);
-        room.min = new Vector3(-8.369f, 0f, 3.648f);
-        rooms.Add(room); 
+        Room room5 = new Room();
+        room5.max = new Vector3(-25.72f, 4f, -2.58f);
+        room5.min = new Vector3(-8.369f, 0f, 3.648f);
+        rooms.Add(room5); 
 
         agent = GetComponent<NavMeshAgent>();
     }

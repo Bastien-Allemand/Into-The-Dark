@@ -30,7 +30,11 @@ public class GhostPatrolState : IState
             Debug.Log("Room :" + choiceroom);
         }
         if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
-            pathfinding.agent.SetDestination(RandomPosition(pathfinding.rooms[choiceroom]));
+        { 
+            Vector3 pos = RandomPosition(pathfinding.rooms[choiceroom]);
+            pathfinding.agent.SetDestination(pos);
+            Debug.Log("Pos :" +  pos);
+        }
     }
 
     public void Exit()
@@ -42,14 +46,15 @@ public class GhostPatrolState : IState
     {
         Vector3 pos = Vector3.zero;
         pos.x = Random.Range(_room.min.x, _room.max.x);
-        pos.y = Random.Range(_room.max.y, _room.min.y);
+        pos.y = Random.Range(_room.min.y, _room.max.y);
         pos.z = Random.Range(_room.min.z, _room.max.z);
         NavMeshHit hit;
 
         if (NavMesh.SamplePosition(pos, out hit, 5f, NavMesh.AllAreas))
         {
-            return hit.position;
+            pos = hit.position;
         }
+        Debug.Log("Pos Random :" + pos);
         return pos;
     }
 }

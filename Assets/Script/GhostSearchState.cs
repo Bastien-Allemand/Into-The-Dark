@@ -19,7 +19,7 @@ public class GhostSearchState : IState
 
     public void Update()
     {
-        if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f) 
+        if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
         {
             pathfinding.agent.SetDestination(pathfinding.target.localPosition);
         }
