@@ -15,7 +15,7 @@ public class PhoneScript : MonoBehaviour
     public float maxTime = 60f; // Max battery time without flash (seconds)
     public float currentTimer = 0f; // Current Timer (indicate the battery left in seconds)
     public float coeffBatteryLightUse = 5f; // Coeff to deplete battery faster when light is active
-    public bool haveBattery => currentBattery > 0; // Indication if the phone have battery left or not
+    public bool HaveBattery => currentBattery > 0; // Indication if the phone have battery left or not
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class PhoneScript : MonoBehaviour
 
     private void HandleLight()
     {
-        if (Input.GetMouseButtonDown(0) && phone.activeSelf && haveBattery)
+        if (Input.GetMouseButtonDown(0) && phone.activeSelf && HaveBattery)
         {
             phoneLight.enabled = !phoneLight.enabled;
         }
@@ -79,6 +79,7 @@ public class PhoneScript : MonoBehaviour
             TogglePhone();
         }
     }
+
     private void TogglePhone()
     {
         bool isActive = !phone.activeSelf;

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 226137558}
   - component: {fileID: 226137557}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,12 +225,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226137556}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: -0.25, z: 2.48}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.92, y: -5.65049, z: -1.3731}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1981258585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501322039
 GameObject:
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 547793141}
   - component: {fileID: 547793140}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas (UI)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   currentBattery: 100
   maxTime: 60
   currentTimer: 60
-  haveBattery: 1
+  coeffBatteryLightUse: 5
 --- !u!54 &833412591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 967783938}
   - component: {fileID: 967783937}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Wall 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,12 +784,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967783936}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.53, y: 4.7, z: 7.51}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 4.92, y: -0.70049, z: 3.6569002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1981258585}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!1 &1047228254
 GameObject:
@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 1047228256}
   - component: {fileID: 1047228255}
   m_Layer: 0
-  m_Name: Plane (4)
+  m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,12 +897,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047228254}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.53, y: 9.66, z: 2.48}
+  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: 4.92, y: 4.25951, z: -1.3731}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1981258585}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &1342011904
 GameObject:
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 1342011906}
   - component: {fileID: 1342011907}
   m_Layer: 5
-  m_Name: Battery
+  m_Name: Battery UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,7 +1297,7 @@ Light:
   m_Enabled: 0
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1533,7 +1533,7 @@ GameObject:
   - component: {fileID: 1731377975}
   - component: {fileID: 1731377974}
   m_Layer: 0
-  m_Name: Plane (2)
+  m_Name: Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1627,11 +1627,11 @@ Transform:
   m_GameObject: {fileID: 1731377973}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 4.39, y: 4.7, z: 2.63}
+  m_LocalPosition: {x: 9.84, y: -0.70049, z: -1.2231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1981258585}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!1 &1849576580
 GameObject:
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 1849576583}
   - component: {fileID: 1849576582}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Battery text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,8 +1667,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -417.33, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -503.14, y: 232.84448}
+  m_SizeDelta: {x: 94.7139, y: 39.311}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1849576582
 MonoBehaviour:
@@ -1770,6 +1770,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849576580}
   m_CullTransparentMesh: 1
+--- !u!1 &1981258584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981258585}
+  m_Layer: 0
+  m_Name: TestRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981258585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981258584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.45, y: 5.40049, z: 3.8531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 226137560}
+  - {fileID: 1047228258}
+  - {fileID: 967783940}
+  - {fileID: 1731377977}
+  - {fileID: 2086427066}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2066575784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,7 +1932,7 @@ GameObject:
   - component: {fileID: 2086427064}
   - component: {fileID: 2086427063}
   m_Layer: 0
-  m_Name: Plane (3)
+  m_Name: Wall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1990,11 +2026,11 @@ Transform:
   m_GameObject: {fileID: 2086427062}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -5.45, y: 4.7, z: 2.63}
+  m_LocalPosition: {x: 0, y: -0.70049, z: -1.2231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1981258585}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -2002,10 +2038,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1601803679}
   - {fileID: 833412589}
-  - {fileID: 226137560}
-  - {fileID: 1047228258}
-  - {fileID: 967783940}
-  - {fileID: 1731377977}
-  - {fileID: 2086427066}
   - {fileID: 501322042}
   - {fileID: 547793143}
+  - {fileID: 1981258585}
