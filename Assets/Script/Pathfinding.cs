@@ -20,28 +20,28 @@ public class Pathfinding : MonoBehaviour
     void Start()
     {
         Room room = new Room();
-        room.max = new Vector3(-15.02f, 4f, 1.81f);
-        room.min = new Vector3(-5.89f, 0f, 11.17f);
+        room.max = new Vector3(-23.83f, 4f, 5.11f);
+        room.min = new Vector3(-8.63f, 0f, 20.91f);
         rooms.Add(room);
 
-        room.max = new Vector3(-4.58f, 4f, -1.67f);
-        room.min = new Vector3(3.48f, 0f, 5.67f);
+        room.max = new Vector3(-7.16f, 4f, -0.84f);
+        room.min = new Vector3(6.03f, 0f, 12.09f);
         rooms.Add(room);
 
-        room.max = new Vector3(4.98f, 4f, -1.52f);
-        room.min = new Vector3(12.37f, 0f, 5.73f);
+        room.max = new Vector3(7.32f, 4f, -0.02f);
+        room.min = new Vector3(19.75f, 0f, 12.08f);
         rooms.Add(room);
 
-        room.max = new Vector3(4.87f, 4f, -12.26f);
-        room.min = new Vector3(16.61f, 0f, -3.04f);
+        room.max = new Vector3(7.3f, 4f, -16.48f);
+        room.min = new Vector3(25.36f, 0f, -1.72f);
         rooms.Add(room);
 
-        room.max = new Vector3(-16.67f, 4f, -12.54f);
-        room.min = new Vector3(-3.22f, 0f, -4.19f);
+        room.max = new Vector3(-26.42f, 4f, -16.09f);
+        room.min = new Vector3(6.07f, 0f, -1.12f);
         rooms.Add(room);
 
-        room.max = new Vector3(-16.67f, 4f, -3.45f);
-        room.min = new Vector3(-6.14f, 0f, 0f);
+        room.max = new Vector3(-25.72f, 4f, -2.58f);
+        room.min = new Vector3(-8.369f, 0f, 3.648f);
         rooms.Add(room); 
 
         agent = GetComponent<NavMeshAgent>();
@@ -69,7 +69,7 @@ public class Pathfinding : MonoBehaviour
         if (swapRoom < 0f)
         {
             swapRoom = 20f;
-            choiceroom = Random.Range(0, 6);
+            choiceroom = Random.Range(0, 5);
             Debug.Log("Room :" + choiceroom);
         }
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
