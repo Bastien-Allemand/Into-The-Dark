@@ -9,7 +9,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float sprintingMultiplier;
     [SerializeField] private bool isSprinting = false;
     private float sprintTime;
-    [SerializeField] private float sprintTimeLeft;
+    [SerializeField] private float staminaLeft;
     private bool isOutOfStamina = false;
     private bool canSprint = false;
 
@@ -34,6 +34,8 @@ public class MovePlayer : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private RectTransform sprintBarTransform;
+    private float sprintBarInitialWidth;
 
     [Space(10)]
     [Header("State (Debug)")]
@@ -57,7 +59,8 @@ public class MovePlayer : MonoBehaviour
         sprintingMultiplier = 1.4f;
         speed = initialSpeed;
         sprintTime = 5f;
-        sprintTimeLeft = sprintTime;
+        staminaLeft = sprintTime;
+        sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
     void Awake()
     {
@@ -130,10 +133,12 @@ public class MovePlayer : MonoBehaviour
 
             if (isSprinting)
             {
-                sprintTimeLeft -= Time.deltaTime;
-                if (sprintTimeLeft <= 0f)
+                staminaLeft -= Time.deltaTime;
+                float purcentLeft = (staminaLeft / sprintTime);
+                sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
+                if (staminaLeft <= 0f)
                 {
-                    sprintTimeLeft = 0f;
+                    staminaLeft = 0f;
                     StopSprinting();
                     isOutOfStamina = true;
                 }
@@ -143,13 +148,16 @@ public class MovePlayer : MonoBehaviour
             {
                 if (isOutOfStamina)
                 {
-                    if (sprintTimeLeft > 3f)
+                    if (staminaLeft > 3f)
                         isOutOfStamina = false;
                 }
-                if (sprintTimeLeft < 5f)
-                    sprintTimeLeft += Time.deltaTime / 2;
-                if (sprintTimeLeft > 5f)
-                    sprintTimeLeft = 5f;
+                if (staminaLeft < sprintTime)
+                    staminaLeft += Time.deltaTime / 2;
+                if (staminaLeft > sprintTime)
+                    staminaLeft = sprintTime;
+
+                float purcentLeft = (staminaLeft / sprintTime);
+                sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
             }
         }
     }
@@ -182,6 +190,22 @@ public class MovePlayer : MonoBehaviour
         }
         
     }
+
+    void StandUp()
+    {
+        if (isCeilingAbove) return;
+
+        if (isCrouched == true)
+        {
+            //To remove
+            transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
+            //
+            playerCollider.height = standHeight;
+            playerCollider.center = new Vector3(0f, standCenterY, 0f);
+            isCrouched = false;
+        }
+        
+    }
     void CheckIsCeilingAbove()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
@@ -201,22 +225,6 @@ public class MovePlayer : MonoBehaviour
         }
 
         Debug.DrawRay(origin, Vector3.up, rayColor);
-    }
-
-    void StandUp()
-    {
-        if (isCeilingAbove) return;
-
-        if (isCrouched == true)
-        {
-                //To remove
-                transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
-            //
-            playerCollider.height = standHeight;
-            playerCollider.center = new Vector3(0f, standCenterY, 0f);
-            isCrouched = false;
-        }
-        
     }
 
     void StartSprinting()
