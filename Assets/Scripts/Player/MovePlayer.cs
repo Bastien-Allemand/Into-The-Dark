@@ -276,6 +276,5 @@ public class MovePlayer : MonoBehaviour
         float purcentLeft = (staminaLeft / sprintTime);
         sprintBarTransform.sizeDelta = new Vector2( sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
     }
-    }
 }
 
