@@ -33,6 +33,8 @@ public class MovePlayer : MonoBehaviour
     private float crouchScale;
     private Vector3 initialScale;
 
+    Vector2 moveInput;
+
     LayerMask layerMask;
 
     void Start()
@@ -52,38 +54,22 @@ public class MovePlayer : MonoBehaviour
     }
     void Update()
     {
-        //cameraTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
-        moveInputX = 0f;
-        moveInputZ = 0f;
+        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.y = Input.GetAxisRaw("Vertical");
 
-        if (Keyboard.current != null)
-        {
-            if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
-                moveInputX = 1f;
-            else if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
-                moveInputX = -1f;
-
-            if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
-                moveInputZ = 1f;
-            else if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
-                moveInputZ = -1f;
-
-            if(Keyboard.current.cKey.isPressed)
-            {
-                Crouch();
-            }
-            
-            if(Keyboard.current.cKey.wasReleasedThisFrame)
-            {
-                StandUp();
-            }
-        }
+        //moveInput = 
     }
 
     void FixedUpdate()
     {
-        Vector3 moveTarget = (transform.forward * moveInputZ + transform.right * moveInputX) * speed;
-        Move(moveTarget);
+        rb.MovePosition(
+            rb.position +
+            (transform.forward * moveInput.y + transform.right * moveInput.x)
+            * speed * Time.fixedDeltaTime
+        );
+
+        //Vector3 moveTarget = (transform.forward * moveInputZ + transform.right * moveInputX) * speed;
+        //Move(moveTarget);
 
         CheckIsCeilingAbove();
     }
