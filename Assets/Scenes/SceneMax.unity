@@ -778,17 +778,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf63f984ab0d6c458a5136f47d3688a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
-  speed: 5
-  sprintingMultiplier: 1.25
+  staminaLeft: 5
+  speed: 0
   isSprinting: 0
-  sprintTimeLeft: 0
+  sprintingMultiplier: 0
+  staminaIncreasingTotalTime: 1.5
   standHeight: 2
   standCenterY: 0
   crouchHeight: 1.2
   crouchCenterY: -0.2
   ceilingCheckDistance: 1
-  rb: {fileID: 2021796302}
-  playerCollider: {fileID: 2021796298}
+  rb: {fileID: 0}
+  playerCollider: {fileID: 0}
   isCrouched: 0
   isCeilingAbove: 0
 --- !u!1660057539 &9223372036854775807
