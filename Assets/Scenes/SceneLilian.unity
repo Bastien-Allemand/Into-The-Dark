@@ -575,7 +575,6 @@ GameObject:
   - component: {fileID: 1112331368}
   - component: {fileID: 1112331367}
   - component: {fileID: 1112331366}
-  - component: {fileID: 1112331369}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -592,7 +591,7 @@ Transform:
   m_GameObject: {fileID: 1112331364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0.85, z: -9.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -701,20 +700,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1112331369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112331364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f6f73d86aed984ea3e87dd8edf5a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHead
-  playerTransform: {fileID: 1804416874}
-  sensitivity: 75
 --- !u!1 &1804416870
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,8 +712,8 @@ GameObject:
   - component: {fileID: 1804416873}
   - component: {fileID: 1804416872}
   - component: {fileID: 1804416871}
-  - component: {fileID: 1804416876}
   - component: {fileID: 1804416875}
+  - component: {fileID: 1804416877}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -825,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 1804416870}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.39, z: 0.08}
+  m_LocalPosition: {x: 0, y: 1.39, z: -0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -859,7 +844,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1804416876
+--- !u!114 &1804416877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -868,24 +853,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804416870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf63f984ab0d6c458a5136f47d3688a, type: 3}
+  m_Script: {fileID: 11500000, guid: b8b30715e00ff9d40a1f8039a6e95ead, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
-  staminaLeft: 0
-  speed: 2.5
-  isSprinting: 0
-  sprintingMultiplier: 0
-  staminaIncreasingTotalTime: 1.5
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  currentState: 0
+  rb: {fileID: 1804416875}
+  playerCollider: {fileID: 1804416871}
+  _camera: {fileID: 1112331368}
+  sprintBarTransform: {fileID: 180842455}
+  sensitivity: 0.5
+  XMaxAngle: 60
+  walkSpeed: 5
+  sprintingMultiplier: 1.4
+  maxStamina: 5
+  staminaLeft: 5
+  staminaRegenDelay: 1.5
   standHeight: 2
   standCenterY: 0
   crouchHeight: 1.2
-  crouchCenterY: -0.8
+  crouchCenterY: -0.2
   ceilingCheckDistance: 1
-  rb: {fileID: 1804416875}
-  playerCollider: {fileID: 1804416871}
-  sprintBarTransform: {fileID: 180842455}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   isCrouched: 0
   isCeilingAbove: 0
+  isOutOfStamina: 0
 --- !u!1 &1808873735
 GameObject:
   m_ObjectHideFlags: 0
