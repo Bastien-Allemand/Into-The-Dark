@@ -1,22 +1,21 @@
 using System;
-using System.Threading;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PhoneScript : MonoBehaviour
 {
-    public GameObject phone;
-    public GameObject battery;
-    public Light phoneLight;
-    public TextMeshProUGUI textBattery;
-    public BatteryScript batteryScript;
+    public GameObject phone; // The phone (GameObject)
+    public GameObject battery; // The UI battery (GameObject)
+    public Light phoneLight; // The flashlight of the phone
+    public TextMeshProUGUI textBattery; // The text percentage of battery left
+    public BatteryScript batteryScript; // The script of the battery 
 
-    public float maxBattery = 100; // Max Battery (percentage)
-    public float currentBattery = 0; // Current Battery (percentage)
-    public float maxTime = 60; // Time in seconds
-    public float currentTimer = 0; // Current Timer  
-    public bool haveBattery = true;
+    public float maxBattery = 100f; // Max Battery (percentage)
+    public float currentBattery = 0f; // Current Battery (percentage)
+    public float maxTime = 60f; // Max battery time without flash (seconds)
+    public float currentTimer = 0f; // Current Timer (indicate the battery left in seconds)
+    public float coeffBatteryLightUse = 5f; // Coeff to deplete battery faster when light is active
+    public bool haveBattery => currentBattery > 0; // Indication if the phone have battery left or not
 
     void Start()
     {
@@ -29,46 +28,68 @@ public class PhoneScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        HandleInputs();
+        HandleBatteryDrain();
+        HandleLight();
+        UpdateUI();
+        CheckBattery();
+    }
+
+    private void CheckBattery()
+    {
+        if (currentTimer <= 0)
         {
-            phone.SetActive(!phone.activeSelf);
-            battery.SetActive(!battery.activeSelf);
-            textBattery.enabled = !textBattery.enabled;
-
-            if (!phone.activeSelf || haveBattery == false)
-            {
-                phoneLight.enabled = false;
-            }
+            currentBattery = 0;
+            phoneLight.enabled = false;
+            textBattery.enabled = false;
         }
+    }
 
-        if (phoneLight.enabled == true)
-        {
-            currentTimer -= 5 * Time.deltaTime;
-
-            currentBattery = currentTimer * maxBattery / maxTime;
-            batteryScript.SetBattery((int)currentBattery);
-        }
-        else if (phone.activeSelf)
-        {
-            currentTimer -= Time.deltaTime;
-
-            currentBattery = currentTimer * maxBattery / maxTime;
-            batteryScript.SetBattery((int)currentBattery);
-        }
-
+    private void UpdateUI()
+    {
         textBattery.text = ((int)currentBattery).ToString() + "%";
+    }
 
-        if (Input.GetMouseButtonDown(0) && phone.activeSelf)
+    private void HandleLight()
+    {
+        if (Input.GetMouseButtonDown(0) && phone.activeSelf && haveBattery)
         {
             phoneLight.enabled = !phoneLight.enabled;
         }
+    }
 
-        if(currentBattery <= 0)
+    private void HandleBatteryDrain()
+    {
+        if (!phone.activeSelf)
+            return;
+
+        float drainRate = phoneLight.enabled ? coeffBatteryLightUse : 1f;
+
+        currentTimer -= drainRate * Time.deltaTime;
+        currentTimer = Mathf.Clamp(currentTimer, 0f, maxTime);
+
+        currentBattery = currentTimer / maxTime * maxBattery;
+        batteryScript.SetBattery((int)currentBattery);
+    }
+
+    private void HandleInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            currentBattery = 0;
-            haveBattery = false;
+            TogglePhone();
+        }
+    }
+    private void TogglePhone()
+    {
+        bool isActive = !phone.activeSelf;
+
+        phone.SetActive(isActive);
+        battery.SetActive(isActive);
+        textBattery.enabled = isActive;
+
+        if (!isActive)
+        {
             phoneLight.enabled = false;
-            textBattery.enabled = false;
         }
     }
 }
