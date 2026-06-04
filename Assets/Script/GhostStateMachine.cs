@@ -22,8 +22,14 @@ public class GhostStateMachine : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Collision.getComponent<GameObject>()
+        if (collision.gameObject.CompareTag("Sound"))
+        {
+            Debug.Log("Collision avec un son");
+            pathfinding.target = collision.transform;
+            ChangeState(new GhostSearchState(this, pathfinding));
+        }
     }
+
     public void ChangeState(IState newState)
     {
         // 1. On quitte proprement l'ancien état s'il existe
