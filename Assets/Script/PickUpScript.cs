@@ -2,18 +2,28 @@ using UnityEngine;
 
 public class PickUpScript : MonoBehaviour
 {
-    private Transform handSocket;
+    [Header("Sockets (À glisser dans l'inspecteur si non trouvés)")]
+    [SerializeField] private Transform leftHandSocket;
+    [SerializeField] private Transform rightHandSocket;
+
+    [Header("Settings")]
+    //[SerializeField] private float pickupDistance = 10.0f;
+
+    private GameObject rightHandItem = null;
+    private GameObject leftHandItem = null;
 
     void Start()
     {
-        GameObject socketObj = GameObject.Find("RightHandSocket");
-        if (socketObj != null)
+        if (rightHandSocket == null)
         {
-            handSocket = socketObj.transform;
+            GameObject rightSocketObj = GameObject.Find("RightHandSocket");
+            if (rightSocketObj != null) rightHandSocket = rightSocketObj.transform;
         }
-        else
+
+        if (leftHandSocket == null)
         {
-            Debug.LogError("RightHandSocket introuvable dans la scène !");
+            GameObject leftSocketObj = GameObject.Find("LeftHandSocket");
+            if (leftSocketObj != null) leftHandSocket = leftSocketObj.transform;
         }
     }
 
@@ -21,19 +31,85 @@ public class PickUpScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (handSocket != null)
-            {
-                transform.SetParent(handSocket);
-                
-                transform.localPosition = Vector3.zero;
-                transform.localRotation = Quaternion.identity;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-                Rigidbody rb = GetComponent<Rigidbody>();
-                if (rb != null)
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Debug.Log("Le Raycast a touché : " + hit.collider.name);
+
+                if (hit.collider.CompareTag("Item"))
                 {
-                    rb.isKinematic = true;
+                    Pickup(hit.collider.gameObject);
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DropLeftHandItem();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DropRightHandItem();
+        }
+    }
+
+    private void Pickup(GameObject targetItem)
+    {
+        if (rightHandSocket != null && rightHandItem == null)
+        {
+            rightHandItem = targetItem;
+            AttachItem(targetItem, rightHandSocket);
+        }
+        else if (leftHandSocket != null && leftHandItem == null)
+        {
+            leftHandItem = targetItem;
+            AttachItem(targetItem, leftHandSocket);
+        }
+        else
+        {
+            Debug.LogWarning("Impossible de ramasser : Les deux mains gèrent déjà un Item, ou un socket est manquant.");
+        }
+    }
+
+    private void AttachItem(GameObject item, Transform socket)
+    {
+        item.transform.SetParent(socket);
+        item.transform.localPosition = Vector3.zero;
+        item.transform.localRotation = Quaternion.identity;
+
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+        }
+    }
+
+    private void DropRightHandItem()
+    {
+        if (rightHandItem != null)
+        {
+            DetachItem(rightHandItem);
+            rightHandItem = null;
+        }
+    }
+
+    private void DropLeftHandItem()
+    {
+        if (leftHandItem != null)
+        {
+            DetachItem(leftHandItem);
+            leftHandItem = null;
+        }
+    }
+
+    private void DetachItem(GameObject item)
+    {
+        item.transform.SetParent(null);
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
         }
     }
 }
