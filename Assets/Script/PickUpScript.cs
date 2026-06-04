@@ -7,7 +7,7 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] private Transform rightHandSocket;
 
     [Header("Settings")]
-    //[SerializeField] private float pickupDistance = 10.0f;
+    [SerializeField] private float pickupDistance = 10.0f;
 
     private GameObject rightHandItem = null;
     private GameObject leftHandItem = null;
@@ -33,7 +33,8 @@ public class PickUpScript : MonoBehaviour
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            // Ajout de pickupDistance ici pour limiter la portée du rayon
+            if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance))
             {
                 Debug.Log("Le Raycast a touché : " + hit.collider.name);
 
