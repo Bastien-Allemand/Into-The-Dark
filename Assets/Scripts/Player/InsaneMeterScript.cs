@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class InsaneMeterScript : MonoBehaviour
 {
     [SerializeField] private float insaneMeter = 0f;
     [SerializeField] private float maxInsaneMeter = 100f;
@@ -13,7 +13,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [SerializeField] private int pills = 1;
 
-    PlayerAction controls; 
+    PlayerAction controls;
 
     //Change in stunned state
     [SerializeField] private bool takingPills = false;
@@ -84,7 +84,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         float distanceToTarget = Vector3.Distance(visionCam.transform.position, _target.transform.position);
         if (distanceToTarget < 5f)
         {
-            insaneMeter += (distanceToTarget/ 5f * Time.deltaTime) * 2; // Increase the insane meter more rapidly as the target gets closer
+            insaneMeter += (distanceToTarget / 5f * Time.deltaTime) * 2; // Increase the insane meter more rapidly as the target gets closer
         }
 
         if (insaneMeter > 100)
@@ -95,24 +95,28 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void CheckUsePill()
     {
-        if(pills <= 0)
-         return;
+        if (pills <= 0)
+            return;
 
         if (controls.GamePlay.Interact.triggered && takingPills == false)
         {
             takingPills = true;
-            
+
         }
-        else if(takingPills == true)
+        else if (takingPills == true)
         {
             currentanimDuration += Time.deltaTime;
-            if(currentanimDuration >= animDuration)
+            if (currentanimDuration >= animDuration)
             {
-                insaneMeter -= maxInsaneMeter * 0.15f;
                 pills--;
-                //Debug.Log("Pills taken");
                 currentanimDuration = 0f;
                 takingPills = false;
+                insaneMeter -= maxInsaneMeter * 0.15f;
+                if (insaneMeter <= 0)
+                { 
+                    insaneMeter = 0; 
+                }
+                //Debug.Log("Pills taken");
             }
         }
     }
