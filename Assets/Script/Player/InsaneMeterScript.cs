@@ -7,6 +7,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private float initalInsaneMeterWidth = 0f;
 
     [SerializeField] private RectTransform insaneBarTransform;
+
     public Camera visionCam;
     public string targetTag = "Ghost";
     public float insanityStack = 0f;
