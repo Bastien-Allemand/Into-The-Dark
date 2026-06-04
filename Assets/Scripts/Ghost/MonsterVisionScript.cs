@@ -7,8 +7,8 @@ public class MonsterVisionScript : MonoBehaviour
 {
     [SerializeField] private Camera enemyCamera;
 
-    private GameObject targetObj;
-    private bool PlayerFound = false;
+    public GameObject targetObj { get; private set; }
+    public bool PlayerFound { get; private set; } = true;
     [SerializeField] private float rayonDetection;
     [SerializeField] private float chaseCD;
     private float chaseActualCD;
@@ -27,6 +27,9 @@ public class MonsterVisionScript : MonoBehaviour
     void Update()
     {
         EnnemyChase();
+
+        if (targetObj == null)
+            return;
 
         if (!PlayerInFrustum())
             return;
@@ -47,7 +50,7 @@ public class MonsterVisionScript : MonoBehaviour
         if (chaseActualCD < 0)
             PlayerFound = false;
     }
-    bool PlayerInFrustum()
+    public bool PlayerInFrustum()
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(enemyCamera);
 
@@ -55,7 +58,7 @@ public class MonsterVisionScript : MonoBehaviour
 
         return GeometryUtility.TestPlanesAABB(planes, targetCollider.bounds);
     }
-    bool RayConnectToPlayer()
+    public bool RayConnectToPlayer()
     {
         RaycastHit hit;
         bool result = false;

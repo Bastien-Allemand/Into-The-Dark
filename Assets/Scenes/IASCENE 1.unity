@@ -465,6 +465,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4100870729213104286, guid: 9c219f1a62b158448b0e26d68c135b3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 304485651125738881}
+    - targetCorrespondingSourceObject: {fileID: 4100870729213104286, guid: 9c219f1a62b158448b0e26d68c135b3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 304485651125738885}
   m_SourcePrefab: {fileID: 100100000, guid: 9c219f1a62b158448b0e26d68c135b3b, type: 3}
 --- !u!1 &304485651125738870 stripped
 GameObject:
@@ -522,8 +525,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4158e7e1ec447942a528442281237b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pathfinding
-  actualRoom: 0
   target: {fileID: 0}
+--- !u!114 &304485651125738885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304485651125738870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bced087422c8c74ea0677d061cfd91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterVisionScript
+  enemyCamera: {fileID: 2061869762}
+  rayonDetection: 0
+  chaseCD: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

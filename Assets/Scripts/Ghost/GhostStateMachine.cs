@@ -4,20 +4,36 @@ public class GhostStateMachine : MonoBehaviour
 {
     private IState currentState;
     private Pathfinding pathfinding;
+    private MonsterVisionScript monsterVision;
 
     void Start()
     {
         pathfinding = GetComponent<Pathfinding>();
+        monsterVision = GetComponent<MonsterVisionScript>();
         ChangeState(new GhostPatrolState(this,pathfinding));
     }
 
     void Update()
     {
+        if (monsterVision.PlayerFound && currentState is not GhostChaseState)
+        {
+            ChangeState(new GhostChaseState(this, pathfinding));
+        }
+        if (monsterVision.targetObj)
+        {
+            if (monsterVision.PlayerInFrustum() && monsterVision.RayConnectToPlayer())
+            {
+                pathfinding.target = monsterVision.targetObj.transform;
+            }
+        }
+        if (!monsterVision.PlayerFound)
+        {
+            ChangeState(new GhostPatrolState(this, pathfinding));
+        }
         if (currentState != null)
         {
             currentState.Update();
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -13,15 +13,19 @@ public class GhostChaseState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode IDLE");
+        Debug.Log("Ghost: Mode CHASE");
     }
 
     public void Update()
     {
+        if (pathfinding.target == null)
+            stateMachine.ChangeState(new GhostPatrolState(stateMachine, pathfinding));
+
+        pathfinding.agent.SetDestination(pathfinding.target.position);
     }
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode IDLE.");
+        Debug.Log("Ghost: Exit Mode CHASE.");
     }
 }
