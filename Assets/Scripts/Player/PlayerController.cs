@@ -39,11 +39,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float standCenterY = 0f;
     [SerializeField] private float crouchHeight = 1.2f;
     [SerializeField] private float crouchCenterY = -0.2f;
+    [SerializeField] private float crouchingMultiplier = .5f;
     [SerializeField] private float ceilingCheckDistance = 1.0f;
 
     [Space(5)]
     [Header("Physics & Raycast")]
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Vector3 ceilingCheckSize = new Vector3(0.6f, 0.1f, 0.6f);
 
     [Space(5)]
     [Header("State Debug")]
@@ -165,6 +167,7 @@ public class PlayerController : MonoBehaviour
             playerCollider.height = crouchHeight;
             playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
             isCrouched = true;
+            currentSpeed = walkSpeed * crouchingMultiplier;
         }
     }
 
@@ -233,7 +236,7 @@ public class PlayerController : MonoBehaviour
         Color rayColor = Color.green;
         float castLength = standHeight + ceilingCheckDistance;
 
-        if (Physics.Raycast(origin, Vector3.up, castLength, layerMask))
+        if (Physics.BoxCast(origin, ceilingCheckSize / 2f, Vector3.up, Quaternion.identity, castLength, layerMask))
         {
             isCeilingAbove = true;
             rayColor = Color.red;
