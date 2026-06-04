@@ -8,9 +8,9 @@ public class MovePlayer : MonoBehaviour
     private float sprintTime;
     [SerializeField] private float staminaLeft = 5f;
     [SerializeField] private float speed;
-    [SerializeField] private bool isSprinting = false;
     [SerializeField] private float sprintingMultiplier;
-    
+    [SerializeField] private float crouchingMultiplier;
+
     private bool isOutOfStamina = false;
     private bool canSprint = false;
     [SerializeField] private float staminaIncreasingTotalTime = 1.5f;
@@ -40,6 +40,7 @@ public class MovePlayer : MonoBehaviour
 
     [Space(10)]
     [Header("State (Debug)")]
+    [SerializeField] private bool isSprinting = false;
     [SerializeField] private bool isCrouched = false;
     [SerializeField] private bool isCeilingAbove = false;
 
@@ -58,6 +59,7 @@ public class MovePlayer : MonoBehaviour
         crouchScale = initialScale.y * 0.65f;
         initialSpeed = 5f;
         sprintingMultiplier = 1.4f;
+        crouchingMultiplier = 0.5f;
         speed = initialSpeed;
         sprintTime = 5f;
         staminaLeft = sprintTime;
@@ -111,14 +113,14 @@ public class MovePlayer : MonoBehaviour
                 StopSprinting();
             }
 
-            if (Keyboard.current.leftCtrlKey.isPressed)
+            if (Keyboard.current.cKey.isPressed)
             {
                 Crouch();
                 canSprint = false;
                 StopSprinting();
             }
             
-            if(Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
+            if(Keyboard.current.cKey.wasReleasedThisFrame)
             {
                 StandUp();
                 canSprint = true;
@@ -191,6 +193,8 @@ public class MovePlayer : MonoBehaviour
             playerCollider.height = crouchHeight;
             playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
             isCrouched = true;
+
+            speed = initialSpeed * crouchingMultiplier;
         }
         
     }
@@ -227,6 +231,8 @@ public class MovePlayer : MonoBehaviour
             playerCollider.height = standHeight;
             playerCollider.center = new Vector3(0f, standCenterY, 0f);
             isCrouched = false;
+
+            speed = initialSpeed;
         }
         
     }
