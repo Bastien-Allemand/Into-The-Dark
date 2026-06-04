@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum class PlayerState
+    public enum PlayerState
     {
         IDLE,
         WALKING,
         CROUCHING,
-        SPRINTING,
-    };
+        SPRINTING
+    }
 
     [Header("State")]
     [SerializeField] private PlayerState currentState = PlayerState.IDLE;
