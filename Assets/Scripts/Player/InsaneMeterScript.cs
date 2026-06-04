@@ -10,6 +10,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public Camera visionCam;
     public string targetTag = "Ghost";
     public float insanityStack = 0f;
+
+    [SerializeField] private int pills = 1;
+
+    PlayerAction controls;
+
+    //Change in stunned state
+    [SerializeField] private bool takingPills = false;
+    [SerializeField] private float animDuration = 2f;
+    [SerializeField] private float currentanimDuration = 0f;
     private void Start()
     {
         if (insaneBarTransform != null)
@@ -17,6 +26,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
             initalInsaneMeterWidth = insaneBarTransform.rect.width;
         }
     }
+
+    private void OnEnable() => controls.Enable();
+    private void OnDisable() => controls.Disable();
+
+    void Awake()
+    {
+        controls = new PlayerAction();
+    }
+
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag(targetTag);
@@ -28,9 +46,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         UpdateInsanity(target);
-
+        CheckUsePill();
         UpdateBarUI();
     }
+
     void UpdateInsanity(GameObject _target)
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(visionCam);
@@ -54,7 +73,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 insanityStack = 6;
             }
-            insaneMeter += insanityStack * 0.5f; // Increase the insane meter over time while the target is visible
+            insaneMeter += insanityStack * 0.5f * Time.deltaTime; // Increase the insane meter over time while the target is visible
         }
         else if (insaneMeter > 0)
         {
@@ -73,6 +92,31 @@ public class NewMonoBehaviourScript : MonoBehaviour
             insaneMeter = 100;
         }
     }
+
+    void CheckUsePill()
+    {
+        if(pills <= 0)
+         return;
+
+        if (controls.GamePlay.Interact.triggered && takingPills == false)
+        {
+            takingPills = true;
+            
+        }
+        else if(takingPills == true)
+        {
+            currentanimDuration += Time.deltaTime;
+            if(currentanimDuration >= animDuration)
+            {
+                insaneMeter -= maxInsaneMeter * 0.15f;
+                pills--;
+                Debug.Log("Pills taken");
+                currentanimDuration = 0f;
+                takingPills = false;
+            }
+        }
+    }
+
     void UpdateBarUI()
     {
         if (insaneBarTransform == null) return;
