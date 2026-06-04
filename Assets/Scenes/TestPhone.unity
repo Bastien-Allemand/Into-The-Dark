@@ -244,40 +244,13 @@ GameObject:
   - component: {fileID: 271372093}
   - component: {fileID: 271372092}
   - component: {fileID: 271372091}
-  - component: {fileID: 271372088}
-  - component: {fileID: 271372087}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &271372087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271372086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96968b4042e4a224ba0fdf6b0af02eca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
---- !u!114 &271372088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271372086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43d5dc0a0bc7ec4bb73502525e6c8ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MultiTags
-  tags: -1
 --- !u!65 &271372091
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -365,7 +338,7 @@ Transform:
   m_GameObject: {fileID: 271372086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15600014, y: 2.9315, z: 4.194}
+  m_LocalPosition: {x: -0.29, y: 2.9315, z: 4.194}
   m_LocalScale: {x: 0.6046, y: 0.4562, z: 1.4554732}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -450,6 +423,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &502783421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502783422}
+  m_Layer: 0
+  m_Name: PhoneHiddenAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &502783422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502783421}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.63, y: -2, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1731242394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547793139
 GameObject:
@@ -759,15 +763,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23a5b8e478e2ff41b714e4bc97bae10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneScript
-  phone: {fileID: 2066575784}
+  phoneTransform: {fileID: 2066575788}
   battery: {fileID: 1342011904}
   phoneLight: {fileID: 1441171605}
   textBattery: {fileID: 1849576582}
   batteryScript: {fileID: 1342011907}
+  hiddenAnchor: {fileID: 502783422}
+  idleAnchor: {fileID: 1592294812}
+  cameraAnchor: {fileID: 1757958381}
+  transitionSpeed: 8
   maxBattery: 100
-  currentBattery: 100
   maxTime: 120
-  currentTimer: 120
   coeffBatteryLightUse: 2
 --- !u!54 &833412591
 Rigidbody:
@@ -1080,7 +1086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -168, y: -120}
+  m_AnchoredPosition: {x: -206, y: 12.5}
   m_SizeDelta: {x: 80, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1342011906
@@ -1380,6 +1386,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2066575788}
   m_LocalEulerAnglesHint: {x: 0.838, y: 0.708, z: 4.256}
+--- !u!1 &1592294811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592294812}
+  m_Layer: 0
+  m_Name: PhoneIdleAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1592294812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592294811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.62, y: -0.4, z: 1.15}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1731242394}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601803676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1681,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2066575788}
+  - {fileID: 1592294812}
+  - {fileID: 1757958381}
+  - {fileID: 502783422}
   m_Father: {fileID: 833412589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1731242395
@@ -1773,6 +1813,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1981258585}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+--- !u!1 &1757958380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757958381}
+  m_Layer: 0
+  m_Name: PhoneCameraAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1757958381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757958380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1731242394}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1849576580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,7 +2066,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960688484}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1960688488
 Camera:
   m_ObjectHideFlags: 0
@@ -2189,8 +2260,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066575784}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.58, y: -0.76, z: 1.5699999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.63, y: -0.4, z: 1.15}
   m_LocalScale: {x: 0.5, y: 1, z: 0.20000002}
   m_ConstrainProportionsScale: 0
   m_Children:

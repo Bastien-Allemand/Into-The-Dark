@@ -17,6 +17,16 @@ public class CamerasScript : MonoBehaviour
             m_cameraUiText.gameObject.SetActive(false);
     }
 
+    void AddCamera(GameObject camera)
+    {
+        Camera cam = camera.GetComponent<Camera>();
+        if (cam != null && !m_cameras.Contains(cam))
+        {
+            m_cameras.Add(cam);
+            m_camAmount++;
+        }
+    }
+
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.P))
