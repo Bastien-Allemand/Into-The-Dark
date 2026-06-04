@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //[Header("State Settings")]
-
     private enum PlayerState
     {
         IDLE,
@@ -12,7 +10,6 @@ public class PlayerController : MonoBehaviour
         SPRINTING,
     }
 
-    //[Space(5)]
     [Header("State")]
     [SerializeField] private PlayerState currentState = PlayerState.IDLE;
 
@@ -34,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintingMultiplier = 1.4f;
     [SerializeField] private float maxStamina = 5f;
     [SerializeField] private float staminaLeft = 5f;
-    [SerializeField] private float staminaRegenDelay = 1.5f; // Remplace staminaIncreasingTotalTime
+    [SerializeField] private float staminaRegenDelay = 1.5f;
 
     [Space(5)]
     [Header("Crouch Settings")]
@@ -54,7 +51,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isCeilingAbove = false;
     [SerializeField] private bool isOutOfStamina = false;
 
-    // Variables de calcul internes (privées)
     private float currentSpeed;
     private float staminaTimer = 0f;
     private float sprintBarInitialWidth;
@@ -62,35 +58,36 @@ public class PlayerController : MonoBehaviour
     private Vector2 targetRotation;
     private Vector2 currentRotation;
     private Vector3 velocity = Vector3.zero;
-    private PlayerAction controls;
+
+    PlayerAction controls;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        if (sprintBarTransform != null)
+        {
+            sprintBarInitialWidth = sprintBarTransform.rect.width;
+        }
     }
 
     private void Awake()
     {
         controls = new PlayerAction();
-
         layerMask = LayerMask.GetMask("Ceiling");
 
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (playerCollider == null) playerCollider = GetComponent<CapsuleCollider>();
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
+    private void OnEnable() => controls.Enable();
+    private void OnDisable() => controls.Disable();
+
     void Update()
     {
         Look();
         HandleStamina();
     }
+
     private void FixedUpdate()
     {
         CheckIsCeilingAbove();
@@ -116,12 +113,12 @@ public class PlayerController : MonoBehaviour
             StandUp();
         }
 
-        if(isMoving == false)
+        if (isMoving == false)
         {
             currentState = PlayerState.IDLE;
             currentSpeed = walkSpeed;
         }
-        else if(sprintInput == true && isOutOfStamina == false && isCrouched == false)
+        else if (sprintInput == true && isOutOfStamina == false && isCrouched == false)
         {
             currentState = PlayerState.SPRINTING;
             currentSpeed = walkSpeed * sprintingMultiplier;
@@ -132,17 +129,17 @@ public class PlayerController : MonoBehaviour
             currentSpeed = walkSpeed;
         }
     }
+
     void Look()
     {
         Vector2 mouse = controls.GamePlay.Look.ReadValue<Vector2>() * sensitivity;
 
         targetRotation.x -= mouse.y;
         targetRotation.y += mouse.x;
-
         targetRotation.x = Mathf.Clamp(targetRotation.x, -XMaxAngle, XMaxAngle);
 
-        currentRotation.x = Mathf.Lerp(currentRotation.x, targetRotation.x, 25f * Time.deltaTime);
-        currentRotation.y = Mathf.Lerp(currentRotation.y, targetRotation.y, 25f * Time.deltaTime);
+        currentRotation.x = Mathf.Lerp(currentRotation.x, targetRotation.x, 50f * Time.deltaTime);
+        currentRotation.y = Mathf.Lerp(currentRotation.y, targetRotation.y, 50f * Time.deltaTime);
 
         _camera.transform.localRotation = Quaternion.Euler(currentRotation.x, 0, 0);
         transform.localRotation = Quaternion.Euler(0, currentRotation.y, 0);
@@ -150,9 +147,12 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (moveInput == Vector2.zero) return;
+        Vector3 targetVel = Vector3.zero;
+        if (moveInput != Vector2.zero)
+        {
+            targetVel = (transform.forward * moveInput.y + transform.right * moveInput.x) * currentSpeed;
+        }
 
-        Vector3 targetVel = (transform.forward * moveInput.y + transform.right * moveInput.x) * currentSpeed;
         Vector3 currentVel = rb.linearVelocity;
         Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
 
@@ -180,33 +180,36 @@ public class PlayerController : MonoBehaviour
 
     void HandleStamina()
     {
-        if(currentState == PlayerState.SPRINTING)
+        if (currentState == PlayerState.SPRINTING)
         {
-            staminaTimer = 0f;
+            staminaTimer = 0f; 
             staminaLeft -= Time.deltaTime;
 
-            if(staminaLeft <= 0f)
+            if (staminaLeft <= 0f)
             {
                 staminaLeft = 0f;
                 isOutOfStamina = true;
             }
         }
-        else
+        else // IDLE, WALKING, CROUCHING
         {
-            if(isOutOfStamina == true && staminaLeft > 3f)
+            
+            if (isOutOfStamina == true && staminaLeft > 3f)
             {
                 isOutOfStamina = false;
             }
 
-            if(staminaLeft < maxStamina)
+            if (staminaLeft < maxStamina)
             {
-                if(staminaLeft > staminaRegenDelay)
+                
+                if (staminaTimer < staminaRegenDelay)
                 {
                     staminaTimer += Time.deltaTime;
                 }
                 else
                 {
-                    staminaTimer += (Time.deltaTime / 2f);
+                    
+                    staminaLeft += (Time.deltaTime * 0.75f); 
                 }
             }
             else
@@ -228,9 +231,7 @@ public class PlayerController : MonoBehaviour
     void CheckIsCeilingAbove()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-
         Color rayColor = Color.green;
-
         float castLength = standHeight + ceilingCheckDistance;
 
         if (Physics.Raycast(origin, Vector3.up, castLength, layerMask))
@@ -243,6 +244,6 @@ public class PlayerController : MonoBehaviour
             isCeilingAbove = false;
         }
 
-        Debug.DrawRay(origin, Vector3.up, rayColor);
+        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
     }
 }
