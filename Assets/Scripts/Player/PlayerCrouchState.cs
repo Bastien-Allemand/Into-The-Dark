@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerCrouchState : IState
 {
-
     private PlayerStateMachine stateMachine;
 
     public PlayerCrouchState(PlayerStateMachine stateMachine)
