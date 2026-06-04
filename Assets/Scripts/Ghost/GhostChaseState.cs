@@ -18,9 +18,13 @@ public class GhostChaseState : IState
 
     public void Update()
     {
+        if (pathfinding == null)
+            return;
         if (pathfinding.target == null)
+        {
             stateMachine.ChangeState(new GhostPatrolState(stateMachine, pathfinding));
-
+            return;
+        }
         pathfinding.agent.SetDestination(pathfinding.target.position);
     }
 
