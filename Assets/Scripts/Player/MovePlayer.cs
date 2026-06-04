@@ -1,11 +1,15 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
 public class MovePlayer : MonoBehaviour
 {
+
+   
+
     private float initialSpeed;
-    private float sprintTime;
+    private float initalStaminaTime;
     [SerializeField] private float staminaLeft = 5f;
     [SerializeField] private float speed;
     [SerializeField] private float sprintingMultiplier;
@@ -18,10 +22,10 @@ public class MovePlayer : MonoBehaviour
 
     private bool movingX = false;
     private bool movingZ = false;
-    
+
     private float moveInputX;
     private float moveInputZ;
-   
+
     private Vector3 velocity = Vector3.zero;
 
     [Space(5)]
@@ -37,6 +41,8 @@ public class MovePlayer : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private RectTransform sprintBarTransform;
+    private float sprintBarInitialWidth;
 
     [Space(10)]
     [Header("State (Debug)")]
@@ -48,7 +54,7 @@ public class MovePlayer : MonoBehaviour
     private float crouchScale;
     private Vector3 initialScale;
 
-    LayerMask layerMask;
+    [SerializeField] private LayerMask layerMask;
 
     void Start()
     {
@@ -61,8 +67,9 @@ public class MovePlayer : MonoBehaviour
         sprintingMultiplier = 1.4f;
         crouchingMultiplier = 0.5f;
         speed = initialSpeed;
-        sprintTime = 5f;
-        staminaLeft = sprintTime;
+        initalStaminaTime = 5f;
+        staminaLeft = initalStaminaTime;
+        sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
     void Awake()
     {
@@ -70,6 +77,11 @@ public class MovePlayer : MonoBehaviour
 
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (playerCollider == null) playerCollider = GetComponent<CapsuleCollider>();
+    }
+
+    void OnEnable()
+    {
+
     }
     void Update()
     {
@@ -119,14 +131,14 @@ public class MovePlayer : MonoBehaviour
                 canSprint = false;
                 StopSprinting();
             }
-            
-            if(Keyboard.current.cKey.wasReleasedThisFrame)
+
+            if (Keyboard.current.cKey.wasReleasedThisFrame)
             {
                 StandUp();
                 canSprint = true;
             }
 
-            if(Keyboard.current.leftShiftKey.isPressed)
+            if (Keyboard.current.leftShiftKey.isPressed)
             {
                 StartSprinting();
             }
@@ -138,6 +150,8 @@ public class MovePlayer : MonoBehaviour
 
             if (isSprinting)
             {
+
+
                 staminaIncreasingCurrentTime = 0f;
                 DecreaseStamina();
                 if (staminaLeft <= 0f)
@@ -161,10 +175,15 @@ public class MovePlayer : MonoBehaviour
                         staminaIncreasingCurrentTime += Time.deltaTime;
                     else if (staminaIncreasingCurrentTime >= staminaIncreasingTotalTime)
                         IncreaseStamina();
+
                 }
                 if (staminaLeft >= 5f)
+                {
                     staminaLeft = 5f;
+                }
             }
+
+
         }
     }
 
@@ -185,10 +204,10 @@ public class MovePlayer : MonoBehaviour
 
     void Crouch()
     {
-        if(isCrouched == false)
-        { 
-           //To remove
-           transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
+        if (isCrouched == false)
+        {
+            //To remove
+            transform.localScale = new Vector3(initialScale.x, crouchScale, initialScale.z);
             //
             playerCollider.height = crouchHeight;
             playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
@@ -196,8 +215,27 @@ public class MovePlayer : MonoBehaviour
 
             speed = initialSpeed * crouchingMultiplier;
         }
+
+    }
+
+    void StandUp()
+    {
+        if (isCeilingAbove) return;
+
+        if (isCrouched == true)
+        {
+                //To remove
+                transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
+            //
+            playerCollider.height = standHeight;
+            playerCollider.center = new Vector3(0f, standCenterY, 0f);
+            isCrouched = false;
+
+            speed = initialSpeed;
+        }
         
     }
+    
     void CheckIsCeilingAbove()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
@@ -219,23 +257,7 @@ public class MovePlayer : MonoBehaviour
         Debug.DrawRay(origin, Vector3.up, rayColor);
     }
 
-    void StandUp()
-    {
-        if (isCeilingAbove) return;
-
-        if (isCrouched == true)
-        {
-                //To remove
-                transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
-            //
-            playerCollider.height = standHeight;
-            playerCollider.center = new Vector3(0f, standCenterY, 0f);
-            isCrouched = false;
-
-            speed = initialSpeed;
-        }
-        
-    }
+    
 
     void StartSprinting()
     {
@@ -243,7 +265,7 @@ public class MovePlayer : MonoBehaviour
             return;
         if (isOutOfStamina)
             return;
-        if ( isSprinting == false)
+        if (isSprinting == false)
         {
             speed = initialSpeed * sprintingMultiplier;
             isSprinting = true;
@@ -262,11 +284,15 @@ public class MovePlayer : MonoBehaviour
     void DecreaseStamina()
     {
         staminaLeft -= Time.deltaTime;
+        float purcentLeft = (staminaLeft / initalStaminaTime);
+        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
     }
 
     void IncreaseStamina()
     {
         staminaLeft += Time.deltaTime / 2;
+        float purcentLeft = (staminaLeft / initalStaminaTime);
+        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * purcentLeft, sprintBarTransform.rect.height);
     }
 }
 

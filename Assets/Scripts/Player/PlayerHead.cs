@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class PlayerHead : MonoBehaviour
 {
-    [SerializeField] Transform yRotationTarget;
+    [SerializeField] Transform playerTransform;
     [SerializeField] float sensitivity = 100f;
     float xRotation;
     float yRotation;
 
     void Start()
     {
-
     }
 
     void Update()
     {
+
         float mouseX = Input.GetAxis("Mouse X") * 100f * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * 100f * Time.deltaTime;
 
@@ -33,6 +33,6 @@ public class PlayerHead : MonoBehaviour
         else
             xRotation = bufferX;
 
-        yRotationTarget.localRotation = Quaternion.Euler(0, yRotation * sensitivity / 10, 0);
+        playerTransform.localRotation = Quaternion.Euler(0, yRotation * sensitivity / 10, 0);
     }
 }
