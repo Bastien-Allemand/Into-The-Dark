@@ -13,7 +13,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [SerializeField] private int pills = 1;
 
-    PlayerAction controls;
+    PlayerAction controls; 
 
     //Change in stunned state
     [SerializeField] private bool takingPills = false;
@@ -110,7 +110,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 insaneMeter -= maxInsaneMeter * 0.15f;
                 pills--;
-                Debug.Log("Pills taken");
+                //Debug.Log("Pills taken");
                 currentanimDuration = 0f;
                 takingPills = false;
             }
