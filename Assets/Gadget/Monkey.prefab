@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3223390792816415788}
   - component: {fileID: 5196952030704320368}
-  - component: {fileID: 3093913248569778160}
   - component: {fileID: 2310337825520568524}
   m_Layer: 0
   m_Name: MonkeyVision
@@ -27,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249992033230533044}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.009742465, y: 0.9380325, z: -0.34539843, w: -0.026458716}
-  m_LocalPosition: {x: 0.67883706, y: 14.233047, z: 10.188942}
-  m_LocalScale: {x: 1, y: 1.407896, z: 1.2662709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3854181612262718977}
@@ -66,8 +65,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 13
+  field of view: 10.2
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3093913248569778160
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249992033230533044}
-  m_Enabled: 1
 --- !u!114 &2310337825520568524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +140,8 @@ GameObject:
   - component: {fileID: 2872942950123296433}
   - component: {fileID: 1246945092768485162}
   - component: {fileID: 6818007062863712880}
-  - component: {fileID: -7144065269695934846}
+  - component: {fileID: 1039434968144207262}
+  - component: {fileID: 3242394049126949944}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: Untagged
@@ -253,7 +245,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &-7144065269695934846
+--- !u!54 &1039434968144207262
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563341664786806886}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3242394049126949944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,5 +284,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b889147bf362dac418fe34d58183b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonkeyVisionScript
-  VisionCam: {fileID: 0}
+  VisionCam: {fileID: 5196952030704320368}
   targetTag: Ghost
