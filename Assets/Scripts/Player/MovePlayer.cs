@@ -138,6 +138,12 @@ public class MovePlayer : MonoBehaviour
                 canSprint = true;
             }
 
+            if (isCeilingAbove == false && Keyboard.current.cKey.isPressed == false)
+            {
+                StandUp();
+                canSprint = true;
+            }
+
             if (Keyboard.current.leftShiftKey.isPressed)
             {
                 StartSprinting();

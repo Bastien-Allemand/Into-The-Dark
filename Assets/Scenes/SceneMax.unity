@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f6f73d86aed984ea3e87dd8edf5a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHead
-  yRotationTarget: {fileID: 2021796301}
+  playerTransform: {fileID: 0}
   sensitivity: 75
 --- !u!114 &899337533
 MonoBehaviour:
@@ -732,7 +732,7 @@ Transform:
   m_GameObject: {fileID: 2021796297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.660618, y: 1.1214719, z: 0.73}
+  m_LocalPosition: {x: 0.660618, y: 1.1214719, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -780,8 +780,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
   staminaLeft: 5
   speed: 0
-  isSprinting: 0
   sprintingMultiplier: 0
+  crouchingMultiplier: 0
   staminaIncreasingTotalTime: 1.5
   standHeight: 2
   standCenterY: 0
@@ -790,8 +790,13 @@ MonoBehaviour:
   ceilingCheckDistance: 1
   rb: {fileID: 0}
   playerCollider: {fileID: 0}
+  sprintBarTransform: {fileID: 0}
+  isSprinting: 0
   isCrouched: 0
   isCeilingAbove: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
