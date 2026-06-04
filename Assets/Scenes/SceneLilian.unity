@@ -667,7 +667,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -682,7 +682,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 1804416870}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.39, z: -2.98}
+  m_LocalPosition: {x: 0, y: 1.39, z: -5.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -859,9 +859,9 @@ MonoBehaviour:
   currentState: 0
   rb: {fileID: 1804416875}
   playerCollider: {fileID: 1804416871}
-  _camera: {fileID: 1112331368}
+  camera: {fileID: 1112331368}
   sprintBarTransform: {fileID: 180842455}
-  sensitivity: 0.5
+  sensitivity: 0.1
   XMaxAngle: 60
   walkSpeed: 5
   sprintingMultiplier: 1.4

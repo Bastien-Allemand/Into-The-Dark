@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private Camera _camera;
+    [SerializeField] private Camera camera;
     [SerializeField] private RectTransform sprintBarTransform;
 
     [Space(5)]
@@ -138,15 +138,14 @@ public class PlayerController : MonoBehaviour
         targetRotation.y += mouse.x;
         targetRotation.x = Mathf.Clamp(targetRotation.x, -XMaxAngle, XMaxAngle);
 
-        currentRotation.x = Mathf.Lerp(currentRotation.x, targetRotation.x, 50f * Time.deltaTime);
-        currentRotation.y = Mathf.Lerp(currentRotation.y, targetRotation.y, 50f * Time.deltaTime);
-
-        _camera.transform.localRotation = Quaternion.Euler(currentRotation.x, 0, 0);
-        transform.localRotation = Quaternion.Euler(0, currentRotation.y, 0);
+        camera.transform.localRotation = Quaternion.Euler(targetRotation.x, 0, 0);
+        
+        
     }
 
     void Move()
     {
+        transform.localRotation = Quaternion.Euler(0, targetRotation.y, 0);
         Vector3 targetVel = Vector3.zero;
         if (moveInput != Vector2.zero)
         {
@@ -156,7 +155,7 @@ public class PlayerController : MonoBehaviour
         Vector3 currentVel = rb.linearVelocity;
         Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
 
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f);
+        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.fixedDeltaTime);
     }
 
     void Crouch()
