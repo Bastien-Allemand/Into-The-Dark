@@ -3,7 +3,18 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     PlayerAction controls;
-    [SerializeField] private IState currentState;
+
+    private IState currentState;
+
+    public enum PlayerState
+    {
+        IDLE,
+        WALKING,
+        CROUCHING,
+        SPRINTING
+    };
+
+    [SerializeField] private PlayerState state;
 
     private Vector2 moveInput;
 
@@ -12,7 +23,16 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         ChangeState(new PlayerIdleState(this));
+        state = PlayerState.IDLE;
     }
+
+    void Awake()
+    {
+        controls = new PlayerAction();
+    }
+
+    private void OnEnable() => controls.Enable();
+    private void OnDisable() => controls.Disable();
 
     void Update()
     {
@@ -24,19 +44,23 @@ public class PlayerStateMachine : MonoBehaviour
         if (crouchInput == true)
         {
             ChangeState(new PlayerCrouchState(this));
+            state = PlayerState.CROUCHING;
             return;
         }
         if (isMoving == false)
         {
             ChangeState(new PlayerIdleState(this));
+            state = PlayerState.IDLE;
         }
         else if (sprintInput == true)
         {
             ChangeState(new PlayerSprintState(this));
+            state = PlayerState.SPRINTING;
         }
         else
         {
             ChangeState(new PlayerWalkState(this));
+            state = PlayerState.WALKING;
         }
 
 

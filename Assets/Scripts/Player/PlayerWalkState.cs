@@ -12,7 +12,7 @@ public class PlayerWalkState : IState
 
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode Walk");
+        Debug.Log("Player: Enter Mode WALK");
     }
 
     public void Update()
@@ -22,6 +22,6 @@ public class PlayerWalkState : IState
 
     public void Exit()
     {
-        Debug.Log("Player: Exit Mode Walk");
+        Debug.Log("Player: Exit Mode WALK");
     }
 }

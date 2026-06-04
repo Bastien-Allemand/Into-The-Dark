@@ -12,7 +12,7 @@ public class PlayerSprintState : IState
     
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode Sprint");
+        Debug.Log("Player: Enter Mode SPRINT");
     }
 
     public void Update()
@@ -22,7 +22,7 @@ public class PlayerSprintState : IState
 
     public void Exit()
     {
-        Debug.Log("Player: Exit Mode Sprint");
+        Debug.Log("Player: Exit Mode SPRINT");
     }
 }
 

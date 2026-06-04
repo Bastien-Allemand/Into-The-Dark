@@ -12,7 +12,7 @@ public class PlayerCrouchState : IState
 
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode Crouch");
+        Debug.Log("Player: Enter Mode CROUCH");
     }
 
 
@@ -23,6 +23,6 @@ public class PlayerCrouchState : IState
 
     public void Exit()
     {
-        Debug.Log("Player: Exit Mode Crouch");
+        Debug.Log("Player: Exit Mode CROUCH");
     }
 }
