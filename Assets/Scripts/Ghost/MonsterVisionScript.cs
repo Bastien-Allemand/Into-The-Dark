@@ -5,8 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MonsterVisionScript : MonoBehaviour
 {
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private Camera enemyCamera;
 
     private GameObject targetObj;
@@ -21,11 +19,8 @@ public class MonsterVisionScript : MonoBehaviour
 
         foreach (Collider col in allColliders)
         {
-            if ((targetLayer.value & (1 << col.gameObject.layer)) > 0)
-            {
+            if (col.CompareTag("Player"))
                 targetObj = col.gameObject;
-                Debug.Log("targetObj " + targetObj.layer);
-            }
         }
 
     }
@@ -74,16 +69,11 @@ public class MonsterVisionScript : MonoBehaviour
         Debug.DrawRay(transform.position, directionNormalisee, Color.blue);
         if (Physics.Raycast(transform.position, directionNormalisee, out hit, 1000, -1))
         {
-            if (!hit.collider.gameObject.layer.Equals(targetObj.layer))
-            {
+            if (!hit.collider.CompareTag("Player"))
                 result = false;
-                Debug.Log("obstacle touché " + hit.collider.gameObject.layer + " target layer :" );
-            }
             else
-            {
                 result = true;
-                Debug.Log("player trouvé");
-            }
+ 
         }
         return result;
     }
