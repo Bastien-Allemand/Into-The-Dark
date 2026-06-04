@@ -16,6 +16,7 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private Light phoneLight;
     [SerializeField] private TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
+    [SerializeField] private GameObject screenPhone;
 
     [Header("Anchors")]
     [SerializeField] private Transform hiddenAnchor;
@@ -41,6 +42,8 @@ public class PhoneScript : MonoBehaviour
     {
         currentBattery = maxBattery;
         currentTimer = maxTime;
+
+        screenPhone.SetActive(false);
 
         batteryScript.SetMaxBattery((int)maxBattery);
         UpdateUI();
@@ -96,6 +99,8 @@ public class PhoneScript : MonoBehaviour
     {
         if (currentState == PhoneState.Hidden)
             return;
+
+        screenPhone.SetActive(!screenPhone.activeSelf);
 
         currentState = currentState == PhoneState.Camera ? PhoneState.Idle : PhoneState.Camera;
     }
