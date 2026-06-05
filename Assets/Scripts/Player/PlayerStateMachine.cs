@@ -20,6 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("Sprint Settings")]
     public float walkSpeed = 5f;
     public float sprintingMultiplier = 1.4f;
+    public float crouchMultiplier = 0.6f;
     public float staminaLeft = 5f;
     public float staminaTimer = 0f;
     public float currentSpeed;
