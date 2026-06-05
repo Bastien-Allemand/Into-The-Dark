@@ -7,9 +7,6 @@ public class PlayerSprintState : IState
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
 
-
-
-
     public PlayerSprintState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
     {
         this.stateMachine = stateMachine;
