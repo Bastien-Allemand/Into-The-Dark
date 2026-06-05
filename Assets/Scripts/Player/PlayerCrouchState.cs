@@ -46,6 +46,9 @@ public class PlayerCrouchState : IState
 
     public void Exit()
     {
+        if (stateMachine.isCeilingAbove == true)
+            return;
+
         Debug.Log("Player: Exit Mode CROUCH");
 
         playerCollider.height = stateMachine.standHeight;
