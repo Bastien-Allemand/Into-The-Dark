@@ -4,33 +4,38 @@ public class PlayerCrouchState : IState
 {
     private PlayerStateMachine stateMachine;
     private Transform transform;
+    private CapsuleCollider playerCollider;
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
 
-    public PlayerCrouchState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
+    public PlayerCrouchState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform, CapsuleCollider playerCollider)
     {
         this.stateMachine = stateMachine;
         this.rb = rb;
         this.transform = transform;
+        this.playerCollider = playerCollider;
     }
 
     public void Enter()
     {
         Debug.Log("Player: Enter Mode CROUCH");
 
-        transform.localScale = new Vector3(1f, 0.5f, 1f);
+        playerCollider.height = stateMachine.crouchHeight;
+        playerCollider.center = new Vector3(0f, stateMachine.crouchCenterY, 0f);
+        stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.crouchMultiplier;
     }
-
 
     public void Update()
     {
-        Debug.Log("Player: Update Mode CROUCH");
+        Move();
+    }
+
+    void Move()
+    {
         Vector3 targetVel = Vector3.zero;
         if (stateMachine.moveInput != Vector2.zero)
         {
-            float crouchSpeed = stateMachine.currentSpeed * 0.5f;
-
-            targetVel = (transform.forward * stateMachine.moveInput.y + transform.right * stateMachine.moveInput.x) * crouchSpeed;
+            targetVel = (transform.forward * stateMachine.moveInput.y + transform.right * stateMachine.moveInput.x) * stateMachine.currentSpeed;
         }
 
         Vector3 currentVel = rb.linearVelocity;
@@ -43,6 +48,7 @@ public class PlayerCrouchState : IState
     {
         Debug.Log("Player: Exit Mode CROUCH");
 
-        transform.localScale = Vector3.one;
+        playerCollider.height = stateMachine.standHeight;
+        playerCollider.center = new Vector3(0f, stateMachine.standCenterY, 0f);
     }
 }

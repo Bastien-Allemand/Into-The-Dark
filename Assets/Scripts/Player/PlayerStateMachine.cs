@@ -15,6 +15,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private RectTransform sprintBarTransform;
 
+
     [Space(5)]
 
     [Header("Sprint Settings")]
@@ -25,6 +26,15 @@ public class PlayerStateMachine : MonoBehaviour
     public float staminaTimer = 0f;
     public float currentSpeed;
     public bool isOutOfStamina = false;
+
+    [Space(5)]
+
+    [Header("Crouch Settings")]
+    public float standHeight = 2f;
+    public float standCenterY = 0f;
+    public float crouchHeight = 1.2f;
+    public float crouchCenterY = -0.2f;
+    public float ceilingCheckDistance = 1.0f;
 
     public Vector2 moveInput;
 
@@ -40,7 +50,7 @@ public class PlayerStateMachine : MonoBehaviour
         IdleState = new PlayerIdleState(this, rb);
         WalkState = new PlayerWalkState(this, rb, transform);
         SprintState = new PlayerSprintState(this, rb, transform);
-        CrouchState = new PlayerCrouchState(this, rb, transform);
+        CrouchState = new PlayerCrouchState(this, rb, transform, playerCollider);
 
     }
     void Start()
@@ -88,15 +98,24 @@ public class PlayerStateMachine : MonoBehaviour
         
         if (isMoving == false)
         {
-            ChangeState(IdleState);
-        }
-        else if (sprintInput == true && isOutOfStamina == false)
-        {
-            ChangeState(SprintState);
+            if (crouchInput == true)
+            {
+                ChangeState(CrouchState);
+            }
+            else
+            {
+                ChangeState(IdleState);
+            }
+                
+            
         }
         else if (crouchInput == true)
         {
             ChangeState(CrouchState);
+        }
+        else if (sprintInput == true && isOutOfStamina == false)
+        {
+            ChangeState(SprintState);
         }
         else
         {
@@ -137,6 +156,4 @@ public class PlayerStateMachine : MonoBehaviour
         float percentLeft = staminaLeft / maxStamina;
         sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
     }
-
-
 }
