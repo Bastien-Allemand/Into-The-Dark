@@ -7,26 +7,18 @@ public class PlayerStateMachine : MonoBehaviour
     private IState currentState;
 
     [Header("State")]
+    public bool isOutOfStamina = false;
+    public float staminaLeft = 5f;
+    public float staminaTimer = 0f;
+    private float maxStamina = 5f;
+    private float staminaRegenDelay = 1.5f;
+    private float sprintBarInitialWidth;
 
     [Space(5)]
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private Camera camera;
     [SerializeField] private RectTransform sprintBarTransform;
-
-    [Space(5)]
-    [Header("Look Settings")]
-    [SerializeField] private float sensitivity = 2f;
-    [SerializeField] private float XMaxAngle = 60f;
-
-    [Space(5)]
-    [Header("Movement & Sprint Settings")]
-    [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float sprintingMultiplier = 1.4f;
-    [SerializeField] private float maxStamina = 5f;
-    [SerializeField] private float staminaLeft = 5f;
-    [SerializeField] private float staminaRegenDelay = 1.5f;
 
     [Space(5)]
     [Header("Crouch Settings")]
@@ -37,19 +29,12 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float ceilingCheckDistance = 1.0f;
 
     [Space(5)]
-    [Header("Physics & Raycast")]
-    [SerializeField] private LayerMask layerMask;
-
-    [Space(5)]
     [Header("State Debug")]
     [SerializeField] private bool isCrouched = false;
     [SerializeField] private bool isCeilingAbove = false;
-    [SerializeField] private bool isOutOfStamina = false;
 
     public float currentSpeed;
     public Vector2 moveInput;
-    private float staminaTimer = 0f;
-    private float sprintBarInitialWidth;
     private Vector2 targetRotation;
     private Vector2 currentRotation;
     private Vector3 velocity = Vector3.zero;
@@ -65,19 +50,30 @@ public class PlayerStateMachine : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, rb);
         WalkState = new PlayerWalkState(this, rb, transform);
-        SprintState = new PlayerSprintState(this);
+        SprintState = new PlayerSprintState(this, rb, transform);
         CrouchState = new PlayerCrouchState(this);
     }
     void Start()
     {
         currentState = IdleState;
-        currentSpeed = walkSpeed;
+        sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
 
     private void OnEnable() => controls.Enable();
     private void OnDisable() => controls.Disable();
 
     void Update()
+    {
+
+        HandleStamina();
+        CheckState();
+        if (currentState != null)
+        {
+            currentState.Update();
+        }
+    }
+
+    void CheckState()
     {
         moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
@@ -93,17 +89,13 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ChangeState(IdleState);
         }
-        else if (sprintInput == true )
+        else if (sprintInput == true && isOutOfStamina == false)
         {
             ChangeState(SprintState);
         }
         else
         {
             ChangeState(WalkState);
-        }
-        if (currentState != null)
-        {
-            currentState.Update();
         }
     }
 
@@ -120,5 +112,39 @@ public class PlayerStateMachine : MonoBehaviour
         currentState = newState;
 
         currentState.Enter();
+    }
+
+    void HandleStamina()
+    {
+        if (isOutOfStamina == true && staminaLeft > 3f)
+        {
+            isOutOfStamina = false;
+        }
+
+        if (staminaLeft < maxStamina)
+        {
+
+            if (staminaTimer < staminaRegenDelay)
+            {
+                staminaTimer += Time.deltaTime;
+            }
+            else
+            {
+                staminaLeft += (Time.deltaTime * 0.75f);
+            }
+        }
+        else
+        {
+            staminaLeft = maxStamina;
+        }
+        UpdateSprintUI();
+    }
+
+    void UpdateSprintUI()
+    {
+        if (sprintBarTransform == null) return;
+
+        float percentLeft = staminaLeft / maxStamina;
+        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
     }
 }

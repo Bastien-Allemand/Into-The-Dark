@@ -6,6 +6,7 @@ public class PlayerWalkState : IState
     private Transform transform;
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
+    private float walkSpeed = 5f;
 
     public PlayerWalkState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
     {
@@ -17,11 +18,16 @@ public class PlayerWalkState : IState
     public void Enter()
     {
         Debug.Log("Player: Enter Mode WALK");
+        stateMachine.currentSpeed = walkSpeed;
     }
 
     public void Update()
     {
-        Debug.Log("Player: Update Mode WALK");
+        Move();
+    }
+
+    void Move()
+    {
         Vector3 targetVel = Vector3.zero;
         if (stateMachine.moveInput != Vector2.zero)
         {

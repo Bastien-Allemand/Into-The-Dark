@@ -18,7 +18,6 @@ public class PlayerIdleState : IState
 
     public void Update()
     {
-        Debug.Log("Player: Update Mode IDLE");
         if (rb != null)
         {
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
