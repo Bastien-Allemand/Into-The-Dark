@@ -22,6 +22,7 @@ public class GhostChaseState : IState
             return;
         if (pathfinding.target == null)
         {
+            Debug.Log("Target is null, switching to patrol state.");
             stateMachine.ChangeState(new GhostPatrolState(stateMachine, pathfinding));
             return;
         }

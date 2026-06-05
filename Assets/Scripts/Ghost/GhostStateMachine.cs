@@ -15,6 +15,10 @@ public class GhostStateMachine : MonoBehaviour
 
     void Update()
     {
+        if (currentState is GhostDeathState)
+        {
+            return;
+        }
         if (monsterVision.PlayerFound && currentState is not GhostChaseState)
         {
             ChangeState(new GhostChaseState(this, pathfinding));
@@ -38,11 +42,22 @@ public class GhostStateMachine : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision détectée avec : " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Sound"))
         {
             Debug.Log("Collision avec un son");
             pathfinding.target = collision.transform;
             ChangeState(new GhostSearchState(this, pathfinding));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger détecté avec : " + other.gameObject.name);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collision avec le joueur");
+            ChangeState(new GhostDeathState(this, pathfinding));
         }
     }
 
