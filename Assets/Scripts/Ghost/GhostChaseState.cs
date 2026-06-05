@@ -13,7 +13,7 @@ public class GhostChaseState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode CHASE");
+        //Debug.Log("Ghost: Mode CHASE");
     }
 
     public void Update()
@@ -31,6 +31,6 @@ public class GhostChaseState : IState
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode CHASE.");
+        //Debug.Log("Ghost: Exit Mode CHASE.");
     }
 }

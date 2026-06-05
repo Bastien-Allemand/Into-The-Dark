@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GhostStateMachine : MonoBehaviour
 {
-    private IState currentState;
+    [SerializeField] public IState currentState;
     private Pathfinding pathfinding;
     private MonsterVisionScript monsterVision;
 
@@ -40,20 +40,26 @@ public class GhostStateMachine : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision détectée avec : " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Sound"))
-        {
-            Debug.Log("Collision avec un son");
-            pathfinding.target = collision.transform;
-            ChangeState(new GhostSearchState(this, pathfinding));
-        }
+        Debug.Log("Collision avec :" + other.tag );
+
+        if (other.tag != "Sound")
+            return;
+
+  
+        pathfinding.target = other.transform;
+        ChangeState(new GhostSearchState(this, pathfinding));
+    }
+
+    void HeardSound(Transform position)
+    {
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger détecté avec : " + other.gameObject.name);
+        Debug.Log("Trigger dï¿½tectï¿½ avec : " + other.gameObject.name);
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Collision avec le joueur");
@@ -63,16 +69,16 @@ public class GhostStateMachine : MonoBehaviour
 
     public void ChangeState(IState newState)
     {
-        // 1. On quitte proprement l'ancien état s'il existe
+        // 1. On quitte proprement l'ancien ï¿½tat s'il existe
         if (currentState != null)
         {
             currentState.Exit();
         }
 
-        // 2. On attribue le nouvel état
+        // 2. On attribue le nouvel ï¿½tat
         currentState = newState;
 
-        // 3. On initialise le nouvel état
+        // 3. On initialise le nouvel ï¿½tat
         currentState.Enter();
     }
 
