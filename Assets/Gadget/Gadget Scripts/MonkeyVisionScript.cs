@@ -10,7 +10,7 @@ public class MonkeyVisionScript : MonoBehaviour
     }
     void Action()
     {
-        Debug.Log("Action performed on target");
+        //Debug.Log("Action performed on target");
     }
     void Update()
     {
@@ -18,7 +18,7 @@ public class MonkeyVisionScript : MonoBehaviour
 
         if (target == null)
         {
-            Debug.Log("Target not found");
+            //Debug.Log("Target not found");
             return;
         }
 
@@ -31,12 +31,12 @@ public class MonkeyVisionScript : MonoBehaviour
             {
                 if (hit.transform.CompareTag(targetTag))
                 {
-                    Debug.Log("Target is visible and not occluded");
+                    //Debug.Log("Target is visible and not occluded");
                     Action();
                 }
                 else
                 {
-                    Debug.Log("Target is occluded by " + hit.transform.name);
+                    //Debug.Log("Target is occluded by " + hit.transform.name);
                 }
             }
         }

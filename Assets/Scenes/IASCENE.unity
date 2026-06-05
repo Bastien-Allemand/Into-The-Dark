@@ -631,29 +631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b30715e00ff9d40a1f8039a6e95ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  currentState: 0
-  rb: {fileID: 1612308306}
-  playerCollider: {fileID: 1612308307}
-  camera: {fileID: 79424389}
-  sprintBarTransform: {fileID: 134228638}
-  sensitivity: 2
-  XMaxAngle: 60
-  walkSpeed: 5
-  sprintingMultiplier: 1.4
-  maxStamina: 5
-  staminaLeft: 5
-  staminaRegenDelay: 1.5
-  standHeight: 2
-  standCenterY: 0
-  crouchHeight: 1.2
-  crouchCenterY: -0.2
-  ceilingCheckDistance: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  isCrouched: 0
-  isCeilingAbove: 0
-  isOutOfStamina: 0
 --- !u!54 &1612308306
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -812,7 +789,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37676ecb33b71c249af34ae2f11e3437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
+  rb: {fileID: 1612308306}
+  playerCollider: {fileID: 1612308307}
+  camera: {fileID: 79424389}
+  sprintBarTransform: {fileID: 134228638}
+  sensitivity: 0.5
+  XMaxAngle: 75
+  walkSpeed: 5
+  sprintingMultiplier: 1.4
+  maxStamina: 5
+  staminaLeft: 5
+  staminaRegenDelay: 1.5
+  standHeight: 2
+  standCenterY: 0
+  crouchHeight: 1.2
+  crouchCenterY: -0.2
+  ceilingCheckDistance: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isCrouched: 0
   isCeilingAbove: 0
+  isOutOfStamina: 1
+  currentSpeed: 0
+  moveInput: {x: 0, y: 0}
 --- !u!1001 &1907371810
 PrefabInstance:
   m_ObjectHideFlags: 0
