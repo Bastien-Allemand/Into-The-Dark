@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     //[Header("References")]
     //[SerializeField] private Rigidbody rb;
     //[SerializeField] private CapsuleCollider playerCollider;
-    //[SerializeField] private Camera camera;
+    //[SerializeField] private Camera _camera;
     //[SerializeField] private RectTransform sprintBarTransform;
 
     //[Space(5)]

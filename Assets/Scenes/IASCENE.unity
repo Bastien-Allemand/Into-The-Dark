@@ -612,6 +612,7 @@ GameObject:
   - component: {fileID: 1612308305}
   - component: {fileID: 1612308312}
   - component: {fileID: 1612308311}
+  - component: {fileID: 1612308313}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -813,6 +814,21 @@ MonoBehaviour:
   isOutOfStamina: 1
   currentSpeed: 0
   moveInput: {x: 0, y: 0}
+--- !u!114 &1612308313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612308297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0c73dbd845d0c40a147d3a833d583e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _camera: {fileID: 79424389}
+  sensitivity: 0.25
+  XMaxAngle: 75
 --- !u!1001 &1907371810
 PrefabInstance:
   m_ObjectHideFlags: 0
