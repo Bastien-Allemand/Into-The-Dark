@@ -35,6 +35,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float crouchHeight = 1.2f;
     [SerializeField] private float crouchCenterY = -0.2f;
     [SerializeField] private float ceilingCheckDistance = 1.0f;
+    [SerializeField] private float crouchMultiplier = 0.5f;
 
     [Space(5)]
     [Header("Physics & Raycast")]
@@ -66,7 +67,7 @@ public class PlayerStateMachine : MonoBehaviour
         IdleState = new PlayerIdleState(this, rb);
         WalkState = new PlayerWalkState(this, rb, transform);
         SprintState = new PlayerSprintState(this);
-        CrouchState = new PlayerCrouchState(this);
+        CrouchState = new PlayerCrouchState(this, rb, transform);
     }
     void Start()
     {
@@ -84,11 +85,7 @@ public class PlayerStateMachine : MonoBehaviour
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
         bool isMoving = moveInput != Vector2.zero;
 
-        if (crouchInput == true)
-        {
-            ChangeState(CrouchState);
-            return;
-        }
+        
         if (isMoving == false)
         {
             ChangeState(IdleState);
@@ -96,6 +93,10 @@ public class PlayerStateMachine : MonoBehaviour
         else if (sprintInput == true )
         {
             ChangeState(SprintState);
+        }
+        else if (crouchInput == true)
+        {
+            ChangeState(CrouchState);
         }
         else
         {
