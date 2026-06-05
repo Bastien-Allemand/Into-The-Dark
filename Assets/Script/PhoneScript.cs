@@ -92,6 +92,7 @@ public class PhoneScript : MonoBehaviour
             battery.SetActive(false);
             textBattery.enabled = false;
             phoneLight.enabled = false;
+            screenPhone.SetActive(false);
         }
     }
 
