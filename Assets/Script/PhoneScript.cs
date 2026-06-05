@@ -36,6 +36,9 @@ public class PhoneScript : MonoBehaviour
 
     private PhoneState currentState = PhoneState.Hidden;
 
+    [SerializeField] private float hideDistanceThreshold = 0.01f;
+    private bool waitingForHide;
+
     public bool HaveBattery => currentBattery > 0;
 
     private void Start()
@@ -44,6 +47,7 @@ public class PhoneScript : MonoBehaviour
         currentTimer = maxTime;
 
         screenPhone.SetActive(false);
+        phoneTransform.gameObject.SetActive(false);
 
         batteryScript.SetMaxBattery((int)maxBattery);
         UpdateUI();
@@ -80,10 +84,14 @@ public class PhoneScript : MonoBehaviour
     {
         if (currentState == PhoneState.Hidden)
         {
+            phoneTransform.gameObject.SetActive(true);
+
             currentState = PhoneState.Idle;
 
             battery.SetActive(true);
             textBattery.enabled = true;
+
+            waitingForHide = false;
         }
         else
         {
@@ -93,6 +101,8 @@ public class PhoneScript : MonoBehaviour
             textBattery.enabled = false;
             phoneLight.enabled = false;
             screenPhone.SetActive(false);
+
+            waitingForHide = true;
         }
     }
 
@@ -134,6 +144,13 @@ public class PhoneScript : MonoBehaviour
             phoneTransform.localScale,
             target.localScale,
             transitionSpeed * Time.deltaTime);
+
+        if (waitingForHide &&
+            Vector3.Distance(phoneTransform.localPosition, hiddenAnchor.localPosition) < hideDistanceThreshold)
+        {
+            phoneTransform.gameObject.SetActive(false);
+            waitingForHide = false;
+        }
     }
 
     private void HandleLight()
