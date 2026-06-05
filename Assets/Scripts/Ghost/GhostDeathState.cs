@@ -13,16 +13,17 @@ public class GhostDeathState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode DEATH");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Mode DEATH");
     }
 
     public void Update()
     {
-        Debug.Log("Ghost: Update Mode DEATH.");
     }
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode DEATH.");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Exit Mode DEATH.");
     }
 }

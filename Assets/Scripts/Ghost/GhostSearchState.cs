@@ -14,7 +14,8 @@ public class GhostSearchState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode SEARCH");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Mode SEARCH");
 
         if (pathfinding.target != null)
         {
@@ -39,6 +40,7 @@ public class GhostSearchState : IState
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode SEARCH.");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Exit Mode SEARCH.");
     }
 }
