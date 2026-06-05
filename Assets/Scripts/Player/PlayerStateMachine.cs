@@ -74,7 +74,6 @@ public class PlayerStateMachine : MonoBehaviour
         currentSpeed = walkSpeed;
     }
 
-
     private void OnEnable() => controls.Enable();
     private void OnDisable() => controls.Disable();
 
