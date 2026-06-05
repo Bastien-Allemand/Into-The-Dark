@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.078933865
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.67
+      value: 5.28
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -748,7 +748,7 @@ Transform:
   m_GameObject: {fileID: 1612308297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.078933865, y: -0.21, z: 4.67}
+  m_LocalPosition: {x: -0.83, y: -0.21, z: 5.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -806,6 +806,7 @@ MonoBehaviour:
   crouchHeight: 1.2
   crouchCenterY: -0.2
   ceilingCheckDistance: 1
+  crouchMultiplier: 0.5
   layerMask:
     serializedVersion: 2
     m_Bits: 0

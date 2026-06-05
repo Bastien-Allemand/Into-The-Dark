@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     //[Space(5)]
     //[Header("Physics & Raycast")]
     //[SerializeField] private LayerMask layerMask;
+    //[SerializeField] private Vector3 ceilingCheckSize = new Vector3(0.6f, 0.1f, 0.6f);
 
     //[Space(5)]
     //[Header("State Debug")]
@@ -166,6 +167,7 @@ public class PlayerController : MonoBehaviour
     //        playerCollider.height = crouchHeight;
     //        playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
     //        isCrouched = true;
+    //        currentSpeed = walkSpeed * crouchingMultiplier;
     //    }
     //}
 
@@ -199,6 +201,15 @@ public class PlayerController : MonoBehaviour
     //            isOutOfStamina = false;
     //        }
 
+    //        if (Physics.BoxCast(origin, ceilingCheckSize / 2f, Vector3.up, Quaternion.identity, castLength, layerMask))
+    //        {
+    //            isCeilingAbove = true;
+    //            rayColor = Color.red;
+    //        }
+    //        else
+    //        {
+    //            isCeilingAbove = false;
+    //        }
     //        if (staminaLeft < maxStamina)
     //        {
 

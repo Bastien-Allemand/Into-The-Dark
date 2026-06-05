@@ -12,8 +12,8 @@ public class MovePlayer : MonoBehaviour
     private float initalStaminaTime;
     [SerializeField] private float staminaLeft = 5f;
     [SerializeField] private float speed;
-    [SerializeField] private bool isSprinting = false;
     [SerializeField] private float sprintingMultiplier;
+    [SerializeField] private float crouchingMultiplier;
 
     private bool isOutOfStamina = false;
     private bool canSprint = false;
@@ -46,6 +46,7 @@ public class MovePlayer : MonoBehaviour
 
     [Space(10)]
     [Header("State (Debug)")]
+    [SerializeField] private bool isSprinting = false;
     [SerializeField] private bool isCrouched = false;
     [SerializeField] private bool isCeilingAbove = false;
 
@@ -64,6 +65,7 @@ public class MovePlayer : MonoBehaviour
         crouchScale = initialScale.y * 0.65f;
         initialSpeed = 5f;
         sprintingMultiplier = 1.4f;
+        crouchingMultiplier = 0.5f;
         speed = initialSpeed;
         initalStaminaTime = 5f;
         staminaLeft = initalStaminaTime;
@@ -131,6 +133,12 @@ public class MovePlayer : MonoBehaviour
             }
 
             if (Keyboard.current.cKey.wasReleasedThisFrame)
+            {
+                StandUp();
+                canSprint = true;
+            }
+
+            if (isCeilingAbove == false && Keyboard.current.cKey.isPressed == false)
             {
                 StandUp();
                 canSprint = true;
@@ -210,6 +218,8 @@ public class MovePlayer : MonoBehaviour
             playerCollider.height = crouchHeight;
             playerCollider.center = new Vector3(0f, crouchCenterY, 0f);
             isCrouched = true;
+
+            speed = initialSpeed * crouchingMultiplier;
         }
 
     }
@@ -220,15 +230,18 @@ public class MovePlayer : MonoBehaviour
 
         if (isCrouched == true)
         {
-            //To remove
-            transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
+                //To remove
+                transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
             //
             playerCollider.height = standHeight;
             playerCollider.center = new Vector3(0f, standCenterY, 0f);
             isCrouched = false;
-        }
 
+            speed = initialSpeed;
+        }
+        
     }
+    
     void CheckIsCeilingAbove()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
@@ -249,6 +262,8 @@ public class MovePlayer : MonoBehaviour
 
         Debug.DrawRay(origin, Vector3.up, rayColor);
     }
+
+    
 
     void StartSprinting()
     {

@@ -40,7 +40,8 @@ public class PlayerStateMachine : MonoBehaviour
         IdleState = new PlayerIdleState(this, rb);
         WalkState = new PlayerWalkState(this, rb, transform);
         SprintState = new PlayerSprintState(this, rb, transform);
-        CrouchState = new PlayerCrouchState(this);
+        CrouchState = new PlayerCrouchState(this, rb, transform);
+
     }
     void Start()
     {
@@ -84,11 +85,7 @@ public class PlayerStateMachine : MonoBehaviour
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
         bool isMoving = moveInput != Vector2.zero;
 
-        if (crouchInput == true)
-        {
-            ChangeState(CrouchState);
-            return;
-        }
+        
         if (isMoving == false)
         {
             ChangeState(IdleState);
@@ -96,6 +93,10 @@ public class PlayerStateMachine : MonoBehaviour
         else if (sprintInput == true && isOutOfStamina == false)
         {
             ChangeState(SprintState);
+        }
+        else if (crouchInput == true)
+        {
+            ChangeState(CrouchState);
         }
         else
         {
@@ -136,4 +137,6 @@ public class PlayerStateMachine : MonoBehaviour
         float percentLeft = staminaLeft / maxStamina;
         sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
     }
+
+
 }
