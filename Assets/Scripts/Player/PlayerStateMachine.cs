@@ -5,19 +5,18 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerAction controls;
     private IState currentState;
 
-    [Header("References")]
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private RectTransform sprintBarTransform;
-
-  
-
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
 
+    [Header("References")]
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private RectTransform sprintBarTransform;
+
     [Space(5)]
+
     [Header("Sprint Settings")]
     public float walkSpeed = 5f;
     public float sprintingMultiplier = 1.4f;
@@ -27,6 +26,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool isOutOfStamina = false;
 
     public Vector2 moveInput;
+
     private float maxStamina = 5f;
     private float staminaRegenDelay = 1.5f;
     private float sprintBarInitialWidth;
@@ -61,6 +61,21 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
+    void ChangeState(IState newState)
+    {
+        if (newState == null || currentState.GetType() == newState.GetType())
+        {
+            return;
+        }
+        else if (currentState != null)
+        {
+            currentState.Exit();
+        }
+        currentState = newState;
+
+        currentState.Enter();
+    }
+
     void CheckState()
     {
         moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
@@ -85,21 +100,6 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ChangeState(WalkState);
         }
-    }
-
-    public void ChangeState(IState newState)
-    {
-        if (newState == null || currentState.GetType() == newState.GetType())
-        {
-            return;
-        }
-        else if (currentState != null)
-        {
-            currentState.Exit();
-        }
-        currentState = newState;
-
-        currentState.Enter();
     }
 
     void HandleStamina()
