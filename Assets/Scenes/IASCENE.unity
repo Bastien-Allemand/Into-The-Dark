@@ -456,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 904253159}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0.21999979}
+  m_LocalPosition: {x: 0, y: 0.85, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3964846334067160730, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21999979
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -501,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.03
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -535,8 +535,7 @@ PrefabInstance:
       propertyPath: sprintBarTransform
       value: 
       objectReference: {fileID: 134228638}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -614,6 +613,7 @@ GameObject:
   - component: {fileID: 1612308308}
   - component: {fileID: 1612308307}
   - component: {fileID: 1612308306}
+  - component: {fileID: 1612308305}
   - component: {fileID: 1612308312}
   - component: {fileID: 1612308311}
   - component: {fileID: 1612308313}
@@ -624,6 +624,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1612308305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 8425490768864643795, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
+  m_PrefabInstance: {fileID: 1145725422}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612308297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b30715e00ff9d40a1f8039a6e95ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!54 &1612308306
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -740,7 +752,7 @@ Transform:
   m_GameObject: {fileID: 1612308297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.83, y: -0.21, z: 5.03}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -787,7 +799,7 @@ MonoBehaviour:
   sprintBarTransform: {fileID: 134228638}
   walkSpeed: 5
   sprintingMultiplier: 1.4
-  crouchMultiplier: 0.6
+  crouchMultiplier: 0.5
   staminaLeft: 5
   staminaTimer: 0
   currentSpeed: 0
@@ -797,6 +809,11 @@ MonoBehaviour:
   crouchHeight: 1.2
   crouchCenterY: -0.2
   ceilingCheckDistance: 1
+  isCeilingAbove: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  ceilingCheckSize: {x: 0.6, y: 0.1, z: 0.6}
   moveInput: {x: 0, y: 0}
 --- !u!114 &1612308313
 MonoBehaviour:
