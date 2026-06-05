@@ -6,8 +6,6 @@ public class PlayerWalkState : IState
     private Transform transform;
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
-    private float walkSpeed = 5f;
-
     public PlayerWalkState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
     {
         this.stateMachine = stateMachine;
@@ -18,7 +16,7 @@ public class PlayerWalkState : IState
     public void Enter()
     {
         Debug.Log("Player: Enter Mode WALK");
-        stateMachine.currentSpeed = walkSpeed;
+        stateMachine.currentSpeed = stateMachine.walkSpeed;
     }
 
     public void Update()

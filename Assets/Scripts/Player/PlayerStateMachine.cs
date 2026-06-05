@@ -3,46 +3,34 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     PlayerAction controls;
-
     private IState currentState;
 
-    [Header("State")]
-    public bool isOutOfStamina = false;
-    public float staminaLeft = 5f;
-    public float staminaTimer = 0f;
-    private float maxStamina = 5f;
-    private float staminaRegenDelay = 1.5f;
-    private float sprintBarInitialWidth;
-
-    [Space(5)]
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private RectTransform sprintBarTransform;
 
-    [Space(5)]
-    [Header("Crouch Settings")]
-    [SerializeField] private float standHeight = 2f;
-    [SerializeField] private float standCenterY = 0f;
-    [SerializeField] private float crouchHeight = 1.2f;
-    [SerializeField] private float crouchCenterY = -0.2f;
-    [SerializeField] private float ceilingCheckDistance = 1.0f;
-
-    [Space(5)]
-    [Header("State Debug")]
-    [SerializeField] private bool isCrouched = false;
-    [SerializeField] private bool isCeilingAbove = false;
-
-    public float currentSpeed;
-    public Vector2 moveInput;
-    private Vector2 targetRotation;
-    private Vector2 currentRotation;
-    private Vector3 velocity = Vector3.zero;
+  
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
+
+    [Space(5)]
+    [Header("Sprint Settings")]
+    public float walkSpeed = 5f;
+    public float sprintingMultiplier = 1.4f;
+    public float staminaLeft = 5f;
+    public float staminaTimer = 0f;
+    public float currentSpeed;
+    public bool isOutOfStamina = false;
+
+    public Vector2 moveInput;
+    private float maxStamina = 5f;
+    private float staminaRegenDelay = 1.5f;
+    private float sprintBarInitialWidth;
+
 
     void Awake()
     {

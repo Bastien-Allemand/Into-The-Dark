@@ -7,8 +7,7 @@ public class PlayerSprintState : IState
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
 
-    private float walkSpeed = 5f;
-    private float sprintingMultiplier = 1.4f;
+
 
 
     public PlayerSprintState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
@@ -21,7 +20,7 @@ public class PlayerSprintState : IState
     public void Enter()
     {
         Debug.Log("Player: Enter Mode SPRINT");
-        stateMachine.currentSpeed = walkSpeed * sprintingMultiplier;
+        stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.sprintingMultiplier;
     }
 
     public void Update()
