@@ -456,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 904253159}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0.33}
+  m_LocalPosition: {x: 0, y: 0.85, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -487,17 +487,21 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 3964846334067160730, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.28
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -748,7 +752,7 @@ Transform:
   m_GameObject: {fileID: 1612308297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.83, y: -0.21, z: 5.28}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -792,28 +796,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
   rb: {fileID: 1612308306}
   playerCollider: {fileID: 1612308307}
-  camera: {fileID: 79424389}
   sprintBarTransform: {fileID: 134228638}
-  sensitivity: 0.5
-  XMaxAngle: 75
   walkSpeed: 5
   sprintingMultiplier: 1.4
-  maxStamina: 5
+  crouchMultiplier: 0.5
   staminaLeft: 5
-  staminaRegenDelay: 1.5
+  staminaTimer: 0
+  currentSpeed: 0
+  isOutOfStamina: 1
   standHeight: 2
   standCenterY: 0
   crouchHeight: 1.2
   crouchCenterY: -0.2
   ceilingCheckDistance: 1
-  crouchMultiplier: 0.5
+  isCeilingAbove: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  isCrouched: 0
-  isCeilingAbove: 0
-  isOutOfStamina: 1
-  currentSpeed: 0
+    m_Bits: 64
+  ceilingCheckSize: {x: 0.6, y: 0.1, z: 0.6}
   moveInput: {x: 0, y: 0}
 --- !u!114 &1612308313
 MonoBehaviour:

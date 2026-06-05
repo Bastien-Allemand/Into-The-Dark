@@ -34,7 +34,12 @@ public class PlayerStateMachine : MonoBehaviour
     public float standCenterY = 0f;
     public float crouchHeight = 1.2f;
     public float crouchCenterY = -0.2f;
-    public float ceilingCheckDistance = 1.0f;
+    public float ceilingCheckDistance = .6f;
+    [SerializeField] public bool isCeilingAbove = false;
+
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Vector3 ceilingCheckSize = new Vector3(0.6f, 2f, 0.6f);
+
 
     public Vector2 moveInput;
 
@@ -64,7 +69,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Update()
     {
-
+        CheckIsCeilingAbove();
         HandleStamina();
         CheckState();
         if (currentState != null)
@@ -102,7 +107,7 @@ public class PlayerStateMachine : MonoBehaviour
             {
                 ChangeState(CrouchState);
             }
-            else
+            else if (isCeilingAbove == false)
             {
                 ChangeState(IdleState);
             }
@@ -119,8 +124,29 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else
         {
+            ChangeState(CrouchState);
             ChangeState(WalkState);
         }
+    }
+
+    void CheckIsCeilingAbove()
+    {
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+        Color rayColor = Color.green;
+        float castLength = ceilingCheckDistance;
+
+        
+        if (Physics.BoxCast(origin, ceilingCheckSize / 2f, Vector3.up, Quaternion.identity, castLength, layerMask))
+        {
+            isCeilingAbove = true;
+            rayColor = Color.red;
+        }
+        else
+        {
+            isCeilingAbove = false;
+        }
+
+        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
     }
 
     void HandleStamina()
