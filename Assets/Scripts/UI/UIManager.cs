@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -54,16 +55,19 @@ public class UIManager : MonoBehaviour
                 continue;
 
 
-
             int boucle = 0;
-            switch(action.type)
+            switch (action.type)
             {
                 case InputActionType.Value:
                     GetActionType(action);
                     break;
                 case InputActionType.Button:
                     buffer.GetComponent<TextMeshPro>().text = action.name;
-                    break;
+                    if (action.bindings.Any(b => b.isComposite))
+                    {
+
+                    }
+                        break;
                 case InputActionType.PassThrough:
                     //  nothing ...
                     break;
