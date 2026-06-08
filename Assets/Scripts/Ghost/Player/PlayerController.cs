@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum PlayerState
+    {
+        IDLE,
+        WALKING,
+        CROUCHING,
+        SPRINTING
+    }
 
     //public enum PlayerState
     //{
