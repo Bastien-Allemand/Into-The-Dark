@@ -88,6 +88,10 @@ public class PlayerController : MonoBehaviour
         HandleStamina();
     }
 
+    public void RegenAllStamina()
+    {
+        staminaLeft = maxStamina;
+    }
     private void FixedUpdate()
     {
         CheckIsCeilingAbove();
