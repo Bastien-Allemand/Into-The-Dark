@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class InsaneMeterScript : MonoBehaviour
 {
+    [SerializeField] private bool debug = false;
+
     [SerializeField] private float insaneMeter = 0f;
     [SerializeField] private float maxInsaneMeter = 100f;
     [SerializeField] private float initalInsaneMeterWidth = 0f;
@@ -42,7 +44,8 @@ public class InsaneMeterScript : MonoBehaviour
 
         if (target == null)
         {
-            Debug.Log("Target not found");
+            if (debug)
+                Debug.Log("Target not found");
             return;
         }
 
@@ -63,7 +66,8 @@ public class InsaneMeterScript : MonoBehaviour
                 if (hit.transform.CompareTag(targetTag))
                 {
                     isTargetVisible = true;
-                    Debug.Log("ghost in vision");
+                    if (debug)
+                        Debug.Log("ghost in vision");
                 }
             }
         }

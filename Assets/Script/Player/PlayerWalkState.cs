@@ -15,7 +15,8 @@ public class PlayerWalkState : IState
 
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode WALK");
+        if (stateMachine.debug)
+            Debug.Log("Player: Enter Mode WALK");
         stateMachine.currentSpeed = stateMachine.walkSpeed;
     }
 
@@ -40,6 +41,7 @@ public class PlayerWalkState : IState
 
     public void Exit()
     {
-        Debug.Log("Player: Exit Mode WALK");
+        if (stateMachine.debug)
+            Debug.Log("Player: Exit Mode WALK");
     }
 }

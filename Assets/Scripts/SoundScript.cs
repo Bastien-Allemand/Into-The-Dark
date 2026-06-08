@@ -2,8 +2,9 @@
     using UnityEngine.InputSystem;
 public class SoundScript : MonoBehaviour
 {
+    [SerializeField] private bool debug = false;
     private bool MakingSound = true;
-    private float SoundTimer = 1;
+    public float SoundTimer = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +18,9 @@ public class SoundScript : MonoBehaviour
 
         if (SoundTimer < 0)
             Destroy(this.gameObject);
+
+        if (debug)
+            Debug.Log("Sound at: " + transform.position);
 
         SoundTimer -= Time.deltaTime;
     }

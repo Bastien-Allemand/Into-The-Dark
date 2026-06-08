@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
+    [SerializeField] public bool debug = false;
+
     PlayerAction controls;
     private IState currentState;
 

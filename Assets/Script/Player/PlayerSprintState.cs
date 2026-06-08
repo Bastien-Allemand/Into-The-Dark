@@ -16,7 +16,8 @@ public class PlayerSprintState : IState
     
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode SPRINT");
+        if (stateMachine.debug)
+            Debug.Log("Player: Enter Mode SPRINT");
         stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.sprintingMultiplier;
     }
 
@@ -53,7 +54,8 @@ public class PlayerSprintState : IState
 
     public void Exit()
     {
-        Debug.Log("Player: Exit Mode SPRINT");
+        if (stateMachine.debug)
+            Debug.Log("Player: Exit Mode SPRINT");
     }
 }
 

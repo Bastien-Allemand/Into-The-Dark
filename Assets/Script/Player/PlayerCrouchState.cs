@@ -18,7 +18,8 @@ public class PlayerCrouchState : IState
 
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode CROUCH");
+        if (stateMachine.debug)
+            Debug.Log("Player: Enter Mode CROUCH");
 
         playerCollider.height = stateMachine.crouchHeight;
         playerCollider.center = new Vector3(0f, stateMachine.crouchCenterY, 0f);
@@ -49,7 +50,8 @@ public class PlayerCrouchState : IState
         if (stateMachine.isCeilingAbove == true)
             return;
 
-        Debug.Log("Player: Exit Mode CROUCH");
+        if (stateMachine.debug)
+            Debug.Log("Player: Exit Mode CROUCH");
 
         playerCollider.height = stateMachine.standHeight;
         playerCollider.center = new Vector3(0f, stateMachine.standCenterY, 0f);

@@ -13,7 +13,8 @@ public class PlayerIdleState : IState
     }
     public void Enter()
     {
-        Debug.Log("Player: Enter Mode IDLE");
+        if (stateMachine.debug)
+            Debug.Log("Player: Enter Mode IDLE");
     }
 
     public void Update()
@@ -26,6 +27,7 @@ public class PlayerIdleState : IState
 
     public void Exit()
     {
-        Debug.Log("Player: Exit Mode IDLE");
+        if (stateMachine.debug)
+            Debug.Log("Player: Exit Mode IDLE");
     }
 }

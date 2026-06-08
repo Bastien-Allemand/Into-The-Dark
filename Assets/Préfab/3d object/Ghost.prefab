@@ -140,9 +140,6 @@ GameObject:
   - component: {fileID: 1840220172320795248}
   - component: {fileID: 5263978658064256407}
   - component: {fileID: 8414357651127454385}
-  - component: {fileID: 6708689352807023203}
-  - component: {fileID: 2284492217226502772}
-  - component: {fileID: 6238106743680119971}
   - component: {fileID: 7972369281540487613}
   - component: {fileID: 254944100406829616}
   m_Layer: 7
@@ -248,46 +245,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6708689352807023203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100870729213104286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bced087422c8c74ea0677d061cfd91d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterVisionScript
-  enemyCamera: {fileID: 4556671644030851569}
-  rayonDetection: 100
-  chaseCD: 10
---- !u!114 &2284492217226502772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100870729213104286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a5efd7412dff543880711963a39320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GhostStateMachine
---- !u!114 &6238106743680119971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100870729213104286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4158e7e1ec447942a528442281237b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pathfinding
-  target: {fileID: 0}
 --- !u!195 &7972369281540487613
 NavMeshAgent:
   m_ObjectHideFlags: 0
