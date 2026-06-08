@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7431766884686123514}
   - component: {fileID: 620412246589680467}
   - component: {fileID: 4904757993792933777}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Ghost
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a5efd7412dff543880711963a39320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GhostStateMachine
-  debug: 1
+  debug: 0
 --- !u!114 &4904757993792933777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,9 +222,9 @@ GameObject:
   - component: {fileID: 2934747731569758893}
   - component: {fileID: 6525349946179048067}
   - component: {fileID: 8345641157712839815}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Monster Camera
-  m_TagString: MainCamera
+  m_TagString: Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
