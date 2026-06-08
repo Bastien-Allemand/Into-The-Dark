@@ -298,6 +298,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2791607697692570181, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+      propertyPath: phoneTransform
+      value: 
+      objectReference: {fileID: 28136678}
+    - target: {fileID: 2791607697692570181, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
       propertyPath: pickupDistance
       value: 5
       objectReference: {fileID: 0}
@@ -730,6 +734,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   targetCamera: {fileID: 1396297030}
+--- !u!114 &909703386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2791607697692570181, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+  m_PrefabInstance: {fileID: 481419170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909703378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96968b4042e4a224ba0fdf6b0af02eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
 --- !u!224 &1048418164 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9080469729034500655, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
@@ -959,7 +974,7 @@ MonoBehaviour:
   phoneLight: {fileID: 870017322}
   textBattery: {fileID: 411677206}
   batteryScript: {fileID: 1434428316}
-  pickUpScript: {fileID: 0}
+  pickUpScript: {fileID: 909703386}
   screenPhone: {fileID: 132896858}
   hiddenAnchor: {fileID: 1507470787}
   idleAnchor: {fileID: 1522636083}
