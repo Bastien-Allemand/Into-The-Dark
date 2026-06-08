@@ -15,9 +15,9 @@ public class GhostStateMachine : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
         if (currentState is GhostDeathState)
-        {
+        {          
             return;
         }
         if (monsterVision.PlayerFound && currentState is not GhostChaseState)

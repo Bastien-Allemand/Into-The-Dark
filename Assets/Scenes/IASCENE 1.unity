@@ -163,7 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf63f984ab0d6c458a5136f47d3688a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
+  staminaLeft: 5
   speed: 5
+  sprintingMultiplier: 0
+  crouchingMultiplier: 0
+  staminaIncreasingTotalTime: 1.5
   standHeight: 2
   standCenterY: 0
   crouchHeight: 1.2
@@ -171,9 +175,13 @@ MonoBehaviour:
   ceilingCheckDistance: 1
   rb: {fileID: 219087790}
   playerCollider: {fileID: 219087792}
-  cameraTransform: {fileID: 765309395}
+  sprintBarTransform: {fileID: 0}
+  isSprinting: 0
   isCrouched: 0
   isCeilingAbove: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &219087792 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 9077920826426697030, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
@@ -269,7 +277,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765309394}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &765309398
 Camera:
   m_ObjectHideFlags: 0
@@ -632,7 +640,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061869760}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2061869762
 Camera:
   m_ObjectHideFlags: 0
