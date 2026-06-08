@@ -17,7 +17,7 @@ public class GhostPatrolState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode PATROL");
+        //Debug.Log("Ghost: Mode PATROL");
     }
 
     public void Update()
@@ -27,19 +27,19 @@ public class GhostPatrolState : IState
         {
             swapRoom = 20f;
             choiceroom = Random.Range(0, pathfinding.rooms.Count);
-            Debug.Log("Room :" + choiceroom);
+           // Debug.Log("Room :" + choiceroom);
         }
         if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
         { 
             Vector3 pos = RandomPosition(pathfinding.rooms[choiceroom]);
             pathfinding.agent.SetDestination(pos);
-            Debug.Log("Pos :" +  pos);
+            //Debug.Log("Pos :" +  pos);
         }
     }
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode PATROL.");
+       //  Debug.Log("Ghost: Exit Mode PATROL.");
     }
 
     Vector3 RandomPosition(Room _room)
@@ -54,7 +54,7 @@ public class GhostPatrolState : IState
         {
             pos = hit.position;
         }
-        Debug.Log("Pos Random :" + pos);
+      //  Debug.Log("Pos Random :" + pos);
         return pos;
     }
 }
