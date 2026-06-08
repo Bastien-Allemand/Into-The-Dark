@@ -105,7 +105,7 @@ public class PlayerStateMachine : MonoBehaviour
         
         if (isMoving == false)
         {
-            if (crouchInput == true)
+            if (crouchInput == true || isCeilingAbove == true)
             {
                 ChangeState(CrouchState);
             }
@@ -124,21 +124,32 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ChangeState(SprintState);
         }
-        else
+        else if (crouchInput == false && sprintInput == false)
         {
-            ChangeState(CrouchState);
+            if (isCeilingAbove == true)
+            {
+                ChangeState(CrouchState);
+                return;
+            }
+
             ChangeState(WalkState);
+            
         }
     }
 
-    void CheckIsCeilingAbove()
+    private void OnDrawGizmos()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+        Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
+    }
+    void CheckIsCeilingAbove()
+    {
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z);
         Color rayColor = Color.green;
         float castLength = ceilingCheckDistance;
 
         
-        if (Physics.BoxCast(origin, ceilingCheckSize / 2f, Vector3.up, Quaternion.identity, castLength, layerMask))
+        if (Physics.BoxCast(origin, ceilingCheckSize * .75f, Vector3.up, Quaternion.identity, castLength, layerMask))
         {
             isCeilingAbove = true;
             rayColor = Color.red;
