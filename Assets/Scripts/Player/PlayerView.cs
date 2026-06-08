@@ -17,11 +17,12 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerAction();
+        controls = InputManager.controls;
+        //controls = new PlayerAction();
     }
 
-    private void OnEnable() => controls.Enable();
-    private void OnDisable() => controls.Disable();
+    //private void OnEnable() => controls.Enable();
+    //private void OnDisable() => controls.Disable();
 
     void Start()
     {

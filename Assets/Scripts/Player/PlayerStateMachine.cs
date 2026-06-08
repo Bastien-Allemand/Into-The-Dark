@@ -50,7 +50,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Awake()
     {
-        controls = new PlayerAction();
+        controls = InputManager.controls;
+
+//        controls = new PlayerAction();
 
         IdleState = new PlayerIdleState(this, rb);
         WalkState = new PlayerWalkState(this, rb, transform);
@@ -64,8 +66,8 @@ public class PlayerStateMachine : MonoBehaviour
         sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
 
-    private void OnEnable() => controls.Enable();
-    private void OnDisable() => controls.Disable();
+    //private void OnEnable() => controls.Enable();
+    //private void OnDisable() => controls.Disable();
 
     void Update()
     {
