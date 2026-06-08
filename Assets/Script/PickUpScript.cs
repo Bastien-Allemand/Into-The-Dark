@@ -8,6 +8,7 @@ public class PickUpScript : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float pickupDistance = 10.0f;
+    [SerializeField] private Transform phoneTransform;
 
     private GameObject rightHandItem = null;
     private GameObject leftHandItem = null;
@@ -62,7 +63,7 @@ public class PickUpScript : MonoBehaviour
             rightHandItem = targetItem;
             AttachItem(targetItem, rightHandSocket);
         }
-        else if (leftHandSocket != null && leftHandItem == null)
+        else if (leftHandSocket != null && leftHandItem == null && phoneTransform.gameObject.activeSelf == false)
         {
             leftHandItem = targetItem;
             AttachItem(targetItem, leftHandSocket);
@@ -86,7 +87,7 @@ public class PickUpScript : MonoBehaviour
         }
     }
 
-    private void DropRightHandItem()
+    public void DropRightHandItem()
     {
         if (rightHandItem != null)
         {
@@ -95,7 +96,7 @@ public class PickUpScript : MonoBehaviour
         }
     }
 
-    private void DropLeftHandItem()
+    public void DropLeftHandItem()
     {
         if (leftHandItem != null)
         {

@@ -16,6 +16,7 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private Light phoneLight;
     [SerializeField] private TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
+    [SerializeField] private PickUpScript pickUpScript;
     [SerializeField] private GameObject screenPhone;
 
     [Header("Anchors")]
@@ -84,6 +85,8 @@ public class PhoneScript : MonoBehaviour
     {
         if (currentState == PhoneState.Hidden)
         {
+            pickUpScript.DropLeftHandItem();
+
             phoneTransform.gameObject.SetActive(true);
 
             currentState = PhoneState.Idle;
