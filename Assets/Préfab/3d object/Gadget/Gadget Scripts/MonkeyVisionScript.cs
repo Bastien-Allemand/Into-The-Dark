@@ -31,7 +31,7 @@ public class MonkeyVisionScript : MonoBehaviour
             {
                 if (hit.transform.CompareTag(targetTag))
                 {
-                    //Debug.Log("Target is visible and not occluded");
+                    Debug.Log("Target is visible and not occluded");
                     Action();
                 }
                 else
