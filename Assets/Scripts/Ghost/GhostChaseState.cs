@@ -13,7 +13,8 @@ public class GhostChaseState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode CHASE");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Mode CHASE");
     }
 
     public void Update()
@@ -22,6 +23,7 @@ public class GhostChaseState : IState
             return;
         if (pathfinding.target == null)
         {
+            Debug.Log("Target is null, switching to patrol state.");
             stateMachine.ChangeState(new GhostPatrolState(stateMachine, pathfinding));
             return;
         }
@@ -30,6 +32,7 @@ public class GhostChaseState : IState
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode CHASE.");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Exit Mode CHASE.");
     }
 }

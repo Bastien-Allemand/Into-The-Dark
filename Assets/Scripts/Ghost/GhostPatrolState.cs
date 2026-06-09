@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class GhostPatrolState : IState
-{
+{    
     private GhostStateMachine stateMachine;
     private Pathfinding pathfinding;
     private float swapRoom = 20f;
@@ -17,7 +17,8 @@ public class GhostPatrolState : IState
 
     public void Enter()
     {
-        Debug.Log("Ghost: Mode PATROL");
+        if (stateMachine.debug)
+            Debug.Log("Ghost: Mode PATROL");
     }
 
     public void Update()
@@ -27,19 +28,22 @@ public class GhostPatrolState : IState
         {
             swapRoom = 20f;
             choiceroom = Random.Range(0, pathfinding.rooms.Count);
-            Debug.Log("Room :" + choiceroom);
+            if (stateMachine.debug)
+                Debug.Log("Room :" + choiceroom);
         }
         if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
         { 
             Vector3 pos = RandomPosition(pathfinding.rooms[choiceroom]);
             pathfinding.agent.SetDestination(pos);
-            Debug.Log("Pos :" +  pos);
+            if (stateMachine.debug)
+                Debug.Log("Pos :" +  pos);
         }
     }
 
     public void Exit()
     {
-        Debug.Log("Ghost: Exit Mode PATROL.");
+       if (stateMachine.debug)
+            Debug.Log("Ghost: Exit Mode PATROL.");
     }
 
     Vector3 RandomPosition(Room _room)
@@ -54,7 +58,8 @@ public class GhostPatrolState : IState
         {
             pos = hit.position;
         }
-        Debug.Log("Pos Random :" + pos);
+        if (stateMachine.debug)
+            Debug.Log("Pos Random :" + pos);
         return pos;
     }
 }
