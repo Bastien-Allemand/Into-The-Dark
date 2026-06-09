@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
         controls = InputManager.controls;
         Init();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
         {
