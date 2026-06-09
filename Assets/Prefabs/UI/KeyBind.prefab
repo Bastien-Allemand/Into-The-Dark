@@ -35,10 +35,10 @@ RectTransform:
   - {fileID: 4312586750415666514}
   m_Father: {fileID: 6857085603565388500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 60, y: 0}
+  m_SizeDelta: {x: 120, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2501172031934251967
 CanvasRenderer:
@@ -146,9 +146,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81d7c8cf958c144e96e5261417e58c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rebind
-  actionName: 
-  bindingIndex: 0
-  bindingText: {fileID: 548326873062182830}
+  m_action:
+    m_Name: Action
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1450d3b8-8d0b-4437-95fa-96678f339a61
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_bindingIndex: 0
 --- !u!1 &864155087259678601
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +192,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 50}
+  m_SizeDelta: {x: 450, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5851084266422240883
 CanvasRenderer:
@@ -379,7 +386,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 31.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

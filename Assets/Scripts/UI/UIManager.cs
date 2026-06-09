@@ -3,11 +3,12 @@ using System.Linq;
 using TMPro;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject GO_controls;
+    [SerializeField] Transform GO_Controls_Content;
     [SerializeField] GameObject GO_Prefab_Keybind;
 
     PlayerAction controls;
@@ -24,64 +25,38 @@ public class UIManager : MonoBehaviour
         controls = InputManager.controls;
         Init();
     }
-    void Update()
+    public void Init()
     {
-
-    }
-    private actionType GetActionType(InputAction action)
-    {
-        actionType type = actionType.None;
-        switch (action.expectedControlType)
-        {
-            case "Button":
-                type = actionType.Bool;
-                break;
-            case "Axis":
-                type = actionType.Axis1;
-                break;
-            case "Vector2":
-                type = actionType.Vector2;
-                break;
-        }
-        return type;
-    }
-    private void Init()
-    {
-        GO_controls.SetActive(true);
-        Transform t = getContent(GO_controls.transform);
         foreach (InputAction action in controls.GamePlay.Get())
         {
             if (action.name == "Look")
                 continue;
-
-
-            int boucle = 0;
-            switch (action.type)
-            {
-                case InputActionType.Value:
-                    GetActionType(action);
-                    break;
-                case InputActionType.Button:
-                    buffer.GetComponent<TextMeshPro>().text = action.name;
-                    if (action.bindings.Any(b => b.isComposite))
-                    {
-
-                    }
-                        break;
-                case InputActionType.PassThrough:
-                    //  nothing ...
-                    break;
-                default:
-                    break;
-            }
-            GameObject buffer = Instantiate(GO_Prefab_Keybind, t, false);
-            Debug.Log(action.name);
+            CreateBoutonFromAction(action, GO_Controls_Content);
         }
     }
-    private Transform getContent(Transform of)
+    private void CreateBoutonFromAction(InputAction action, Transform parent)
     {
-        Transform result = of.Find("ViewPort");
-        result = result.Find("Content");
-        return result;
+        int bindingIndex = 0;
+        foreach (InputBinding binding in action.bindings)
+        {
+            if (binding.isComposite)
+            {
+                bindingIndex++;
+                continue;
+            }
+            Debug.Log($"name={ action.name+" "+binding.name} | path={binding.path} | composite={binding.isComposite} | part={binding.isPartOfComposite}");
+
+            GameObject buffer = Instantiate(GO_Prefab_Keybind, parent, false);
+            var tmp = buffer.GetComponent<TMPro.TextMeshProUGUI>();
+            tmp.text = $"{action.name} {binding.name}";
+
+            Rebind script = buffer.GetComponentInChildren<Rebind>();
+            if (script != null)
+                script.Init(action, bindingIndex);
+            else
+                Debug.Log("script Rebind not found");
+
+            bindingIndex++;
+        }
     }
 }

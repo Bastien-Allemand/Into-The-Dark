@@ -3,29 +3,38 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Rebind : MonoBehaviour
 {
-    [Header("ActionName doit être écrit a la main avec le meme nom qu'il a dedans le ActionMap")]
-    [SerializeField] private string actionName;
-    [SerializeField] private int bindingIndex = 0;
-    [SerializeField] private TMP_Text bindingText;
     private PlayerAction controls;
-    private InputAction action;
+
+    public InputAction m_action;
+    public int m_bindingIndex = 0;
     private void Start()
     {
         controls = InputManager.controls;
-        action = controls.asset.FindAction(actionName);
         UpdateBindingText();
     }
-
+    public void Init(InputAction action, int bindingIndex)
+    {
+        m_action = action;
+        m_bindingIndex = bindingIndex;
+    }
     public void UpdateBindingText()
     {
-        bindingText.text = action.GetBindingDisplayString(bindingIndex);
+        Transform bindingText = transform.Find("Text (TMP)");
+        if (bindingText != null)
+        {
+            bindingText.GetComponent<TMPro.TextMeshProUGUI>().text = m_action.GetBindingDisplayString(m_bindingIndex);
+        }
+        else
+            Debug.Log("Text (TMP) not found");
     }
     public void KeyRebind()
     {
-        action.PerformInteractiveRebinding(bindingIndex)
+        controls.Disable();
+        m_action.PerformInteractiveRebinding(m_bindingIndex)
                     .OnComplete(op =>
                     {
                         op.Dispose();
@@ -33,5 +42,6 @@ public class Rebind : MonoBehaviour
                         UpdateBindingText();
                     })
         .Start();
+        controls.Enable();
     }
 }

@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static PlayerAction controls;
-    private void Awake()
+    private static PlayerAction _controls;
+    public static PlayerAction controls
     {
-        if (controls == null)
+        get
         {
-            controls = new PlayerAction();
+            if (_controls == null)
+            {
+                _controls = new PlayerAction();
+                _controls.Enable();
+            }
+            return _controls;
         }
     }
     private void OnEnable() => controls.Enable();
