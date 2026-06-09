@@ -2451,10 +2451,10 @@ GameObject:
   - component: {fileID: 3686189624469726028}
   - component: {fileID: 8394202284432717072}
   - component: {fileID: 6054543771280597876}
-  - component: {fileID: 5283903517605827726}
   - component: {fileID: 6915453463748993352}
+  - component: {fileID: 8057539110640169533}
   m_Layer: 5
-  m_Name: UI
+  m_Name: PauseUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2543,7 +2543,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5283903517605827726
+--- !u!114 &6915453463748993352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945172868599653060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72de838e29805a4a847537a29dc8980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputManager
+--- !u!114 &8057539110640169533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2558,15 +2570,3 @@ MonoBehaviour:
   GO_Controls_Content: {fileID: 119717253537669906}
   GO_Prefab_Keybind: {fileID: 864155087259678601, guid: fd59b5abf32cf1842ab9cd5ac8456604, type: 3}
   pauseMenu: {fileID: 2112526128417256722}
---- !u!114 &6915453463748993352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945172868599653060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72de838e29805a4a847537a29dc8980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputManager

@@ -5,14 +5,87 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager _instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new UIManager();
+            return _instance;
+        }
+    }
+
     PlayerAction controls;
     [Header("Pause Menu Setting")]
     [SerializeField] Transform GO_Controls_Content;
     [SerializeField] GameObject GO_Prefab_Keybind;
-    [SerializeField] Transform pauseMenu;
+    [SerializeField] Transform[] UIs;
+    [SerializeField] ListUI[] actifUI;
+    public enum ListUI
+    {
+        PauseMenu,
+        MainMenu,
+        PlayerUI
+    }
+
+    System.Action[] enterCondition;
+    System.Action[] enter;
+    System.Action[] update;
+    System.Action[] fixedUpdated;
+    System.Action[] exit;
+
+
+
+
+
+
+
+
+
+    private bool PauseMenuEnterCondition()
+    {
+        return controls.Menu.Pause.WasPressedThisFrame();
+    }
+    private void PauseMenuEnter()
+    {
+        getUI(ListUI.PauseMenu).gameObject.SetActive(true);
+
+        controls.GamePlay.Disable();
+        Cursor.lockState = CursorLockMode.None;
+        Pause(true);
+    }
+    private void PauseMenuUpdate()
+    {
+        if (controls.Menu.Pause.WasPressedThisFrame())
+        {
+            PauseMenuExit();
+        }
+    }
+    private void PauseMenuFixedUpdate()
+    {
+
+    }
+    private void PauseMenuExit()
+    {
+        getUI(ListUI.PauseMenu).gameObject.SetActive(false);
+        controls.GamePlay.Enable();
+        Cursor.lockState = CursorLockMode.Locked;
+        Pause(false);
+
+        actifUI = System.Array.FindAll(actifUI, n => n != ListUI.PauseMenu);
+    }
+
+
+
+
+
+
+
     private void Awake()
     {
         controls = InputManager.controls;
@@ -20,60 +93,54 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (controls.Menu.Pause.WasPressedThisFrame())
-        {
-            Pause();
-        }
-    }
-    public void Pause()
-    {
-        pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
-        if (pauseMenu.gameObject.activeSelf)
-            controls.GamePlay.Disable();
-        else
-            controls.GamePlay.Enable();
-    }
-    public void Pause(bool pause)
-    {
-        pauseMenu.gameObject.SetActive(pause);
-        if (pauseMenu.gameObject.activeSelf)
-            controls.GamePlay.Disable();
-        else
-            controls.GamePlay.Enable();
+
     }
     private void Init()
     {
-        Pause(false);
-        foreach (InputAction action in controls.GamePlay.Get())
+        HideAllUI();
+        foreach (ListUI ui in actifUI)
         {
-            if (action.name == "Look")
-                continue;
-            CreateBoutonFromAction(action, GO_Controls_Content);
-        }
-    }
-    private void CreateBoutonFromAction(InputAction action, Transform parent)
-    {
-        int bindingIndex = 0;
-        foreach (InputBinding binding in action.bindings)
-        {
-            if (binding.isComposite)
+            switch (ui)
             {
-                bindingIndex++;
-                continue;
+                case ListUI.PauseMenu:
+                    Pause(true);
+                    break;
             }
-            Debug.Log($"name={action.name + " " + binding.name} | path={binding.path} | composite={binding.isComposite} | part={binding.isPartOfComposite}");
-
-            GameObject buffer = Instantiate(GO_Prefab_Keybind, parent, false);
-            var tmp = buffer.GetComponent<TMPro.TextMeshProUGUI>();
-            tmp.text = $"{action.name} {binding.name}";
-
-            Rebind script = buffer.GetComponentInChildren<Rebind>();
-            if (script != null)
-                script.Init(action, bindingIndex);
-            else
-                Debug.Log("script Rebind not found");
-
-            bindingIndex++;
+            ShowUI(ui);
+        }
+        Pause(false);
+    }
+    private Transform getUI(ListUI index) => UIs[(int)index];
+    public void SwapActive(ListUI it) => getUI(it).gameObject.SetActive(!getUI(it).gameObject.activeSelf);
+    public void ShowUI(ListUI it) => getUI(it).gameObject.SetActive(true);
+    public void HideUI(ListUI it) => getUI(it).gameObject.SetActive(false);
+    public void HideAllUI()
+    {
+        Pause(false);
+        foreach (Transform ui in UIs)
+            ui.gameObject.SetActive(false);
+    }
+    public void ShowOnly(ListUI it)
+    {
+        
+        foreach (Transform t in UIs)
+            t.gameObject.SetActive(false);
+        if (it == ListUI.PauseMenu)
+            Pause(true);
+        else
+            Pause(false);
+        ShowUI(it);
+    }
+    public void Pause(bool pause)
+    {
+        //  il faut rajouter la pause pour les entité
+        if (pause)
+        {
+            controls.GamePlay.Disable();
+        }
+        else
+        {
+            controls.GamePlay.Enable();
         }
     }
 }
