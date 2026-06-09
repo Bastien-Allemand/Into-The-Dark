@@ -74,10 +74,7 @@ public class PhoneScript : MonoBehaviour
             TogglePhone();
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ToggleCameraMode();
-        }
+
     }
 
     private void TogglePhone()
