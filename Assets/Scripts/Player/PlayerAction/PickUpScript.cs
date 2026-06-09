@@ -13,6 +13,9 @@ public class PickUpScript : MonoBehaviour
     private GameObject rightHandItem = null;
     private GameObject leftHandItem = null;
 
+    PlayerAction controls;
+
+    private bool wasInteractingLastFrame = false;
     void Start()
     {
         if (rightHandSocket == null)
@@ -27,45 +30,80 @@ public class PickUpScript : MonoBehaviour
             if (leftSocketObj != null) leftHandSocket = leftSocketObj.transform;
         }
     }
-
+    private void Awake()
+    {
+        controls = InputManager.controls;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        float interactValue = controls.GamePlay.Interact.ReadValue<float>();
+        bool isInteractingThisFrame = Mathf.Abs(interactValue) > 0.5f;
+
+        if (isInteractingThisFrame && !wasInteractingLastFrame)
         {
-
-            Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-            Debug.DrawRay(ray.origin, ray.direction * pickupDistance, Color.red, 2f);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance))
+            if (interactValue > 0.5f) 
             {
-                Debug.Log("Le Raycast a touché : " + hit.collider.name);
-
-                if (hit.collider.CompareTag("Item"))
+                if (rightHandItem != null)
                 {
-                    Pickup(hit.collider.gameObject);
+                    DropRightHandItem();
+                }
+                else
+                {
+                    CheckInsight(isRightHand: true);
+                }
+            }
+            else if (interactValue < -0.5f) 
+            {
+                if (leftHandItem != null)
+                {
+                    DropLeftHandItem();
+                }
+                else
+                {
+                    CheckInsight(isRightHand: false);
                 }
             }
         }
+        wasInteractingLastFrame = isInteractingThisFrame;
+    }
+    void CheckInsight(bool isRightHand)
+    {
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        if (Input.GetKeyDown(KeyCode.G))
+        Debug.DrawRay(ray.origin, ray.direction * pickupDistance, Color.red, 2f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance))
         {
-            DropLeftHandItem();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DropRightHandItem();
+            Debug.Log("Le Raycast a touché : " + hit.collider.name);
+
+            if (hit.collider.CompareTag("Item"))
+            {
+                if(isRightHand == true)
+                {
+                    PickupRightHand(hit.collider.gameObject);
+                }
+                else
+                {
+                    PickupLeftHand(hit.collider.gameObject);
+                }
+            }
         }
     }
-
-    private void Pickup(GameObject targetItem)
+    private void PickupRightHand(GameObject targetItem)
     {
-        if (rightHandSocket != null && rightHandItem == null)
+        if (rightHandSocket != null)
         {
             rightHandItem = targetItem;
             AttachItem(targetItem, rightHandSocket);
         }
-        else if (leftHandSocket != null && leftHandItem == null)
+        else
+        {
+            Debug.LogWarning("Impossible de ramasser : Les deux mains gèrent déjà un Item, ou un socket est manquant.");
+        }
+    }
+    private void PickupLeftHand(GameObject targetItem)
+    {
+        if (leftHandSocket != null)
         {
             leftHandItem = targetItem;
             AttachItem(targetItem, leftHandSocket);
@@ -75,20 +113,29 @@ public class PickUpScript : MonoBehaviour
             Debug.LogWarning("Impossible de ramasser : Les deux mains gèrent déjà un Item, ou un socket est manquant.");
         }
     }
-
     private void AttachItem(GameObject item, Transform socket)
     {
+        Vector3 originalWorldScale = item.transform.lossyScale;
         item.transform.SetParent(socket);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
+        item.transform.localScale = new Vector3(
+            originalWorldScale.x / socket.lossyScale.x,
+            originalWorldScale.y / socket.lossyScale.y,
+            originalWorldScale.z / socket.lossyScale.z
+        );
 
         Rigidbody rb = item.GetComponent<Rigidbody>();
+        Collider collider = item.GetComponent<Collider>();
         if (rb != null)
         {
             rb.isKinematic = true;
         }
+        if(collider != null)
+        {
+            collider.enabled = false;
+        }
     }
-
     private void DropRightHandItem()
     {
         if (rightHandItem != null)
@@ -97,7 +144,6 @@ public class PickUpScript : MonoBehaviour
             rightHandItem = null;
         }
     }
-
     private void DropLeftHandItem()
     {
         if (leftHandItem != null)
@@ -106,14 +152,21 @@ public class PickUpScript : MonoBehaviour
             leftHandItem = null;
         }
     }
-
     private void DetachItem(GameObject item)
     {
+        Vector3 currentWorldScale = item.transform.lossyScale;
         item.transform.SetParent(null);
+        item.transform.localScale = currentWorldScale;
+
         Rigidbody rb = item.GetComponent<Rigidbody>();
+        Collider collider = item.GetComponent<Collider>();
         if (rb != null)
         {
             rb.isKinematic = false;
+        }
+        if (collider != null)
+        {
+            collider.enabled = true;
         }
     }
 }

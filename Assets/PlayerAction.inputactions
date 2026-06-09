@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RingPhone",
+                    "name": "Drop",
                     "type": "Button",
                     "id": "78cdb3ca-fd68-4f6d-bd9b-71947154bba2",
                     "expectedControlType": "",
@@ -191,7 +191,7 @@
                 {
                     "name": "negative",
                     "id": "1149f5bd-2f6d-4084-a7f5-c95a6ad2a4fb",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -202,7 +202,7 @@
                 {
                     "name": "positive",
                     "id": "6441fe4c-5446-4845-84f6-8892544724ca",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -213,7 +213,7 @@
                 {
                     "name": "",
                     "id": "060b2d59-70f8-4786-8188-ca36df511ab4",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -233,15 +233,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "f49aaf50-b84f-44d9-b9b6-2bcc40057c27",
-                    "path": "<Keyboard>/g",
+                    "name": "Hand",
+                    "id": "4065f271-a70b-444b-afb2-ad6be010c03e",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RingPhone",
-                    "isComposite": false,
+                    "action": "Drop",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c07ddca1-1d00-4357-8798-3933b98c52ad",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "08b780ef-455e-48d0-92d3-f096cb3fb093",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "Axis",
