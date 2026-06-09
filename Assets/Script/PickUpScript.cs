@@ -39,7 +39,7 @@ public class PickUpScript : MonoBehaviour
             {
                 Debug.Log("Le Raycast a touché : " + hit.collider.name);
 
-                if (hit.collider.CompareTag("Item"))
+                if (hit.collider.CompareTag("Gadget"))
                 {
                     Pickup(hit.collider.gameObject);
                 }
