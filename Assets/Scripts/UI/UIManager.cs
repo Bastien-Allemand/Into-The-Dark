@@ -8,25 +8,42 @@ using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
+    PlayerAction controls;
+    [Header("Pause Menu Setting")]
     [SerializeField] Transform GO_Controls_Content;
     [SerializeField] GameObject GO_Prefab_Keybind;
-
-    PlayerAction controls;
-
-    enum actionType
-    {
-        None,
-        Bool,
-        Axis1,
-        Vector2
-    }
+    [SerializeField] Transform pauseMenu;
     private void Awake()
     {
         controls = InputManager.controls;
         Init();
     }
-    public void Init()
+    private void FixedUpdate()
     {
+        if (controls.Menu.Pause.WasPressedThisFrame())
+        {
+            Pause();
+        }
+    }
+    public void Pause()
+    {
+        pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
+        if (pauseMenu.gameObject.activeSelf)
+            controls.GamePlay.Disable();
+        else
+            controls.GamePlay.Enable();
+    }
+    public void Pause(bool pause)
+    {
+        pauseMenu.gameObject.SetActive(pause);
+        if (pauseMenu.gameObject.activeSelf)
+            controls.GamePlay.Disable();
+        else
+            controls.GamePlay.Enable();
+    }
+    private void Init()
+    {
+        Pause(false);
         foreach (InputAction action in controls.GamePlay.Get())
         {
             if (action.name == "Look")
@@ -44,7 +61,7 @@ public class UIManager : MonoBehaviour
                 bindingIndex++;
                 continue;
             }
-            Debug.Log($"name={ action.name+" "+binding.name} | path={binding.path} | composite={binding.isComposite} | part={binding.isPartOfComposite}");
+            Debug.Log($"name={action.name + " " + binding.name} | path={binding.path} | composite={binding.isComposite} | part={binding.isPartOfComposite}");
 
             GameObject buffer = Instantiate(GO_Prefab_Keybind, parent, false);
             var tmp = buffer.GetComponent<TMPro.TextMeshProUGUI>();

@@ -33,7 +33,6 @@ public class Rebind : MonoBehaviour
     }
     public void KeyRebind()
     {
-        controls.Disable();
         m_action.PerformInteractiveRebinding(m_bindingIndex)
                     .OnComplete(op =>
                     {
@@ -42,6 +41,5 @@ public class Rebind : MonoBehaviour
                         UpdateBindingText();
                     })
         .Start();
-        controls.Enable();
     }
 }
