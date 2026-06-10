@@ -9,126 +9,146 @@ using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
-    private static UIManager _instance;
-    public static UIManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-                _instance = new UIManager();
-            return _instance;
-        }
-    }
+    public static UIManager Instance { get; private set; }
 
     PlayerAction controls;
-    [Header("Pause Menu Setting")]
-    [SerializeField] Transform GO_Controls_Content;
-    [SerializeField] GameObject GO_Prefab_Keybind;
+
+
+
+    [Header("Manager Setting")]
+
+    [Space(5)]
+
     [SerializeField] Transform[] UIs;
-    [SerializeField] ListUI[] actifUI;
+    [SerializeField] List<ListUI> actifUI;
+    [Header("Remenber to modify the enum ListUI when adding UI")]
+    [SerializeField] List<UI> uiScripts;
+
+
+
     public enum ListUI
     {
-        PauseMenu,
-        MainMenu,
-        PlayerUI
+        PauseMenu
     }
 
-    System.Action[] enterCondition;
-    System.Action[] enter;
-    System.Action[] update;
-    System.Action[] fixedUpdated;
-    System.Action[] exit;
-
-
-
-
-
-
-
-
-
-    private bool PauseMenuEnterCondition()
+    private enum conditionList
     {
-        return controls.Menu.Pause.WasPressedThisFrame();
+        enter,
+        exit
     }
-    private void PauseMenuEnter()
+    private enum actionList
     {
-        getUI(ListUI.PauseMenu).gameObject.SetActive(true);
-
-        controls.GamePlay.Disable();
-        Cursor.lockState = CursorLockMode.None;
-        Pause(true);
+        init,
+        enter,
+        update,
+        fixedUpdate,
+        exit
     }
-    private void PauseMenuUpdate()
+    Dictionary<ListUI, List<Func<bool>>> condition;
+    Dictionary<ListUI, System.Action[]> action;
+    void FoncInit()
     {
-        if (controls.Menu.Pause.WasPressedThisFrame())
+        condition = new Dictionary<ListUI, List<Func<bool>>>();
+        action = new Dictionary<ListUI, Action[]>();
+
+        Action<UI, ListUI> init = (UI ui, ListUI index) =>
         {
-            PauseMenuExit();
+            //      Condition
+            List<Func<bool>> tmpCondition = new List<Func<bool>>()
+            {
+                ui.EnterCondition,
+                ui.ExitCondition
+            };
+
+            //      Action
+            System.Action[] tmpAction = new System.Action[]
+            {
+                ui.Init,
+                ui.Enter,
+                ui.M_Update,
+                ui.M_FixedUpdate,
+                ui.Exit
+            };
+
+            condition.Add(index, tmpCondition);
+            action.Add(index, tmpAction);
+        };
+
+        for (int i = 0; i < uiScripts.Count; i++)
+        {
+            init(uiScripts[i], (ListUI)i);
         }
     }
-    private void PauseMenuFixedUpdate()
+    private void Init()
     {
-
-    }
-    private void PauseMenuExit()
-    {
-        getUI(ListUI.PauseMenu).gameObject.SetActive(false);
-        controls.GamePlay.Enable();
-        Cursor.lockState = CursorLockMode.Locked;
+        foreach (var pair in action)
+        {
+            pair.Value[(int)actionList.init]();
+        }
+        HideAllUI();
+        foreach (ListUI ui in actifUI)
+        {
+            action[ui][(int)actionList.enter]();
+        }
         Pause(false);
-
-        actifUI = System.Array.FindAll(actifUI, n => n != ListUI.PauseMenu);
     }
-
-
-
-
-
-
 
     private void Awake()
     {
         controls = InputManager.controls;
+        FoncInit();
         Init();
     }
     private void Update()
     {
+        for (int i = 0; i < UIs.Length; i++)
+            if (!UIs[i].gameObject.activeSelf)
+                if (condition[(ListUI)i][(int)conditionList.enter]())
+                {
+                    ShowUI((ListUI)i);
+                }
+                else
+                {
+                    if (condition[(ListUI)i][(int)conditionList.exit]())
+                    {
+                        HideUI((ListUI)i);
+                    }
+                    else
+                        action[(ListUI)i][(int)actionList.update]();
+                }
 
     }
-    private void Init()
+
+    private void FixedUpdate()
     {
-        HideAllUI();
-        foreach (ListUI ui in actifUI)
-        {
-            switch (ui)
-            {
-                case ListUI.PauseMenu:
-                    Pause(true);
-                    break;
-            }
-            ShowUI(ui);
-        }
-        Pause(false);
+        foreach (var i in actifUI)
+            action[i][(int)actionList.fixedUpdate]();
     }
-    private Transform getUI(ListUI index) => UIs[(int)index];
-    public void SwapActive(ListUI it) => getUI(it).gameObject.SetActive(!getUI(it).gameObject.activeSelf);
-    public void ShowUI(ListUI it) => getUI(it).gameObject.SetActive(true);
-    public void HideUI(ListUI it) => getUI(it).gameObject.SetActive(false);
+    public Transform getUI(ListUI index) => UIs[(int)index];
+    public void SwapActive(ListUI it)
+    {
+        getUI(it).gameObject.SetActive(!getUI(it).gameObject.activeSelf);
+    }
+    public void ShowUI(ListUI it)
+    {
+        UIs[(int)it].gameObject.SetActive(true);
+        action[it][(int)actionList.enter]();
+        actifUI.Add(it);
+    }
+    public void HideUI(ListUI it)
+    {
+        action[it][(int)actionList.exit]();
+        UIs[(int)it].gameObject.SetActive(false);
+        actifUI.Remove(it);
+    }
     public void HideAllUI()
     {
-        Pause(false);
-        foreach (Transform ui in UIs)
-            ui.gameObject.SetActive(false);
+        foreach (var t in actifUI)
+            HideUI(t);
     }
     public void ShowOnly(ListUI it)
     {
-        
-        foreach (Transform t in UIs)
-            t.gameObject.SetActive(false);
-        if (it == ListUI.PauseMenu)
-            Pause(true);
-        else
-            Pause(false);
+        HideAllUI();
         ShowUI(it);
     }
     public void Pause(bool pause)
@@ -137,10 +157,12 @@ public class UIManager : MonoBehaviour
         if (pause)
         {
             controls.GamePlay.Disable();
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             controls.GamePlay.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
