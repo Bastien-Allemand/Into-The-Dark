@@ -1,4 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 using static UnityEngine.UI.Image;
 
 public class PickUpScript : MonoBehaviour
@@ -7,7 +10,9 @@ public class PickUpScript : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] private RectTransform chargeBarTransform;
-    [SerializeField] private Camera _camera;
+    [SerializeField] private GameObject objectPreview;
+    GameObject preview;
+    [SerializeField] private LayerMask layerMask;
 
     private float initialChargeBarWidth;
 
@@ -29,6 +34,8 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] private float currentThrowCharge = 0f;
 
 
+    [SerializeField] private bool editModeRight = false;
+    [SerializeField] private bool editModeLeft = false;
     private bool wasInteractingLastFrame = false;
     private bool isChargingRight = false;
     private bool isChargingLeft = false;
@@ -60,16 +67,12 @@ public class PickUpScript : MonoBehaviour
     {
         HandleInput();
         UpdateUI();
-        if (rightHandItem != null ||leftHandItem != null)
-        {
-            CheckPlaceable();
-        }
+       
     }
-
     private void OnDrawGizmos()
     {
-        Vector3 start = _camera.transform.position;
-        Vector3 end = new Vector3(start.x  + 2f, start.y + 2f, start.z + 2f);
+        Vector3 start = playerCamera.transform.position;
+        Vector3 end = start + (playerCamera.transform.forward * 2.5f);
         Gizmos.color = Color.green;
         Gizmos.DrawLine(start, end);
     }
@@ -77,7 +80,6 @@ public class PickUpScript : MonoBehaviour
     {
         float interactValue = controls.GamePlay.Interact.ReadValue<float>();
         bool isInteractingThisFrame = Mathf.Abs(interactValue) > 0.5f;
-
         if (isInteractingThisFrame && !wasInteractingLastFrame)
         {
             if (interactValue > 0.5f)
@@ -90,7 +92,7 @@ public class PickUpScript : MonoBehaviour
                 }
                 else
                 {
-                    CheckInsight(isRightHand: true);
+                    CheckInsight(true);
                 }
             }
             else if (interactValue < -0.5f)
@@ -103,7 +105,7 @@ public class PickUpScript : MonoBehaviour
                 }
                 else
                 {
-                    CheckInsight(isRightHand: false);
+                    CheckInsight(false);
                 }
             }
         }
@@ -132,8 +134,17 @@ public class PickUpScript : MonoBehaviour
             percentLeft = 0f;
         }
         wasInteractingLastFrame = isInteractingThisFrame;
-    }
 
+        //EditMode
+        if (rightHandItem != null)
+        {
+            CheckPlaceable(rightHandItem, true);
+        }
+        else if (leftHandItem != null)
+        {
+            CheckPlaceable(leftHandItem, false);
+        }
+    }
     private void UpdateUI()
     {
         if (isChargingRight || isChargingLeft)
@@ -154,39 +165,22 @@ public class PickUpScript : MonoBehaviour
 
             if (hit.collider.CompareTag("Item"))
             {
-                if(isRightHand == true)
-                {
-                    PickupRightHand(hit.collider.gameObject);
-                }
-                else
-                {
-                    PickupLeftHand(hit.collider.gameObject);
-                }
+                PickUp(hit.collider.gameObject, isRightHand);
             }
         }
     }
-    private void PickupRightHand(GameObject targetItem)
+
+    void PickUp(GameObject targetItem, bool isRightHand)
     {
-        if (rightHandSocket != null)
+        if (rightHandSocket != null && isRightHand == true)
         {
             rightHandItem = targetItem;
             AttachItem(targetItem, rightHandSocket);
         }
-        else
-        {
-            Debug.LogWarning("Impossible de ramasser : Les deux mains gèrent déjà un Item, ou un socket est manquant.");
-        }
-    }
-    private void PickupLeftHand(GameObject targetItem)
-    {
-        if (leftHandSocket != null)
+        else if(rightHandSocket != null && isRightHand == false)
         {
             leftHandItem = targetItem;
             AttachItem(targetItem, leftHandSocket);
-        }
-        else
-        {
-            Debug.LogWarning("Impossible de ramasser : Les deux mains gèrent déjà un Item, ou un socket est manquant.");
         }
     }
     private void AttachItem(GameObject item, Transform socket)
@@ -233,13 +227,75 @@ public class PickUpScript : MonoBehaviour
             collider.enabled = true;
         }
     }
-    void CheckPlaceable()
+    void CheckPlaceable(GameObject handItem, bool isRightHand)
     {
         RaycastHit hit;
-
-        if(Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit))
+        Vector3 start = playerCamera.transform.position;
+        Vector3 dir = playerCamera.transform.forward;
+        float maxDistance = 5f;
+        if (Physics.Raycast(start, dir, out hit, maxDistance, layerMask) && handItem != null)
         {
-            
+            if(hit.normal == new Vector3(0, 1, 0))
+            {
+                if (preview == null)
+                {
+                    preview = Instantiate(objectPreview, hit.point, Quaternion.identity);
+                    ReplaceMesh(handItem, preview);
+                }
+                else if (preview != null) 
+                {
+                    preview.transform.position = new Vector3(hit.point.x, hit.point.y + (preview.transform.localScale.y / 2), hit.point.z);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        
+                        PlaceItem(handItem);
+                        Destroy(preview);
+                        preview = null;
+                        if(isRightHand == true)
+                        {
+                            rightHandItem = null;
+                        }
+                        else
+                        {
+                            leftHandItem = null;
+                        }
+                    }
+                }
+                
+            }
+        }
+        else if(preview != null)
+        {
+            Destroy(preview);
         }
     }
+    void PlaceItem(GameObject handItem)
+    {
+        Vector3 currentWorldScale = handItem.transform.lossyScale;
+        handItem.transform.SetParent(null);
+        handItem.transform.localScale = currentWorldScale;
+
+        handItem.transform.position = preview.transform.position;
+        Rigidbody rb = handItem.GetComponent<Rigidbody>();
+        Collider collider = handItem.GetComponent<Collider>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+        }
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
+    }
+    void ReplaceMesh(GameObject handItem, GameObject preview) 
+    {
+        MeshFilter filterItem = handItem.GetComponent<MeshFilter>();
+        MeshFilter filterPreview = preview.GetComponent<MeshFilter>();
+
+        if (filterItem != null && filterPreview != null && filterItem.sharedMesh != filterPreview.sharedMesh)
+        {
+            filterPreview.sharedMesh = filterItem.sharedMesh;
+        }
+    }
+
 }
