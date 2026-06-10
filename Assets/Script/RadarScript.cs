@@ -1,30 +1,41 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class RadarScript : MonoBehaviour
 {
+    [Header("Radar")]
     public GameObject radar;
-    public GameObject playerIcon;
-    public GameObject ghostIcon;
 
-    public Vector2 worldMin = new Vector2 (-27f, -18.3f);
-    public Vector2 worldMax = new Vector2 (26.7f, 21.6f);
+    [Header("Icons")]
+    public RectTransform playerIcon;
+    public RectTransform ghostIcon;
 
+    [Header("Scan")]
+    public RectTransform circle;
+
+    [Header("World References")]
     public Transform player;
     public Transform ghost;
 
-    public Image radarImage;
+    [Header("Map Bounds")]
+    public Vector2 worldMin = new Vector2(-27f, -18.3f);
+    public Vector2 worldMax = new Vector2(26.7f, 21.6f);
 
-    private float radarWidth = 0.74f;
-    private float radarHeight = 0.71f;
+    [Header("Radar Size")]
+    [SerializeField] private float radarWidth = 740f;
+    [SerializeField] private float radarHeight = 710f;
+
+    [Header("Scan Settings")]
+    [SerializeField] private float scanSpeed = 500f;
+    [SerializeField] private float scanDurationAfterReveal = 1f;
+
+    private bool isScanning = false;
 
     void Start()
     {
-        RectTransform rt = radarImage.GetComponent<RectTransform>();
-
-        //radarWidth = rt.rect.width * 0.4f * 0.001f;
-        //radarHeight = rt.rect.height * 0.4f * 0.001f;
+        ghostIcon.gameObject.SetActive(false);
+        circle.gameObject.SetActive(false);
     }
 
     void Update()
@@ -34,28 +45,82 @@ public class RadarScript : MonoBehaviour
             radar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
         }
 
-        Vector2 pos = WorldToRadar(player.position);
-        playerIcon.transform.localPosition =
-            new Vector3(pos.x, -0.5f, pos.y);
+        playerIcon.anchoredPosition =
+            WorldToRadar(player.position);
 
-        Vector2 pos2 = WorldToRadar(ghost.position);
-        ghostIcon.transform.localPosition =
-            new Vector3(pos2.x, -0.5f, pos2.y);
+        ghostIcon.anchoredPosition =
+            WorldToRadar(ghost.position);
 
-        //Debug.Log(pos);
-        Debug.Log(radarWidth);
-        Debug.Log(radarHeight);
-
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !isScanning)
         {
-            radarUI.SetActive(!radarUI.activeSelf);
+            StartCoroutine(ShowRadar());
         }
+    }
+
+    IEnumerator ShowRadar()
+    {
+        isScanning = true;
+
+        ghostIcon.gameObject.SetActive(false);
+        circle.gameObject.SetActive(true);
+
+        Vector2 playerPos = playerIcon.anchoredPosition;
+        Vector2 ghostPos = ghostIcon.anchoredPosition;
+
+        circle.anchoredPosition = playerPos;
+
+        circle.sizeDelta = Vector2.zero;
+
+        float distanceToGhost =
+            Vector2.Distance(playerPos, ghostPos);
+
+        bool ghostRevealed = false;
+
+        while (circle.sizeDelta.x < 1000f)
+        {
+            float newSize =
+                circle.sizeDelta.x + scanSpeed * Time.deltaTime;
+
+            circle.sizeDelta =
+                new Vector2(newSize, newSize);
+
+            float currentRadius = newSize * 0.5f;
+
+            if (!ghostRevealed &&
+                currentRadius >= distanceToGhost)
+            {
+                ghostRevealed = true;
+
+                ghostIcon.gameObject.SetActive(true);
+
+                // TODO:
+                // Audio there
+            }
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(scanDurationAfterReveal);
+
+        ghostIcon.gameObject.SetActive(false);
+
+        circle.sizeDelta = Vector2.zero;
+        circle.gameObject.SetActive(false);
+
+        isScanning = false;
     }
 
     private Vector2 WorldToRadar(Vector3 worldPos)
     {
-        float x = Mathf.InverseLerp(worldMin.x, worldMax.x, worldPos.x);
-        float y = Mathf.InverseLerp(worldMin.y, worldMax.y, worldPos.z);
+        float x = Mathf.InverseLerp(
+            worldMin.x,
+            worldMax.x,
+            worldPos.x);
+
+        float y = Mathf.InverseLerp(
+            worldMin.y,
+            worldMax.y,
+            worldPos.z);
 
         float radarX = (x - 0.5f) * radarWidth;
         float radarY = (y - 0.5f) * radarHeight;
