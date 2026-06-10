@@ -14,7 +14,7 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private Transform phoneTransform;
     [SerializeField] private GameObject battery;
     [SerializeField] private Light phoneLight;
-    [SerializeField] private TextMeshProUGUI textBattery;
+    //[SerializeField] private TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
     [SerializeField] private GameObject screenPhone;
 
@@ -89,7 +89,7 @@ public class PhoneScript : MonoBehaviour
             currentState = PhoneState.Idle;
 
             battery.SetActive(true);
-            textBattery.enabled = true;
+           // textBattery.enabled = true;
 
             waitingForHide = false;
         }
@@ -98,7 +98,7 @@ public class PhoneScript : MonoBehaviour
             currentState = PhoneState.Hidden;
 
             battery.SetActive(false);
-            textBattery.enabled = false;
+          //  textBattery.enabled = false;
             phoneLight.enabled = false;
             screenPhone.SetActive(false);
 
@@ -182,7 +182,7 @@ public class PhoneScript : MonoBehaviour
 
     private void UpdateUI()
     {
-        textBattery.text = ((int)currentBattery) + "%";
+      //  textBattery.text = ((int)currentBattery) + "%"; 
     }
 
     private void CheckBattery()
