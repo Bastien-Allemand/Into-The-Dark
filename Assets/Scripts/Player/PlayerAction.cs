@@ -181,6 +181,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EditSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee5e32c2-76c0-4eef-b9df-9831dce24511"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -403,6 +412,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""Edit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a06ca871-3bc4-41d4-9bbe-f1c29960148e"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EditSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -421,6 +441,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_LookCamera = m_GamePlay.FindAction("LookCamera", throwIfNotFound: true);
         m_GamePlay_ChangeCamera = m_GamePlay.FindAction("ChangeCamera", throwIfNotFound: true);
         m_GamePlay_Edit = m_GamePlay.FindAction("Edit", throwIfNotFound: true);
+        m_GamePlay_EditSwitch = m_GamePlay.FindAction("EditSwitch", throwIfNotFound: true);
     }
 
     ~@PlayerAction()
@@ -511,6 +532,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_LookCamera;
     private readonly InputAction m_GamePlay_ChangeCamera;
     private readonly InputAction m_GamePlay_Edit;
+    private readonly InputAction m_GamePlay_EditSwitch;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -562,6 +584,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/Edit".
         /// </summary>
         public InputAction @Edit => m_Wrapper.m_GamePlay_Edit;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/EditSwitch".
+        /// </summary>
+        public InputAction @EditSwitch => m_Wrapper.m_GamePlay_EditSwitch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -618,6 +644,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Edit.started += instance.OnEdit;
             @Edit.performed += instance.OnEdit;
             @Edit.canceled += instance.OnEdit;
+            @EditSwitch.started += instance.OnEditSwitch;
+            @EditSwitch.performed += instance.OnEditSwitch;
+            @EditSwitch.canceled += instance.OnEditSwitch;
         }
 
         /// <summary>
@@ -659,6 +688,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Edit.started -= instance.OnEdit;
             @Edit.performed -= instance.OnEdit;
             @Edit.canceled -= instance.OnEdit;
+            @EditSwitch.started -= instance.OnEditSwitch;
+            @EditSwitch.performed -= instance.OnEditSwitch;
+            @EditSwitch.canceled -= instance.OnEditSwitch;
         }
 
         /// <summary>
@@ -769,5 +801,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEdit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "EditSwitch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEditSwitch(InputAction.CallbackContext context);
     }
 }
