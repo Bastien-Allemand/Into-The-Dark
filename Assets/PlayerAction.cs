@@ -190,6 +190,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""59efa6d3-c0a2-44f3-aec4-773eed325010"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -423,6 +432,39 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""EditSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e16f1cf-4a93-4879-afb5-1ad51d5be8b3"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""555aa86c-9d81-440e-9857-d7c6f8d80f6c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5bf9627-c3a9-4521-b1c3-bc9b60ce9b34"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -442,6 +484,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_ChangeCamera = m_GamePlay.FindAction("ChangeCamera", throwIfNotFound: true);
         m_GamePlay_Edit = m_GamePlay.FindAction("Edit", throwIfNotFound: true);
         m_GamePlay_EditSwitch = m_GamePlay.FindAction("EditSwitch", throwIfNotFound: true);
+        m_GamePlay_Inventory = m_GamePlay.FindAction("Inventory", throwIfNotFound: true);
     }
 
     ~@PlayerAction()
@@ -533,6 +576,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_ChangeCamera;
     private readonly InputAction m_GamePlay_Edit;
     private readonly InputAction m_GamePlay_EditSwitch;
+    private readonly InputAction m_GamePlay_Inventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -588,6 +632,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/EditSwitch".
         /// </summary>
         public InputAction @EditSwitch => m_Wrapper.m_GamePlay_EditSwitch;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/Inventory".
+        /// </summary>
+        public InputAction @Inventory => m_Wrapper.m_GamePlay_Inventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -647,6 +695,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @EditSwitch.started += instance.OnEditSwitch;
             @EditSwitch.performed += instance.OnEditSwitch;
             @EditSwitch.canceled += instance.OnEditSwitch;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         /// <summary>
@@ -691,6 +742,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @EditSwitch.started -= instance.OnEditSwitch;
             @EditSwitch.performed -= instance.OnEditSwitch;
             @EditSwitch.canceled -= instance.OnEditSwitch;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         /// <summary>
@@ -808,5 +862,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEditSwitch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

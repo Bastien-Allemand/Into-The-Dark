@@ -47,7 +47,6 @@ public class PickUpScript : MonoBehaviour
     private float percentLeft = 0f;
     private float editHoldTimer = 0f;
     private bool wasSwitchEditLastFrame = false;
-
     void Start()
     {
         if (rightHandSocket == null)
