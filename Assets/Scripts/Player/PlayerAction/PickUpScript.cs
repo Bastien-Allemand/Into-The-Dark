@@ -88,58 +88,62 @@ public class PickUpScript : MonoBehaviour
         float switchEdit = controls.GamePlay.EditSwitch.ReadValue<float>();
         bool isInteractingThisFrame = Mathf.Abs(interactValue) > 0.5f;
         bool isEditingThisFrame = Mathf.Abs(editValue) > 0.5f;
-        if (isInteractingThisFrame && !wasInteractingLastFrame)
-        {
-            if (interactValue > 0.5f)
-            {
-                if (rightHandItem != null)
-                {
-                    isChargingRight = true;
-                    currentThrowCharge = minThrowForce;
-                }
-                else
-                {
-                    CheckInsight(true);
-                }
-            }
-            else if (interactValue < -0.5f)
-            {
-                if (leftHandItem != null)
-                {
-                    isChargingLeft = true;
-                    currentThrowCharge = minThrowForce;
-                }
-                else
-                {
-                    CheckInsight(false);
-                }
-            }
-        }
 
-        //Charge
-        if(isChargingRight || isChargingLeft)
+        if (editModeLeft == false && editModeRight == false)
         {
-            currentThrowCharge += chargeSpeed * Time.deltaTime;
-            currentThrowCharge = Mathf.Clamp(currentThrowCharge, minThrowForce, maxThrowForce);
-        }
-        if (!isInteractingThisFrame && wasInteractingLastFrame)
-        {
-            if (isChargingRight)
+            if (isInteractingThisFrame && !wasInteractingLastFrame)
             {
-                LaunchItem(rightHandItem, currentThrowCharge);
-                isChargingRight = false;
-                rightHandItem = null;
+                if (interactValue > 0.5f)
+                {
+                    if (rightHandItem != null)
+                    {
+                        isChargingRight = true;
+                        currentThrowCharge = minThrowForce;
+                    }
+                    else
+                    {
+                        CheckInsight(true);
+                    }
+                }
+                else if (interactValue < -0.5f)
+                {
+                    if (leftHandItem != null)
+                    {
+                        isChargingLeft = true;
+                        currentThrowCharge = minThrowForce;
+                    }
+                    else
+                    {
+                        CheckInsight(false);
+                    }
+                }
             }
-            else if (isChargingLeft)
+
+            //Charge
+            if (isChargingRight || isChargingLeft)
             {
-                LaunchItem(leftHandItem, currentThrowCharge);
-                isChargingLeft = false;
-                leftHandItem = null;
+                currentThrowCharge += chargeSpeed * Time.deltaTime;
+                currentThrowCharge = Mathf.Clamp(currentThrowCharge, minThrowForce, maxThrowForce);
             }
-            currentThrowCharge = 0f;
-            percentLeft = 0f;
+            if (!isInteractingThisFrame && wasInteractingLastFrame)
+            {
+                if (isChargingRight)
+                {
+                    LaunchItem(rightHandItem, currentThrowCharge);
+                    isChargingRight = false;
+                    rightHandItem = null;
+                }
+                else if (isChargingLeft)
+                {
+                    LaunchItem(leftHandItem, currentThrowCharge);
+                    isChargingLeft = false;
+                    leftHandItem = null;
+                }
+                currentThrowCharge = 0f;
+                percentLeft = 0f;
+            }
+            wasInteractingLastFrame = isInteractingThisFrame;
         }
-        wasInteractingLastFrame = isInteractingThisFrame;
 
         //EditMode
         bool isEditStartedThisFrame = isEditingThisFrame && !wasEditingLastFrame;
