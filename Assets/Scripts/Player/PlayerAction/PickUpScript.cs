@@ -168,7 +168,7 @@ public class PickUpScript : MonoBehaviour
 
         if (editModeRight == true)
         {
-            if (editValue < -0.5f)
+            if (editValue < -0.5f && leftHandItem != null)
             {
                 StartEditModeLeft();
             }
@@ -178,9 +178,10 @@ public class PickUpScript : MonoBehaviour
             }
                 
         }
+
         else if (editModeLeft == true)
         {
-            if (editValue > 0.5f)
+            if (editValue > 0.5f && rightHandItem != null)
             {
                 StartEditModeRight();
             }
@@ -381,7 +382,6 @@ public class PickUpScript : MonoBehaviour
             collider.enabled = true;
         }
     }
-
     void RotateItem()
     {
         if (preview != null)
@@ -389,7 +389,6 @@ public class PickUpScript : MonoBehaviour
             preview.transform.Rotate(Vector3.up, rotationSpeed * 50f * Time.deltaTime);
         }
     }
-
     void ReplaceMesh(GameObject handItem, GameObject preview) 
     {
         MeshFilter filterItem = handItem.GetComponent<MeshFilter>();
@@ -400,7 +399,6 @@ public class PickUpScript : MonoBehaviour
             filterPreview.sharedMesh = filterItem.sharedMesh;
         }
     }
-
     void StartEditModeRight()
     {
         Destroy(preview);
@@ -409,7 +407,6 @@ public class PickUpScript : MonoBehaviour
         isRotating = false;
         canPlaceThisFrame = false;
     }
-
     void StartEditModeLeft()
     {
         Destroy(preview);
