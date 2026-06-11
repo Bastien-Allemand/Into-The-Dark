@@ -8,6 +8,11 @@ public class Bouton : MonoBehaviour
     {
         uiManager = FindFirstObjectByType<UIManager>();
     }
+    public void ExitPauseMenu()
+    {
+        target.GetComponent<PauseMenu>().exit = true;
+        Debug.Log(target.GetComponent<PauseMenu>().exit);
+    }
     public void ExitPause()
     {
         uiManager.Pause(false);

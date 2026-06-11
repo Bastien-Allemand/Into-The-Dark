@@ -5,7 +5,9 @@ public class UI : MonoBehaviour
     protected UIManager manager;
     private void Awake()
     {
+        Debug.Log($"Awake UI before = {manager}");
         manager = UIManager.Instance;
+        Debug.Log($"Aveke UI after = {manager}");
     }
     public virtual bool EnterCondition()
     {

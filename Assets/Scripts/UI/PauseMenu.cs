@@ -4,11 +4,8 @@ using static UIManager;
 
 public class PauseMenu : UI
 {
+    public bool exit = false;
     PlayerAction controls;
-    private void Awake()
-    {
-        manager = UIManager.Instance;
-    }
 
     [SerializeField] public Transform GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
@@ -19,7 +16,12 @@ public class PauseMenu : UI
     }
     public override bool ExitCondition()
     {
-        return controls.Menu.Pause.WasPressedThisFrame();
+        //  obliger avec les bouton
+        if (controls.Menu.Pause.WasPressedThisFrame())
+            exit = true;
+        bool result = exit;
+        exit = false;
+        return result;
     }
     public override void Init()
     {
@@ -33,7 +35,7 @@ public class PauseMenu : UI
     }
     public override void Enter()
     {
-        Debug.Log("manager = " + manager);
+        exit = false;
         manager.Pause(true);
     }
     public override void M_Update()

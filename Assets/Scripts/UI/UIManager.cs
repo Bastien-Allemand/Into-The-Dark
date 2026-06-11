@@ -6,23 +6,21 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance { get; private set; }
+    public static UIManager Instance
+    {
+        get;
+        private set;
+    }
 
     PlayerAction controls;
-
-
-
     [Header("Manager Setting")]
-
     [Space(5)]
-
     [SerializeField] Transform[] UIs;
     [SerializeField] List<ListUI> actifUI;
-    [Header("Remenber to modify the enum ListUI when adding UI")]
-    [SerializeField] List<UI> uiScripts;
 
 
 
@@ -74,9 +72,15 @@ public class UIManager : MonoBehaviour
             action.Add(index, tmpAction);
         };
 
-        for (int i = 0; i < uiScripts.Count; i++)
+        for (int i = 0; i < UIs.Count(); i++)
         {
-            init(uiScripts[i], (ListUI)i);
+            UI ui = UIs[i].GetComponent<UI>();
+            if (!ui)
+            {
+                UIs[i].AddComponent<UI>();
+                ui = UIs[i].GetComponent<UI>();
+            }
+            init(ui, (ListUI)i);
         }
     }
     private void Init()
@@ -85,7 +89,10 @@ public class UIManager : MonoBehaviour
         {
             pair.Value[(int)actionList.init]();
         }
-        HideAllUI();
+        foreach (var ui in UIs)
+        {
+            ui.gameObject.SetActive(false);
+        }
         foreach (ListUI ui in actifUI)
         {
             action[ui][(int)actionList.enter]();
@@ -95,6 +102,9 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        if (!Instance || Instance != this)
+            Instance = this;
+
         controls = InputManager.controls;
         FoncInit();
         Init();
@@ -103,19 +113,23 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < UIs.Length; i++)
             if (!UIs[i].gameObject.activeSelf)
+            {
+
                 if (condition[(ListUI)i][(int)conditionList.enter]())
                 {
                     ShowUI((ListUI)i);
                 }
-                else
+            }
+            else
+            {
+                if (condition[(ListUI)i][(int)conditionList.exit]())
                 {
-                    if (condition[(ListUI)i][(int)conditionList.exit]())
-                    {
-                        HideUI((ListUI)i);
-                    }
-                    else
-                        action[(ListUI)i][(int)actionList.update]();
+                    Debug.Log(UIs[i].gameObject.name + " exit.");
+                    HideUI((ListUI)i);
                 }
+                else
+                    action[(ListUI)i][(int)actionList.update]();
+            }
 
     }
 
@@ -133,21 +147,25 @@ public class UIManager : MonoBehaviour
     {
         UIs[(int)it].gameObject.SetActive(true);
         action[it][(int)actionList.enter]();
+        Debug.Log($"{UIs[(int)it].gameObject.name} : {UIs[(int)it].gameObject.activeSelf}");
         actifUI.Add(it);
     }
     public void HideUI(ListUI it)
     {
         action[it][(int)actionList.exit]();
         UIs[(int)it].gameObject.SetActive(false);
+        Debug.Log($"{UIs[(int)it].gameObject.name} : {UIs[(int)it].gameObject.activeSelf}");
         actifUI.Remove(it);
     }
     public void HideAllUI()
     {
+        Debug.Log("Hide All");
         foreach (var t in actifUI)
             HideUI(t);
     }
     public void ShowOnly(ListUI it)
     {
+        Debug.Log($" Show Only : {UIs[(int)it].gameObject.name}");
         HideAllUI();
         ShowUI(it);
     }
