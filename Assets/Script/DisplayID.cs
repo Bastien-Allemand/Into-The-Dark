@@ -5,13 +5,14 @@ public class DisplayID : MonoBehaviour
 {
     public float interactDistance = 3f;
     public TextMeshProUGUI itemText;
+    public Camera playerCamera;
 
     // Update is called once per frame
     void Update()
     {
         itemText.gameObject.SetActive(false);
 
-        Ray ray = Camera.main.ViewportPointToRay(
+        Ray ray = playerCamera.ViewportPointToRay(
             new Vector3(0.5f, 0.5f, 0f));
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
