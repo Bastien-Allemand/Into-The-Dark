@@ -36,6 +36,10 @@ public class PauseMenu : UI
     public override void Enter()
     {
         exit = false;
+        //  ok donc code qui ne devrai pas avoir besoin d'être là mais bug sans
+        if (!manager)
+            manager = UIManager.Instance;
+        Debug.Log($"manager : {manager}");
         manager.Pause(true);
     }
     public override void M_Update()

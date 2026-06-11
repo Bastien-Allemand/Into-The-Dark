@@ -19,14 +19,15 @@ public class UIManager : MonoBehaviour
     PlayerAction controls;
     [Header("Manager Setting")]
     [Space(5)]
-    [SerializeField] Transform[] UIs;
-    [SerializeField] List<ListUI> actifUI;
+    [SerializeField] public Transform[] UIs;
+    [SerializeField] public List<ListUI> actifUI;
 
 
 
     public enum ListUI
     {
-        PauseMenu
+        PauseMenu,
+        MainMenu
     }
 
     private enum conditionList
@@ -75,29 +76,38 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < UIs.Count(); i++)
         {
             UI ui = UIs[i].GetComponent<UI>();
+            Debug.Log("UI Code : " + ui);
             if (!ui)
             {
+                Debug.Log("Creating DebugCode");
                 UIs[i].AddComponent<UI>();
                 ui = UIs[i].GetComponent<UI>();
+                Debug.Log("UI Add Code : " + ui);
             }
             init(ui, (ListUI)i);
         }
     }
     private void Init()
     {
+        Pause(false);
+        //  init all UI
         foreach (var pair in action)
         {
             pair.Value[(int)actionList.init]();
         }
+        //  Hide all
         foreach (var ui in UIs)
         {
             ui.gameObject.SetActive(false);
         }
+        //  Show All Active UI
         foreach (ListUI ui in actifUI)
         {
+            //  same code as the ShowUI but without the actifUI.Add()
+            UIs[(int)ui].gameObject.SetActive(true);
             action[ui][(int)actionList.enter]();
+            Debug.Log($"{UIs[(int)ui].gameObject.name} : {UIs[(int)ui].gameObject.activeSelf}");
         }
-        Pause(false);
     }
 
     private void Awake()
@@ -160,8 +170,10 @@ public class UIManager : MonoBehaviour
     public void HideAllUI()
     {
         Debug.Log("Hide All");
-        foreach (var t in actifUI)
-            HideUI(t);
+        for (int i = actifUI.Count - 1; i >= 0; i--)
+        {
+            HideUI(actifUI[i]);
+        }
     }
     public void ShowOnly(ListUI it)
     {
@@ -174,11 +186,13 @@ public class UIManager : MonoBehaviour
         //  il faut rajouter la pause pour les entité
         if (pause)
         {
+            Debug.Log("Time : Pause");
             controls.GamePlay.Disable();
             Cursor.lockState = CursorLockMode.None;
         }
         else
         {
+            Debug.Log("Time : Continue");
             controls.GamePlay.Enable();
             Cursor.lockState = CursorLockMode.Locked;
         }

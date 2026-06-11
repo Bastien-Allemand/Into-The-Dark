@@ -29,6 +29,7 @@ public class UI : MonoBehaviour
     }
     public virtual void M_Update()
     {
+        Cursor.lockState = CursorLockMode.None;
         debug("Update");
     }
     public virtual void M_FixedUpdate()
@@ -43,6 +44,5 @@ public class UI : MonoBehaviour
     private void debug(string func)
     {
         Debug.Log($"Null : {GetType().FullName} : {func}");
-
     }
 }
