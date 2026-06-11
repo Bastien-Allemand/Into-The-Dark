@@ -147,15 +147,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RingPhone"",
-                    ""type"": ""Button"",
-                    ""id"": ""78cdb3ca-fd68-4f6d-bd9b-71947154bba2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""LookCamera"",
                     ""type"": ""Button"",
                     ""id"": ""ff8200f9-9409-4c39-b261-43a58df6da1d"",
@@ -266,7 +257,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Hand"",
                     ""id"": ""292b41c4-40cf-4b9e-87a5-ac955a4613ac"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""ButtonWithOneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -275,9 +266,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""Button"",
                     ""id"": ""1149f5bd-2f6d-4084-a7f5-c95a6ad2a4fb"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -286,9 +277,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""Button"",
                     ""id"": ""6441fe4c-5446-4845-84f6-8892544724ca"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -299,7 +290,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""060b2d59-70f8-4786-8188-ca36df511ab4"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -315,17 +306,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LookCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f49aaf50-b84f-44d9-b9b6-2bcc40057c27"",
-                    ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RingPhone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -375,7 +355,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_Sprint = m_GamePlay.FindAction("Sprint", throwIfNotFound: true);
         m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         m_GamePlay_SwapPhone = m_GamePlay.FindAction("SwapPhone", throwIfNotFound: true);
-        m_GamePlay_RingPhone = m_GamePlay.FindAction("RingPhone", throwIfNotFound: true);
         m_GamePlay_LookCamera = m_GamePlay.FindAction("LookCamera", throwIfNotFound: true);
         m_GamePlay_ChangeCamera = m_GamePlay.FindAction("ChangeCamera", throwIfNotFound: true);
     }
@@ -464,7 +443,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Sprint;
     private readonly InputAction m_GamePlay_Interact;
     private readonly InputAction m_GamePlay_SwapPhone;
-    private readonly InputAction m_GamePlay_RingPhone;
     private readonly InputAction m_GamePlay_LookCamera;
     private readonly InputAction m_GamePlay_ChangeCamera;
     /// <summary>
@@ -502,10 +480,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/SwapPhone".
         /// </summary>
         public InputAction @SwapPhone => m_Wrapper.m_GamePlay_SwapPhone;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/RingPhone".
-        /// </summary>
-        public InputAction @RingPhone => m_Wrapper.m_GamePlay_RingPhone;
         /// <summary>
         /// Provides access to the underlying input action "GamePlay/LookCamera".
         /// </summary>
@@ -558,9 +532,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwapPhone.started += instance.OnSwapPhone;
             @SwapPhone.performed += instance.OnSwapPhone;
             @SwapPhone.canceled += instance.OnSwapPhone;
-            @RingPhone.started += instance.OnRingPhone;
-            @RingPhone.performed += instance.OnRingPhone;
-            @RingPhone.canceled += instance.OnRingPhone;
             @LookCamera.started += instance.OnLookCamera;
             @LookCamera.performed += instance.OnLookCamera;
             @LookCamera.canceled += instance.OnLookCamera;
@@ -596,9 +567,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwapPhone.started -= instance.OnSwapPhone;
             @SwapPhone.performed -= instance.OnSwapPhone;
             @SwapPhone.canceled -= instance.OnSwapPhone;
-            @RingPhone.started -= instance.OnRingPhone;
-            @RingPhone.performed -= instance.OnRingPhone;
-            @RingPhone.canceled -= instance.OnRingPhone;
             @LookCamera.started -= instance.OnLookCamera;
             @LookCamera.performed -= instance.OnLookCamera;
             @LookCamera.canceled -= instance.OnLookCamera;
@@ -687,13 +655,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwapPhone(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "RingPhone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRingPhone(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "LookCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
