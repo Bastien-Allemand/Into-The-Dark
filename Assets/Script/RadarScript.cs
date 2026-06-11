@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -13,6 +13,7 @@ public class RadarScript : MonoBehaviour
 
     [Header("Scan")]
     public RectTransform circle;
+    public Image circleImage; // 🔥 AJOUT IMPORTANT
 
     [Header("World References")]
     public Transform player;
@@ -28,7 +29,10 @@ public class RadarScript : MonoBehaviour
 
     [Header("Scan Settings")]
     [SerializeField] private float scanSpeed = 500f;
-    [SerializeField] private float scanDurationAfterReveal = 1f;
+    [SerializeField] private float scanDurationAfterReveal = 1.0f;
+
+    [Header("Scan Max Size")]
+    [SerializeField] private float maxScanSize = 2250f;
 
     private bool isScanning = false;
 
@@ -42,14 +46,12 @@ public class RadarScript : MonoBehaviour
     {
         if (radar.transform.parent != null)
         {
-            radar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
+            radar.transform.localRotation =
+                Quaternion.Euler(90f, 90f, 90f);
         }
 
-        playerIcon.anchoredPosition =
-            WorldToRadar(player.position);
-
-        ghostIcon.anchoredPosition =
-            WorldToRadar(ghost.position);
+        playerIcon.anchoredPosition = WorldToRadar(player.position);
+        ghostIcon.anchoredPosition = WorldToRadar(ghost.position);
 
         if (Input.GetKeyDown(KeyCode.F) && !isScanning)
         {
@@ -68,33 +70,30 @@ public class RadarScript : MonoBehaviour
         Vector2 ghostPos = ghostIcon.anchoredPosition;
 
         circle.anchoredPosition = playerPos;
-
         circle.sizeDelta = Vector2.zero;
 
-        float distanceToGhost =
-            Vector2.Distance(playerPos, ghostPos);
+        // reset alpha
+        SetCircleAlpha(1f);
 
+        float distanceToGhost = Vector2.Distance(playerPos, ghostPos);
         bool ghostRevealed = false;
 
-        while (circle.sizeDelta.x < 1000f)
+        while (circle.sizeDelta.x < maxScanSize)
         {
-            float newSize =
-                circle.sizeDelta.x + scanSpeed * Time.deltaTime;
-
-            circle.sizeDelta =
-                new Vector2(newSize, newSize);
+            float newSize = circle.sizeDelta.x + scanSpeed * Time.deltaTime;
+            circle.sizeDelta = new Vector2(newSize, newSize);
 
             float currentRadius = newSize * 0.5f;
 
-            if (!ghostRevealed &&
-                currentRadius >= distanceToGhost)
+            // 🔥 FADE PROGRESSIF
+            float t = newSize / maxScanSize;
+            float alpha = Mathf.Lerp(1f, 0f, t);
+            SetCircleAlpha(alpha);
+
+            if (!ghostRevealed && currentRadius >= distanceToGhost)
             {
                 ghostRevealed = true;
-
                 ghostIcon.gameObject.SetActive(true);
-
-                // TODO:
-                // Audio there
             }
 
             yield return null;
@@ -105,22 +104,26 @@ public class RadarScript : MonoBehaviour
         ghostIcon.gameObject.SetActive(false);
 
         circle.sizeDelta = Vector2.zero;
+        SetCircleAlpha(1f); // reset
         circle.gameObject.SetActive(false);
 
         isScanning = false;
     }
 
+    private void SetCircleAlpha(float alpha)
+    {
+        if (circleImage == null) return;
+
+        Color c = circleImage.color;
+        c.a = alpha;
+        circleImage.color = c;
+    }
+
     private Vector2 WorldToRadar(Vector3 worldPos)
     {
-        float x = Mathf.InverseLerp(
-            worldMin.x,
-            worldMax.x,
-            worldPos.x);
+        float x = Mathf.InverseLerp(worldMin.x, worldMax.x, worldPos.x);
 
-        float y = Mathf.InverseLerp(
-            worldMin.y,
-            worldMax.y,
-            worldPos.z);
+        float y = 1f - Mathf.InverseLerp(worldMin.y, worldMax.y, worldPos.z);
 
         float radarX = (x - 0.5f) * radarWidth;
         float radarY = (y - 0.5f) * radarHeight;
