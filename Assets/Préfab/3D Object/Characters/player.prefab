@@ -660,6 +660,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
   chargeBarTransform: {fileID: 0}
+  objectPreview: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   leftHandSocket: {fileID: 5406487208239077327}
   rightHandSocket: {fileID: 1413043958126300437}
   pickupDistance: 10
@@ -668,3 +672,5 @@ MonoBehaviour:
   minThrowForce: 5
   maxThrowForce: 25
   currentThrowCharge: 0
+  editModeRight: 0
+  editModeLeft: 0
