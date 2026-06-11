@@ -147,15 +147,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""78cdb3ca-fd68-4f6d-bd9b-71947154bba2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""LookCamera"",
                     ""type"": ""Button"",
                     ""id"": ""ff8200f9-9409-4c39-b261-43a58df6da1d"",
@@ -266,7 +257,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Hand"",
                     ""id"": ""292b41c4-40cf-4b9e-87a5-ac955a4613ac"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""ButtonWithOneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -275,7 +266,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""Button"",
                     ""id"": ""1149f5bd-2f6d-4084-a7f5-c95a6ad2a4fb"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -286,7 +277,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""Button"",
                     ""id"": ""6441fe4c-5446-4845-84f6-8892544724ca"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -317,39 +308,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""LookCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Hand"",
-                    ""id"": ""4065f271-a70b-444b-afb2-ad6be010c03e"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""c07ddca1-1d00-4357-8798-3933b98c52ad"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""08b780ef-455e-48d0-92d3-f096cb3fb093"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Axis"",
@@ -397,7 +355,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_Sprint = m_GamePlay.FindAction("Sprint", throwIfNotFound: true);
         m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         m_GamePlay_SwapPhone = m_GamePlay.FindAction("SwapPhone", throwIfNotFound: true);
-        m_GamePlay_Drop = m_GamePlay.FindAction("Drop", throwIfNotFound: true);
         m_GamePlay_LookCamera = m_GamePlay.FindAction("LookCamera", throwIfNotFound: true);
         m_GamePlay_ChangeCamera = m_GamePlay.FindAction("ChangeCamera", throwIfNotFound: true);
     }
@@ -486,7 +443,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Sprint;
     private readonly InputAction m_GamePlay_Interact;
     private readonly InputAction m_GamePlay_SwapPhone;
-    private readonly InputAction m_GamePlay_Drop;
     private readonly InputAction m_GamePlay_LookCamera;
     private readonly InputAction m_GamePlay_ChangeCamera;
     /// <summary>
@@ -524,10 +480,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/SwapPhone".
         /// </summary>
         public InputAction @SwapPhone => m_Wrapper.m_GamePlay_SwapPhone;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Drop".
-        /// </summary>
-        public InputAction @Drop => m_Wrapper.m_GamePlay_Drop;
         /// <summary>
         /// Provides access to the underlying input action "GamePlay/LookCamera".
         /// </summary>
@@ -580,9 +532,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwapPhone.started += instance.OnSwapPhone;
             @SwapPhone.performed += instance.OnSwapPhone;
             @SwapPhone.canceled += instance.OnSwapPhone;
-            @Drop.started += instance.OnDrop;
-            @Drop.performed += instance.OnDrop;
-            @Drop.canceled += instance.OnDrop;
             @LookCamera.started += instance.OnLookCamera;
             @LookCamera.performed += instance.OnLookCamera;
             @LookCamera.canceled += instance.OnLookCamera;
@@ -618,9 +567,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwapPhone.started -= instance.OnSwapPhone;
             @SwapPhone.performed -= instance.OnSwapPhone;
             @SwapPhone.canceled -= instance.OnSwapPhone;
-            @Drop.started -= instance.OnDrop;
-            @Drop.performed -= instance.OnDrop;
-            @Drop.canceled -= instance.OnDrop;
             @LookCamera.started -= instance.OnLookCamera;
             @LookCamera.performed -= instance.OnLookCamera;
             @LookCamera.canceled -= instance.OnLookCamera;
@@ -709,13 +655,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwapPhone(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Drop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnDrop(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "LookCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
