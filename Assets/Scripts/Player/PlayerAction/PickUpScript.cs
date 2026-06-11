@@ -33,9 +33,14 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] private float maxThrowForce = 25.0f;
     [SerializeField] private float currentThrowCharge = 0f;
 
-
+    [Header("Edit Settings")]
     [SerializeField] private bool editModeRight = false;
     [SerializeField] private bool editModeLeft = false;
+    [SerializeField] private bool isRotating = false;
+    private bool wasEditingLastFrame = false;
+    [SerializeField] private float rotationSpeed = 3f;
+    private bool canPlaceThisFrame = false;
+
     private bool wasInteractingLastFrame = false;
     private bool isChargingRight = false;
     private bool isChargingLeft = false;
@@ -67,7 +72,6 @@ public class PickUpScript : MonoBehaviour
     {
         HandleInput();
         UpdateUI();
-       
     }
     private void OnDrawGizmos()
     {
@@ -78,15 +82,16 @@ public class PickUpScript : MonoBehaviour
     }
     void HandleInput()
     {
-        float interactValue = controls.GamePlay.Interact.ReadValue<float>();
+        float interactValue = controls.GamePlay.Interact.ReadValue<float>() ;
+        float editValue = controls.GamePlay.Edit.ReadValue<float>();
         bool isInteractingThisFrame = Mathf.Abs(interactValue) > 0.5f;
+        bool isEditingThisFrame = Mathf.Abs(editValue) > 0.5f;
         if (isInteractingThisFrame && !wasInteractingLastFrame)
         {
             if (interactValue > 0.5f)
             {
                 if (rightHandItem != null)
                 {
-                    //DropRightHandItem();
                     isChargingRight = true;
                     currentThrowCharge = minThrowForce;
                 }
@@ -99,7 +104,6 @@ public class PickUpScript : MonoBehaviour
             {
                 if (leftHandItem != null)
                 {
-                    //DropLeftHandItem();
                     isChargingLeft = true;
                     currentThrowCharge = minThrowForce;
                 }
@@ -136,14 +140,51 @@ public class PickUpScript : MonoBehaviour
         wasInteractingLastFrame = isInteractingThisFrame;
 
         //EditMode
-        if (rightHandItem != null)
+        bool isEditStartedThisFrame = isEditingThisFrame && !wasEditingLastFrame;
+        bool isEditReleasedThisFrame = !isEditingThisFrame && wasEditingLastFrame;
+        if (isEditStartedThisFrame == true)
         {
-            CheckPlaceable(rightHandItem, true);
+            if (rightHandItem != null && editValue > 0.5f && editModeRight == false)
+            {
+                Destroy(preview);
+                editModeLeft = false;
+                editModeRight = true;
+                canPlaceThisFrame = false;
+                isRotating = false;
+            }
+            else if (leftHandItem != null && editValue < -0.5f && editModeLeft == false)
+            {
+                Destroy(preview);
+                editModeRight = false;
+                editModeLeft = true;
+                canPlaceThisFrame = false;
+                isRotating = false;
+            }
         }
-        else if (leftHandItem != null)
+        else if(isEditingThisFrame == true)
         {
-            CheckPlaceable(leftHandItem, false);
+            if(editModeRight == true || editModeLeft == true)
+            {
+                isRotating = true;
+                RotateItem();
+            }
         }
+
+        if(isEditingThisFrame == false)
+        {
+            canPlaceThisFrame = true;
+        }
+
+        if (editModeRight == true)
+        { 
+            CheckPlaceable(rightHandItem, true, isEditReleasedThisFrame);
+        }
+        else if (editModeLeft == true)
+        {
+            CheckPlaceable(leftHandItem, false, isEditReleasedThisFrame);
+        }
+
+        wasEditingLastFrame = isEditingThisFrame;
     }
     private void UpdateUI()
     {
@@ -169,7 +210,6 @@ public class PickUpScript : MonoBehaviour
             }
         }
     }
-
     void PickUp(GameObject targetItem, bool isRightHand)
     {
         if (rightHandSocket != null && isRightHand == true)
@@ -226,8 +266,12 @@ public class PickUpScript : MonoBehaviour
         {
             collider.enabled = true;
         }
+        if(preview != null )
+        {
+            Destroy(preview);
+        }
     }
-    void CheckPlaceable(GameObject handItem, bool isRightHand)
+    void CheckPlaceable(GameObject handItem, bool isRightHand, bool shouldPlace)
     {
         RaycastHit hit;
         Vector3 start = playerCamera.transform.position;
@@ -237,36 +281,56 @@ public class PickUpScript : MonoBehaviour
         {
             if(hit.normal == new Vector3(0, 1, 0))
             {
+                
                 if (preview == null)
                 {
                     preview = Instantiate(objectPreview, hit.point, Quaternion.identity);
+                    Vector3 newPos = new Vector3(hit.point.x, hit.point.y + (preview.transform.localScale.y / 2), hit.point.z);
                     ReplaceMesh(handItem, preview);
                 }
                 else if (preview != null) 
                 {
-                    preview.transform.position = new Vector3(hit.point.x, hit.point.y + (preview.transform.localScale.y / 2), hit.point.z);
-                    if (Input.GetMouseButtonDown(0))
+                    Vector3 newPos = new Vector3(hit.point.x, hit.point.y + (preview.transform.localScale.y / 2), hit.point.z);
+                    preview.transform.position = newPos;
+                    float editValue = controls.GamePlay.Edit.ReadValue<float>();
+                    if (shouldPlace && canPlaceThisFrame)
                     {
-                        
                         PlaceItem(handItem);
                         Destroy(preview);
                         preview = null;
-                        if(isRightHand == true)
-                        {
-                            rightHandItem = null;
+
+                        if (isRightHand) 
+                        { 
+                            rightHandItem = null; 
+                            editModeRight = false; 
                         }
-                        else
-                        {
-                            leftHandItem = null;
+                        else 
+                        { 
+                            leftHandItem = null; 
+                            editModeLeft = false; 
                         }
+
+                        isRotating = false;
                     }
                 }
-                
             }
         }
-        else if(preview != null)
+        else if (preview != null)
         {
             Destroy(preview);
+            preview = null;
+            if (shouldPlace)
+            {
+                if (isRightHand)
+                {
+                    editModeRight = false;
+                }
+                else
+                {  
+                    editModeLeft = false; 
+                }
+                isRotating = false;
+            }
         }
     }
     void PlaceItem(GameObject handItem)
@@ -276,6 +340,7 @@ public class PickUpScript : MonoBehaviour
         handItem.transform.localScale = currentWorldScale;
 
         handItem.transform.position = preview.transform.position;
+        handItem.transform.rotation = preview.transform.rotation;
         Rigidbody rb = handItem.GetComponent<Rigidbody>();
         Collider collider = handItem.GetComponent<Collider>();
         if (rb != null)
@@ -287,6 +352,15 @@ public class PickUpScript : MonoBehaviour
             collider.enabled = true;
         }
     }
+
+    void RotateItem()
+    {
+        if (preview != null)
+        {
+            preview.transform.Rotate(Vector3.up, rotationSpeed * 50f * Time.deltaTime);
+        }
+    }
+
     void ReplaceMesh(GameObject handItem, GameObject preview) 
     {
         MeshFilter filterItem = handItem.GetComponent<MeshFilter>();
@@ -296,6 +370,15 @@ public class PickUpScript : MonoBehaviour
         {
             filterPreview.sharedMesh = filterItem.sharedMesh;
         }
+    }
+
+    void QuitEditMode()
+    {
+        if (preview != null) Destroy(preview);
+        preview = null;
+        editModeRight = false;
+        editModeLeft = false;
+        isRotating = false;
     }
 
 }

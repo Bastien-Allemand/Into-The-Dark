@@ -90,12 +90,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     ""maps"": [
         {
             ""name"": ""GamePlay"",
-            ""id"": ""8b04d6f5-e794-4ff0-989a-7445ac3d6771"",
+            ""id"": ""08ef6b46-bb37-4e74-9104-d15d73e47607"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
-                    ""id"": ""2122c537-2b82-4695-8934-fe72756609b7"",
+                    ""id"": ""0d6e5aa3-4e69-4a6a-bb98-a2b1d53367fd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -104,7 +104,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
-                    ""id"": ""767f5614-b13a-4718-a717-9064108fd20f"",
+                    ""id"": ""9591ac03-025b-41ad-b4cf-fd2e23ec4e1d"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -113,7 +113,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
-                    ""id"": ""cba33df8-ebf7-46e4-b648-bf0b542a0300"",
+                    ""id"": ""172a376b-c426-4a78-aab5-b11de9057fc7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -122,7 +122,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
-                    ""id"": ""228a5afc-502c-47a9-aa7f-e80781e64c7c"",
+                    ""id"": ""4c840e99-7040-4dd6-98c2-bd42387faf1e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -131,7 +131,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""816b8329-d9fc-4507-b446-e75dd17e07d9"",
+                    ""id"": ""46e06337-fbb6-45ea-a537-efbdb8f54776"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -140,7 +140,16 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""SwapPhone"",
                     ""type"": ""Button"",
-                    ""id"": ""53ae77af-eb8f-44ce-8a15-40fd2d706a5d"",
+                    ""id"": ""e3d6de0d-83bd-4fdb-9067-0e9ebe57ce3f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RingPhone"",
+                    ""type"": ""Button"",
+                    ""id"": ""1f3cb378-79a7-4951-baf4-1c3bf79e2e16"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -149,7 +158,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""LookCamera"",
                     ""type"": ""Button"",
-                    ""id"": ""ff8200f9-9409-4c39-b261-43a58df6da1d"",
+                    ""id"": ""eb2ee36f-a99d-4279-aae3-ff8ba78917b3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -158,7 +167,16 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ChangeCamera"",
                     ""type"": ""Button"",
-                    ""id"": ""c2568ace-e1d5-4e7e-b0b1-f80b96ea02e3"",
+                    ""id"": ""29fec897-ceb2-45a6-bed3-ccc43f59cdea"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Edit"",
+                    ""type"": ""Button"",
+                    ""id"": ""122c932c-812c-42c4-8cb3-e5062f1e1e0e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -168,7 +186,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""b4cde58a-83d2-4cfa-9531-90bc5a677d95"",
+                    ""id"": ""6bff145a-4b72-413e-8f47-89d495fc2bdb"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -179,7 +197,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""a401cea2-5390-4ead-ae50-931d8b639997"",
+                    ""id"": ""2e44424c-9809-449a-ab66-27cb0ef024c3"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -189,19 +207,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""fccf57f5-6ebc-4494-90c9-4176f513016a"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""down"",
-                    ""id"": ""a7334ba6-81f4-4942-ab42-aaf18f4b4452"",
+                    ""id"": ""c32598ec-259f-4a05-bda5-17c2936f0d57"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -211,8 +218,19 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""left"",
+                    ""id"": ""064facaa-4706-486b-b4de-bde671d8d082"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""right"",
-                    ""id"": ""1a67493d-c36b-4b25-ba46-a5e3114a4c80"",
+                    ""id"": ""3652d75e-4f8d-4fdb-a19c-4e136e071db6"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -223,7 +241,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ee268045-4969-45dc-84c1-b304a2b2e4d0"",
+                    ""id"": ""faca18ea-585e-4a1f-bd8b-ef2f8bb57700"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -234,7 +252,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d439d669-5f2f-4c9a-95d9-4c953fc7ed74"",
+                    ""id"": ""752b3517-8905-4c6b-9b5c-d4218941f3b1"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -245,7 +263,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""66a7637d-b6bc-45ee-a8a8-3c15d7391054"",
+                    ""id"": ""a1b0cfd5-34e7-40cb-90d9-89dcd9e7381e"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -256,8 +274,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Hand"",
-                    ""id"": ""292b41c4-40cf-4b9e-87a5-ac955a4613ac"",
-                    ""path"": ""ButtonWithOneModifier"",
+                    ""id"": ""7f8b217f-7c9f-413a-aaff-3935ddb3df68"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -266,8 +284,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Button"",
-                    ""id"": ""1149f5bd-2f6d-4084-a7f5-c95a6ad2a4fb"",
+                    ""name"": ""Negative"",
+                    ""id"": ""73203056-ecee-4396-b0c4-5d5295c09f76"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -277,8 +295,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Button"",
-                    ""id"": ""6441fe4c-5446-4845-84f6-8892544724ca"",
+                    ""name"": ""Positive"",
+                    ""id"": ""ef704eca-dd1c-4fdf-af7e-9278161337fc"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -289,8 +307,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""060b2d59-70f8-4786-8188-ca36df511ab4"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""id"": ""ed6c6879-8f44-4647-8f51-6832cc9f12ab"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -300,7 +318,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6c261ab4-a660-453c-86b7-3b0ef98fc0cf"",
+                    ""id"": ""3ede9195-52b2-4c19-b759-517b1ba5c3b7"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RingPhone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdb7fb9a-3304-4321-8881-b2e994b33fda"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -311,7 +340,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Axis"",
-                    ""id"": ""fd136cbd-8b9c-4e29-bf93-33a2d14b3417"",
+                    ""id"": ""27b1dcc9-db5d-4825-b3a0-1107762d9200"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -321,8 +350,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""cbda0d10-a0c8-4390-97e8-0095ad575696"",
+                    ""name"": ""Negative"",
+                    ""id"": ""f6914630-6d49-48c2-9a4f-bca8e956d512"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -332,13 +361,46 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""9657a4bb-ce3f-49c9-b9bf-114e8d712643"",
+                    ""name"": ""Positive"",
+                    ""id"": ""876776df-fc8f-4569-852d-4abd0621000c"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right Left"",
+                    ""id"": ""8b8b8c13-b61c-49e6-bb77-418bf1bad605"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ee3af1e0-eb75-485c-abe5-76c2349582ec"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9fc598fe-2610-410a-99f6-53545872dd79"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -355,8 +417,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_Sprint = m_GamePlay.FindAction("Sprint", throwIfNotFound: true);
         m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         m_GamePlay_SwapPhone = m_GamePlay.FindAction("SwapPhone", throwIfNotFound: true);
+        m_GamePlay_RingPhone = m_GamePlay.FindAction("RingPhone", throwIfNotFound: true);
         m_GamePlay_LookCamera = m_GamePlay.FindAction("LookCamera", throwIfNotFound: true);
         m_GamePlay_ChangeCamera = m_GamePlay.FindAction("ChangeCamera", throwIfNotFound: true);
+        m_GamePlay_Edit = m_GamePlay.FindAction("Edit", throwIfNotFound: true);
     }
 
     ~@PlayerAction()
@@ -443,8 +507,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Sprint;
     private readonly InputAction m_GamePlay_Interact;
     private readonly InputAction m_GamePlay_SwapPhone;
+    private readonly InputAction m_GamePlay_RingPhone;
     private readonly InputAction m_GamePlay_LookCamera;
     private readonly InputAction m_GamePlay_ChangeCamera;
+    private readonly InputAction m_GamePlay_Edit;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -481,6 +547,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @SwapPhone => m_Wrapper.m_GamePlay_SwapPhone;
         /// <summary>
+        /// Provides access to the underlying input action "GamePlay/RingPhone".
+        /// </summary>
+        public InputAction @RingPhone => m_Wrapper.m_GamePlay_RingPhone;
+        /// <summary>
         /// Provides access to the underlying input action "GamePlay/LookCamera".
         /// </summary>
         public InputAction @LookCamera => m_Wrapper.m_GamePlay_LookCamera;
@@ -488,6 +558,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/ChangeCamera".
         /// </summary>
         public InputAction @ChangeCamera => m_Wrapper.m_GamePlay_ChangeCamera;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/Edit".
+        /// </summary>
+        public InputAction @Edit => m_Wrapper.m_GamePlay_Edit;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -532,12 +606,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwapPhone.started += instance.OnSwapPhone;
             @SwapPhone.performed += instance.OnSwapPhone;
             @SwapPhone.canceled += instance.OnSwapPhone;
+            @RingPhone.started += instance.OnRingPhone;
+            @RingPhone.performed += instance.OnRingPhone;
+            @RingPhone.canceled += instance.OnRingPhone;
             @LookCamera.started += instance.OnLookCamera;
             @LookCamera.performed += instance.OnLookCamera;
             @LookCamera.canceled += instance.OnLookCamera;
             @ChangeCamera.started += instance.OnChangeCamera;
             @ChangeCamera.performed += instance.OnChangeCamera;
             @ChangeCamera.canceled += instance.OnChangeCamera;
+            @Edit.started += instance.OnEdit;
+            @Edit.performed += instance.OnEdit;
+            @Edit.canceled += instance.OnEdit;
         }
 
         /// <summary>
@@ -567,12 +647,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwapPhone.started -= instance.OnSwapPhone;
             @SwapPhone.performed -= instance.OnSwapPhone;
             @SwapPhone.canceled -= instance.OnSwapPhone;
+            @RingPhone.started -= instance.OnRingPhone;
+            @RingPhone.performed -= instance.OnRingPhone;
+            @RingPhone.canceled -= instance.OnRingPhone;
             @LookCamera.started -= instance.OnLookCamera;
             @LookCamera.performed -= instance.OnLookCamera;
             @LookCamera.canceled -= instance.OnLookCamera;
             @ChangeCamera.started -= instance.OnChangeCamera;
             @ChangeCamera.performed -= instance.OnChangeCamera;
             @ChangeCamera.canceled -= instance.OnChangeCamera;
+            @Edit.started -= instance.OnEdit;
+            @Edit.performed -= instance.OnEdit;
+            @Edit.canceled -= instance.OnEdit;
         }
 
         /// <summary>
@@ -656,6 +742,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwapPhone(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "RingPhone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRingPhone(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "LookCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -669,5 +762,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnChangeCamera(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Edit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEdit(InputAction.CallbackContext context);
     }
 }
