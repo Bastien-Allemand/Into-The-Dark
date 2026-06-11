@@ -45,6 +45,7 @@ public class PickUpScript : MonoBehaviour
     private bool isChargingRight = false;
     private bool isChargingLeft = false;
     private float percentLeft = 0f;
+    private float editHoldTimer = 0f;
 
 
     void Start()
@@ -160,23 +161,13 @@ public class PickUpScript : MonoBehaviour
                 canPlaceThisFrame = false;
                 isRotating = false;
             }
-        }
-        else if(isEditingThisFrame == true)
-        {
-            if(editModeRight == true || editModeLeft == true)
-            {
-                isRotating = true;
-                RotateItem();
-            }
-        }
 
-        if(isEditingThisFrame == false)
-        {
-            canPlaceThisFrame = true;
+           
         }
+        
 
         if (editModeRight == true)
-        { 
+        {
             CheckPlaceable(rightHandItem, true, isEditReleasedThisFrame);
         }
         else if (editModeLeft == true)
@@ -184,6 +175,30 @@ public class PickUpScript : MonoBehaviour
             CheckPlaceable(leftHandItem, false, isEditReleasedThisFrame);
         }
 
+        if (isEditingThisFrame == true && canPlaceThisFrame == true)
+        {
+            if(editModeRight == true || editModeLeft == true)
+            {
+                editHoldTimer += Time.deltaTime;
+                if(editHoldTimer > 0.15f)
+                {
+                    isRotating = true;
+                    RotateItem();
+                }
+            }
+        }
+        else
+        {
+            editHoldTimer = 0f;
+        }
+
+        if (isEditReleasedThisFrame && !canPlaceThisFrame)
+        {
+            canPlaceThisFrame = true;
+            isEditReleasedThisFrame = false; 
+        }
+
+        
         wasEditingLastFrame = isEditingThisFrame;
     }
     private void UpdateUI()
@@ -319,7 +334,7 @@ public class PickUpScript : MonoBehaviour
         {
             Destroy(preview);
             preview = null;
-            if (shouldPlace)
+            if (shouldPlace == true && canPlaceThisFrame == true)
             {
                 if (isRightHand)
                 {
