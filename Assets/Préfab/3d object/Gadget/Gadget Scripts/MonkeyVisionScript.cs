@@ -6,7 +6,10 @@ public class MonkeyVisionScript : MonoBehaviour
     public string targetTag = "Ghost";
     void Start()
     {
-
+        if (visionCam == null)
+        {
+            visionCam = GetComponentInChildren<Camera>();
+        }
     }
     void Action()
     {

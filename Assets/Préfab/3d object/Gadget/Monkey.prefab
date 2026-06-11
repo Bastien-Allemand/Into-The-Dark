@@ -75,7 +75,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 6818007062863712880}
   - component: {fileID: 1039434968144207262}
   - component: {fileID: 3242394049126949944}
+  - component: {fileID: 4333844373789002832}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: Untagged
@@ -284,5 +285,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b889147bf362dac418fe34d58183b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonkeyVisionScript
-  VisionCam: {fileID: 5196952030704320368}
+  visionCam: {fileID: 0}
   targetTag: Ghost
+--- !u!114 &4333844373789002832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563341664786806886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e75d0954fecfeb49bee15aaa7eecf44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GadgetItem
