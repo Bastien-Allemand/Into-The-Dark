@@ -105,8 +105,6 @@ public class PlayerStateMachine : MonoBehaviour
         moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
-        bool WatchInput = controls.GamePlay.Watch.ReadValue<float>() > 0.5f;
-
         bool isMoving = moveInput != Vector2.zero;
 
         
