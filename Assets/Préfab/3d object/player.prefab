@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1413043958126300437}
   - component: {fileID: 6281861634848786711}
   - component: {fileID: 4260475686989065092}
-  - component: {fileID: 4828606610221435111}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -91,27 +90,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4828606610221435111
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085930726807903851}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4078298833225924823
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +238,6 @@ GameObject:
   - component: {fileID: 5406487208239077327}
   - component: {fileID: 4462095821645256943}
   - component: {fileID: 4900322911516811289}
-  - component: {fileID: 4682590440300028706}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Untagged
@@ -340,27 +317,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4682590440300028706
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4270512491438691163}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4968043094434973047
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +330,6 @@ GameObject:
   - component: {fileID: 3138825950903029431}
   - component: {fileID: 9077920826426697030}
   - component: {fileID: 3478164072246470038}
-  - component: {fileID: 5274919114040755845}
   - component: {fileID: 2043788255533290207}
   - component: {fileID: 7801913923009114371}
   - component: {fileID: 1653404313279791581}
@@ -512,18 +467,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5274919114040755845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8425490768864643795, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
-  m_PrefabInstance: {fileID: 2907559354151745121}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4968043094434973047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b30715e00ff9d40a1f8039a6e95ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1001 &2907559354151745121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -592,7 +535,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7587213054247503191, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
@@ -715,7 +659,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96968b4042e4a224ba0fdf6b0af02eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
+  chargeBarTransform: {fileID: 0}
   leftHandSocket: {fileID: 5406487208239077327}
   rightHandSocket: {fileID: 1413043958126300437}
   pickupDistance: 10
   playerCamera: {fileID: 8616678334354961815}
+  chargeSpeed: 15
+  minThrowForce: 5
+  maxThrowForce: 25
+  currentThrowCharge: 0
