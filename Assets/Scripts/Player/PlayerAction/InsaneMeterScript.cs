@@ -111,7 +111,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     void CheckUsePill()
     {
-        if (pills <= 0)
+        if (pills <= 0 || Inventory.instance.GetActiveSlot() != ItemType.Pill)
             return;
 
         if (controls.GamePlay.Consume.triggered && takingPills == false)
@@ -127,7 +127,7 @@ public class InsaneMeterScript : MonoBehaviour
                 currentanimDuration = 0f;
                 takingPills = false;
                 insaneMeter -= maxInsaneMeter * 0.15f;
-                Inventory.instance.RemovePill();
+                Inventory.instance.Remove(ItemType.Pill);
                 if (insaneMeter <= 0)
                 { 
                     insaneMeter = 0; 
