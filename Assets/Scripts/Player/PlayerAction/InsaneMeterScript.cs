@@ -117,7 +117,6 @@ public class InsaneMeterScript : MonoBehaviour
         if (controls.GamePlay.Consume.triggered && takingPills == false)
         {
            takingPills = true;
-
         }
         if (takingPills == true)
         {
