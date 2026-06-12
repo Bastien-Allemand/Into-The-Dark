@@ -245,8 +245,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.7426, y: 0.3076, z: 8.1}
-  m_LocalScale: {x: 0.4052592, y: 0.019258708, z: 0.4050969}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.65, y: 0.030889267, z: 0.6497397}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1316188836}
   m_Father: {fileID: 0}
@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RadarScript
   radar: {fileID: 185831163}
+  imageRadar: {fileID: 1316188836}
   playerIcon: {fileID: 516750277}
   ghostIcon: {fileID: 760950690}
   circle: {fileID: 449198309}
@@ -640,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472263130187116840, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.85
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 2472263130187116840, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
       propertyPath: m_LocalRotation.w

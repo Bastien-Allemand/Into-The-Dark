@@ -7,6 +7,9 @@ public class RadarScript : MonoBehaviour
     [Header("Radar")]
     public GameObject radar;
 
+    [Header("Map")]
+    public RectTransform imageRadar;
+
     [Header("Icons")]
     public RectTransform playerIcon;
     public RectTransform ghostIcon;
@@ -53,8 +56,9 @@ public class RadarScript : MonoBehaviour
     {
         if (radar.transform.parent != null)
         {
-            radar.transform.localRotation =
-                Quaternion.Euler(90f, 90f, 90f);
+            radar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
+
+            imageRadar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
         }
 
         playerIcon.anchoredPosition = WorldToRadar(player.position);
