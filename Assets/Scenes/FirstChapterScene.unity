@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &30901653 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5008107418108663270, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
-  m_PrefabInstance: {fileID: 1415090307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &32663225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 54792873851730363, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
@@ -570,10 +559,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1742777868}
     m_Modifications:
+    - target: {fileID: 54792873851730363, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650078918919275412, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605135043332597217, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3834572568654654805, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -2432090755550338912, guid: 70cb270f996b7e546a0fe2a1f1315a1e, type: 3}
+    - target: {fileID: 4992452140244113438, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208987388700114244, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5529906075861055194, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01
@@ -581,6 +594,14 @@ PrefabInstance:
     - target: {fileID: 5529906075861055194, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730206934439927096, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753840863485728532, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6234071372569278749, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -625,6 +646,14 @@ PrefabInstance:
     - target: {fileID: 6757666972677972903, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757666972677972903, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9121317772126829195, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_Layer
@@ -852,11 +881,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37a8f782244bfa145b411d09a3be1a57, type: 3}
   m_PrefabInstance: {fileID: 373937859}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &727396331 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6603405467453615122, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
-  m_PrefabInstance: {fileID: 1415090307}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &787318437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6683689409644554644, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
@@ -900,6 +924,11 @@ Transform:
   - {fileID: 335523872}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &880829508 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3924616587762276976, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
+  m_PrefabInstance: {fileID: 1415090307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &909572002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da1e0106f9283eb49801454f66591f4c, type: 3}
@@ -942,6 +971,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffe141c08af3b944a896020e2ca04603, type: 3}
   m_PrefabInstance: {fileID: 1216870750}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1034188653 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6844997737729329805, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
+  m_PrefabInstance: {fileID: 1415090307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1052474648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1192,6 +1232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: geometry_flower_pot 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ffe141c08af3b944a896020e2ca04603, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: ffe141c08af3b944a896020e2ca04603, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3853
@@ -1215,6 +1259,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: ffe141c08af3b944a896020e2ca04603, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ffe141c08af3b944a896020e2ca04603, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1473,10 +1521,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 1099154462097899516, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 73.3
-      objectReference: {fileID: 0}
     - target: {fileID: 7510706198103311742, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1558,9 +1602,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2256303400243278046, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
-    - {fileID: 5907987784695290233, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09440a8b121f7154d8fa600b9967319a, type: 3}
@@ -1843,7 +1885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayID
   interactDistance: 5
-  itemText: {fileID: 30901653}
+  itemText: {fileID: 1034188653}
   playerCamera: {fileID: 2460110362121666467}
 --- !u!114 &1777821763
 MonoBehaviour:
@@ -2475,7 +2517,7 @@ PrefabInstance:
     - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: chargeBarTransform
       value: 
-      objectReference: {fileID: 727396331}
+      objectReference: {fileID: 880829508}
     - target: {fileID: 4420624848759808975, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.0271
