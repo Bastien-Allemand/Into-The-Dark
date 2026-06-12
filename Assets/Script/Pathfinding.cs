@@ -16,6 +16,9 @@ public class Pathfinding : MonoBehaviour
     private NavMeshAgent agent;
     private float swapRoom = 20f;
     private int choiceroom = 0;
+    private bool attracted = false;
+    private float attractionTimer = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,20 +65,41 @@ public class Pathfinding : MonoBehaviour
         }
         return pos;
     }
-    // Update is called once per frame
+
+    public void AttractToPlayer(Transform player, float duration)
+    {
+        target = player;
+        attracted = true;
+        attractionTimer = duration;
+    }
+
     void Update()
     {
+        if (attracted)
+        {
+            attractionTimer -= Time.deltaTime;
+
+            agent.SetDestination(target.position);
+
+            if (attractionTimer <= 0f)
+            {
+                attracted = false;
+            }
+
+            return;
+        }
+
         swapRoom -= Time.deltaTime;
+
         if (swapRoom < 0f)
         {
             swapRoom = 20f;
             choiceroom = Random.Range(0, 5);
             Debug.Log("Room :" + choiceroom);
         }
+
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
             agent.SetDestination(RandomPosition(rooms[choiceroom]));
-
-
     }
 
 

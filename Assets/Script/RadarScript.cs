@@ -13,7 +13,7 @@ public class RadarScript : MonoBehaviour
 
     [Header("Scan")]
     public RectTransform circle;
-    public Image circleImage; // 🔥 AJOUT IMPORTANT
+    public Image circleImage;
 
     [Header("World References")]
     public Transform player;
@@ -33,6 +33,13 @@ public class RadarScript : MonoBehaviour
 
     [Header("Scan Max Size")]
     [SerializeField] private float maxScanSize = 2250f;
+
+    [Header("Ghost Attraction")]
+    public Pathfinding ghostPathfinding;
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip radarSound;
 
     private bool isScanning = false;
 
@@ -55,7 +62,22 @@ public class RadarScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && !isScanning)
         {
+            if (audioSource != null && radarSound != null)
+            {
+                audioSource.PlayOneShot(radarSound);
+            }
+
             StartCoroutine(ShowRadar());
+        }
+    }
+
+    private IEnumerator StopRadarSoundAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
         }
     }
 
@@ -72,7 +94,6 @@ public class RadarScript : MonoBehaviour
         circle.anchoredPosition = playerPos;
         circle.sizeDelta = Vector2.zero;
 
-        // reset alpha
         SetCircleAlpha(1f);
 
         float distanceToGhost = Vector2.Distance(playerPos, ghostPos);
@@ -85,7 +106,6 @@ public class RadarScript : MonoBehaviour
 
             float currentRadius = newSize * 0.5f;
 
-            // 🔥 FADE PROGRESSIF
             float t = newSize / maxScanSize;
             float alpha = Mathf.Lerp(1f, 0f, t);
             SetCircleAlpha(alpha);
@@ -94,6 +114,13 @@ public class RadarScript : MonoBehaviour
             {
                 ghostRevealed = true;
                 ghostIcon.gameObject.SetActive(true);
+
+                StartCoroutine(StopRadarSoundAfterDelay(1f));
+
+                if (ghostPathfinding != null)
+                {
+                    ghostPathfinding.AttractToPlayer(player, 2f);
+                }
             }
 
             yield return null;
@@ -104,7 +131,7 @@ public class RadarScript : MonoBehaviour
         ghostIcon.gameObject.SetActive(false);
 
         circle.sizeDelta = Vector2.zero;
-        SetCircleAlpha(1f); // reset
+        SetCircleAlpha(1f);
         circle.gameObject.SetActive(false);
 
         isScanning = false;
