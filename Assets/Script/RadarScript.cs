@@ -58,7 +58,7 @@ public class RadarScript : MonoBehaviour
         {
             radar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
 
-            imageRadar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
+            imageRadar.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f); 
         }
 
         playerIcon.anchoredPosition = WorldToRadar(player.position);
