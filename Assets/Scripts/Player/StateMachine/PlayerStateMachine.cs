@@ -104,7 +104,6 @@ public class PlayerStateMachine : MonoBehaviour
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
         bool isMoving = moveInput != Vector2.zero;
 
-        
         if (isMoving == false)
         {
             if (crouchInput == true || isCeilingAbove == true)
