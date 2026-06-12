@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 using static UnityEditor.Timeline.Actions.MenuPriority;
 using static UnityEngine.UI.Image;
+using Debug = UnityEngine.Debug;
 
 public class PickUpScript : MonoBehaviour
 {
@@ -47,6 +49,12 @@ public class PickUpScript : MonoBehaviour
     private float percentLeft = 0f;
     private float editHoldTimer = 0f;
     private bool wasSwitchEditLastFrame = false;
+
+    public float pillsStack;
+    public float batteryStack;
+    public float ventolinStack;
+
+
     void Start()
     {
         if (rightHandSocket == null)
@@ -240,6 +248,44 @@ public class PickUpScript : MonoBehaviour
             if (hit.collider.CompareTag("Item"))
             {
                 PickUp(hit.collider.gameObject, isRightHand);
+            }
+
+            if (hit.collider.CompareTag("Collectible"))
+            {
+                CollectibleScript item = hit.collider.GetComponent<CollectibleScript>();
+
+                if (item != null)
+                {
+                    ItemType type = item.GetItemType();
+
+                    switch(type)
+                    {
+                        case ItemType.Pill:
+                        {
+                            Inventory.instance.AddPill();
+                            Debug.Log("Pill Take");
+                            break;
+                        }
+                        case ItemType.Battery:
+                        {
+                            Inventory.instance.AddBattery();
+                            Debug.Log("Battery Take");
+                            break;
+                        }
+                        case ItemType.Ventolin:
+                        {
+                            Inventory.instance.AddVentolin();
+                            Debug.Log("Ventolin Take");
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    Destroy(hit.collider.gameObject);
+                }
+
             }
         }
     }

@@ -526,9 +526,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemCamera_3
       objectReference: {fileID: 0}
+    - target: {fileID: 1397516881094404145, guid: f25d1144933db714e85b4d872d8854f9, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 2435076662050273510, guid: f25d1144933db714e85b4d872d8854f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.50867
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 2435076662050273510, guid: f25d1144933db714e85b4d872d8854f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -536,7 +540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435076662050273510, guid: f25d1144933db714e85b4d872d8854f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 43.29
+      value: 44.55
       objectReference: {fileID: 0}
     - target: {fileID: 2435076662050273510, guid: f25d1144933db714e85b4d872d8854f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -585,7 +589,7 @@ GameObject:
   - component: {fileID: 1160706666}
   m_Layer: 13
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -683,6 +687,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1253898385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4968043094434973047, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+  m_PrefabInstance: {fileID: 4109449656258384903}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1253898386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253898385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1edd91a7edfbd42874152dbbadd49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  slotOne: {fileID: 103161422}
+  slotTwo: {fileID: 1388744964}
+  slotThree: {fileID: 1451057034}
+  pillsCount: 0
+  batteryCount: 0
+  ventolinCount: 0
 --- !u!1001 &1362125228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -970,28 +997,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &1419557721
-Animator:
-  serializedVersion: 7
+--- !u!114 &1419557726
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419557715}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7edbcf282dc2d464b991bb59763f3747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleScript
+  myType: 0
 --- !u!1 &1451054494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,9 +1236,10 @@ GameObject:
   - component: {fileID: 1846274556}
   - component: {fileID: 1846274555}
   - component: {fileID: 1846274559}
+  - component: {fileID: 1846274560}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Item
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1345,6 +1364,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1846274560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846274554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7edbcf282dc2d464b991bb59763f3747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleScript
+  myType: 1
 --- !u!1001 &2063677500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1458,20 +1490,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
+      propertyPath: m_TagString
+      value: Collectible
+      objectReference: {fileID: 0}
     - target: {fileID: 5258940584957476776, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 6093571755931814857, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1419557721}
+      addedObject: {fileID: 1419557720}
     - targetCorrespondingSourceObject: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1419557720}
+      addedObject: {fileID: 1419557726}
   m_SourcePrefab: {fileID: 100100000, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
 --- !u!1001 &4109449656258384903
 PrefabInstance:
@@ -1558,6 +1598,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1802800818}
     - target: {fileID: 7801913923009114371, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: pills
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7801913923009114371, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: insaneBarTransform
       value: 
       objectReference: {fileID: 868378682}
@@ -1604,7 +1648,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4968043094434973047, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1253898386}
   m_SourcePrefab: {fileID: 100100000, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
 --- !u!1001 &5083544851229243135
 PrefabInstance:
