@@ -26,7 +26,19 @@ public class Bouton : MonoBehaviour
     {
         SceneManager.LoadScene(sc_target.name);
     }
-    public void Hide()
+    public void HideSelf()
+    {
+
+    }
+    public void TargetSwapActive()
+    {
+        t_target.gameObject.SetActive(!t_target.gameObject.activeSelf);
+    }
+    public void TargetShow()
+    {
+        t_target.gameObject.SetActive(true);
+    }
+    public void TargetHide()
     {
         t_target.gameObject.SetActive(false);
     }

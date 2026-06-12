@@ -1790,6 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301c818775f7ba84a93badd0c294eb4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  enter: 0
   exit: 0
   GO_Controls_Content: {fileID: 3867325878939013614}
   GO_Prefab_Keybind: {fileID: 864155087259678601, guid: fd59b5abf32cf1842ab9cd5ac8456604, type: 3}
@@ -1913,7 +1914,7 @@ GameObject:
   - component: {fileID: 8387615415380007991}
   - component: {fileID: 4245445146542883203}
   - component: {fileID: 7754776293724870673}
-  - component: {fileID: 797135276062751038}
+  - component: {fileID: 7092059327045128274}
   m_Layer: 5
   m_Name: Controls
   m_TagString: Untagged
@@ -2023,9 +2024,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 797135276062751038}
-        m_TargetAssemblyTypeName: Bouton, Assembly-CSharp
-        m_MethodName: SettingPanelShowOnly
+      - m_Target: {fileID: 7092059327045128274}
+        m_TargetAssemblyTypeName: PanelBouton, Assembly-CSharp
+        m_MethodName: TargetShowOnly
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2035,7 +2036,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &797135276062751038
+--- !u!114 &7092059327045128274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2044,9 +2045,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7510332095183479271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96da8ff26f4ed904c9ac8da06e7edd1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 60e8d785590accc40905e049add29cef, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShowOnly
+  m_EditorClassIdentifier: Assembly-CSharp::PanelBouton
+  panel: {fileID: 2293874848751225583}
   target: {fileID: 4123885598845075847}
 --- !u!1 &7631891746615060860
 GameObject:
@@ -2307,7 +2309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96da8ff26f4ed904c9ac8da06e7edd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bouton
-  target: {fileID: 2977971179899733998}
+  t_target: {fileID: 2977971179899733998}
+  sc_target: {fileID: 0}
 --- !u!1 &9130237200923497254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,7 +2323,7 @@ GameObject:
   - component: {fileID: 1291359311356795273}
   - component: {fileID: 3449945104358033686}
   - component: {fileID: 4620759968742770219}
-  - component: {fileID: 5290352783649058020}
+  - component: {fileID: 7649836663945796292}
   m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
@@ -2430,9 +2433,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5290352783649058020}
-        m_TargetAssemblyTypeName: Bouton, Assembly-CSharp
-        m_MethodName: SettingPanelShowOnly
+      - m_Target: {fileID: 7649836663945796292}
+        m_TargetAssemblyTypeName: PanelBouton, Assembly-CSharp
+        m_MethodName: TargetShowOnly
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2442,7 +2445,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5290352783649058020
+--- !u!114 &7649836663945796292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2451,7 +2454,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9130237200923497254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96da8ff26f4ed904c9ac8da06e7edd1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 60e8d785590accc40905e049add29cef, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShowOnly
+  m_EditorClassIdentifier: Assembly-CSharp::PanelBouton
+  panel: {fileID: 2293874848751225583}
   target: {fileID: 7111173683107076301}

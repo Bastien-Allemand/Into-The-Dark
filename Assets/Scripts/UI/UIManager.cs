@@ -26,8 +26,10 @@ public class UIManager : MonoBehaviour
 
     public enum ListUI
     {
+        MainMenu,
         PauseMenu,
-        MainMenu
+        PlayerUI,
+        InventoryUI
     }
 
     private enum conditionList

@@ -5,7 +5,11 @@ using System;
 public class Inventory : MonoBehaviour
 {
 
-    public static Inventory instance;
+    public static Inventory instance
+    {
+        get;
+        private set;
+    }
 
     public static event Action<int> OnPillsCountChanged;
     public static event Action<int> OnBatteryCountChanged;
@@ -13,15 +17,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int pillsCount = 0;
     [SerializeField] private int batteryCount = 0;
     [SerializeField] private int ventolinCount = 0;
-
-    private void Awake()
-    {
-
-        if(instance == null)
-        {
-            instance = this;
-        }
-    }
     void Start()
     {
     }

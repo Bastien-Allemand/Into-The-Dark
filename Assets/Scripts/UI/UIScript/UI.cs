@@ -2,13 +2,9 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    protected UIManager manager;
-    private void Awake()
-    {
-        Debug.Log($"Awake UI before = {manager}");
-        manager = UIManager.Instance;
-        Debug.Log($"Aveke UI after = {manager}");
-    }
+    static protected UIManager manager => UIManager.Instance;
+    public bool enter = false;
+    public bool exit = false;
     public virtual bool EnterCondition()
     {
         debug("EnterCondition");

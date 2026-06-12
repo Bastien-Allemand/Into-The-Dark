@@ -4,15 +4,17 @@ using static UIManager;
 
 public class PauseMenu : UI
 {
-    public bool exit = false;
     PlayerAction controls;
 
     [SerializeField] public Transform GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
-
     public override bool EnterCondition()
     {
-        return controls.Menu.Pause.WasPressedThisFrame();
+        if (controls.Menu.Pause.WasPressedThisFrame())
+            enter = true;
+        bool result = exit;
+        enter = false;
+        return result;
     }
     public override bool ExitCondition()
     {
@@ -36,10 +38,6 @@ public class PauseMenu : UI
     public override void Enter()
     {
         exit = false;
-        //  ok donc code qui ne devrai pas avoir besoin d'être là mais bug sans
-        if (!manager)
-            manager = UIManager.Instance;
-        Debug.Log($"manager : {manager}");
         manager.Pause(true);
     }
     public override void M_Update()

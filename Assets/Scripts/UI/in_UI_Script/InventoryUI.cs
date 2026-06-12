@@ -62,7 +62,6 @@ public class InventoryUI : MonoBehaviour
 
     void SwapObject(int indexA, int indexB)
     {
-
         if (slotsImages[indexA] == null || slotsImages[indexB] == null) return;
         Texture tempTex = slotsImages[indexA].texture;
         slotsImages[indexA].texture = slotsImages[indexB].texture;
@@ -79,7 +78,6 @@ public class InventoryUI : MonoBehaviour
 
     void UpdatePillsUI(int currentPills)
     {
-        
         for (int i = 0; i < currentSlotContents.Length; i++)
         {
             if (currentSlotContents[i] == "Pill")
@@ -91,12 +89,10 @@ public class InventoryUI : MonoBehaviour
                 break;
             }
         }
-
     }
 
     void UpdateBatteryUI(int currentBattery)
     {
-
         for (int i = 0; i < currentSlotContents.Length; i++)
         {
             if (currentSlotContents[i] == "Battery")
@@ -108,12 +104,10 @@ public class InventoryUI : MonoBehaviour
                 break;
             }
         }
-
     }
 
     void UpdateVentolinUI(int currentVentolin)
     {
-
         for (int i = 0; i < currentSlotContents.Length; i++)
         {
             if (currentSlotContents[i] == "Ventolin")
@@ -125,7 +119,6 @@ public class InventoryUI : MonoBehaviour
                 break;
             }
         }
-
     }
 
 }
