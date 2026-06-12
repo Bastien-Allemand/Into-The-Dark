@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085930726807903851}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -275,7 +275,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4270512491438691163}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 1653404313279791581}
   - component: {fileID: 8589292547114541237}
   - component: {fileID: 4050908566489799186}
+  - component: {fileID: 2379249685895625458}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -561,6 +562,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1625504796762877940, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4050908566489799186}
+    - targetCorrespondingSourceObject: {fileID: 1625504796762877940, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2379249685895625458}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
 --- !u!114 &2043788255533290207
 MonoBehaviour:
@@ -616,7 +620,7 @@ MonoBehaviour:
   visionCam: {fileID: 8616678334354961815}
   targetTag: Ghost
   insanityStack: 0
-  pills: 1
+  pills: 0
   takingPills: 0
   animDuration: 2
   currentanimDuration: 0
@@ -633,6 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _camera: {fileID: 8616678334354961815}
+  pickUpScript: {fileID: 4050908566489799186}
   sensitivity: 0.25
   XMaxAngle: 75
 --- !u!114 &8589292547114541237
@@ -660,10 +665,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
   chargeBarTransform: {fileID: 0}
-  objectPreview: {fileID: 0}
+  objectPreview: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   leftHandSocket: {fileID: 5406487208239077327}
   rightHandSocket: {fileID: 1413043958126300437}
   pickupDistance: 10
@@ -674,3 +679,23 @@ MonoBehaviour:
   currentThrowCharge: 0
   editModeRight: 0
   editModeLeft: 0
+  isRotating: 0
+  rotationSpeed: 3
+  pillsStack: 0
+  batteryStack: 0
+  ventolinStack: 0
+--- !u!114 &2379249685895625458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968043094434973047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1edd91a7edfbd42874152dbbadd49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  pillsCount: 0
+  batteryCount: 0
+  ventolinCount: 0

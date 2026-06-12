@@ -5,21 +5,30 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     PlayerAction controls;
-
+    
     [Header("UI Visual References")]
     [SerializeField] private RawImage[] slotsImages = new RawImage[3];
     [SerializeField] private TextMeshProUGUI[] slotsTexts = new TextMeshProUGUI[3];
 
-    private string[] currentSlotContents = new string[3] { "Battery", "Ventolin", "Pill" };
+    [Header("Item Textures")]
 
-    private bool wasInventoryPressedLastFrame = false;
+    [SerializeField] private Texture batteryTexture;
+    [SerializeField] private Texture ventolinTexture;
+    [SerializeField] private Texture pillTexture;
+
+    private int currentPillsCount = 0;
+    private int currentBatteryCount = 0;
+    private int currentVentolinCount = 0;
+
 
     private void Awake()
     {
         controls = InputManager.controls;
     }
+
     void Start()
     {
+        RefreshSlotsUI();
     }
 
     private void OnEnable()
@@ -27,105 +36,64 @@ public class InventoryUI : MonoBehaviour
         Inventory.OnPillsCountChanged += UpdatePillsUI;
         Inventory.OnBatteryCountChanged += UpdateBatteryUI;
         Inventory.OnVentolinCountChanged += UpdateVentolinUI;
+        Inventory.OnInventoryRearranged += RefreshSlotsUI;
     }
+
     private void OnDisable()
     {
         Inventory.OnPillsCountChanged -= UpdatePillsUI;
         Inventory.OnBatteryCountChanged -= UpdateBatteryUI;
         Inventory.OnVentolinCountChanged -= UpdateVentolinUI;
+        Inventory.OnInventoryRearranged -= RefreshSlotsUI;
     }
 
     void Update()
     {
-        HandleInput();
     }
 
-    void HandleInput()
+    void RefreshSlotsUI()
     {
-        float inventoryValue = controls.GamePlay.Inventory.ReadValue<float>();
-        bool isPressedThisFrame = Mathf.Abs(inventoryValue) > 0.5f;
-
-        if (isPressedThisFrame && !wasInventoryPressedLastFrame)
+        for (int i = 0; i < Inventory.instance.Slots.Count; i++)
         {
-            if (inventoryValue < -0.5f)
+            ItemType typeInSlot = Inventory.instance.Slots[i];
+
+            switch (typeInSlot)
             {
-                SwapObject(0, 1);
-                Debug.Log("1 Pressed");
-            }
-            else if (inventoryValue > 0.5f)
-            {
-                SwapObject(0, 2);
+                case ItemType.Battery:
+                    slotsImages[i].texture = batteryTexture;
+                    slotsTexts[i].text = currentBatteryCount.ToString();
+                    break;
+
+                case ItemType.Ventolin:
+                    slotsImages[i].texture = ventolinTexture;
+                    slotsTexts[i].text = currentVentolinCount.ToString();
+                    break;
+
+                case ItemType.Pill:
+                    slotsImages[i].texture = pillTexture;
+                    slotsTexts[i].text = currentPillsCount.ToString();
+                    break;
             }
         }
-        wasInventoryPressedLastFrame = isPressedThisFrame;
     }
-
-    void SwapObject(int indexA, int indexB)
+    void UpdatePillsUI(int count)
     {
-
-        if (slotsImages[indexA] == null || slotsImages[indexB] == null) return;
-        Texture tempTex = slotsImages[indexA].texture;
-        slotsImages[indexA].texture = slotsImages[indexB].texture;
-        slotsImages[indexB].texture = tempTex;
-
-        string tempText = slotsTexts[indexA].text;
-        slotsTexts[indexA].text = slotsTexts[indexB].text;
-        slotsTexts[indexB].text = tempText;
-
-        string tempContent = currentSlotContents[indexA];
-        currentSlotContents[indexA] = currentSlotContents[indexB];
-        currentSlotContents[indexB] = tempContent;
+        currentPillsCount = count;
+        RefreshSlotsUI();
     }
 
-    void UpdatePillsUI(int currentPills)
+    void UpdateBatteryUI(int count)
     {
-        
-        for (int i = 0; i < currentSlotContents.Length; i++)
-        {
-            if (currentSlotContents[i] == "Pill")
-            {
-                if (slotsTexts[i] != null)
-                {
-                    slotsTexts[i].text = currentPills.ToString();
-                }
-                break;
-            }
-        }
-
+        currentBatteryCount = count;
+        RefreshSlotsUI();
     }
 
-    void UpdateBatteryUI(int currentBattery)
+    void UpdateVentolinUI(int count)
     {
-
-        for (int i = 0; i < currentSlotContents.Length; i++)
-        {
-            if (currentSlotContents[i] == "Battery")
-            {
-                if (slotsTexts[i] != null)
-                { 
-                    slotsTexts[i].text = currentBattery.ToString();
-                }
-                break;
-            }
-        }
-
+        currentVentolinCount = count;
+        RefreshSlotsUI();
     }
 
-    void UpdateVentolinUI(int currentVentolin)
-    {
 
-        for (int i = 0; i < currentSlotContents.Length; i++)
-        {
-            if (currentSlotContents[i] == "Ventolin")
-            {
-                if (slotsTexts[i] != null)
-                {
-                    slotsTexts[i].text = currentVentolin.ToString();
-                }
-                break;
-            }
-        }
-
-    }
 
 }
