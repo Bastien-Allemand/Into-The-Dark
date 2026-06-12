@@ -1,13 +1,9 @@
 using System;
-using System.Linq;
-using TMPro;
-using UnityEditor.ShaderGraph.Internal;
-using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
-
+using UnityEngine;
+using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance
@@ -195,4 +191,5 @@ public class UIManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+
 }
