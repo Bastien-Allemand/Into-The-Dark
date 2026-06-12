@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9150942486742894}
   - component: {fileID: 5852294863729143273}
   - component: {fileID: 494510116208950019}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DetectionRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,10 @@ GameObject:
   - component: {fileID: 6817191613589533895}
   - component: {fileID: 8295039590068122822}
   - component: {fileID: 7170568388720317365}
-  m_Layer: 0
+  - component: {fileID: 117898902365652334}
+  m_Layer: 13
   m_Name: Bear
-  m_TagString: Gadget
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,3 +168,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BearScript
   soundObject: {fileID: 1626671382370956442, guid: e9f8ec40312e1f14390117133c4c081b, type: 3}
+--- !u!65 &117898902365652334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7071902613867613781}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

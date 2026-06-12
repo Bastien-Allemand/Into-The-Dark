@@ -12,6 +12,8 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
 
+    public PlayerOnPhoneState OnPhoneState { get; private set; }
+
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
@@ -60,7 +62,7 @@ public class PlayerStateMachine : MonoBehaviour
         WalkState = new PlayerWalkState(this, rb, transform);
         SprintState = new PlayerSprintState(this, rb, transform);
         CrouchState = new PlayerCrouchState(this, rb, transform, playerCollider);
-
+        OnPhoneState = new PlayerOnPhoneState(this);
     }
     void Start()
     {
@@ -99,6 +101,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     void CheckState()
     {
+      
         moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
