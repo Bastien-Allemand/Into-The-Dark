@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
         get;
         private set;
     }
+    private void Awake() => Instance = this;
 
     PlayerAction controls;
     [Header("Manager Setting")]
@@ -28,8 +29,7 @@ public class UIManager : MonoBehaviour
     {
         MainMenu,
         PauseMenu,
-        PlayerUI,
-        InventoryUI
+        PlayerUI
     }
 
     private enum conditionList
@@ -111,12 +111,8 @@ public class UIManager : MonoBehaviour
             Debug.Log($"{UIs[(int)ui].gameObject.name} : {UIs[(int)ui].gameObject.activeSelf}");
         }
     }
-
-    private void Awake()
+    private void Start()
     {
-        if (!Instance || Instance != this)
-            Instance = this;
-
         controls = InputManager.controls;
         FoncInit();
         Init();

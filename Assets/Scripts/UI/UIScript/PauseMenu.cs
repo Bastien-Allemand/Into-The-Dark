@@ -11,16 +11,21 @@ public class PauseMenu : UI
     public override bool EnterCondition()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
+        {
             enter = true;
-        bool result = exit;
+            Debug.Log("Pause Menu Input Pressed");
+        }
+        bool result = enter;
         enter = false;
         return result;
     }
     public override bool ExitCondition()
     {
-        //  obliger avec les bouton
         if (controls.Menu.Pause.WasPressedThisFrame())
+        {
             exit = true;
+            Debug.Log("Pause Menu Input Pressed");
+        }
         bool result = exit;
         exit = false;
         return result;
@@ -37,6 +42,7 @@ public class PauseMenu : UI
     }
     public override void Enter()
     {
+        Debug.Log("Pause Menu : Enter");
         exit = false;
         manager.Pause(true);
     }
