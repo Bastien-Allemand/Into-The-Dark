@@ -39,6 +39,7 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] private bool editModeRight = false;
     [SerializeField] private bool editModeLeft = false;
     [SerializeField] private bool isRotating = false;
+    public bool IsRotating => isRotating;
     private bool wasEditingLastFrame = false;
     [SerializeField] private float rotationSpeed = 3f;
     private bool canPlaceThisFrame = true;
@@ -210,7 +211,9 @@ public class PickUpScript : MonoBehaviour
                 if(editHoldTimer > 0.15f)
                 {
                     isRotating = true;
-                    RotateItem();
+
+                    Vector2 mouse = controls.GamePlay.Look.ReadValue<Vector2>() * 0.25f;
+                    RotateItem(mouse.x);
                 }
             }
         }
@@ -262,19 +265,17 @@ public class PickUpScript : MonoBehaviour
                     {
                         case ItemType.Pill:
                         {
-                            Inventory.instance.AddPill();
-                            Debug.Log("Pill Take");
+                            Inventory.instance.Add(ItemType.Pill);
                             break;
                         }
                         case ItemType.Battery:
                         {
-                            Inventory.instance.AddBattery();
-                            Debug.Log("Battery Take");
+                            Inventory.instance.Add(ItemType.Battery);
                             break;
                         }
                         case ItemType.Ventolin:
                         {
-                            Inventory.instance.AddVentolin();
+                            Inventory.instance.Add(ItemType.Ventolin);
                             Debug.Log("Ventolin Take");
                             break;
                         }
@@ -418,24 +419,24 @@ public class PickUpScript : MonoBehaviour
         handItem.transform.SetParent(null);
         handItem.transform.localScale = currentWorldScale;
 
-        handItem.transform.position = preview.transform.position;
+        handItem.transform.position = new Vector3(preview.transform.position.x, preview.transform.position.y + (handItem.transform.localScale.y / 2) - 0.1f, preview.transform.position.z);
         handItem.transform.rotation = preview.transform.rotation;
         Rigidbody rb = handItem.GetComponent<Rigidbody>();
         Collider collider = handItem.GetComponent<Collider>();
         if (rb != null)
         {
-            rb.isKinematic = false;
-        }
+            rb.isKinematic = true;
+        } 
         if (collider != null)
         {
             collider.enabled = true;
         }
     }
-    void RotateItem()
+    void RotateItem(float mouseX)
     {
         if (preview != null)
         {
-            preview.transform.Rotate(Vector3.up, rotationSpeed * 50f * Time.deltaTime);
+            preview.transform.Rotate(Vector3.up, -mouseX * rotationSpeed);
         }
     }
     void ReplaceMesh(GameObject handItem, GameObject preview) 
