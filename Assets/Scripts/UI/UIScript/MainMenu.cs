@@ -16,12 +16,9 @@ public class MainMenu : UI
     public override void Enter()
     {
     }
-    public override void M_Update()
+    public void Update()
     {
         Cursor.lockState = CursorLockMode.None;
-    }
-    public override void M_FixedUpdate()
-    {
     }
     public override void Exit()
     {

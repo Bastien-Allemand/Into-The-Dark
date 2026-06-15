@@ -23,15 +23,6 @@ public class UI : MonoBehaviour
     {
         debug("Enter");
     }
-    public virtual void M_Update()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        debug("Update");
-    }
-    public virtual void M_FixedUpdate()
-    {
-        debug("FixedUpdate");
-    }
     public virtual void Exit()
     {
         debug("Exit");

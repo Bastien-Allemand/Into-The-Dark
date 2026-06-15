@@ -46,14 +46,6 @@ public class PauseMenu : UI
         exit = false;
         manager.Pause(true);
     }
-    public override void M_Update()
-    {
-
-    }
-    public override void M_FixedUpdate()
-    {
-
-    }
     public override void Exit()
     {
         manager.Pause(false);

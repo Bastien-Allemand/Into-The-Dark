@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 8589292547114541237}
   - component: {fileID: 4050908566489799186}
   - component: {fileID: 2379249685895625458}
+  - component: {fileID: 8457909196551719911}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -565,6 +566,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1625504796762877940, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2379249685895625458}
+    - targetCorrespondingSourceObject: {fileID: 1625504796762877940, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8457909196551719911}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
 --- !u!114 &2043788255533290207
 MonoBehaviour:
@@ -699,3 +703,18 @@ MonoBehaviour:
   pillsCount: 0
   batteryCount: 0
   ventolinCount: 0
+--- !u!114 &8457909196551719911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968043094434973047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91390c927e13bb408dbd3fbb40d6d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayID
+  interactDistance: 3
+  itemText: {fileID: 0}
+  playerCamera: {fileID: 8616678334354961815}
