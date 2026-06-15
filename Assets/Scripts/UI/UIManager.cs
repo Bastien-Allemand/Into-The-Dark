@@ -66,8 +66,6 @@ public class UIManager : MonoBehaviour
             {
                 ui.Init,
                 ui.Enter,
-                ui.M_Update,
-                ui.M_FixedUpdate,
                 ui.Exit
             };
 
