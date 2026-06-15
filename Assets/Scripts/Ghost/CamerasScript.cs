@@ -34,58 +34,25 @@ public class CamerasScript : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    if (m_cameras.Count < m_maxCameras)
-        //    {
-        //        Debug.Log("grgdf");
+        if (!m_onCamera)
+            return;
 
-        //        GameObject newCameraObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-        //        //name of the camera
-        //        newCameraObj.name = "CreatedCamera_" + (m_cameras.Count + 1);
-
-        //        Camera newCam = newCameraObj.AddComponent<Camera>();
-
-        //        //component of the camera
-        //        Rigidbody rb = newCameraObj.AddComponent<Rigidbody>();
-        //        rb.useGravity = true;
-        //        rb.isKinematic = false;
-
-        //        newCameraObj.transform.position = new Vector3(0f, 4f, -10f + m_testValue);
-        //        m_testValue += 1;
-
-        //        newCam.enabled = false;
-
-        //        m_cameras.Add(newCam);
-        //    }
-        //}
-
-        // Toggle camera display
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (m_cameras.Count > 0)
-            {
-                m_onCamera = !m_onCamera;
-                UpdateCameraDisplay();
-            }
+            m_currentCamera--;
+            if (m_currentCamera < 0)
+                m_currentCamera = m_cameras.Count - 1;
+
+            UpdateCameraDisplay();
         }
-        // Switch between cameras
-        if (m_onCamera)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                m_currentCamera--;
-                if (m_currentCamera < 0) m_currentCamera = m_cameras.Count - 1;
-                UpdateCameraDisplay();
-            }
 
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                m_currentCamera++;
-                if (m_currentCamera >= m_cameras.Count) m_currentCamera = 0;
-                UpdateCameraDisplay();
-            }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            m_currentCamera++;
+            if (m_currentCamera >= m_cameras.Count)
+                m_currentCamera = 0;
+
+            UpdateCameraDisplay();
         }
     }
 
@@ -109,5 +76,19 @@ public class CamerasScript : MonoBehaviour
                 m_cameraUiText.gameObject.SetActive(false);
             }
         }
+    }
+    public void OpenCameraView()
+    {
+        if (m_cameras.Count <= 0)
+            return;
+
+        m_onCamera = true;
+        UpdateCameraDisplay();
+    }
+
+    public void CloseCameraView()
+    {
+        m_onCamera = false;
+        UpdateCameraDisplay();
     }
 }

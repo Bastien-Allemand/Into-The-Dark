@@ -17,6 +17,7 @@ public class PhoneScript : MonoBehaviour
     //[SerializeField] private TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
     [SerializeField] private GameObject screenPhone;
+    [SerializeField] private CamerasScript camerasScript;
 
     [Header("Anchors")]
     [SerializeField] private Transform hiddenAnchor;
@@ -110,9 +111,20 @@ public class PhoneScript : MonoBehaviour
         if (currentState == PhoneState.Hidden)
             return;
 
-        screenPhone.SetActive(!screenPhone.activeSelf);
+        bool opening = !screenPhone.activeSelf;
 
-        currentState = currentState == PhoneState.Camera ? PhoneState.Idle : PhoneState.Camera;
+        screenPhone.SetActive(opening);
+
+        if (opening)
+        {
+            currentState = PhoneState.Camera;
+            camerasScript.OpenCameraView();
+        }
+        else
+        {
+            currentState = PhoneState.Idle;
+            camerasScript.CloseCameraView();
+        }
     }
 
     private Transform GetTargetAnchor()
