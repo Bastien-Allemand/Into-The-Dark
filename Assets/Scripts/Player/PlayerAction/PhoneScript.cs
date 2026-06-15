@@ -69,12 +69,11 @@ public class PhoneScript : MonoBehaviour
 
     private void HandleInputs()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             TogglePhone();
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             ToggleCameraMode();
         }
@@ -131,9 +130,9 @@ public class PhoneScript : MonoBehaviour
         Transform target = GetTargetAnchor();
 
         phoneTransform.localPosition = Vector3.Lerp(
-            phoneTransform.localPosition,
-            target.localPosition,
-            transitionSpeed * Time.deltaTime);
+     phoneTransform.localPosition,
+     target.localPosition,
+     transitionSpeed * Time.deltaTime);
 
         phoneTransform.localRotation = Quaternion.Slerp(
             phoneTransform.localRotation,
@@ -145,9 +144,15 @@ public class PhoneScript : MonoBehaviour
             target.localScale,
             transitionSpeed * Time.deltaTime);
 
-        if (waitingForHide &&
-            Vector3.Distance(phoneTransform.localPosition, hiddenAnchor.localPosition) < hideDistanceThreshold)
+        // 2. Vérification de la distance par rapport à la CIBLE actuelle
+        if (waitingForHide && Vector3.Distance(phoneTransform.localPosition, target.localPosition) < hideDistanceThreshold)
         {
+            // On force les valeurs exactes de la cible pour éviter les décalages de micro-pixels
+            phoneTransform.localPosition = target.localPosition;
+            phoneTransform.localRotation = target.localRotation;
+            phoneTransform.localScale = target.localScale;
+
+            // Désactivation propre
             phoneTransform.gameObject.SetActive(false);
             waitingForHide = false;
         }
@@ -192,5 +197,12 @@ public class PhoneScript : MonoBehaviour
 
         currentBattery = 0;
         phoneLight.enabled = false;
+    }
+    public bool CanWatchCamera()
+    {
+        if (!HaveBattery)
+            return false;
+
+        return currentState.Equals(PhoneState.Idle);
     }
 }
