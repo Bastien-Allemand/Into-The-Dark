@@ -4,22 +4,39 @@ using TMPro;
 
 public class CamerasScript : MonoBehaviour
 {
+
+    public static CamerasScript instance;
+
     [SerializeField] public int m_camAmount = 0;
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
+
+    [SerializeField] private RenderTexture m_screenRenderTexture;
 
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
     private int m_currentCamera = 0;
 
-    [SerializeField] private float maxBattery = 100f;
-    [SerializeField] private float batteryRemaining;
-
+   
     void Start()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+
         if (m_cameraUiText != null)
             m_cameraUiText.gameObject.SetActive(false);
 
-        batteryRemaining = maxBattery;
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
+        {
+            Camera childCam = item.GetComponentInChildren<Camera>();
+
+            if (childCam != null)
+            {
+                AddCamera(childCam.gameObject);
+            }
+        }
     }
 
     void AddCamera(GameObject camera)
@@ -34,53 +51,17 @@ public class CamerasScript : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    if (m_cameras.Count < m_maxCameras)
-        //    {
-        //        Debug.Log("grgdf");
-
-        //        GameObject newCameraObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-        //        //name of the camera
-        //        newCameraObj.name = "CreatedCamera_" + (m_cameras.Count + 1);
-
-        //        Camera newCam = newCameraObj.AddComponent<Camera>();
-
-        //        //component of the camera
-        //        Rigidbody rb = newCameraObj.AddComponent<Rigidbody>();
-        //        rb.useGravity = true;
-        //        rb.isKinematic = false;
-
-        //        newCameraObj.transform.position = new Vector3(0f, 4f, -10f + m_testValue);
-        //        m_testValue += 1;
-
-        //        newCam.enabled = false;
-
-        //        m_cameras.Add(newCam);
-        //    }
-        //}
-
-        // Toggle camera display
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (m_cameras.Count > 0)
-            {
-                m_onCamera = !m_onCamera;
-                UpdateCameraDisplay();
-            }
-        }
         // Switch between cameras
         if (m_onCamera)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 m_currentCamera--;
                 if (m_currentCamera < 0) m_currentCamera = m_cameras.Count - 1;
                 UpdateCameraDisplay();
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.O))
             {
                 m_currentCamera++;
                 if (m_currentCamera >= m_cameras.Count) m_currentCamera = 0;

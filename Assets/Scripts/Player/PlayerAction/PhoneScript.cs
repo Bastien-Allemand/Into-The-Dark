@@ -10,6 +10,8 @@ public enum PhoneState
 
 public class PhoneScript : MonoBehaviour
 {
+    PlayerAction controls;
+
     [Header("References")]
     [SerializeField] private Transform phoneTransform;
     [SerializeField] private GameObject battery;
@@ -27,9 +29,13 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private float transitionSpeed = 8f;
 
     [Header("Battery")]
-    [SerializeField] private float maxBattery = 100f;
+    [SerializeField] private float maxBattery = 100000000000f;
     [SerializeField] private float maxTime = 60f;
     [SerializeField] private float coeffBatteryLightUse = 5f;
+
+    [SerializeField] private bool isLookingCamera = false;
+    public bool IsLookingCamera => isLookingCamera;
+
 
     private float currentBattery;
     private float currentTimer;
@@ -57,6 +63,11 @@ public class PhoneScript : MonoBehaviour
         phoneTransform.localScale = hiddenAnchor.localScale;
     }
 
+    private void Awake()
+    {
+        controls = InputManager.controls;
+    }
+
     private void Update()
     {
         HandleInputs();
@@ -69,11 +80,13 @@ public class PhoneScript : MonoBehaviour
 
     private void HandleInputs()
     {
-        if (Input.GetKeyDown(KeyCode.U))
+        bool swapPhoneInput = controls.GamePlay.SwapPhone.triggered;
+        bool lookCameraInput = controls.GamePlay.LookCamera.triggered;
+        if (swapPhoneInput == true)
         {
             TogglePhone();
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (lookCameraInput == true)
         {
             ToggleCameraMode();
         }
@@ -111,7 +124,7 @@ public class PhoneScript : MonoBehaviour
             return;
 
         screenPhone.SetActive(!screenPhone.activeSelf);
-
+        isLookingCamera = !isLookingCamera;
         currentState = currentState == PhoneState.Camera ? PhoneState.Idle : PhoneState.Camera;
     }
 
