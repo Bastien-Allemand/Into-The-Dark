@@ -101,13 +101,23 @@ public class PlayerStateMachine : MonoBehaviour
 
     void CheckState()
     {
-        if (phoneScript.IsLookingCamera == true)
-            return;
+       
+         
 
         moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
         bool isMoving = moveInput != Vector2.zero;
+
+
+        if (phoneScript.IsLookingCamera == true)
+        {
+            if (isMoving)
+            {
+                moveInput = new Vector2(0, 0);
+            }
+            return;
+        }
 
         if (isMoving == false)
         {

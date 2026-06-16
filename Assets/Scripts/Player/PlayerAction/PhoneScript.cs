@@ -34,7 +34,11 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private float coeffBatteryLightUse = 5f;
 
     [SerializeField] private bool isLookingCamera = false;
+   
     public bool IsLookingCamera => isLookingCamera;
+    private bool wasSwitchLastFrame = false;
+
+    [SerializeField] private Vector2 moveInput;
 
 
     private float currentBattery;
@@ -81,8 +85,10 @@ public class PhoneScript : MonoBehaviour
     private void HandleInputs()
     {
         bool swapPhoneInput = controls.GamePlay.SwapPhone.triggered;
+
         bool lookCameraInput = controls.GamePlay.LookCamera.triggered;
-        Vector2 moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
+        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
+        bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
         if (swapPhoneInput == true)
         {
             TogglePhone();
@@ -91,17 +97,21 @@ public class PhoneScript : MonoBehaviour
         {
             ToggleCameraMode();
         }
-        if (moveInput != Vector2.zero && currentState == PhoneState.Camera) 
+        if (moveInput != Vector2.zero && currentState == PhoneState.Camera && isSwapThisFrame && !wasSwitchLastFrame) 
         { 
             if(moveInput.x > 0)
             {
+                Debug.Log("next cam");
                 CamerasScript.instance.NextCamera();
             }
             else if(moveInput.x < 0)
             {
+                Debug.Log("previous cam");
                 CamerasScript.instance.PreviousCamera();
             }
         }
+
+        wasSwitchLastFrame = isSwapThisFrame;
     }
 
     private void TogglePhone()
@@ -180,15 +190,14 @@ public class PhoneScript : MonoBehaviour
             target.localScale,
             transitionSpeed * Time.deltaTime);
 
-        // 2. Vérification de la distance par rapport à la CIBLE actuelle
+
         if (waitingForHide && Vector3.Distance(phoneTransform.localPosition, target.localPosition) < hideDistanceThreshold)
         {
-            // On force les valeurs exactes de la cible pour éviter les décalages de micro-pixels
+
             phoneTransform.localPosition = target.localPosition;
             phoneTransform.localRotation = target.localRotation;
             phoneTransform.localScale = target.localScale;
 
-            // Désactivation propre
             phoneTransform.gameObject.SetActive(false);
             waitingForHide = false;
         }
