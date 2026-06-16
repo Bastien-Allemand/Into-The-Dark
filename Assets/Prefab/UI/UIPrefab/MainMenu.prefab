@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8266988969662794980
 CanvasRenderer:
@@ -146,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96da8ff26f4ed904c9ac8da06e7edd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bouton
-  t_target: {fileID: 0}
-  sc_target: {fileID: 0}
+  show_target: []
+  hide_target: []
+  sc_target: {fileID: 102900000, guid: 4ba57d87b34f88244aa9be2ade43d22b, type: 3}
 --- !u!1 &2066825722665931306
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,10 +182,10 @@ RectTransform:
   - {fileID: 2239907457923925552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7799163009093825767
 MonoBehaviour:
@@ -198,8 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b80f87cff6a2742a93243d0a20b752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  cursorWantedState: 1
   enter: 0
   exit: 0
+  option: {fileID: 4134238548343674391}
 --- !u!1 &3282346583721427815
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +241,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8498027986736729638
 CanvasRenderer:
@@ -324,7 +327,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4134238548343674391}
         m_TargetAssemblyTypeName: Bouton, Assembly-CSharp
-        m_MethodName: UIShowOnly
+        m_MethodName: ActionUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -346,7 +349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96da8ff26f4ed904c9ac8da06e7edd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShowOnly
-  t_target: {fileID: 0}
+  show_target: []
+  hide_target:
+  - {fileID: 6026982200260722323}
   sc_target: {fileID: 0}
 --- !u!1 &3396928697061030727
 GameObject:
@@ -442,10 +447,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 44.75
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -526,7 +531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -70}
+  m_AnchoredPosition: {x: 270, y: -100}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9106795509850566330
@@ -699,10 +704,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 44.75
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -838,10 +843,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 44.75
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -921,7 +926,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3650508859599378453
 CanvasRenderer:
@@ -1029,7 +1034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96da8ff26f4ed904c9ac8da06e7edd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShowOnly
-  t_target: {fileID: 0}
+  show_target: []
+  hide_target: []
   sc_target: {fileID: 0}
 --- !u!1 &7716628127118347374
 GameObject:
@@ -1184,7 +1190,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 918, y: 400}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8345028845846410973
 CanvasRenderer:

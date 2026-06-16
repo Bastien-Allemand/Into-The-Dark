@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UIManager;
 
 public class PauseMenu : UI
 {
-    PlayerAction controls;
+    PlayerAction controls => InputManager.controls;
 
     [SerializeField] public Transform GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
+    [SerializeField] private Bouton b_continue;
     public override bool EnterCondition()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
@@ -32,7 +32,19 @@ public class PauseMenu : UI
     }
     public override void Init()
     {
-        controls = InputManager.controls;
+        cursorWantedState = CursorLockMode.None;
+
+        Transform target = manager.GetUIs<MainMenu>();
+        if (target)
+        {
+            b_continue.show_target.Add(target);
+            Debug.Log(target.transform);
+        }
+        else
+        {
+            Debug.Log("No MainMenu");
+        }
+
         foreach (InputAction action in controls.GamePlay.Get())
         {
             if (action.name == "Look")
@@ -46,10 +58,6 @@ public class PauseMenu : UI
         exit = false;
         manager.Pause(true);
     }
-    //private void Update()
-    //{
-    //    Cursor.lockState = CursorLockMode.None;
-    //}
     public override void Exit()
     {
         manager.Pause(false);
