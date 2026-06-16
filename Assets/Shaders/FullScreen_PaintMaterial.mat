@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PP_OutlineMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 95826aaae43bb8e4eb3bc42e2ef05042, type: 3}
+  m_Name: FullScreen_PaintMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 0fbf4fda20e089a4eac40156065de142, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,9 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth_Threshold: 0.8
-    - _Outline_Thickness: 0.001
-    m_Colors:
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Inetensity: 0.8
+    - _Intensity: 0.8
+    - _Radius: 4
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
