@@ -1,10 +1,6 @@
 using System;
 using System.Linq;
-using TMPro;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
@@ -15,22 +11,13 @@ public class UIManager : MonoBehaviour
         get;
         private set;
     }
+
+    CursorLockMode cursorWantedState;
+
     private void Awake() => Instance = this;
 
     PlayerAction controls;
-    [Header("Manager Setting")]
-    [Space(5)]
-    [SerializeField] public Transform[] UIs;
-    [SerializeField] public List<ListUI> actifUI;
-
-
-
-    public enum ListUI
-    {
-        MainMenu,
-        PauseMenu,
-        PlayerUI
-    }
+    public List<Transform> UIs;
 
     private enum conditionList
     {
@@ -41,18 +28,16 @@ public class UIManager : MonoBehaviour
     {
         init,
         enter,
-        update,
-        fixedUpdate,
         exit
     }
-    Dictionary<ListUI, List<Func<bool>>> condition;
-    Dictionary<ListUI, System.Action[]> action;
+    Dictionary<Transform, List<Func<bool>>> condition;
+    Dictionary<Transform, System.Action[]> action;
     void FoncInit()
     {
-        condition = new Dictionary<ListUI, List<Func<bool>>>();
-        action = new Dictionary<ListUI, Action[]>();
+        condition = new Dictionary<Transform, List<Func<bool>>>();
+        action = new Dictionary<Transform, Action[]>();
 
-        Action<UI, ListUI> init = (UI ui, ListUI index) =>
+        Action<Transform, UI> init = (Transform index, UI ui) =>
         {
             //      Condition
             List<Func<bool>> tmpCondition = new List<Func<bool>>()
@@ -66,8 +51,6 @@ public class UIManager : MonoBehaviour
             {
                 ui.Init,
                 ui.Enter,
-                ui.M_Update,
-                ui.M_FixedUpdate,
                 ui.Exit
             };
 
@@ -86,98 +69,122 @@ public class UIManager : MonoBehaviour
                 ui = UIs[i].GetComponent<UI>();
                 Debug.Log("UI Add Code : " + ui);
             }
-            init(ui, (ListUI)i);
+            init(UIs[i], ui);
         }
     }
     private void Init()
     {
+        UIs = new List<Transform>();
+        foreach (Transform enfant in transform.GetComponentsInChildren<Transform>(true))
+        {
+            if (enfant.GetComponent<UI>())
+            {
+                UIs.Add(enfant);
+            }
+        }
+        FoncInit();
         Pause(false);
         //  init all UI
         foreach (var pair in action)
         {
             pair.Value[(int)actionList.init]();
         }
-        //  Hide all
-        foreach (var ui in UIs)
+
+        UpdateCursorState();
+    }
+    private void UpdateCursorState()
+    {
+        cursorWantedState = CursorLockMode.Locked;
+        foreach (Transform t in UIs)
         {
-            ui.gameObject.SetActive(false);
+            if (t.gameObject.activeSelf)
+            {
+                cursorWantedState = t.GetComponent<UI>().cursorWantedState;
+                if (cursorWantedState == CursorLockMode.None)
+                {
+                    break;
+                }
+            }
         }
-        //  Show All Active UI
-        foreach (ListUI ui in actifUI)
-        {
-            //  same code as the ShowUI but without the actifUI.Add()
-            UIs[(int)ui].gameObject.SetActive(true);
-            action[ui][(int)actionList.enter]();
-            Debug.Log($"{UIs[(int)ui].gameObject.name} : {UIs[(int)ui].gameObject.activeSelf}");
-        }
+        Cursor.lockState = cursorWantedState;
     }
     private void Start()
     {
         controls = InputManager.controls;
-        FoncInit();
         Init();
     }
     private void Update()
     {
-        for (int i = 0; i < UIs.Length; i++)
-            if (!UIs[i].gameObject.activeSelf)
+        for (int i = 0; i < UIs.Count; i++)
+        {
+            if (!UIs[i].gameObject.activeSelf)  //  check if enter condition is true    because it's inactif
             {
-
-                if (condition[(ListUI)i][(int)conditionList.enter]())
+                if (condition[UIs[i]][(int)conditionList.enter]())
                 {
-                    ShowUI((ListUI)i);
+                    ShowUI(UIs[i]);
                 }
             }
             else
             {
-                if (condition[(ListUI)i][(int)conditionList.exit]())
+                if (condition[UIs[i]][(int)conditionList.exit]())   //  check if exit condition is true because it's actif
                 {
                     Debug.Log(UIs[i].gameObject.name + " exit.");
-                    HideUI((ListUI)i);
+                    HideUI(UIs[i]);
                 }
-                else
-                    action[(ListUI)i][(int)actionList.update]();
             }
+        }
 
     }
-
-    private void FixedUpdate()
+    public Transform GetUIs<T>()
     {
-        foreach (var i in actifUI)
-            action[i][(int)actionList.fixedUpdate]();
+        foreach (Transform t in UIs)
+        {
+            T tmp = t.transform.GetComponentInChildren<T>();
+            if (tmp != null)
+            {
+                return t;
+            }
+        }
+        Debug.Log($"not found {typeof(T).Name}");
+        return null;
     }
-    public Transform getUI(ListUI index) => UIs[(int)index];
-    public void SwapActive(ListUI it)
+    public void SwapActive(Transform it)
     {
-        getUI(it).gameObject.SetActive(!getUI(it).gameObject.activeSelf);
+        it.gameObject.SetActive(!it.gameObject.activeSelf);
     }
-    public void ShowUI(ListUI it)
+    public void ShowUI(Transform it)
     {
-        UIs[(int)it].gameObject.SetActive(true);
-        action[it][(int)actionList.enter]();
-        Debug.Log($"{UIs[(int)it].gameObject.name} : {UIs[(int)it].gameObject.activeSelf}");
-        actifUI.Add(it);
+        if (!it.gameObject.activeSelf)
+        {
+            it.gameObject.SetActive(true);
+            action[it][(int)actionList.enter]();
+            Debug.Log($"{it.gameObject.name} : {it.gameObject.activeSelf}");
+            UpdateCursorState();
+        }
     }
-    public void HideUI(ListUI it)
+    public void HideUI(Transform it)
     {
-        action[it][(int)actionList.exit]();
-        UIs[(int)it].gameObject.SetActive(false);
-        Debug.Log($"{UIs[(int)it].gameObject.name} : {UIs[(int)it].gameObject.activeSelf}");
-        actifUI.Remove(it);
+        if (it.gameObject.activeSelf)
+        {
+            action[it][(int)actionList.exit]();
+            it.gameObject.SetActive(false);
+            Debug.Log($"{it.gameObject.name} : {it.gameObject.activeSelf}");
+            UpdateCursorState();
+        }
     }
     public void HideAllUI()
     {
         Debug.Log("Hide All");
-        for (int i = actifUI.Count - 1; i >= 0; i--)
+        foreach (Transform it in UIs)
         {
-            HideUI(actifUI[i]);
+            if (it.gameObject.activeSelf)
+            {
+                action[it][(int)actionList.exit]();
+                it.gameObject.SetActive(false);
+                Debug.Log($"{it.gameObject.name} : {it.gameObject.activeSelf}");
+            }
         }
-    }
-    public void ShowOnly(ListUI it)
-    {
-        Debug.Log($" Show Only : {UIs[(int)it].gameObject.name}");
-        HideAllUI();
-        ShowUI(it);
+        UpdateCursorState();
     }
     public void Pause(bool pause)
     {

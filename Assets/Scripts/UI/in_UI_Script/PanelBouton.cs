@@ -19,5 +19,4 @@ public class PanelBouton : MonoBehaviour
         }
         target.gameObject.SetActive(true);
     }
-
 }

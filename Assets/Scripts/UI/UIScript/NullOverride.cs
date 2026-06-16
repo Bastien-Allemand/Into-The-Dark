@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerUI : UI
+public class NullOverride : UI
 {
     public override bool EnterCondition()
     {
@@ -14,12 +14,6 @@ public class PlayerUI : UI
     {
     }
     public override void Enter()
-    {
-    }
-    public override void M_Update()
-    {
-    }
-    public override void M_FixedUpdate()
     {
     }
     public override void Exit()
