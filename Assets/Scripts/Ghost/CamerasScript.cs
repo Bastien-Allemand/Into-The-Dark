@@ -5,7 +5,7 @@ using TMPro;
 public class CamerasScript : MonoBehaviour
 {
 
-    public static CamerasScript instance;
+    public static CamerasScript instance { get; private set; }
 
     [SerializeField] public int m_camAmount = 0;
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
@@ -46,28 +46,39 @@ public class CamerasScript : MonoBehaviour
         {
             m_cameras.Add(cam);
             m_camAmount++;
+
+            cam.targetTexture = null;
+            //cam.enabled = false;
         }
     }
 
     void Update()
     {
-        // Switch between cameras
-        if (m_onCamera)
-        {
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                m_currentCamera--;
-                if (m_currentCamera < 0) m_currentCamera = m_cameras.Count - 1;
-                UpdateCameraDisplay();
-            }
+        
+    }
 
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                m_currentCamera++;
-                if (m_currentCamera >= m_cameras.Count) m_currentCamera = 0;
-                UpdateCameraDisplay();
-            }
-        }
+    public void SetCameraViewActive(bool active)
+    {
+        m_onCamera = active;
+        UpdateCameraDisplay();
+    }
+
+    public void NextCamera()
+    {
+        if (!m_onCamera || m_cameras.Count == 0) return;
+
+        m_currentCamera++;
+        if (m_currentCamera >= m_cameras.Count) m_currentCamera = 0;
+        UpdateCameraDisplay();
+    }
+
+    public void PreviousCamera()
+    {
+        if (!m_onCamera || m_cameras.Count == 0) return;
+
+        m_currentCamera--;
+        if (m_currentCamera < 0) m_currentCamera = m_cameras.Count - 1;
+        UpdateCameraDisplay();
     }
 
     // Update the camera display based on the current state
@@ -75,19 +86,21 @@ public class CamerasScript : MonoBehaviour
     {
         for (int i = 0; i < m_cameras.Count; i++)
         {
-            m_cameras[i].enabled = (m_onCamera && i == m_currentCamera);
-        }
-
-        if (m_cameraUiText != null)
-        {
-            if (m_onCamera && m_cameras.Count > 0)
+            if (m_onCamera && i == m_currentCamera)
             {
-                m_cameraUiText.gameObject.SetActive(true);
-                m_cameraUiText.text = m_cameras[m_currentCamera].gameObject.name;
+
+                m_cameras[i].targetTexture = m_screenRenderTexture;
+
+                m_cameras[i].enabled = true;
             }
             else
             {
-                m_cameraUiText.gameObject.SetActive(false);
+
+                if (m_cameras[i].targetTexture == m_screenRenderTexture)
+                {
+                    m_cameras[i].targetTexture = null;
+                }
+                m_cameras[i].enabled = false;
             }
         }
     }

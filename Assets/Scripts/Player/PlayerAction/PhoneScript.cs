@@ -82,6 +82,7 @@ public class PhoneScript : MonoBehaviour
     {
         bool swapPhoneInput = controls.GamePlay.SwapPhone.triggered;
         bool lookCameraInput = controls.GamePlay.LookCamera.triggered;
+        Vector2 moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         if (swapPhoneInput == true)
         {
             TogglePhone();
@@ -89,6 +90,17 @@ public class PhoneScript : MonoBehaviour
         if (lookCameraInput == true)
         {
             ToggleCameraMode();
+        }
+        if (moveInput != Vector2.zero && currentState == PhoneState.Camera) 
+        { 
+            if(moveInput.x > 0)
+            {
+                CamerasScript.instance.NextCamera();
+            }
+            else if(moveInput.x < 0)
+            {
+                CamerasScript.instance.PreviousCamera();
+            }
         }
     }
 
@@ -101,7 +113,7 @@ public class PhoneScript : MonoBehaviour
             currentState = PhoneState.Idle;
 
             battery.SetActive(true);
-           // textBattery.enabled = true;
+            //textBattery.enabled = true;
 
             waitingForHide = false;
         }
@@ -110,9 +122,15 @@ public class PhoneScript : MonoBehaviour
             currentState = PhoneState.Hidden;
 
             battery.SetActive(false);
-          //  textBattery.enabled = false;
+            //textBattery.enabled = false;
             phoneLight.enabled = false;
             screenPhone.SetActive(false);
+
+            isLookingCamera = false;
+            if (CamerasScript.instance != null)
+            {
+                CamerasScript.instance.SetCameraViewActive(false);
+            }
 
             waitingForHide = true;
         }
@@ -126,6 +144,11 @@ public class PhoneScript : MonoBehaviour
         screenPhone.SetActive(!screenPhone.activeSelf);
         isLookingCamera = !isLookingCamera;
         currentState = currentState == PhoneState.Camera ? PhoneState.Idle : PhoneState.Camera;
+
+        if(CamerasScript.instance != null)
+        {
+            CamerasScript.instance.SetCameraViewActive(currentState == PhoneState.Camera);
+        }
     }
 
     private Transform GetTargetAnchor()
