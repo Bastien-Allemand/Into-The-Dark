@@ -15,6 +15,7 @@ public class ComputerScript : MonoBehaviour
     [Header("Computer")]
     [SerializeField] private GameObject screenPC;
     [SerializeField] private Transform computerViewPoint;
+    [SerializeField] private Transform playerAnchor;
 
     [Header("Animation")]
     [SerializeField] private float transitionSpeed = 5f;
@@ -22,12 +23,15 @@ public class ComputerScript : MonoBehaviour
     private bool usingComputer = false;
 
     private Vector3 startCamPosition;
+    private Vector3 cameraLocalPos;
     private Quaternion startCamRotation;
 
     private void Start()
     {
         if (screenPC != null)
             screenPC.SetActive(false);
+
+        cameraLocalPos = playerCamera.transform.localPosition;
     }
 
     private void Update()
@@ -69,6 +73,8 @@ public class ComputerScript : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        player.transform.position = playerAnchor.transform.position;
     }
 
     private void ExitComputer()
@@ -78,7 +84,7 @@ public class ComputerScript : MonoBehaviour
         movementScript.enabled = true;
         lookScript.enabled = true;
 
-        playerCamera.transform.position = startCamPosition;
+        playerCamera.transform.localPosition = cameraLocalPos;
         playerCamera.transform.rotation = startCamRotation;
 
         screenPC.SetActive(false);
