@@ -52,7 +52,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwapPhone",
+                    "name": "Swap Phone",
                     "type": "Button",
                     "id": "e3d6de0d-83bd-4fdb-9067-0e9ebe57ce3f",
                     "expectedControlType": "",
@@ -244,7 +244,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwapPhone",
+                    "action": "Swap Phone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -377,6 +377,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Consume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "1736e705-2882-426b-a6f2-548e6e0eb41b",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "6c4452ed-db3e-4da6-bf44-3e8caa9cc8d3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fc7d4246-2266-43f6-bfe0-ed5debc7a285",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
