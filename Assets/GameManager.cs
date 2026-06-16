@@ -10,14 +10,20 @@ public class GameManager : MonoBehaviour
     [Header("UI Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject transitionPanel;
+    [SerializeField] private GameObject transitionText;
 
     [Header("Timer Settings")]
-    [SerializeField] private float timeToSurvive = 60f;
+    [SerializeField] private float timeToSurvive = 5f;
     [SerializeField] private TextMeshProUGUI timerText;
 
     [Header("Story Transition Settings")]
-    [SerializeField] private float timeToWaitBeforeNextScene = 3.5f;
-    [SerializeField] private string nextSceneName = "NextSceneHistoire";
+    [SerializeField] private float timeToWaitBeforeNextScene = 3f;
+    //[SerializeField] private string nextSceneName = "NextSceneHistoire";
+
+    [Header("Glitch Effect Settings")]
+    [SerializeField] private float glitchTriggerTime = 0.5f;
+    [SerializeField] private float minBlinkDelay = 0.05f;
+    [SerializeField] private float maxBlinkDelay = 0.25f;
 
     private float currentTime;
     private bool isGameOver = false;
@@ -74,19 +80,38 @@ public class GameManager : MonoBehaviour
             transitionPanel.SetActive(true);
         }
 
+        if (transitionText != null)
+        {
+            transitionText.SetActive(true);
+        }
+
         StartCoroutine(WaitAndLoadNextScene());
     }
 
     private IEnumerator WaitAndLoadNextScene()
     {
-        yield return new WaitForSeconds(timeToWaitBeforeNextScene);
-
-        if (transitionPanel != null)
+        float normalWaitTime = timeToWaitBeforeNextScene - glitchTriggerTime;
+        if (normalWaitTime > 0)
         {
-            transitionPanel.SetActive(false);
+            yield return new WaitForSeconds(normalWaitTime);
         }
 
-        //SceneManager.LoadScene(nextSceneName);
+        float glitchTimer = 0f;
+        while (glitchTimer < glitchTriggerTime)
+        {
+            if (transitionText != null)
+            {
+                transitionText.SetActive(!transitionText.activeSelf);
+            }
+
+            float randomDelay = Random.Range(minBlinkDelay, maxBlinkDelay);
+            yield return new WaitForSeconds(randomDelay);
+
+            glitchTimer += randomDelay;
+        }
+
+        if (transitionPanel != null) transitionPanel.SetActive(false);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
