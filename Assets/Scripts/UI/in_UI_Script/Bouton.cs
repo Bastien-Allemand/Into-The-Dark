@@ -1,68 +1,60 @@
 using System;
+using System.Collections.Generic;
 using Unity.VectorGraphics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class Bouton : MonoBehaviour
 {
-    UIManager uiManager;
-    [SerializeField] private Transform t_target;
+    UIManager uiManager => UIManager.Instance;
+    [SerializeField] public List<Transform> show_target;
+    [SerializeField] public List<Transform> hide_target;
     [SerializeField] private SceneAsset sc_target;
-    private void Awake()
+    public void SetPause(bool to)
     {
-        uiManager = FindFirstObjectByType<UIManager>();
-    }
-    public void ExitPauseMenu()
-    {
-        t_target.GetComponent<PauseMenu>().exit = true;
-        Debug.Log(t_target.GetComponent<PauseMenu>().exit);
-    }
-    public void ExitPause()
-    {
-        uiManager.Pause(false);
+        uiManager.Pause(to);
     }
     public void ChangeScene()
     {
         SceneManager.LoadScene(sc_target.name);
     }
-    public void HideSelf()
+    public void ActionUI()
     {
-
+        foreach (Transform t in show_target)
+        {
+            uiManager.ShowUI(t);
+        }
+        foreach (Transform t in hide_target)
+        {
+            uiManager.HideUI(t);
+        }
     }
-    public void TargetSwapActive()
+    public void Action()
     {
-        t_target.gameObject.SetActive(!t_target.gameObject.activeSelf);
+        foreach (Transform t in show_target)
+        {
+            t.gameObject.SetActive(true);
+        }
+        foreach (Transform t in hide_target)
+        {
+            t.gameObject.SetActive(false);
+        }
     }
-    public void TargetShow()
+    public void ActiveSwap()
     {
-        t_target.gameObject.SetActive(true);
+        foreach (Transform t in show_target)
+        {
+            t.gameObject.SetActive(!t.gameObject.activeSelf);
+        }
     }
-    public void TargetHide()
+    public void ActiveSwapUI()
     {
-        t_target.gameObject.SetActive(false);
-    }
-    public void UIShowOnly()
-    {
-        int a = Array.FindIndex(uiManager.UIs, x => x.name == t_target.name);
-        uiManager.ShowOnly((UIManager.ListUI)a);
-    }
-    public void UIShow()
-    {
-        int a = Array.FindIndex(uiManager.UIs, x => x.name == t_target.name);
-        uiManager.ShowUI((UIManager.ListUI)a);
-    }
-    public void UIHide()
-    {
-        int a = Array.FindIndex(uiManager.UIs, x => x.name == t_target.name);
-        uiManager.HideUI((UIManager.ListUI)a);
-    }
-    public void SwapActiveState()
-    {
-        if (t_target.gameObject.activeSelf)
-            UIHide();
-        else
-            UIShow();
+        foreach (Transform t in show_target)
+        {
+            uiManager.SwapActive(t);
+        }
     }
     public void StopProgram()
     {

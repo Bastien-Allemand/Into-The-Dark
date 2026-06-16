@@ -418,8 +418,8 @@ public class PickUpScript : MonoBehaviour
         Vector3 currentWorldScale = handItem.transform.lossyScale;
         handItem.transform.SetParent(null);
         handItem.transform.localScale = currentWorldScale;
-
-        handItem.transform.position = new Vector3(preview.transform.position.x, preview.transform.position.y + (handItem.transform.localScale.y / 2) - 0.1f, preview.transform.position.z);
+        handItem.transform.position = preview.transform.position;
+        //handItem.transform.position = new Vector3(preview.transform.position.x, preview.transform.position.y + (handItem.transform.localScale.y / 2) - 0.1f, preview.transform.position.z);
         handItem.transform.rotation = preview.transform.rotation;
         Rigidbody rb = handItem.GetComponent<Rigidbody>();
         Collider collider = handItem.GetComponent<Collider>();

@@ -11,10 +11,15 @@ public class CamerasScript : MonoBehaviour
     private bool m_onCamera = false;
     private int m_currentCamera = 0;
 
+    [SerializeField] private float maxBattery = 100f;
+    [SerializeField] private float batteryRemaining;
+
     void Start()
     {
         if (m_cameraUiText != null)
             m_cameraUiText.gameObject.SetActive(false);
+
+        batteryRemaining = maxBattery;
     }
 
     void AddCamera(GameObject camera)
