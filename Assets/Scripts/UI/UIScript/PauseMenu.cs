@@ -46,6 +46,10 @@ public class PauseMenu : UI
         exit = false;
         manager.Pause(true);
     }
+    //private void Update()
+    //{
+    //    Cursor.lockState = CursorLockMode.None;
+    //}
     public override void Exit()
     {
         manager.Pause(false);

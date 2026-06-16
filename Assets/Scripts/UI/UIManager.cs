@@ -41,8 +41,6 @@ public class UIManager : MonoBehaviour
     {
         init,
         enter,
-        update,
-        fixedUpdate,
         exit
     }
     Dictionary<ListUI, List<Func<bool>>> condition;
@@ -133,17 +131,10 @@ public class UIManager : MonoBehaviour
                     Debug.Log(UIs[i].gameObject.name + " exit.");
                     HideUI((ListUI)i);
                 }
-                else
-                    action[(ListUI)i][(int)actionList.update]();
             }
 
     }
 
-    private void FixedUpdate()
-    {
-        foreach (var i in actifUI)
-            action[i][(int)actionList.fixedUpdate]();
-    }
     public Transform getUI(ListUI index) => UIs[(int)index];
     public void SwapActive(ListUI it)
     {
