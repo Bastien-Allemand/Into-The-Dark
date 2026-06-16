@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &109278576 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4050243274233686940, guid: 6423abae487405a4c809cc3a9a438d1c, type: 3}
+  m_PrefabInstance: {fileID: 8468902465270543714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &923215030 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6049986552421902025, guid: 6423abae487405a4c809cc3a9a438d1c, type: 3}
@@ -267,6 +272,11 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!224 &1262971345 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8291057102475171435, guid: 6423abae487405a4c809cc3a9a438d1c, type: 3}
+  m_PrefabInstance: {fileID: 8468902465270543714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290424825
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +496,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2043788255533290207, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: sprintBarTransform
+      value: 
+      objectReference: {fileID: 109278576}
+    - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: chargeBarTransform
+      value: 
+      objectReference: {fileID: 8468902465270543715}
     - target: {fileID: 4420624848759808975, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1022.0239
@@ -530,6 +548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 7801913923009114371, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: insaneBarTransform
+      value: 
+      objectReference: {fileID: 1262971345}
     - target: {fileID: 8457909196551719911, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: itemText
       value: 
@@ -936,6 +958,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6423abae487405a4c809cc3a9a438d1c, type: 3}
+--- !u!224 &8468902465270543715 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4286448710283949620, guid: 6423abae487405a4c809cc3a9a438d1c, type: 3}
+  m_PrefabInstance: {fileID: 8468902465270543714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
