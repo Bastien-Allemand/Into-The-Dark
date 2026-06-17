@@ -1,19 +1,51 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputSaveManager : MonoBehaviour
 {
+    private static InputSaveManager _instance;
+    public static InputSaveManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new InputSaveManager();
+            }
+            return _instance;
+        }
+    }
+    private InputSaveManager() { }
+
     [SerializeField] public Transform boutonSlider_content;
     [SerializeField] private GameObject boutonPrefab;
 
-    string currentFileJsonUsed; // full path
+    string currentJsonPathUsed; // full path
     //  save somewhere the current used json
     private void Start()
     {
+        currentJsonPathUsed = JsonManager.Instance.pathUsed.path_map_PlayerActionMap_GamePlay;
+        //  look if the default json of input is existing
+        if (!File.Exists(JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName)))
+        {
+            PlayerAction actionMap = new PlayerAction();
+            JsonManager.Instance.SaveInputInJson(actionMap.GamePlay, JsonManager.defaultName);
+        }
+        //  look if the current used inputjson is existing
+        if (!File.Exists(currentJsonPathUsed))
+        {
+            currentJsonPathUsed = JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName);
+            UsePathSave overide = JsonManager.Instance.pathUsed;
+            overide.path_map_PlayerActionMap_GamePlay = currentJsonPathUsed;
+            JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(overide, true));
+        }
         CreateBouton();
     }
     private void updateBouton()
     {
+        //  supp all ui bouton json and recreate all
+        //  (an update for when there is a rename, create or supp)
         Transform[] childs = boutonSlider_content.GetComponentsInChildren<Transform>();
         foreach (Transform child in childs)
         {
@@ -24,9 +56,9 @@ public class InputSaveManager : MonoBehaviour
     public void SaveInput(string fileName = null)
     {
         if (fileName == null)
-            fileName = currentFileJsonUsed;
+            fileName = currentJsonPathUsed;
         //  get automaticly the current used json
-        SaveManager.Instance.Save(SaveManager.fileType.json, SaveManager.path.Input, fileName, InputManager.controls.SaveBindingOverridesAsJson());
+        JsonManager.Instance.Save(JsonManager.path.Input, fileName, InputManager.controls.SaveBindingOverridesAsJson());
     }
     public void CreateSave(string fileName)
     {
@@ -37,29 +69,28 @@ public class InputSaveManager : MonoBehaviour
     public void SuppSave(string name)
     {
         //  name without path
-        SaveManager.Instance.supp_File(
-            SaveManager.Instance.GetPath(
-                SaveManager.path.Input,
-                SaveManager.Instance.nameToFileType(
-                name,
-                SaveManager.fileType.json)
+        JsonManager.Instance.supp_File(
+            JsonManager.Instance.GetPath(
+                JsonManager.path.Input,
+                name
             )
         );
+        updateBouton();
     }
     public void RenameSave(string newName)
     {
-        SaveManager.Instance.Rename_MoveFile(
-            currentFileJsonUsed,
-            SaveManager.Instance.GetPath(SaveManager.path.Input,
-            SaveManager.Instance.nameToFileType(
-                newName,
-                SaveManager.fileType.json)
+        JsonManager.Instance.Rename_MoveFile(
+            currentJsonPathUsed,
+            JsonManager.Instance.GetPath(
+                JsonManager.path.Input,
+                newName
             )
         );
+        updateBouton();
     }
     private void CreateBouton()
     {
-        string[] jsonNames = SaveManager.Instance.getFileNames(SaveManager.path.Input, SaveManager.fileType.json);
+        string[] jsonNames = JsonManager.Instance.getJsonNames(JsonManager.path.Input);
         foreach (string jsonName in jsonNames)
         {
             GameObject go = Instantiate(boutonPrefab, boutonSlider_content);

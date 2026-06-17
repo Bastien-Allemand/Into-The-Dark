@@ -5,30 +5,42 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SaveManager
+public class JsonManager
 {
-    private static SaveManager _instance;
-    public static SaveManager Instance
+    public static string defaultName = "Default";
+    private static JsonManager _instance;
+    public static JsonManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = new SaveManager();
+                _instance = new JsonManager();
             }
 
             return _instance;
         }
     }
-    private SaveManager() { }
-    private PlayerAction controls => InputManager.controls;
+    private JsonManager() { }
+    PlayerAction controls => InputManager.controls;
+    public UsePathSave pathUsed => getUsedPath();
+
     public enum path
     {
+        Use,
         Input
     }
-    public enum fileType
+    public UsePathSave getUsedPath()
     {
-        json
+        string usePath = GetPath(path.Use, defaultName);
+        if (!File.Exists(usePath))
+        {
+            UsePathSave tmp;
+            tmp.path_map_PlayerActionMap_GamePlay = GetPath(path.Input, defaultName);
+            string json = JsonUtility.ToJson(tmp);
+            Save(path.Use, defaultName, json);
+        }
+        return JsonUtility.FromJson<UsePathSave>(usePath);
     }
     public string GetPath(path path, string fileName = null)
     {
@@ -39,25 +51,25 @@ public class SaveManager
         state = "Build";
 #endif
         string resultPath;
-        if (!string.IsNullOrEmpty(fileName))
+        if (string.IsNullOrEmpty(fileName))
         {
             resultPath = Path.Combine(
                 UnityEngine.Application.persistentDataPath,
-                state, path.ToString(), fileName
-                );
+                state, path.ToString()
+            );
         }
         else
         {
             resultPath = Path.Combine(
                 UnityEngine.Application.persistentDataPath,
-                state, path.ToString()
-                );
+                state, path.ToString(), nameToJsonFile(fileName)
+            );
         }
         return resultPath;
     }
-    public void Save(fileType type, path jsonpath, string fileName, string text)
+    public void Save(path jsonpath, string fileName, string text)
     {
-        string extention = $".{type.ToString()}";
+        string extention = ".json";
         if (!fileName.EndsWith(extention, System.StringComparison.OrdinalIgnoreCase))
         {
             fileName = Path.GetFileNameWithoutExtension(fileName) + extention;
@@ -69,16 +81,15 @@ public class SaveManager
         }
         File.WriteAllText(path, text);
     }
-    public void SaveInputInJson(string fileName)
+    public void SaveInputInJson(InputActionMap map, string fileName)
     {
-        InputActionMap map = controls.GamePlay;
         string json = map.SaveBindingOverridesAsJson();
-        Save(fileType.json, path.Input, fileName, json);
+        Save(path.Input, fileName, json);
     }
 
-    public string[] getFileNames(path path, fileType type)
+    public string[] getJsonNames(path path)
     {
-        string[] files = Directory.GetFiles(GetPath(path), $"*.{type.ToString()}");
+        string[] files = Directory.GetFiles(GetPath(path), "*.json");
 
         //  ! pas de foreach avec modification pour les []      pas touche ! :3
         for (int i = 0; i < files.Length; i++)  //  enlaive tout le path et extention pour n'avoir que le name
@@ -110,16 +121,16 @@ public class SaveManager
             File.Delete(path);
         }
     }
-    public void LoadInputFromJson(string fileName)
+    public void LoadInputFromJson(string targetPath)
     {
         //  use getJsonFileName and use a select system to get the fileName
-        if (fileName.EndsWith(".json", System.StringComparison.OrdinalIgnoreCase))
+        if (targetPath.EndsWith(".json", System.StringComparison.OrdinalIgnoreCase))
         {
-            Debug.Log($"BUG : LoadInputFromJson() > fileName : {fileName} is not a json");
+            Debug.Log($"BUG : LoadInputFromJson() > fileName : {targetPath} is not a json");
             return;
         }
 
-        string path = GetPath(SaveManager.path.Input, fileName);
+        string path = GetPath(JsonManager.path.Input, targetPath);
         if (File.Exists(path))
         {
             Debug.Log("loading ...");
@@ -127,20 +138,16 @@ public class SaveManager
             string json = File.ReadAllText(path);
             controls.asset.LoadBindingOverridesFromJson(json);
 
-            Debug.Log($"Input prefab {fileName} Loaded");
+            Debug.Log($"Input prefab {targetPath} Loaded");
         }
         else
         {
-            Debug.Log($"No Json name {fileName} in path {path}");
+            Debug.Log($"No Json name {targetPath} in path {path}");
         }
     }
-    public string nameToFileType(string name, fileType type)
+    public string nameToJsonFile(string name)
     {
-        string extention = $".{type.DisplayName()}";
-        if (name.EndsWith(extention, System.StringComparison.OrdinalIgnoreCase))
-        {
-            return name;
-        }
+        string extention = ".json";
         return Path.GetFileNameWithoutExtension(name) + extention;
     }
 }
