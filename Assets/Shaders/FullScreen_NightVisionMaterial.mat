@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FullScreen_OutlineMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 95826aaae43bb8e4eb3bc42e2ef05042, type: 3}
+  m_Name: FullScreen_NightVisionMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: da1cd6c79eb338544812e2f6d1ad0b6e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,9 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth_Threshold: 0.9
-    - _Outline_Thickness: 0.002
+    - _Noise_Intensity: 0.007
+    - _Speed: 60
     m_Colors:
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0.21176471}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
