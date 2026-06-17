@@ -310,6 +310,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c219f1a62b158448b0e26d68c135b3b, type: 3}
+--- !u!224 &101596747 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3924616587762276976, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+  m_PrefabInstance: {fileID: 2122405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &130918604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2763,6 +2768,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: chargeBarTransform
+      value: 
+      objectReference: {fileID: 101596747}
     - target: {fileID: 4420624848759808975, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.0271
@@ -2820,7 +2829,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 4c296eae9eb2052408d204bc0f31a2e0, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3403167344636534513, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+    - {fileID: 5504877965596008754, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
