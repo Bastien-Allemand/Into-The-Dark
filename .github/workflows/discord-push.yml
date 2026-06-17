@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Discord notification
+      - name: Notify Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
           -X POST \
           -d '{
-            "content": "<@&1493962854389387294> 🚀 Nouveau push sur le projet Unity !\nAuteur: '${{ github.actor }}'\nBranche: '${{ github.ref_name }}'\nCommit: '${{ github.event.head_commit.message }}'"
+            "content": "<@&1493962854389387294>🔔 Nouveau push sur **${{ github.repository }}**\n👤 Auteur : **${{ github.actor }}**\n🌿 Branche : **${{ github.ref_name }}**\n📝 Commit : **${{ github.event.head_commit.message }}**"
           }' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+          "$WEBHOOK"
