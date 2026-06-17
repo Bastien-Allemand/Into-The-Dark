@@ -90,27 +90,14 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitAndLoadNextScene()
     {
-        float normalWaitTime = timeToWaitBeforeNextScene - glitchTriggerTime;
-        if (normalWaitTime > 0)
+        yield return new WaitForSeconds(timeToWaitBeforeNextScene);
+
+        if (transitionPanel != null)
         {
-            yield return new WaitForSeconds(normalWaitTime);
+            transitionPanel.SetActive(false);
         }
 
-        float glitchTimer = 0f;
-        while (glitchTimer < glitchTriggerTime)
-        {
-            if (transitionText != null)
-            {
-                transitionText.SetActive(!transitionText.activeSelf);
-            }
-
-            float randomDelay = Random.Range(minBlinkDelay, maxBlinkDelay);
-            yield return new WaitForSeconds(randomDelay);
-
-            glitchTimer += randomDelay;
-        }
-
-        if (transitionPanel != null) transitionPanel.SetActive(false);
+        //SceneManager.LoadScene(nextSceneName);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
