@@ -3,6 +3,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     static protected UIManager manager => UIManager.Instance;
+    public CursorLockMode cursorWantedState = CursorLockMode.Locked;
     public bool enter = false;
     public bool exit = false;
     public virtual bool EnterCondition()
