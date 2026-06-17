@@ -13,6 +13,7 @@ public class CamerasScript : MonoBehaviour
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
     private int m_currentCamera = 0;
+    public Camera camActive;
 
     void Awake()
     {
@@ -44,14 +45,26 @@ public class CamerasScript : MonoBehaviour
     public void NextCamera()
     {
         if (!m_onCamera || m_cameras.Count == 0) return;
-        m_currentCamera = (m_currentCamera + 1) % m_cameras.Count;
+
+        m_currentCamera++;
+        if (m_currentCamera >= m_cameras.Count)
+        {
+            m_currentCamera = 0;
+        }
+
         UpdateCameraDisplay();
     }
 
     public void PreviousCamera()
     {
         if (!m_onCamera || m_cameras.Count == 0) return;
-        m_currentCamera = (m_currentCamera - 1 + m_cameras.Count) % m_cameras.Count;
+
+        m_currentCamera--;
+        if (m_currentCamera < 0)
+        {
+            m_currentCamera = m_cameras.Count - 1;
+        }
+
         UpdateCameraDisplay();
     }
 
@@ -71,6 +84,8 @@ public class CamerasScript : MonoBehaviour
             if (m_onCamera && m_cameras.Count > 0)
                 m_cameraUiText.text = "CAM " + (m_currentCamera + 1);
         }
+
+        camActive = m_cameras[m_currentCamera];
     }
     void LateUpdate()
     {
