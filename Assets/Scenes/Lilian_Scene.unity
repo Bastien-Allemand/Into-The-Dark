@@ -1639,6 +1639,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxBattery: 5
   batteryRemaining: 0
+  timeToReload: 1
+  currentTimeReload: 0
+  canReload: 0
 --- !u!4 &1304650550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0817a938320a1547b170eae4b00f339, type: 3}
@@ -2146,17 +2149,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1293401955}
   m_SourcePrefab: {fileID: 100100000, guid: dd17601dac3dc594fa9acbd393a553d6, type: 3}
---- !u!114 &1777821763 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1855949690762412832, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-  m_PrefabInstance: {fileID: 2460110362121666466}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fcebc1edecf1da49a118099e9967779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PhoneScript
 --- !u!4 &1779478274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb59ff6769d884c45b23e5b83305c3f4, type: 3}
@@ -2744,14 +2736,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1288241533370297106, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-      propertyPath: m_screenRenderTexture
-      value: 
-      objectReference: {fileID: 8400000, guid: 5951d2779d5240040a133b1c31bd8fbd, type: 2}
-    - target: {fileID: 2043788255533290207, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-      propertyPath: phoneScript
-      value: 
-      objectReference: {fileID: 1777821763}
     - target: {fileID: 2043788255533290207, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: sprintBarTransform
       value: 
@@ -2760,18 +2744,14 @@ PrefabInstance:
       propertyPath: itemText
       value: 
       objectReference: {fileID: 1334550395}
-    - target: {fileID: 3486757570673078211, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3486757570673078211, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: chargeBarTransform
       value: 
       objectReference: {fileID: 101596747}
+    - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: batteryLayerMask.m_Bits
+      value: 16384
+      objectReference: {fileID: 0}
     - target: {fileID: 4420624848759808975, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.0271
@@ -2820,18 +2800,8 @@ PrefabInstance:
       propertyPath: insaneBarTransform
       value: 
       objectReference: {fileID: 253537874}
-    - target: {fileID: 8457909196551719911, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-      propertyPath: itemText
-      value: 
-      objectReference: {fileID: 1334550395}
-    - target: {fileID: 9077920826426697030, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 4c296eae9eb2052408d204bc0f31a2e0, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3403167344636534513, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
-    - {fileID: 5504877965596008754, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
