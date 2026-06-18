@@ -11,12 +11,12 @@ public class PlayerDeathState : IState
     private PlayerStateMachine stateMachine;
     private Rigidbody rb;
 
-
     public PlayerDeathState(PlayerStateMachine stateMachine, Rigidbody rb)
     {
         this.stateMachine = stateMachine;
         this.rb = rb;
     }
+
     public void Enter()
     {
         if (stateMachine.debug)
@@ -24,7 +24,9 @@ public class PlayerDeathState : IState
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.TriggerGameOver(deathCause.Insanity);
+            deathCause reason = stateMachine.LastDeathCause;
+
+            GameManager.Instance.TriggerGameOver(reason);
         }
     }
 

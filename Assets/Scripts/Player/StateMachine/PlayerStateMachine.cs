@@ -12,6 +12,8 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
 
+    public deathCause LastDeathCause { get; set; }
+
     public PlayerOnPhoneState OnPhoneState { get; private set; }
 
     [Header("References")]
