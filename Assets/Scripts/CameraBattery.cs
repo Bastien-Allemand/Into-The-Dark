@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CameraBattery : MonoBehaviour
 {
-    [SerializeField] private float maxBattery = 100f;
-    [SerializeField] private float batteryRemaining;
+    [SerializeField] public float maxBattery = 100f;
+    [SerializeField] public float batteryRemaining;
     [SerializeField] private float timeToReload = 1f;
     [SerializeField] private float currentTimeReload;
 

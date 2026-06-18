@@ -509,7 +509,7 @@ public class PickUpScript : MonoBehaviour
 
                 if (camBat != null)
                 {
-                    if (batteryCount > 0 && Inventory.instance.GetActiveSlot() == ItemType.Battery)
+                    if (batteryCount > 0 && Inventory.instance.GetActiveSlot() == ItemType.Battery && camBat.batteryRemaining < camBat.maxBattery)
                     {
                         if (isLeftHandEmpty || isRightHandEmpty)
                         {
