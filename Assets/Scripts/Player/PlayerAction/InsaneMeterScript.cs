@@ -30,12 +30,18 @@ public class InsaneMeterScript : MonoBehaviour
         }
     }
 
-    private void OnEnable() => controls.Enable();
-    private void OnDisable() => controls.Disable();
+    private void OnEnable()
+    {
+        Inventory.OnPillsCountChanged += UpdatePills;
+    }
+    private void OnDisable()
+    {
+        Inventory.OnPillsCountChanged -= UpdatePills;
+    }
 
     void Awake()
     {
-        controls = new PlayerAction();
+        controls = InputManager.controls;
     }
 
     void Update()
@@ -98,17 +104,21 @@ public class InsaneMeterScript : MonoBehaviour
         }
     }
 
+    void UpdatePills(int totalPills)
+    {
+        pills = totalPills;
+    }
+
     void CheckUsePill()
     {
-        if (pills <= 0)
+        if (pills <= 0 || Inventory.instance.GetActiveSlot() != ItemType.Pill)
             return;
 
-        if (controls.GamePlay.Interact.triggered && takingPills == false)
+        if (controls.GamePlay.Consume.triggered && takingPills == false)
         {
-            takingPills = true;
-
+           takingPills = true;
         }
-        else if (takingPills == true)
+        if (takingPills == true)
         {
             currentanimDuration += Time.deltaTime;
             if (currentanimDuration >= animDuration)
@@ -117,6 +127,7 @@ public class InsaneMeterScript : MonoBehaviour
                 currentanimDuration = 0f;
                 takingPills = false;
                 insaneMeter -= maxInsaneMeter * 0.15f;
+                Inventory.instance.Remove(ItemType.Pill);
                 if (insaneMeter <= 0)
                 { 
                     insaneMeter = 0; 

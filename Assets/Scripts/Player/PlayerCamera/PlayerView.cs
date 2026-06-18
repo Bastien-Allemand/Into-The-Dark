@@ -6,6 +6,7 @@ public class PlayerView : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] private Camera _camera;
+    [SerializeField] private PickUpScript pickUpScript;
 
     [Space(5)]
 
@@ -15,22 +16,23 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private float XMaxAngle = 75f;
     private Vector2 targetRotation;
 
+
+
     private void Awake()
     {
         controls = InputManager.controls;
-        //controls = new PlayerAction();
     }
 
-    //private void OnEnable() => controls.Enable();
-    //private void OnDisable() => controls.Disable();
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
+        if (pickUpScript != null && pickUpScript.IsRotating == true)
+            return;
        Look();
     }
 
