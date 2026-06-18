@@ -5,7 +5,8 @@ public class PauseMenu : UI
 {
     PlayerAction controls => InputManager.controls;
 
-    [SerializeField] public Transform GO_Controls_Content;
+                        //  first letter of var, then what it does
+    [SerializeField] public GameObject GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
     public override bool EnterCondition()
@@ -49,18 +50,18 @@ public class PauseMenu : UI
         {
             if (action.name == "Look")
                 continue;
-            CreateBoutonFromAction(action,GO_Controls_Content);
+            CreateBoutonFromAction(action,GO_Controls_Content.transform);
         }
     }
     public override void Enter()
     {
         Debug.Log("Pause Menu : Enter");
         exit = false;
-        manager.Pause(true);
+        Pause(true);
     }
     public override void Exit()
     {
-        manager.Pause(false);
+        Pause(false);
     }
 
     private void CreateBoutonFromAction(InputAction action, Transform parent)
@@ -86,6 +87,23 @@ public class PauseMenu : UI
                 Debug.Log("script Rebind not found");
 
             bindingIndex++;
+        }
+    }
+
+    public void Pause(bool pause)
+    {
+        //  il faut rajouter la pause pour les entité
+        if (pause)
+        {
+            Debug.Log("Time : Pause");
+            controls.GamePlay.Disable();
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Debug.Log("Time : Continue");
+            controls.GamePlay.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

@@ -5,9 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JsonManager
+public class JsonManager : MonoBehaviour
 {
-    public static string defaultName = "Default";
     private static JsonManager _instance;
     public static JsonManager Instance
     {
@@ -21,29 +20,40 @@ public class JsonManager
             return _instance;
         }
     }
-    private JsonManager() { }
-    PlayerAction controls => InputManager.controls;
-    public UsePathSave pathUsed => getUsedPath();
 
+    public static string defaultName = "Default";
+    private string savePath;
+    PlayerAction controls => InputManager.controls;
+    public UsePathSave pathUsed;
     public enum path
     {
         Use,
         Input
+    }
+    private JsonManager() { }
+    private void Awake()
+    {
+        Debug.Log("JsonManager Awake");
+        pathUsed = getUsedPath();
+        savePath = Application.persistentDataPath;
+        Debug.Log("JsonManager Awake End");
+
     }
     public UsePathSave getUsedPath()
     {
         string usePath = GetPath(path.Use, defaultName);
         if (!File.Exists(usePath))
         {
-            UsePathSave tmp;
-            tmp.path_map_PlayerActionMap_GamePlay = GetPath(path.Input, defaultName);
-            string json = JsonUtility.ToJson(tmp);
+            UsePathSave use = new UsePathSave();
+            use.Default();
+            string json = JsonUtility.ToJson(use);
             Save(path.Use, defaultName, json);
         }
         return JsonUtility.FromJson<UsePathSave>(usePath);
     }
     public string GetPath(path path, string fileName = null)
     {
+        Debug.Log("Get Path Called");
         string state = "bug";
 #if UNITY_EDITOR
         state = "Editor";
@@ -54,14 +64,14 @@ public class JsonManager
         if (string.IsNullOrEmpty(fileName))
         {
             resultPath = Path.Combine(
-                UnityEngine.Application.persistentDataPath,
+                savePath,
                 state, path.ToString()
             );
         }
         else
         {
             resultPath = Path.Combine(
-                UnityEngine.Application.persistentDataPath,
+                savePath,
                 state, path.ToString(), nameToJsonFile(fileName)
             );
         }

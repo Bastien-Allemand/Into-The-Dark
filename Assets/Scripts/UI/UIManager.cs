@@ -1,24 +1,30 @@
+using NUnit.Framework;
 using System;
-using System.Linq;
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager _instance;
     public static UIManager Instance
     {
-        get;
-        private set;
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<UIManager>();
+            }
+
+            return _instance;
+        }
     }
 
-    CursorLockMode cursorWantedState;
-
-    private void Awake() => Instance = this;
-
-    PlayerAction controls;
     public List<Transform> UIs;
 
+    Dictionary<Transform, List<Func<bool>>> condition;
+    Dictionary<Transform, System.Action[]> action;
     private enum conditionList
     {
         enter,
@@ -30,9 +36,60 @@ public class UIManager : MonoBehaviour
         enter,
         exit
     }
-    Dictionary<Transform, List<Func<bool>>> condition;
-    Dictionary<Transform, System.Action[]> action;
-    void FoncInit()
+
+    private UIManager() { }
+
+    private void Awake()
+    {
+        Init();
+    }
+    private void Update()
+    {
+        for (int i = 0; i < UIs.Count; i++)
+        {
+            if (!UIs[i].gameObject.activeSelf)  //  check if enter condition is true    because it's inactif
+            {
+                if (condition[UIs[i]][(int)conditionList.enter]())
+                {
+                    ShowUI(UIs[i]);
+                }
+            }
+            else
+            {
+                if (condition[UIs[i]][(int)conditionList.exit]())   //  check if exit condition is true because it's actif
+                {
+                    Debug.Log(UIs[i].gameObject.name + " exit.");
+                    HideUI(UIs[i]);
+                }
+            }
+        }
+
+    }
+    private void Init()
+    {
+        Debug.Log("Init UIs in UIManager");
+        UIs = new List<Transform>();
+        foreach (Transform enfant in transform.GetComponentsInChildren<Transform>(true))
+        {
+            if (enfant.GetComponent<UI>())
+            {
+                UIs.Add(enfant);
+                Debug.Log($"Add in UIs : {enfant.name}");
+            }
+        }
+        Debug.Log($"UIs : {UIs.Count}");
+        FoncInit();
+        Debug.Log("end funcInit");
+        //  init all UI
+        foreach (var pair in action)
+        {
+            Debug.Log($"call init func of : {pair.Key.name}");
+            pair.Value[(int)actionList.init]();
+        }
+
+        UpdateCursorState();
+    }
+    private void FoncInit()
     {
         condition = new Dictionary<Transform, List<Func<bool>>>();
         action = new Dictionary<Transform, Action[]>();
@@ -72,77 +129,17 @@ public class UIManager : MonoBehaviour
             init(UIs[i], ui);
         }
     }
-    private void Init()
+    public Transform GetUIs<T>() where T : Component
     {
-        UIs = new List<Transform>();
-        foreach (Transform enfant in transform.GetComponentsInChildren<Transform>(true))
+        Debug.Log($"Seach in UIs the componant {typeof(T).Name}");
+        Debug.Log($"debug test UIs : {UIs}");
+        foreach (Transform ui in UIs)
         {
-            if (enfant.GetComponent<UI>())
+            T result = ui.transform.GetComponentInChildren<T>(true);
+            Debug.Log($"found : {result}");
+            if (result != null)
             {
-                UIs.Add(enfant);
-            }
-        }
-        FoncInit();
-        Pause(false);
-        //  init all UI
-        foreach (var pair in action)
-        {
-            pair.Value[(int)actionList.init]();
-        }
-
-        UpdateCursorState();
-    }
-    private void UpdateCursorState()
-    {
-        cursorWantedState = CursorLockMode.Locked;
-        foreach (Transform t in UIs)
-        {
-            if (t.gameObject.activeSelf)
-            {
-                cursorWantedState = t.GetComponent<UI>().cursorWantedState;
-                if (cursorWantedState == CursorLockMode.None)
-                {
-                    break;
-                }
-            }
-        }
-        Cursor.lockState = cursorWantedState;
-    }
-    private void Start()
-    {
-        controls = InputManager.controls;
-        Init();
-    }
-    private void Update()
-    {
-        for (int i = 0; i < UIs.Count; i++)
-        {
-            if (!UIs[i].gameObject.activeSelf)  //  check if enter condition is true    because it's inactif
-            {
-                if (condition[UIs[i]][(int)conditionList.enter]())
-                {
-                    ShowUI(UIs[i]);
-                }
-            }
-            else
-            {
-                if (condition[UIs[i]][(int)conditionList.exit]())   //  check if exit condition is true because it's actif
-                {
-                    Debug.Log(UIs[i].gameObject.name + " exit.");
-                    HideUI(UIs[i]);
-                }
-            }
-        }
-
-    }
-    public Transform GetUIs<T>()
-    {
-        foreach (Transform t in UIs)
-        {
-            T tmp = t.transform.GetComponentInChildren<T>();
-            if (tmp != null)
-            {
-                return t;
+                return ui;
             }
         }
         Debug.Log($"not found {typeof(T).Name}");
@@ -186,20 +183,20 @@ public class UIManager : MonoBehaviour
         }
         UpdateCursorState();
     }
-    public void Pause(bool pause)
+    private void UpdateCursorState()
     {
-        //  il faut rajouter la pause pour les entité
-        if (pause)
+        CursorLockMode cursorWantedState = CursorLockMode.Locked;
+        foreach (Transform t in UIs)
         {
-            Debug.Log("Time : Pause");
-            controls.GamePlay.Disable();
-            Cursor.lockState = CursorLockMode.None;
+            if (t.gameObject.activeSelf)
+            {
+                cursorWantedState = t.GetComponent<UI>().cursorWantedState;
+                if (cursorWantedState == CursorLockMode.None)
+                {
+                    break;
+                }
+            }
         }
-        else
-        {
-            Debug.Log("Time : Continue");
-            controls.GamePlay.Enable();
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        Cursor.lockState = cursorWantedState;
     }
 }

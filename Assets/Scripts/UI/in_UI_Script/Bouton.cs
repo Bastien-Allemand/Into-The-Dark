@@ -12,10 +12,6 @@ public class Bouton : MonoBehaviour
     [SerializeField] public List<Transform> show_target;
     [SerializeField] public List<Transform> hide_target;
     [SerializeField] private SceneAsset sc_target;
-    public void SetPause(bool to)
-    {
-        uiManager.Pause(to);
-    }
     public void ChangeScene()
     {
         SceneManager.LoadScene(sc_target.name);

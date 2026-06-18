@@ -3,11 +3,11 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class SaveBouton : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI m_TextMeshPro;
     UsePathSave json;
+
 
     public void Use()
     {
