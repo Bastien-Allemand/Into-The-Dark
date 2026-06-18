@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class CameraBattery : MonoBehaviour
 {
-    PlayerAction controls => InputManager.controls;
-
     [SerializeField] private float maxBattery = 100f;
     [SerializeField] private float batteryRemaining;
+    [SerializeField] private float timeToReload = 1f;
+    [SerializeField] private float currentTimeReload;
+
+    public bool canReload = false;
     private Camera myCam;
     void Start()
     {
@@ -17,6 +19,7 @@ public class CameraBattery : MonoBehaviour
     private void Update()
     {
         UpdateBattery();
+        UpdateReload();
     }
 
     void UpdateBattery()
@@ -33,11 +36,25 @@ public class CameraBattery : MonoBehaviour
             }
         }
     }
-
+    //Add verif for left or right hand by use the PickUpScript => isLeftHandEmpty/isRightHandEmpty
     public void Reload()
     {
         batteryRemaining = maxBattery;
         if (myCam != null) myCam.enabled = true;
-        Debug.Log($"Caméra {gameObject.name} rechargée !");
+        Debug.Log($"Cam {gameObject.name} reload");
+    }
+
+    void UpdateReload()
+    {
+        if(canReload)
+        {
+            currentTimeReload += Time.deltaTime;
+            if(currentTimeReload >= timeToReload)
+            {
+                Reload();
+                currentTimeReload = 0;
+                canReload = false;
+            }
+        }
     }
 }

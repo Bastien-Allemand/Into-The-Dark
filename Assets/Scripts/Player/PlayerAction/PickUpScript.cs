@@ -15,6 +15,7 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] private GameObject objectPreview;
     GameObject preview;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask batteryLayerMask;
 
     private float initialChargeBarWidth;
 
@@ -48,6 +49,7 @@ public class PickUpScript : MonoBehaviour
     private bool canPlaceThisFrame = true;
 
     private bool wasInteractingLastFrame = false;
+    private bool wasConsumeLastFrame = false;
     private bool isChargingRight = false;
     private bool isChargingLeft = false;
     private float percentLeft = 0f;
@@ -76,6 +78,9 @@ public class PickUpScript : MonoBehaviour
 
         initialChargeBarWidth = chargeBarTransform.rect.width;
         chargeBarTransform.sizeDelta = new Vector2(chargeBarTransform.rect.width * 0f, chargeBarTransform.rect.height);
+
+        layerMask = LayerMask.GetMask("Placeable");
+        batteryLayerMask = LayerMask.GetMask("ItemCamera");
     }
     void Update()
     {
@@ -84,12 +89,10 @@ public class PickUpScript : MonoBehaviour
         UpdateUI();
 
     }
-
     private void OnEnable()
     {
         Inventory.OnBatteryCountChanged += UpdateBatteryCount;
     }
-
     private void OnDisable()
     {
         Inventory.OnBatteryCountChanged -= UpdateBatteryCount;
@@ -492,17 +495,15 @@ public class PickUpScript : MonoBehaviour
         isRotating = false;
         canPlaceThisFrame = false;
     }
-
     void HandleConsumeInput()
     {
         float consumeValue = controls.GamePlay.Consume.ReadValue<float>();
         bool isConsumePressed = consumeValue > 0.5f;
-        if (isConsumePressed)
+        if (isConsumePressed && !wasConsumeLastFrame)
         {
-            Debug.Log("Touche R pressée ! Lancement du Raycast...");
             Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-            if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance, layerMask))
+            Debug.Log("R Pressed");
+            if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance, batteryLayerMask))
             {
                 CameraBattery camBat = hit.collider.GetComponent<CameraBattery>();
 
@@ -513,17 +514,19 @@ public class PickUpScript : MonoBehaviour
                         if (isLeftHandEmpty || isRightHandEmpty)
                         {
                             Inventory.instance.Remove(ItemType.Battery);
-                            camBat.Reload();
+                            if(camBat.canReload == false)
+                            {
+                                camBat.canReload = true;
+                            }
                         }
                     }
                 }
             }
         }
+        wasConsumeLastFrame = isConsumePressed;
     }
-
     void UpdateBatteryCount(int total)
     {
         batteryCount = total;
     }
-
 }
