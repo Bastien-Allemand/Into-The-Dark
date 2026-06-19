@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject transitionText;
 
     [SerializeField] private TextMeshProUGUI gameOverReasonText;
+    [SerializeField] private CanvasGroup gameOverCanvasGroup;
 
     [Header("Timer Settings")]
     [SerializeField] private float timeToSurvive = 5f;
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float startBlinkingAt = 10f;
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color warningColor = Color.red;
+
+    [Header("Game Over Polish")]
+    [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private float textTypeSpeed = 0.05f;
 
     private float currentTime;
     private bool isPaused = false;
@@ -58,6 +63,11 @@ public class GameManager : MonoBehaviour
 
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (transitionPanel != null) transitionPanel.SetActive(false);
+
+        if (gameOverCanvasGroup != null)
+        {
+            gameOverCanvasGroup.alpha = 0f;
+        }
     }
 
     public void TogglePause()
@@ -216,29 +226,50 @@ public class GameManager : MonoBehaviour
         if (isGameOver || isTransitioning) return;
         isGameOver = true;
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        string deathMessage = "Vous avez péri.";
+        switch (cause)
+        {
+            case deathCause.Caught:
+                deathMessage = "Vous avez été attrapé...";
+                break;
+            case deathCause.Insanity:
+                deathMessage = "Votre esprit a sombré dans la folie profonde.";
+                break;
+        }
+
+        StartCoroutine(GameOverSequence(deathMessage));
+    }
+
+    private IEnumerator GameOverSequence(string message)
+    {
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+        if (gameOverReasonText != null) gameOverReasonText.text = "";
+
+        if (gameOverCanvasGroup != null)
+        {
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                gameOverCanvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
+                yield return null;
+            }
+            gameOverCanvasGroup.alpha = 1f;
+        }
+
         if (gameOverReasonText != null)
         {
-            switch (cause)
+            foreach (char letter in message.ToCharArray())
             {
-                case deathCause.Caught:
-                    gameOverReasonText.text = "Vous avez été attrapé...";
-                    break;
-
-                case deathCause.Insanity:
-                    gameOverReasonText.text = "Votre esprit a sombré dans la folie profonde.";
-                    break;
-
-                default:
-                    gameOverReasonText.text = "Vous avez péri.";
-                    break;
+                gameOverReasonText.text += letter;
+                yield return new WaitForSecondsRealtime(textTypeSpeed);
             }
         }
 
-        if (gameOverPanel != null) gameOverPanel.SetActive(true);
-
         Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     public void RestartGame()
