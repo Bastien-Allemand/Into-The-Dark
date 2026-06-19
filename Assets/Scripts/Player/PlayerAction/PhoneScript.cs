@@ -33,6 +33,8 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private float maxTime = 60f;
     [SerializeField] private float coeffBatteryLightUse = 5f;
 
+    [SerializeField] private Material fogMaterial;
+
     [SerializeField] private bool isLookingCamera = false;
    
     public bool IsLookingCamera => isLookingCamera;
