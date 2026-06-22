@@ -7,52 +7,54 @@ using UnityEngine.InputSystem;
 
 public class JsonManager : MonoBehaviour
 {
-    private static JsonManager _instance;
-    public static JsonManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                GameObject go = new GameObject("InputSaveManager");
-                _instance = go.AddComponent<JsonManager>();
-                DontDestroyOnLoad(go);
-            }
+    public static JsonManager Instance { get; private set; }
 
-            return _instance;
-        }
-    }
-
-    public static string defaultName = "Default";
-    private string gameName = "Into-The-Dark";
+    public static string defaultName;
     private string savePath;
-    PlayerAction controls => InputManager.controls;
     public UsePathSave pathUsed;
+    PlayerAction controls => InputManager.controls;
     public enum path
     {
         Use,
-        Input
+        Input,
+        GameSave
     }
-    private JsonManager() { }
     private void Awake()
     {
         Debug.Log("JsonManager Awake");
-        pathUsed = getUsedPath();
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+
+        defaultName = "Default";
         savePath = Application.persistentDataPath;
+
+        pathUsed = getUsedPath();
         Debug.Log("JsonManager Awake End");
 
     }
+
     public UsePathSave getUsedPath()
     {
+        UsePathSave result;
         string usePath = GetPath(path.Use, defaultName);
         if (!File.Exists(usePath))
         {
-            UsePathSave use = new UsePathSave();
-            use.Default();
-            string json = JsonUtility.ToJson(use);
-            Save(path.Use, defaultName, json);
+            result = new UsePathSave();
+            result.Default();
         }
-        return JsonUtility.FromJson<UsePathSave>(usePath);
+        else
+        {
+            result = new UsePathSave();
+            result.Default();
+            Debug.Log(usePath);
+            JsonUtility.FromJsonOverwrite(File.ReadAllText(usePath), result);
+        }
+        string json = JsonUtility.ToJson(result);
+        Save(path.Use, defaultName, json);
+        Debug.Log("Save Default Json");
+        return result;
     }
     public string GetPath(path path, string fileName = null)
     {
@@ -67,14 +69,14 @@ public class JsonManager : MonoBehaviour
         if (string.IsNullOrEmpty(fileName))
         {
             resultPath = Path.Combine(
-                savePath, gameName,
+                savePath, 
                 state, path.ToString()
             );
         }
         else
         {
             resultPath = Path.Combine(
-                savePath, gameName,
+                savePath,
                 state, path.ToString(), nameToJsonFile(fileName)
             );
         }
@@ -87,12 +89,26 @@ public class JsonManager : MonoBehaviour
         {
             fileName = Path.GetFileNameWithoutExtension(fileName) + extention;
         }
+        string folderPath = GetPath(jsonpath);
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
         string path = GetPath(jsonpath, fileName);
-        if(File.Exists(path))
+        if (File.Exists(path))
         {
             Debug.Log("path already existing : overwriting");
         }
+
         File.WriteAllText(path, text);
+    }
+    public void Save(string fullPath, string json) // no as secure as the other one
+    {
+        if (File.Exists(fullPath))
+        {
+            Debug.Log("path already existing : overwriting");
+        }
+        File.WriteAllText(fullPath, json);
     }
     public void SaveInputInJson(InputActionMap map, string fileName)
     {
@@ -130,7 +146,7 @@ public class JsonManager : MonoBehaviour
     public void supp_File(string path)
     {
         if (File.Exists(path))
-        { 
+        {
             File.Delete(path);
         }
     }

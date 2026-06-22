@@ -14,9 +14,7 @@ public class InputSaveManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                GameObject go = new GameObject("InputSaveManager");
-                _instance = go.AddComponent<InputSaveManager>();
-                DontDestroyOnLoad(go);
+                _instance = new InputSaveManager();
             }
 
             return _instance;
