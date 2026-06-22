@@ -1052,12 +1052,19 @@ MonoBehaviour:
   gameOverPanel: {fileID: 2053881253}
   transitionPanel: {fileID: 1849610292}
   transitionText: {fileID: 1995547650}
+  gameOverReasonText: {fileID: 0}
+  gameOverCanvasGroup: {fileID: 0}
   timeToSurvive: 30
   timerText: {fileID: 1188936438}
   timeToWaitBeforeNextScene: 3
   glitchTriggerTime: 0.5
   minBlinkDelay: 0.05
   maxBlinkDelay: 0.25
+  startBlinkingAt: 10
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  fadeDuration: 1.5
+  textTypeSpeed: 0.05
 --- !u!1 &577285110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3404,6 +3411,8 @@ MonoBehaviour:
   maxBattery: 100
   maxTime: 60
   coeffBatteryLightUse: 5
+  isLookingCamera: 0
+  moveInput: {x: 0, y: 0}
   hideDistanceThreshold: 0.01
 --- !u!114 &1777821764
 MonoBehaviour:
@@ -4422,6 +4431,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 876443185}
     m_Modifications:
+    - target: {fileID: 1284992690665560174, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284992690665560174, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1672703929581515410, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.86
@@ -4442,6 +4459,10 @@ PrefabInstance:
       propertyPath: screenPhone
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2930897254122312196, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: itemText
+      value: 
+      objectReference: {fileID: 1317668474}
     - target: {fileID: 3486757570673078211, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
