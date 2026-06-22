@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindFirstObjectByType<UIManager>();
+                _instance = FindFirstObjectByType<UIManager>(); //  code needed in a prefab so use FindFirst
             }
 
             return _instance;

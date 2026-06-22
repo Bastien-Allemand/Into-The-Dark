@@ -14,7 +14,9 @@ public class JsonManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = new JsonManager();
+                GameObject go = new GameObject("InputSaveManager");
+                _instance = go.AddComponent<JsonManager>();
+                DontDestroyOnLoad(go);
             }
 
             return _instance;

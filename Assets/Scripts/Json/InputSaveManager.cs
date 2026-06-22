@@ -14,8 +14,11 @@ public class InputSaveManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = new InputSaveManager();
+                GameObject go = new GameObject("InputSaveManager");
+                _instance = go.AddComponent<InputSaveManager>();
+                DontDestroyOnLoad(go);
             }
+
             return _instance;
         }
     }
@@ -51,9 +54,9 @@ public class InputSaveManager : MonoBehaviour
         //  supp all ui bouton json and recreate all
         //  (an update for when there is a rename, create or supp)
         Transform[] childs = boutonSlider_content.GetComponentsInChildren<Transform>();
-        foreach (Transform child in childs)
+        for (int i = childs.Length - 1; i >= 0; i--)
         {
-            Destroy(child.gameObject);
+            Destroy(childs[i].gameObject);
         }
         CreateBouton();
     }
