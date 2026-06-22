@@ -252,4 +252,11 @@ public class PhoneScript : MonoBehaviour
 
         return currentState.Equals(PhoneState.Idle);
     }
+    private void FlashLightShaderUpdate()
+    {
+        if (fogMaterial == null || phoneLight == null)
+            return;
+        fogMaterial.SetVector("_FlashlightPos", phoneLight.transform.position);
+        fogMaterial.SetVector("_FlashlightDir", phoneLight.transform.forward);
+    }
 }
