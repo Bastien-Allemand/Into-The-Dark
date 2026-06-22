@@ -19,6 +19,7 @@ public class PhoneScript : MonoBehaviour
     //[SerializeField] private TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
     [SerializeField] private GameObject screenPhone;
+    [SerializeField] private RectTransform phoneCanvaRectTransform;
 
     [Header("Anchors")]
     [SerializeField] private Transform hiddenAnchor;
@@ -158,7 +159,10 @@ public class PhoneScript : MonoBehaviour
         if(CamerasScript.instance != null)
         {
             CamerasScript.instance.SetCameraViewActive(currentState == PhoneState.Camera);
+            
         }
+
+        
     }
 
     private Transform GetTargetAnchor()
@@ -200,6 +204,17 @@ public class PhoneScript : MonoBehaviour
 
             phoneTransform.gameObject.SetActive(false);
             waitingForHide = false;
+        }
+
+        if (currentState == PhoneState.Camera)
+        {
+            phoneCanvaRectTransform.localPosition = new Vector3(-0.05f, -0.39f, -0.45f);
+            phoneCanvaRectTransform.localRotation = Quaternion.Euler(0f, phoneCanvaRectTransform.localEulerAngles.y, 90f);
+        }
+        else
+        {
+            phoneCanvaRectTransform.localPosition = new Vector3(-0.05f, 0.47f, -0.365f);
+            phoneCanvaRectTransform.localRotation = Quaternion.Euler(0f, phoneCanvaRectTransform.localEulerAngles.y, 0f);
         }
     }
 
@@ -243,11 +258,17 @@ public class PhoneScript : MonoBehaviour
         currentBattery = 0;
         phoneLight.enabled = false;
     }
+
     public bool CanWatchCamera()
     {
         if (!HaveBattery)
             return false;
 
         return currentState.Equals(PhoneState.Idle);
+    }
+
+    public PhoneState GetCurrentPhoneState()
+    {
+        return currentState;
     }
 }

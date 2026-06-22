@@ -164,7 +164,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32759
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 2930897254122312196}
   - component: {fileID: 1855949690762412832}
   - component: {fileID: 6565934799062674300}
+  - component: {fileID: 6791838047166500223}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -577,6 +578,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1625504796762877940, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6565934799062674300}
+    - targetCorrespondingSourceObject: {fileID: 1625504796762877940, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6791838047166500223}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0d385c2dbee9e4b83cb5b69a8885a4, type: 3}
 --- !u!114 &2043788255533290207
 MonoBehaviour:
@@ -735,6 +739,7 @@ MonoBehaviour:
   phoneLight: {fileID: 4180886174035779250}
   batteryScript: {fileID: 4698423248514090757}
   screenPhone: {fileID: 5996073787006304006}
+  phoneCanvaRectTransform: {fileID: 5227462128949106527}
   hiddenAnchor: {fileID: 8384034781309547455}
   idleAnchor: {fileID: 2847598781890098527}
   cameraAnchor: {fileID: 164635244197281807}
@@ -760,6 +765,23 @@ MonoBehaviour:
   pillsCount: 0
   batteryCount: 0
   ventolinCount: 0
+--- !u!114 &6791838047166500223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968043094434973047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f13fb65ca5b2e42a62c12f45d66a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamerasScript
+  m_cameraUiText: {fileID: 0}
+  m_screenRenderTexture: {fileID: 8400000, guid: 5951d2779d5240040a133b1c31bd8fbd, type: 2}
+  m_CamAmount: 0
+  phoneScript: {fileID: 1855949690762412832}
+  camActive: {fileID: 0}
 --- !u!1001 &6727309782094234816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -768,6 +790,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6680395471665778923}
     m_Modifications:
+    - target: {fileID: 1573895398671340447, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.365
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573895398671340447, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 3499068552881771103, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
       propertyPath: m_Name
       value: item_phone
@@ -820,7 +850,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8442917084625100361, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8442917084625100361, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7857287945761020031, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -861,6 +900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e009341c1a7d5d44ad5e5321b76a731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!224 &5227462128949106527 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1573895398671340447, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
+  m_PrefabInstance: {fileID: 6727309782094234816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5996073787006304006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1038750199947099078, guid: 2ee465fce0d3d7044add45100a0201ef, type: 3}
