@@ -22,6 +22,7 @@ public class JsonManager : MonoBehaviour
     }
 
     public static string defaultName = "Default";
+    private string gameName = "Into-The-Dark";
     private string savePath;
     PlayerAction controls => InputManager.controls;
     public UsePathSave pathUsed;
@@ -64,14 +65,14 @@ public class JsonManager : MonoBehaviour
         if (string.IsNullOrEmpty(fileName))
         {
             resultPath = Path.Combine(
-                savePath,
+                savePath, gameName,
                 state, path.ToString()
             );
         }
         else
         {
             resultPath = Path.Combine(
-                savePath,
+                savePath, gameName,
                 state, path.ToString(), nameToJsonFile(fileName)
             );
         }

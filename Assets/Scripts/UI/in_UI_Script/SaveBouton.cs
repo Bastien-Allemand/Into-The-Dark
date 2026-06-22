@@ -8,7 +8,6 @@ public class SaveBouton : MonoBehaviour
     [SerializeField] public TextMeshProUGUI m_TextMeshPro;
     UsePathSave json;
 
-
     public void Use()
     {
         //  get
@@ -36,4 +35,6 @@ public class SaveBouton : MonoBehaviour
     {
         InputSaveManager.Instance.RenameSave(newName);
     }
+
+
 }

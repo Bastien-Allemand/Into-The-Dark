@@ -1,9 +1,12 @@
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputSaveManager : MonoBehaviour
 {
+
+
     private static InputSaveManager _instance;
     public static InputSaveManager Instance
     {
@@ -18,6 +21,7 @@ public class InputSaveManager : MonoBehaviour
     }
     private InputSaveManager() { }
 
+    [SerializeField] public TMP_InputField inputField;
     [SerializeField] public Transform boutonSlider_content;
     [SerializeField] private GameObject boutonPrefab;
 
@@ -98,5 +102,11 @@ public class InputSaveManager : MonoBehaviour
             TMPro.TMP_Text text = go.GetComponentInChildren<TMPro.TMP_Text>();
             text.text = jsonName;
         }
+    }
+
+
+    public void ValidateSaveName()
+    {
+        string texte = inputField.text;
     }
 }
