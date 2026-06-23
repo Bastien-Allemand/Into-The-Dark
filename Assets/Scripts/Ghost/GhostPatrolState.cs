@@ -31,13 +31,13 @@ public class GhostPatrolState : IState
             if (stateMachine.debug)
                 Debug.Log("Room :" + choiceroom);
         }
-        if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
-        { 
-            Vector3 pos = RandomPosition(pathfinding.rooms[choiceroom]);
-            pathfinding.agent.SetDestination(pos);
-            if (stateMachine.debug)
-                Debug.Log("Pos :" +  pos);
-        }
+        //if (!pathfinding.agent.pathPending && pathfinding.agent.remainingDistance < 0.5f)
+        //{ 
+        //    Vector3 pos = RandomPosition(pathfinding.rooms[choiceroom]);
+        //    pathfinding.agent.SetDestination(pos);
+        //    if (stateMachine.debug)
+        //        Debug.Log("Pos :" +  pos);
+        //}
     }
 
     public void Exit()

@@ -10,6 +10,8 @@ public enum PhoneState
 
 public class PhoneScript : MonoBehaviour
 {
+    PlayerAction controls;
+
     [Header("References")]
     [SerializeField] private Transform phoneTransform;
     [SerializeField] private GameObject battery;
@@ -27,9 +29,19 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private float transitionSpeed = 8f;
 
     [Header("Battery")]
-    [SerializeField] private float maxBattery = 100f;
+    [SerializeField] private float maxBattery = 100000000000f;
     [SerializeField] private float maxTime = 60f;
     [SerializeField] private float coeffBatteryLightUse = 5f;
+
+    [SerializeField] private Material fogMaterial;
+
+    [SerializeField] private bool isLookingCamera = false;
+   
+    public bool IsLookingCamera => isLookingCamera;
+    private bool wasSwitchLastFrame = false;
+
+    [SerializeField] private Vector2 moveInput;
+
 
     private float currentBattery;
     private float currentTimer;
@@ -57,6 +69,11 @@ public class PhoneScript : MonoBehaviour
         phoneTransform.localScale = hiddenAnchor.localScale;
     }
 
+    private void Awake()
+    {
+        controls = InputManager.controls;
+    }
+
     private void Update()
     {
         HandleInputs();
@@ -69,14 +86,34 @@ public class PhoneScript : MonoBehaviour
 
     private void HandleInputs()
     {
-        if (Input.GetKeyDown(KeyCode.U))
+        bool swapPhoneInput = controls.GamePlay.SwapPhone.triggered;
+
+        bool lookCameraInput = controls.GamePlay.LookCamera.triggered;
+        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
+        bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
+        if (swapPhoneInput == true)
         {
             TogglePhone();
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (lookCameraInput == true)
         {
             ToggleCameraMode();
         }
+        if (moveInput != Vector2.zero && currentState == PhoneState.Camera && isSwapThisFrame && !wasSwitchLastFrame) 
+        { 
+            if(moveInput.x > 0)
+            {
+                Debug.Log("next cam");
+                CamerasScript.instance.NextCamera();
+            }
+            else if(moveInput.x < 0)
+            {
+                Debug.Log("previous cam");
+                CamerasScript.instance.PreviousCamera();
+            }
+        }
+
+        wasSwitchLastFrame = isSwapThisFrame;
     }
 
     private void TogglePhone()
@@ -88,7 +125,7 @@ public class PhoneScript : MonoBehaviour
             currentState = PhoneState.Idle;
 
             battery.SetActive(true);
-           // textBattery.enabled = true;
+            //textBattery.enabled = true;
 
             waitingForHide = false;
         }
@@ -97,9 +134,15 @@ public class PhoneScript : MonoBehaviour
             currentState = PhoneState.Hidden;
 
             battery.SetActive(false);
-          //  textBattery.enabled = false;
+            //textBattery.enabled = false;
             phoneLight.enabled = false;
             screenPhone.SetActive(false);
+
+            isLookingCamera = false;
+            if (CamerasScript.instance != null)
+            {
+                CamerasScript.instance.SetCameraViewActive(false);
+            }
 
             waitingForHide = true;
         }
@@ -111,8 +154,13 @@ public class PhoneScript : MonoBehaviour
             return;
 
         screenPhone.SetActive(!screenPhone.activeSelf);
-
+        isLookingCamera = !isLookingCamera;
         currentState = currentState == PhoneState.Camera ? PhoneState.Idle : PhoneState.Camera;
+
+        if(CamerasScript.instance != null)
+        {
+            CamerasScript.instance.SetCameraViewActive(currentState == PhoneState.Camera);
+        }
     }
 
     private Transform GetTargetAnchor()
@@ -144,15 +192,14 @@ public class PhoneScript : MonoBehaviour
             target.localScale,
             transitionSpeed * Time.deltaTime);
 
-        // 2. Vérification de la distance par rapport à la CIBLE actuelle
+
         if (waitingForHide && Vector3.Distance(phoneTransform.localPosition, target.localPosition) < hideDistanceThreshold)
         {
-            // On force les valeurs exactes de la cible pour éviter les décalages de micro-pixels
+
             phoneTransform.localPosition = target.localPosition;
             phoneTransform.localRotation = target.localRotation;
             phoneTransform.localScale = target.localScale;
 
-            // Désactivation propre
             phoneTransform.gameObject.SetActive(false);
             waitingForHide = false;
         }
