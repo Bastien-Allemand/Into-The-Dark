@@ -83,6 +83,7 @@ public class PhoneScript : MonoBehaviour
         UpdatePhoneTransform();
         UpdateUI();
         CheckBattery();
+        FlashLightShaderUpdate();
     }
 
     private void HandleInputs()
@@ -272,5 +273,13 @@ public class PhoneScript : MonoBehaviour
     public PhoneState GetCurrentPhoneState()
     {
         return currentState;
+    }
+
+    private void FlashLightShaderUpdate()
+    {
+        if (fogMaterial == null || phoneLight == null)
+            return;
+        fogMaterial.SetVector("_FlashlightPos", phoneLight.transform.position);
+        fogMaterial.SetVector("_FlashlightDir", phoneLight.transform.forward);
     }
 }
