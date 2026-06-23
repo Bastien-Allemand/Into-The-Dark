@@ -270,15 +270,15 @@ public class PickUpScript : MonoBehaviour
                 PickUp(hit.collider.gameObject, isRightHand);
             }
 
-            if (hit.collider.CompareTag("Lootable"))
-            {
-                Animator animator = hit.collider.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    bool isOpen = animator.GetBool("IsOpen");
-                    animator.SetBool("IsOpen", !isOpen);
-                }
-            }
+            //if (hit.collider.CompareTag("Lootable"))
+            //{
+            //    Animator animator = hit.collider.GetComponent<Animator>();
+            //    if (animator != null)
+            //    {
+            //        bool isOpen = animator.GetBool("IsOpen");
+            //        animator.SetBool("IsOpen", !isOpen);
+            //    }
+            //}
 
             if (hit.collider.CompareTag("Collectible"))
             {
