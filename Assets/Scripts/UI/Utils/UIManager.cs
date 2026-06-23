@@ -91,7 +91,6 @@ public class UIManager : MonoBehaviour
         }
 
         UpdateCursorState();
-        HideAllUI();
     }
     private void UpdateCursorState()
     {
