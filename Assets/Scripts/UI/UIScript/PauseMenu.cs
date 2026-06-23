@@ -62,10 +62,24 @@ public class PauseMenu : UI
         Debug.Log("Pause Menu : Enter");
         exit = false;
         Pause(true);
+        foreach (var ui in UIManager.Instance.UIs)
+        {
+            if (ui.GetComponent<MainMenu>() != null)
+            {
+                ui.gameObject.SetActive(false);
+            }
+        }
     }
     public override void Exit()
     {
         Pause(false);
+        foreach (var ui in UIManager.Instance.UIs)
+        {
+            if (ui.GetComponent<MainMenu>() != null)
+            {
+                ui.gameObject.SetActive(true);
+            }
+        }
     }
 
     private void CreateBoutonFromAction(InputAction action, Transform parent)
