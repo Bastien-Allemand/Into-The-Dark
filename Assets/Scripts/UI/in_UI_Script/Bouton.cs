@@ -67,9 +67,14 @@ public class Bouton : MonoBehaviour
     {
         GameSaveManager.Instance.Save();
     }
-    public void TMP()
+    public void TMP_ADD()
     {
         GameSaveManager.Instance.gameSave.level++;
+        FindFirstObjectByType<LevelMenu>().CallUpdate();
+    }
+    public void TMP_SUPP()
+    {
+        GameSaveManager.Instance.gameSave.level--;
         FindFirstObjectByType<LevelMenu>().CallUpdate();
     }
 }
