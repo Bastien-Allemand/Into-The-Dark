@@ -8,21 +8,21 @@ public class ToRemove : MonoBehaviour
     float dir = 1;
     void Start()
     {
-        transform.position = new Vector3(0, 13, 25);     
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
 
         Vector3 targetVel = Vector3.zero;
         if (transform.position.x >= 15f)
         {
-            dir = -dir;
+            dir = -1f; 
         }
         else if (transform.position.x <= 0f)
         {
-            dir = -dir;
+            dir = 1f; 
         }
 
         targetVel = new Vector3(dir, 0, 0) * speed;

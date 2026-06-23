@@ -125,7 +125,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1379398453}
     m_Modifications:
     - target: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
       propertyPath: m_Name
@@ -218,7 +218,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 63344265}
   m_SourcePrefab: {fileID: 100100000, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
 --- !u!224 &24775147 stripped
 RectTransform:
@@ -252,6 +255,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 7485aa9e1cd2dbe4c8d7eb6c6e67216e, type: 3}
+--- !u!1 &63344259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+  m_PrefabInstance: {fileID: 2122405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &63344264 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7510706198103311742, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+  m_PrefabInstance: {fileID: 2122405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &63344265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63344259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3dd93a9e2e6c04da4bb5e902767208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  UIs: []
 --- !u!1001 &89399470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,6 +445,10 @@ PrefabInstance:
     - target: {fileID: 5529906075861055194, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529906075861055194, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5529906075861055194, guid: 272c512d138eb7a40ae92f9552d4536c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -987,6 +1017,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 63344264}
   - {fileID: 1253651885}
   - {fileID: 202489615}
   - {fileID: 2019370720}
@@ -1519,12 +1550,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1334550395}
     - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 65536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: chargeBarTransform
       value: 
       objectReference: {fileID: 101596747}
     - target: {fileID: 4050908566489799186, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: batteryLayerMask.m_Bits
-      value: 0
+      value: 131072
       objectReference: {fileID: 0}
     - target: {fileID: 4420624848759808975, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1574,6 +1609,10 @@ PrefabInstance:
       propertyPath: insaneBarTransform
       value: 
       objectReference: {fileID: 253537874}
+    - target: {fileID: 8616678334354961815, guid: f9b2a60f392f62e40a10172fefe31c87, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 262135
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1667,7 +1706,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1742777868}
   - {fileID: 876443185}
-  - {fileID: 2122405}
   - {fileID: 1379398453}
   - {fileID: 484391680}
   - {fileID: 1440112322}
