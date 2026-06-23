@@ -82,6 +82,7 @@ public class PhoneScript : MonoBehaviour
         UpdatePhoneTransform();
         UpdateUI();
         CheckBattery();
+        FlashLightShaderUpdate();
     }
 
     private void HandleInputs()
