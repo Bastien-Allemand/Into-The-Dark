@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraBattery : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class CameraBattery : MonoBehaviour
     [SerializeField] public float batteryRemaining;
     [SerializeField] private float timeToReload = 1f;
     [SerializeField] private float currentTimeReload;
+    [SerializeField] private GameObject blackScreen;
 
     public bool canReload = false;
     private Camera myCam;
@@ -18,8 +20,9 @@ public class CameraBattery : MonoBehaviour
 
     private void Update()
     {
-        UpdateBattery();
         UpdateReload();
+        
+        UpdateBattery();
     }
 
     void UpdateBattery()
@@ -27,12 +30,13 @@ public class CameraBattery : MonoBehaviour
 
         Camera cam = GetComponentInChildren<Camera>();
 
-        if(CamerasScript.instance.camActive == cam)
+        if(CamerasScript.instance.camActive == cam && CamerasScript.instance.camActive != null && cam.enabled)
         {
             batteryRemaining -= Time.deltaTime;
             if(batteryRemaining <= 0)
             {
-
+                batteryRemaining = 0;
+                blackScreen.SetActive(true);
             }
         }
     }
@@ -54,6 +58,7 @@ public class CameraBattery : MonoBehaviour
                 Reload();
                 currentTimeReload = 0;
                 canReload = false;
+                blackScreen.SetActive(false);
             }
         }
     }

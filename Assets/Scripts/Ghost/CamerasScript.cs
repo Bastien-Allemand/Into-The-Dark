@@ -9,11 +9,13 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
+    [SerializeField] private PhoneScript phoneScript;
 
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
     private int m_currentCamera = 0;
     public Camera camActive;
+    
 
     void Awake()
     {
@@ -33,6 +35,14 @@ public class CamerasScript : MonoBehaviour
                 childCam.targetTexture = null;
                 m_CamAmount++;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (phoneScript != null && phoneScript.GetCurrentPhoneState() != PhoneState.Camera)
+        {
+            DisableAllCam();
         }
     }
 
@@ -97,5 +107,16 @@ public class CamerasScript : MonoBehaviour
                 m_cameras[m_currentCamera].Render();
             }
         }
+    }
+
+    void DisableAllCam()
+    {
+        for(int i = 0; i < m_cameras.Count; i++)
+        {
+            m_cameras [i].enabled = false;
+        }
+        camActive = null;
+        m_onCamera = false;
+
     }
 }
