@@ -8,13 +8,14 @@ using Debug = UnityEngine.Debug;
 
 public class PickUpScript : MonoBehaviour
 {
-    PlayerAction controls;
+    PlayerAction controls => InputManager.controls;
 
     [Header("Reference")]
     [SerializeField] private RectTransform chargeBarTransform;
     [SerializeField] private GameObject objectPreview;
     GameObject preview;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask batteryLayerMask;
 
     private float initialChargeBarWidth;
 
@@ -28,6 +29,9 @@ public class PickUpScript : MonoBehaviour
 
     private GameObject rightHandItem = null;
     private GameObject leftHandItem = null;
+
+    public bool isLeftHandEmpty = true;
+    public bool isRightHandEmpty = true;
 
     [Header("Launch Settings")]
     [SerializeField] private float chargeSpeed = 15.0f;
@@ -45,6 +49,7 @@ public class PickUpScript : MonoBehaviour
     private bool canPlaceThisFrame = true;
 
     private bool wasInteractingLastFrame = false;
+    private bool wasConsumeLastFrame = false;
     private bool isChargingRight = false;
     private bool isChargingLeft = false;
     private float percentLeft = 0f;
@@ -54,7 +59,8 @@ public class PickUpScript : MonoBehaviour
     public float pillsStack;
     public float batteryStack;
     public float ventolinStack;
-
+    private int batteryCount;
+    public bool isConsume;
 
     void Start()
     {
@@ -72,15 +78,24 @@ public class PickUpScript : MonoBehaviour
 
         initialChargeBarWidth = chargeBarTransform.rect.width;
         chargeBarTransform.sizeDelta = new Vector2(chargeBarTransform.rect.width * 0f, chargeBarTransform.rect.height);
-    }
-    private void Awake()
-    {
-        controls = InputManager.controls;
+
+        layerMask = LayerMask.GetMask("Placeable");
+        batteryLayerMask = LayerMask.GetMask("ItemCamera");
     }
     void Update()
     {
         HandleInput();
+        HandleConsumeInput();
         UpdateUI();
+
+    }
+    private void OnEnable()
+    {
+        Inventory.OnBatteryCountChanged += UpdateBatteryCount;
+    }
+    private void OnDisable()
+    {
+        Inventory.OnBatteryCountChanged -= UpdateBatteryCount;
     }
     private void OnDrawGizmos()
     {
@@ -140,12 +155,14 @@ public class PickUpScript : MonoBehaviour
                     LaunchItem(rightHandItem, currentThrowCharge);
                     isChargingRight = false;
                     rightHandItem = null;
+                    isLeftHandEmpty = true;
                 }
                 else if (isChargingLeft)
                 {
                     LaunchItem(leftHandItem, currentThrowCharge);
                     isChargingLeft = false;
                     leftHandItem = null;
+                    isLeftHandEmpty = true;
                 }
                 currentThrowCharge = 0f;
                 percentLeft = 0f;
@@ -305,11 +322,13 @@ public class PickUpScript : MonoBehaviour
         if (rightHandSocket != null && isRightHand == true)
         {
             rightHandItem = targetItem;
+            isRightHandEmpty = false;
             AttachItem(targetItem, rightHandSocket);
         }
         else if(rightHandSocket != null && isRightHand == false)
         {
             leftHandItem = targetItem;
+            isLeftHandEmpty = false;
             AttachItem(targetItem, leftHandSocket);
         }
     }
@@ -391,12 +410,14 @@ public class PickUpScript : MonoBehaviour
 
                         if (isRightHand) 
                         { 
-                            rightHandItem = null; 
+                            rightHandItem = null;
+                            isRightHandEmpty = true;
                             editModeRight = false; 
                         }
                         else 
                         { 
-                            leftHandItem = null; 
+                            leftHandItem = null;
+                            isLeftHandEmpty = true;
                             editModeLeft = false; 
                         }
 
@@ -484,5 +505,38 @@ public class PickUpScript : MonoBehaviour
         isRotating = false;
         canPlaceThisFrame = false;
     }
+    void HandleConsumeInput()
+    {
+        float consumeValue = controls.GamePlay.Consume.ReadValue<float>();
+        bool isConsumePressed = consumeValue > 0.5f;
+        if (isConsumePressed && !wasConsumeLastFrame)
+        {
+            Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            Debug.Log("R Pressed");
+            if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance, batteryLayerMask))
+            {
+                CameraBattery camBat = hit.collider.GetComponent<CameraBattery>();
 
+                if (camBat != null)
+                {
+                    if (batteryCount > 0 && Inventory.instance.GetActiveSlot() == ItemType.Battery && camBat.batteryRemaining < camBat.maxBattery)
+                    {
+                        if (isLeftHandEmpty || isRightHandEmpty)
+                        {
+                            Inventory.instance.Remove(ItemType.Battery);
+                            if(camBat.canReload == false)
+                            {
+                                camBat.canReload = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        wasConsumeLastFrame = isConsumePressed;
+    }
+    void UpdateBatteryCount(int total)
+    {
+        batteryCount = total;
+    }
 }

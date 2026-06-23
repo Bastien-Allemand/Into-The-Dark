@@ -12,13 +12,15 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
 
+    public deathCause LastDeathCause { get; set; }
+
     public PlayerOnPhoneState OnPhoneState { get; private set; }
 
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private RectTransform sprintBarTransform;
-
+    [SerializeField] private PhoneScript phoneScript;
 
     [Space(5)]
 
@@ -101,11 +103,23 @@ public class PlayerStateMachine : MonoBehaviour
 
     void CheckState()
     {
-      
+       
+         
+
         moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
         bool isMoving = moveInput != Vector2.zero;
+
+
+        if (phoneScript.IsLookingCamera == true)
+        {
+            if (isMoving)
+            {
+                moveInput = new Vector2(0, 0);
+            }
+            return;
+        }
 
         if (isMoving == false)
         {
