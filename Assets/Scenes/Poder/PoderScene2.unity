@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.07
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.008143468, g: 0.008573633, b: 0.009433962, a: 1}
@@ -1097,12 +1097,16 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4255262424041441041, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_Intensity
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4255262424041441041, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_SpotAngle
-      value: 45
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4255262424041441041, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_InnerSpotAngle
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4255262424041441041, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_Shadows.m_Type
@@ -1110,7 +1114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4255262424041441041, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_BounceIntensity
-      value: 0.05
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5386213996035663376, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: itemText
