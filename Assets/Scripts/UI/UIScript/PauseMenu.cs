@@ -9,6 +9,8 @@ public class PauseMenu : UI
     [SerializeField] public GameObject GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
+    [SerializeField] private Bouton b_main_menu;
+
     public override bool EnterCondition()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
@@ -40,10 +42,12 @@ public class PauseMenu : UI
         {
             b_continue.show_target.Add(target);
             Debug.Log(target.transform);
+            b_main_menu.gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("No MainMenu");
+            b_main_menu.gameObject.SetActive(true);
         }
 
         foreach (InputAction action in controls.GamePlay.Get())

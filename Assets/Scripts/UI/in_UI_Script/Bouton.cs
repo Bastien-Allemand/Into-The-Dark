@@ -29,13 +29,16 @@ public class Bouton : MonoBehaviour
     }
     public void Action()
     {
+        Debug.Log("Bouton Action");
         foreach (Transform t in show_target)
         {
             t.gameObject.SetActive(true);
+            Debug.Log($"Show {t.name}");
         }
         foreach (Transform t in hide_target)
         {
             t.gameObject.SetActive(false);
+            Debug.Log($"Hide {t.name}");
         }
     }
     public void ActiveSwap()
@@ -59,5 +62,14 @@ public class Bouton : MonoBehaviour
     #else
         Application.Quit();
     #endif
+    }
+    public void Save()
+    {
+        GameSaveManager.Instance.Save();
+    }
+    public void TMP()
+    {
+        GameSaveManager.Instance.gameSave.level++;
+        FindFirstObjectByType<LevelMenu>().CallUpdate();
     }
 }
