@@ -49,7 +49,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public Vector2 moveInput;
 
-    private float maxStamina = 5f;
+    private float maxStamina = 100f;
     private float staminaRegenDelay = 1.5f;
     private float sprintBarInitialWidth;
 
@@ -58,9 +58,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         controls = InputManager.controls;
 
-//        controls = new PlayerAction();
+        //        controls = new PlayerAction();
 
-        IdleState = new PlayerIdleState(this, rb);
+        IdleState = new PlayerIdleState(this, rb, transform);
         WalkState = new PlayerWalkState(this, rb, transform);
         SprintState = new PlayerSprintState(this, rb, transform);
         CrouchState = new PlayerCrouchState(this, rb, transform, playerCollider);
@@ -77,16 +77,15 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Update()
     {
-        CheckIsCeilingAbove();
-        HandleStamina();
-        CheckState();
+        moveInput = InputManager.controls.GamePlay.Move.ReadValue<Vector2>();
+
         if (currentState != null)
         {
             currentState.Update();
         }
     }
 
-    void ChangeState(IState newState)
+    public void ChangeState(IState newState)
     {
         if (newState == null || currentState.GetType() == newState.GetType())
         {

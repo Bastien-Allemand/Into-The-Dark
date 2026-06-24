@@ -1,59 +1,56 @@
 using UnityEngine;
 
-public class PlayerCrouchState : IState
+public class PlayerCrouchState : PlayerBaseState
 {
-    private PlayerStateMachine stateMachine;
-    private Transform transform;
     private CapsuleCollider playerCollider;
-    private Rigidbody rb;
-    private Vector3 velocity = Vector3.zero;
-
     public PlayerCrouchState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform, CapsuleCollider playerCollider)
+        : base(stateMachine, rb, transform)
     {
-        this.stateMachine = stateMachine;
-        this.rb = rb;
-        this.transform = transform;
         this.playerCollider = playerCollider;
     }
-
-    public void Enter()
+    public override void Enter()
     {
         if (stateMachine.debug)
             Debug.Log("Player: Enter Mode CROUCH");
 
-        playerCollider.height = stateMachine.crouchHeight;
-        playerCollider.center = new Vector3(0f, stateMachine.crouchCenterY, 0f);
+        if (playerCollider != null)
+        {
+            playerCollider.height = stateMachine.crouchHeight;
+            playerCollider.center = new Vector3(0f, stateMachine.crouchCenterY, 0f);
+        }
+
         stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.crouchMultiplier;
     }
 
-    public void Update()
+    public override void Update()
     {
-        Move();
-    }
+       
+        Move(stateMachine.currentSpeed);
 
-    void Move()
-    {
-        Vector3 targetVel = Vector3.zero;
-        if (stateMachine.moveInput != Vector2.zero)
+        bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
+
+        if (stateMachine.moveInput == Vector2.zero && !crouchInput && !stateMachine.isCeilingAbove)
         {
-            targetVel = (transform.forward * stateMachine.moveInput.y + transform.right * stateMachine.moveInput.x) * stateMachine.currentSpeed;
+            stateMachine.ChangeState(stateMachine.IdleState);
         }
-
-        Vector3 currentVel = rb.linearVelocity;
-        Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
-
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.fixedDeltaTime);
+        else if (!crouchInput && !stateMachine.isCeilingAbove)
+        {
+            stateMachine.ChangeState(stateMachine.WalkState);
+        }
     }
-
-    public void Exit()
+    public override void Exit()
     {
-        if (stateMachine.isCeilingAbove == true)
+        
+        if (stateMachine.isCeilingAbove)
             return;
 
         if (stateMachine.debug)
             Debug.Log("Player: Exit Mode CROUCH");
 
-        playerCollider.height = stateMachine.standHeight;
-        playerCollider.center = new Vector3(0f, stateMachine.standCenterY, 0f);
+        if (playerCollider != null)
+        {
+            playerCollider.height = stateMachine.standHeight;
+            playerCollider.center = new Vector3(0f, stateMachine.standCenterY, 0f);
+        }
     }
 }

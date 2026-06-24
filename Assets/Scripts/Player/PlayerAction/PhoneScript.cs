@@ -223,8 +223,9 @@ public class PhoneScript : MonoBehaviour
 
     private void HandleLight()
     {
-        if (Input.GetMouseButtonDown(0)
-            && currentState != PhoneState.Hidden
+        bool isClick = controls.GamePlay.ActiveFlashlight.triggered;
+        if (isClick == true
+            && currentState == PhoneState.Idle
             && HaveBattery)
         {
             phoneLight.enabled = !phoneLight.enabled;

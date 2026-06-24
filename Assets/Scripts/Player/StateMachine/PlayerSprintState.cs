@@ -1,44 +1,32 @@
 using UnityEngine;
 
-public class PlayerSprintState : IState
+public class PlayerSprintState : PlayerBaseState
 {
-    private PlayerStateMachine stateMachine; 
-    private Transform transform;
-    private Rigidbody rb;
-    private Vector3 velocity = Vector3.zero;
-
-    public PlayerSprintState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
-    {
-        this.stateMachine = stateMachine;
-        this.rb = rb;
-        this.transform = transform;
-    }
+    public PlayerSprintState(PlayerStateMachine sm, Rigidbody rb, Transform t) : base(sm, rb, t) { }
     
-    public void Enter()
+    public override void Enter()
     {
         if (stateMachine.debug)
-            Debug.Log("Player: Enter Mode SPRINT");
+            Debug.Log("Sprint enter");
         stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.sprintingMultiplier;
     }
 
-    public void Update()
+    public override void Update()
     {
-        Move();
+        Move(stateMachine.currentSpeed);
         DecreaseStamina();
-    }
 
-    void Move()
-    {
-        Vector3 targetVel = Vector3.zero;
-        if (stateMachine.moveInput != Vector2.zero)
+
+        bool sprintInput = InputManager.controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
+
+        if (stateMachine.moveInput == Vector2.zero)
         {
-            targetVel = (transform.forward * stateMachine.moveInput.y + transform.right * stateMachine.moveInput.x) * stateMachine.currentSpeed;
+            stateMachine.ChangeState(stateMachine.IdleState);
         }
-
-        Vector3 currentVel = rb.linearVelocity;
-        Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
-
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.fixedDeltaTime);
+        else if (sprintInput  == false || stateMachine.isOutOfStamina == true)
+        {
+            stateMachine.ChangeState(stateMachine.WalkState);
+        }
     }
     void DecreaseStamina()
     {
@@ -52,10 +40,10 @@ public class PlayerSprintState : IState
         }
     }
 
-    public void Exit()
+    public override void Exit()
     {
-        if (stateMachine.debug)
-            Debug.Log("Player: Exit Mode SPRINT");
+        stateMachine.currentSpeed = stateMachine.walkSpeed;
+        if (stateMachine.debug) Debug.Log("Player: Exit Mode SPRINT");
     }
 }
 
