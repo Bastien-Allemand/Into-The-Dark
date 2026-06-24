@@ -1,9 +1,6 @@
-using System.Diagnostics;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using static UnityEditor.Progress;
-using static UnityEditor.Timeline.Actions.MenuPriority;
-using static UnityEngine.UI.Image;
+
 using Debug = UnityEngine.Debug;
 
 public class PickUpScript : MonoBehaviour
@@ -286,23 +283,23 @@ public class PickUpScript : MonoBehaviour
 
                 if (item != null)
                 {
-                    ItemType type = item.GetItemType();
+                    ConsumableType type = item.GetItemType();
 
                     switch(type)
                     {
-                        case ItemType.Pill:
+                        case ConsumableType.Pill:
                         {
-                            Inventory.instance.Add(ItemType.Pill);
+                            Inventory.instance.Add(ConsumableType.Pill);
                             break;
                         }
-                        case ItemType.Battery:
+                        case ConsumableType.Battery:
                         {
-                            Inventory.instance.Add(ItemType.Battery);
+                            Inventory.instance.Add(ConsumableType.Battery);
                             break;
                         }
-                        case ItemType.Ventolin:
+                        case ConsumableType.Ventolin:
                         {
-                            Inventory.instance.Add(ItemType.Ventolin);
+                            Inventory.instance.Add(ConsumableType.Ventolin);
                             Debug.Log("Ventolin Take");
                             break;
                         }
@@ -519,11 +516,11 @@ public class PickUpScript : MonoBehaviour
 
                 if (camBat != null)
                 {
-                    if (batteryCount > 0 && Inventory.instance.GetActiveSlot() == ItemType.Battery && camBat.batteryRemaining < camBat.maxBattery)
+                    if (batteryCount > 0 && Inventory.instance.GetActiveSlot() == ConsumableType.Battery && camBat.batteryRemaining < camBat.maxBattery)
                     {
                         if (isLeftHandEmpty || isRightHandEmpty)
                         {
-                            Inventory.instance.Remove(ItemType.Battery);
+                            Inventory.instance.Remove(ConsumableType.Battery);
                             if(camBat.canReload == false)
                             {
                                 camBat.canReload = true;
