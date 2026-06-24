@@ -30,7 +30,7 @@ public class InputSaveManager : MonoBehaviour
     //  save somewhere the current used json
     private void Start()
     {
-        currentJsonPathUsed = JsonManager.Instance.pathUsed.path_map_PlayerActionMap_GamePlay;
+        currentJsonPathUsed = JsonManager.pathUsed.path_map_PlayerActionMap_GamePlay;
         //  look if the default json of input is existing
         if (!File.Exists(JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName)))
         {
@@ -41,7 +41,7 @@ public class InputSaveManager : MonoBehaviour
         if (!File.Exists(currentJsonPathUsed))
         {
             currentJsonPathUsed = JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName);
-            UsePathSave overide = JsonManager.Instance.pathUsed;
+            UsePathSave overide = JsonManager.pathUsed;
             overide.path_map_PlayerActionMap_GamePlay = currentJsonPathUsed;
             JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(overide, true));
         }

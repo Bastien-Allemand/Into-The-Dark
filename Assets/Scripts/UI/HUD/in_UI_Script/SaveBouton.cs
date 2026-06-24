@@ -11,7 +11,7 @@ public class SaveBouton : MonoBehaviour
     public void Use()
     {
         //  get
-        json = JsonManager.Instance.pathUsed;
+        json = JsonManager.pathUsed;
         //  change
         json.path_map_PlayerActionMap_GamePlay = JsonManager.Instance.GetPath(JsonManager.path.Input, m_TextMeshPro.text);
         //  rewrite

@@ -1,12 +1,16 @@
+using System.Collections.Generic;
+using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Collections;
-
+using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [Header("Persistant Script")]
+    [SerializeField] public List<MonoScript> persistent_scripts;
     [Header("UI Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject transitionPanel;
@@ -53,7 +57,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject);
+        AddScript();
         Instance = this;
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -69,7 +76,18 @@ public class GameManager : MonoBehaviour
             gameOverCanvasGroup.alpha = 0f;
         }
     }
+    void AddScript()
+    {
+        foreach (var script in persistent_scripts)
+        {
+            var type = script.GetClass();
 
+            if (type != null && typeof(MonoBehaviour).IsAssignableFrom(type))
+            {
+                gameObject.AddComponent(type);
+            }
+        }
+    }
     public void TogglePause()
     {
         if (isGameOver || isTransitioning) return;

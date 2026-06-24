@@ -11,7 +11,7 @@ public class JsonManager : MonoBehaviour
 
     public static string defaultName;
     private string savePath;
-    public UsePathSave pathUsed;
+    public static UsePathSave pathUsed;
     PlayerAction controls => InputManager.controls;
     public enum path
     {
