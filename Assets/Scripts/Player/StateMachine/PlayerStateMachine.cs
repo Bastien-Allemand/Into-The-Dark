@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
@@ -51,6 +52,7 @@ public class PlayerStateMachine : MonoBehaviour
     private float staminaRegenDelay = 1.5f;
     private float sprintBarInitialWidth;
 
+    public event Action<bool> OnSprintStatusChanged;
 
     void Awake()
     {
@@ -210,5 +212,10 @@ public class PlayerStateMachine : MonoBehaviour
 
         float percentLeft = staminaLeft / maxStamina;
         sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
+    }
+
+    public void NotifySprintStatus(bool isSprinting)
+    {
+        OnSprintStatusChanged?.Invoke(isSprinting);
     }
 }

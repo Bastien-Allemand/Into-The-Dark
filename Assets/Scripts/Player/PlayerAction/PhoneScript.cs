@@ -33,8 +33,6 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] private float maxTime = 60f;
     [SerializeField] private float coeffBatteryLightUse = 5f;
 
-    [SerializeField] private Material fogMaterial;
-
     [SerializeField] private bool isLookingCamera = false;
    
     public bool IsLookingCamera => isLookingCamera;
@@ -82,7 +80,6 @@ public class PhoneScript : MonoBehaviour
         UpdatePhoneTransform();
         UpdateUI();
         CheckBattery();
-        FlashLightShaderUpdate();
     }
 
     private void HandleInputs()
@@ -252,12 +249,5 @@ public class PhoneScript : MonoBehaviour
             return false;
 
         return currentState.Equals(PhoneState.Idle);
-    }
-    private void FlashLightShaderUpdate()
-    {
-        if (fogMaterial == null || phoneLight == null)
-            return;
-        fogMaterial.SetVector("_FlashlightPos", phoneLight.transform.position);
-        fogMaterial.SetVector("_FlashlightDir", phoneLight.transform.forward);
     }
 }
