@@ -384,8 +384,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484391680}
+  - component: {fileID: 484391681}
   m_Layer: 0
-  m_Name: Items
+  m_Name: footstepfunction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,6 +407,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &484391681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484391679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec7e5ba7ef88494aa61b939469425f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  footprintPrefab: {fileID: 3999519248568973391, guid: 97155ff3ea80c524cb3adef41373c81c, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 65536
+  raycastDistance: 2
 --- !u!1001 &512336124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -833,7 +851,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31867492c11f17e4092a9cb9dd5aac65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  speed: 5
   rb: {fileID: 1064127092}
+  velocity: {x: 0, y: 0, z: 0}
+  dir: 1
 --- !u!1 &1089136974 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3613769018358061859, guid: 0dabdba7a6dc96143acdb9526c051e6a, type: 3}
