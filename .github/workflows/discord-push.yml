@@ -8,13 +8,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Notify Discord
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          curl -H "Content-Type: application/json" \
+    - name: Notify Discord
+      env:
+        WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        payload=$(jq -n \
+          --arg repo "${{ github.repository }}" \
+          --arg actor "${{ github.actor }}" \
+          --arg branch "${{ github.ref_name }}" \
+          --arg msg "${{ github.event.head_commit.message }}" \
+          '{
+            content: ("<@&1493962854389387294>🔔 Nouveau push sur **" + $repo +
+            "**\n👤 Auteur : **" + $actor +
+            "**\n🌿 Branche : **" + $branch +
+            "**\n📝 Commit : **" + $msg + "**")
+          }')
+    
+        curl -H "Content-Type: application/json" \
           -X POST \
-          -d '{
-            "content": "<@&1493962854389387294>🔔 Nouveau push sur **${{ github.repository }}**\n👤 Auteur : **${{ github.actor }}**\n🌿 Branche : **${{ github.ref_name }}**\n📝 Commit : **${{ github.event.head_commit.message }}**"
-          }' \
+          -d "$payload" \
           "$WEBHOOK"
