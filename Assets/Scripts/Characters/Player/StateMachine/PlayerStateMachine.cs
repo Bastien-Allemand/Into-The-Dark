@@ -19,7 +19,6 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private RectTransform sprintBarTransform;
     [SerializeField] private PhoneScript phoneScript;
 
     [Space(5)]
@@ -51,7 +50,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     private float maxStamina = 5f;
     private float staminaRegenDelay = 1.5f;
-    private float sprintBarInitialWidth;
+    public float MaxStamina => maxStamina;
+
 
 
     void Awake()
@@ -69,7 +69,6 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         currentState = IdleState;
-        sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
 
     //private void OnEnable() => controls.Enable();
@@ -153,11 +152,5 @@ public class PlayerStateMachine : MonoBehaviour
         //UpdateSprintUI();
     }
 
-    void UpdateSprintUI()
-    {
-        if (sprintBarTransform == null) return;
-
-        float percentLeft = staminaLeft / maxStamina;
-        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
-    }
+    
 }
