@@ -11,7 +11,7 @@ public class MainMenu : UI
     {
         return false;
     }
-    public override void Init()
+    private void Awake()
     {
         cursorWantedState = CursorLockMode.None;
         Transform target = manager.GetUIs<PauseMenu>();
@@ -23,11 +23,5 @@ public class MainMenu : UI
         }
         else
             Debug.Log("No Pause Menu");
-    }
-    public override void Enter()
-    {
-    }
-    public override void Exit()
-    {
     }
 }

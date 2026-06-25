@@ -33,7 +33,7 @@ public class PauseMenu : UI
         exit = false;
         return result;
     }
-    public override void Init()
+    private void Awake()
     {
         cursorWantedState = CursorLockMode.None;
 
@@ -54,10 +54,10 @@ public class PauseMenu : UI
         {
             if (action.name == "Look")
                 continue;
-            CreateBoutonFromAction(action,GO_Controls_Content.transform);
+            CreateBoutonFromAction(action, GO_Controls_Content.transform);
         }
     }
-    public override void Enter()
+    private void OnEnable()
     {
         Debug.Log("Pause Menu : Enter");
         exit = false;
@@ -70,7 +70,7 @@ public class PauseMenu : UI
             }
         }
     }
-    public override void Exit()
+    private void OnDisable()
     {
         Pause(false);
         foreach (var ui in UIManager.Instance.UIs)

@@ -24,19 +24,11 @@ public class UIManager : MonoBehaviour
     public List<Transform> UIs;
 
     Dictionary<Transform, List<Func<bool>>> condition;
-    Dictionary<Transform, System.Action[]> action;
     private enum conditionList
     {
         enter,
         exit
     }
-    private enum actionList
-    {
-        init,
-        enter,
-        exit
-    }
-
     private UIManager() { }
 
     private void Awake()
@@ -80,19 +72,12 @@ public class UIManager : MonoBehaviour
         Debug.Log($"UIs : {UIs.Count}");
         FoncInit();
         Debug.Log("end funcInit");
-        //  init all UI
-        foreach (var pair in action)
-        {
-            Debug.Log($"call init func of : {pair.Key.name}");
-            pair.Value[(int)actionList.init]();
-        }
 
         UpdateCursorState();
     }
     private void FoncInit()
     {
         condition = new Dictionary<Transform, List<Func<bool>>>();
-        action = new Dictionary<Transform, Action[]>();
 
         Action<Transform, UI> init = (Transform index, UI ui) =>
         {
@@ -103,16 +88,7 @@ public class UIManager : MonoBehaviour
                 ui.ExitCondition
             };
 
-            //      Action
-            System.Action[] tmpAction = new System.Action[]
-            {
-                ui.Init,
-                ui.Enter,
-                ui.Exit
-            };
-
             condition.Add(index, tmpCondition);
-            action.Add(index, tmpAction);
         };
 
         for (int i = 0; i < UIs.Count(); i++)
@@ -154,7 +130,6 @@ public class UIManager : MonoBehaviour
         if (!it.gameObject.activeSelf)
         {
             it.gameObject.SetActive(true);
-            action[it][(int)actionList.enter]();
             Debug.Log($"{it.gameObject.name} : {it.gameObject.activeSelf}");
             UpdateCursorState();
         }
@@ -163,7 +138,6 @@ public class UIManager : MonoBehaviour
     {
         if (it.gameObject.activeSelf)
         {
-            action[it][(int)actionList.exit]();
             it.gameObject.SetActive(false);
             Debug.Log($"{it.gameObject.name} : {it.gameObject.activeSelf}");
             UpdateCursorState();
@@ -176,7 +150,6 @@ public class UIManager : MonoBehaviour
         {
             if (it.gameObject.activeSelf)
             {
-                action[it][(int)actionList.exit]();
                 it.gameObject.SetActive(false);
                 Debug.Log($"{it.gameObject.name} : {it.gameObject.activeSelf}");
             }
