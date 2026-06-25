@@ -49,7 +49,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public Vector2 moveInput;
 
-    private float maxStamina = 100f;
+    private float maxStamina = 5f;
     private float staminaRegenDelay = 1.5f;
     private float sprintBarInitialWidth;
 
@@ -79,10 +79,12 @@ public class PlayerStateMachine : MonoBehaviour
     {
         moveInput = InputManager.controls.GamePlay.Move.ReadValue<Vector2>();
 
-        if (currentState != null)
+        if (currentState != SprintState)
         {
-            currentState.Update();
+            RegenStamina();
         }
+
+        currentState?.Update();
     }
 
     public void ChangeState(IState newState)
@@ -98,60 +100,6 @@ public class PlayerStateMachine : MonoBehaviour
         currentState = newState;
 
         currentState.Enter();
-    }
-
-    void CheckState()
-    {
-       
-         
-
-        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
-        bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
-        bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
-        bool isMoving = moveInput != Vector2.zero;
-
-
-        if (phoneScript.IsLookingCamera == true)
-        {
-            if (isMoving)
-            {
-                moveInput = new Vector2(0, 0);
-            }
-            return;
-        }
-
-        if (isMoving == false)
-        {
-            if (crouchInput == true || isCeilingAbove == true)
-            {
-                ChangeState(CrouchState);
-            }
-            else if (isCeilingAbove == false)
-            {
-                ChangeState(IdleState);
-            }
-                
-            
-        }
-        else if (crouchInput == true)
-        {
-            ChangeState(CrouchState);
-        }
-        else if (sprintInput == true && isOutOfStamina == false)
-        {
-            ChangeState(SprintState);
-        }
-        else if (crouchInput == false && sprintInput == false)
-        {
-            if (isCeilingAbove == true)
-            {
-                ChangeState(CrouchState);
-                return;
-            }
-
-            ChangeState(WalkState);
-            
-        }
     }
 
     private void OnDrawGizmos()
@@ -179,7 +127,7 @@ public class PlayerStateMachine : MonoBehaviour
         Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
     }
 
-    void HandleStamina()
+    void RegenStamina()
     {
         if (isOutOfStamina == true && staminaLeft > 3f)
         {
@@ -202,7 +150,7 @@ public class PlayerStateMachine : MonoBehaviour
         {
             staminaLeft = maxStamina;
         }
-        UpdateSprintUI();
+        //UpdateSprintUI();
     }
 
     void UpdateSprintUI()
