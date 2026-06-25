@@ -34,13 +34,24 @@ public class PlaceScript : MonoBehaviour
         _hitPoint = Vector3.zero;
         if (ray != null )
         {
+            if(!preview.activeSelf)
+            {
+                preview.SetActive(true);
+            }
             if (ray.hitObject.layer == 16)
             {
                 _hitPoint = ray.hitPoint;
                 result = true;
             }
         }
-        return result;
+        else
+        {
+            if (preview.activeSelf)
+            {
+                preview.SetActive(false);
+            }
+        }
+            return result;
     }
     private void OnInteract(InputAction.CallbackContext _context)
     {
@@ -48,9 +59,10 @@ public class PlaceScript : MonoBehaviour
         {
             if(leftHandContent.itemScript.needsToBePlaced)
             {
-                if(editMode)
+                if(editMode && preview.activeSelf)
                 {
                     isPlacingLeft = true;
+                    playerView.canLook = false;
                 }
             }
             else
@@ -62,9 +74,10 @@ public class PlaceScript : MonoBehaviour
         {
             if (rightHandContent.itemScript.needsToBePlaced)
             {
-                if (editMode)
+                if (editMode && preview.activeSelf)
                 {
                     isPlacingRight = true;
+                    playerView.canLook = false;
                 }
             }
             else
@@ -79,7 +92,7 @@ public class PlaceScript : MonoBehaviour
         {
             if(leftHandContent.itemScript.needsToBePlaced)
             {
-                if(editMode && isPlacingLeft)
+                if(editMode && isPlacingLeft && preview.activeSelf)
                 {
                     isPlacingLeft = false;
                     leftHandContent.itemScript.deployed = true;
@@ -88,9 +101,9 @@ public class PlaceScript : MonoBehaviour
                     if (obj != null && preview != null)
                     {
                         obj.transform.position = preview.transform.position;
+                        obj.transform.rotation = preview.transform.rotation;
                     }
 
-                    preview.SetActive(false);
                     playerView.canLook = true;
                 }
             }
@@ -99,7 +112,7 @@ public class PlaceScript : MonoBehaviour
         {
             if (rightHandContent.itemScript.needsToBePlaced)
             {
-                if (editMode && isPlacingLeft)
+                if (editMode && isPlacingLeft && preview.activeSelf)
                 {
                     isPlacingLeft = false;
                     rightHandContent.itemScript.deployed = true;
@@ -110,7 +123,7 @@ public class PlaceScript : MonoBehaviour
                         obj.transform.position = preview.transform.position;
                     }
 
-                    preview.SetActive(false);
+
                     playerView.canLook = true;
                 }
             }
@@ -119,6 +132,7 @@ public class PlaceScript : MonoBehaviour
     private void SwitchEditMode(InputAction.CallbackContext _context)
     {
         editMode = !editMode;
+        preview.SetActive(editMode);
         Debug.Log($"Edit Mode: {editMode}");
     }
 
@@ -146,29 +160,19 @@ public class PlaceScript : MonoBehaviour
         {
             if (CheckSurface(out Vector3 hitPoint))
             {
-                preview.SetActive(true);
                 preview.transform.position = hitPoint;
-
-            }
-            else
-            {
-                preview.SetActive(false);
             }
             if (isPlacingLeft || isPlacingRight)
             {
-                playerView.canLook = false;
-
                 Vector2 lookInput = controls.GamePlay.Look.ReadValue<Vector2>();
 
                 currentRotation += lookInput.x * rotationSpeed * Time.deltaTime;
 
-                preview.transform.rotation =
-                    Quaternion.Euler(0, currentRotation, 0);
+                preview.transform.localRotation = Quaternion.Euler(0, currentRotation, 0);
             }
-            else
-            {
-
-            }
+            Debug.Log(preview);
+            Debug.Log(playerView);
+            Debug.Log(controls);
         }
     }
 

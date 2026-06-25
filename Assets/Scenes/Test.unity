@@ -331,15 +331,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3203101064566830148, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203101064566830148, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203101064566830148, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203101064566830148, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1212,6 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceScript
   playerCamera: {fileID: 138936572}
+  playerView: {fileID: 1545619982}
   leftHandContent: {fileID: 596181802}
   rightHandContent: {fileID: 1414382904}
   preview: {fileID: 1579728731}
@@ -1234,6 +1235,17 @@ MonoBehaviour:
   minForce: 5
   maxForce: 20
   chargeSpeed: 10
+--- !u!114 &1545619982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1653404313279791581, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 279587165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0c73dbd845d0c40a147d3a833d583e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!114 &1545619990
 MonoBehaviour:
   m_ObjectHideFlags: 0

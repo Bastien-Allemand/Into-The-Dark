@@ -3,6 +3,7 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     public bool deployed = false;
+    public bool canBeRepickUp = false; 
     public bool needsToBePlaced = false;
     public bool usingTimer = false;
     
@@ -18,6 +19,7 @@ public class ItemScript : MonoBehaviour
                 Destroy(gameObject);
             }
             timer -= Time.deltaTime;
+            placingDelay -= Time.deltaTime; 
         }
     }
 }
