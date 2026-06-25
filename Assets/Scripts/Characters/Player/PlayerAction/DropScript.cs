@@ -95,13 +95,23 @@ public class DropScript : MonoBehaviour
     {
         GameObject obj = hand.TakeOutObject();
 
-        if (obj == null) return;
+        if (obj == null)
+            return;
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
 
+        if (rb == null)
+        {
+            Debug.LogError($"{obj.name} has no Rigidbody!");
+            return;
+        }
+
         float force = Mathf.Clamp(charge, minForce, maxForce);
 
-        rb.AddForce(playerCamera.transform.forward * force, ForceMode.Impulse);
+        rb.AddForce(
+            playerCamera.transform.forward * force,
+            ForceMode.Impulse
+        );
     }
 
 }

@@ -28,47 +28,57 @@ public class PickUp : MonoBehaviour
         public itemType type = itemType.NONE;
         public GameObject GameObject = null;
     }
-    private Content CheckHit()
+    private itemType CheckHit(out GameObject _hitObject)
     {
-        Content result = new Content();
-        result.GameObject = Raycast.CheckRaycast(playerCamera, pickupRange);
+        _hitObject = null;
 
-        if (result.GameObject != null)
-        {
-            if (result.GameObject.CompareTag("Item"))
-                result.type = itemType.GADGET;
-            else if (result.GameObject.CompareTag("Consumable"))
-                result.type = itemType.CONSUMABLE;
-        }
+        Raycast.RaycastResult hit = Raycast.CheckRaycast(playerCamera, pickupRange);
 
-        return result;
+        if (hit == null)
+            return itemType.NONE;
+
+        _hitObject = hit.hitObject;
+
+        if (_hitObject == null)
+            return itemType.NONE;
+
+        if (_hitObject.CompareTag("Item"))
+            return itemType.GADGET;
+
+        if (_hitObject.CompareTag("Consumable"))
+            return itemType.CONSUMABLE;
+
+        return itemType.NONE;
     }
     private void OnInteract(InputAction.CallbackContext context)
     {
-        Content item = CheckHit();
+        GameObject hitObject;
+        itemType item = CheckHit(out hitObject);
 
-        if (item.type == itemType.NONE)
+        if (item == itemType.NONE)
+            return;
+        if (hitObject == null)
             return;
 
-        switch (item.type)
+        switch (item)
         {
             case itemType.GADGET:
 
                 if (context.control.name == "leftButton" && !leftHandContent.filled)
                 {
-                    leftHandContent.GiveObject(item.GameObject);
+                    leftHandContent.GiveObject(hitObject);
                 }
                 else if (context.control.name == "rightButton" && !rightHandContent.filled)
                 {
-                    rightHandContent.GiveObject(item.GameObject);
+                    rightHandContent.GiveObject(hitObject);
                 }
 
                 break;
 
             case itemType.CONSUMABLE:
 
-                inventoryscript.AddConsumable(item.GameObject);
-                Destroy(item.GameObject);
+                inventoryscript.AddConsumable(hitObject);
+                Destroy(hitObject);
                 break;
         }
     }

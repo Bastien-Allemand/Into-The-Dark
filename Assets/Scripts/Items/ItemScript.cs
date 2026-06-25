@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class ItemScript : MonoBehaviour
 {
-    public bool Deployed = false;
+    public bool deployed = false;
+    public bool needsToBePlaced = false;
+    public bool usingTimer = false;
+    
+    public float placingDelay = 0f;
     public float timer = 0f;
-    public bool UsingTimer = false;
 
     public void Update()
     {
-        if (Deployed && UsingTimer)
+        if (deployed && usingTimer)
         {
             if (timer < 0f)
             {
