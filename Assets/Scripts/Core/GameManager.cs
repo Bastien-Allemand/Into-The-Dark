@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Persistant Script")]
-    [SerializeField] public List<MonoScript> persistent_scripts;
     [Header("UI Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject transitionPanel;
@@ -57,9 +55,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
-        AddScript();
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
     }
 
@@ -74,18 +71,6 @@ public class GameManager : MonoBehaviour
         if (gameOverCanvasGroup != null)
         {
             gameOverCanvasGroup.alpha = 0f;
-        }
-    }
-    void AddScript()
-    {
-        foreach (var script in persistent_scripts)
-        {
-            var type = script.GetClass();
-
-            if (type != null && typeof(MonoBehaviour).IsAssignableFrom(type))
-            {
-                gameObject.AddComponent(type);
-            }
         }
     }
     public void TogglePause()
