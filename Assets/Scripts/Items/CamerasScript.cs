@@ -9,7 +9,7 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
-    [SerializeField] private PhoneScript phoneScript;
+    [SerializeField] private PhoneStateScrip phoneStateScript;
 
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
@@ -40,7 +40,7 @@ public class CamerasScript : MonoBehaviour
 
     private void Update()
     {
-        if (phoneScript != null && phoneScript.GetCurrentPhoneState() != PhoneState.Camera)
+        if (phoneStateScript != null && phoneStateScript.GetCurrentPhoneState() != PhoneState.Camera)
         {
             DisableAllCam();
         }

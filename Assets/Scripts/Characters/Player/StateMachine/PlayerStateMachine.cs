@@ -70,6 +70,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentState = IdleState;
         sprintBarInitialWidth = sprintBarTransform.rect.width;
+
+        Debug.Log("PhoneScript = " + phoneScript);
     }
 
     //private void OnEnable() => controls.Enable();
@@ -103,12 +105,14 @@ public class PlayerStateMachine : MonoBehaviour
 
     void CheckState()
     {
-       
-         
+
+
 
         //moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
+
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
+
         bool isMoving = moveInput != Vector2.zero;
 
 
