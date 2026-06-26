@@ -7,7 +7,6 @@ public class PickUp : MonoBehaviour
     [SerializeField] public Camera playerCamera;
     [SerializeField] public float pickupRange = 6f;
     [SerializeField] public Inventory inventoryscript;
-    [SerializeField] public Raycast raycastUtil;
     [Header("Hands Position")]
     [SerializeField] public GameObject leftHand;
     [SerializeField] public GameObject rightHand;
