@@ -21,9 +21,7 @@ public class PhoneLightScript : MonoBehaviour
 
     private void HandleLight()
     {
-        if (Input.GetMouseButtonDown(0)
-            && phoneStateScript.GetCurrentPhoneState() != PhoneState.Hidden
-            && uiBattery.HaveBattery)
+        if (Input.GetMouseButtonDown(0) && phoneStateScript.GetCurrentPhoneState() != PhoneState.Hidden && uiBattery.HaveBattery)
         {
             phoneLight.enabled = !phoneLight.enabled;
         }
