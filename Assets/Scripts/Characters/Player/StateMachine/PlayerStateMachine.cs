@@ -20,7 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private RectTransform sprintBarTransform;
-    [SerializeField] private PhoneScript phoneScript;
+    [SerializeField] private PhoneStateScrip phoneStateScrip;
 
     [Space(5)]
 
@@ -71,7 +71,7 @@ public class PlayerStateMachine : MonoBehaviour
         currentState = IdleState;
         sprintBarInitialWidth = sprintBarTransform.rect.width;
 
-        Debug.Log("PhoneScript = " + phoneScript);
+        Debug.Log("PhoneScript = " + phoneStateScrip);
     }
 
     //private void OnEnable() => controls.Enable();
@@ -105,10 +105,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     void CheckState()
     {
+        moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
 
-
-
-        //moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
 
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
@@ -116,7 +114,7 @@ public class PlayerStateMachine : MonoBehaviour
         bool isMoving = moveInput != Vector2.zero;
 
 
-        if (phoneScript.IsLookingCamera == true)
+        if (phoneStateScrip.IsLookingCamera == true)
         {
             if (isMoving)
             {
