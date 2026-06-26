@@ -13,6 +13,8 @@ public class Pathfinding : MonoBehaviour
     public List<Room> rooms = new List<Room>();
     private Vector3 position = Vector3.zero;
     public Transform target;
+    private bool attracted = false;
+    private float attractionTimer = 0f;
     public NavMeshAgent agent { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,9 +52,30 @@ public class Pathfinding : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    public void AttractToPlayer(Transform player, float duration)
+    {
+        target = player;
+        attracted = true;
+        attractionTimer = duration;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+        if (attracted)
+        {
+            attractionTimer -= Time.deltaTime;
+
+            agent.SetDestination(target.position);
+
+            if (attractionTimer <= 0f)
+            {
+                attracted = false;
+            }
+
+            return;
+        }
     }
 
 }
