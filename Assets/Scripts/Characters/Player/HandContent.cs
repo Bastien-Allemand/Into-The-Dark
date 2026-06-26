@@ -38,7 +38,7 @@ public class HandContent : MonoBehaviour
             itemScript = obj.GetComponent<ItemScript>();
         }
     }
-    public GameObject TakeOutObject()
+    public GameObject TakeOutObject(bool _restoreRb)
     {
         if (!filled)
             return null;
@@ -54,7 +54,7 @@ public class HandContent : MonoBehaviour
 
         Rigidbody rb = result.GetComponent<Rigidbody>();
 
-        if (rb != null)
+        if (rb != null && _restoreRb)
         {
             rb.isKinematic = false;
             rb.useGravity = true;

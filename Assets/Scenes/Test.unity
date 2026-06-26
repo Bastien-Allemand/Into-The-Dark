@@ -149,6 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   UIs: []
+--- !u!20 &138936572 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8616678334354961815, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 279587165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &219641193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,15 +164,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1f936deedd2067f4b8ffc0fb09e136d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.519295
+      value: 36.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f936deedd2067f4b8ffc0fb09e136d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.7236
+      value: 24.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f936deedd2067f4b8ffc0fb09e136d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 55.773067
+      value: 52.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f936deedd2067f4b8ffc0fb09e136d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -409,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bba5ae54a366acb4ba8dad01a7a7c5dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.704947
+      value: 24.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bba5ae54a366acb4ba8dad01a7a7c5dd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -460,13 +465,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1300438899659346561, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
+      propertyPath: ConsumableType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4073360214278151633, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
       propertyPath: m_Name
       value: Pills
       objectReference: {fileID: 0}
+    - target: {fileID: 4073360214278151633, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
+      propertyPath: m_TagString
+      value: Consumable
+      objectReference: {fileID: 0}
     - target: {fileID: 9134231803695752702, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.343523
+      value: 33.62
       objectReference: {fileID: 0}
     - target: {fileID: 9134231803695752702, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -519,7 +532,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3414393704781402034, guid: 14a6ee3f9bf60aa43a4924bdcc0efa29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.081463
+      value: 34.44
       objectReference: {fileID: 0}
     - target: {fileID: 3414393704781402034, guid: 14a6ee3f9bf60aa43a4924bdcc0efa29, type: 3}
       propertyPath: m_LocalPosition.y
@@ -557,9 +570,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5678750376550830787, guid: 14a6ee3f9bf60aa43a4924bdcc0efa29, type: 3}
+      propertyPath: ConsumableType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7400333275881931883, guid: 14a6ee3f9bf60aa43a4924bdcc0efa29, type: 3}
       propertyPath: m_Name
       value: Ventolin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7400333275881931883, guid: 14a6ee3f9bf60aa43a4924bdcc0efa29, type: 3}
+      propertyPath: m_TagString
+      value: Consumable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -721,13 +742,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 213681619}
-    - targetCorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 213681625}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
 --- !u!1 &1425426090
 GameObject:
@@ -969,6 +984,92 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bf894b417e688742820eecf63fe1948, type: 3}
+--- !u!1 &1545619973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4968043094434973047, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 279587165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1545619974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58d982d7d74e1b48a1564ccc8aada2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUp
+  playerCamera: {fileID: 138936572}
+  pickupRange: 6
+  inventoryscript: {fileID: 1545619990}
+  raycastUtil: {fileID: 1425426095}
+  leftHand: {fileID: 596181801}
+  rightHand: {fileID: 1414382903}
+--- !u!114 &1545619975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f78c1c674f16e439a5fa2dbbce32d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceScript
+  playerCamera: {fileID: 138936572}
+  playerView: {fileID: 1545619982}
+  leftHandContent: {fileID: 596181802}
+  rightHandContent: {fileID: 1414382904}
+  preview: {fileID: 1579728731}
+  rotationSpeed: 100
+--- !u!114 &1545619976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34126eda80a5c334e8b107bad7af358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropScript
+  playerCamera: {fileID: 138936572}
+  leftHand: {fileID: 596181801}
+  rightHand: {fileID: 1414382903}
+  minForce: 5
+  maxForce: 20
+  chargeSpeed: 10
+--- !u!114 &1545619982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1653404313279791581, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 279587165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0c73dbd845d0c40a147d3a833d583e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1545619990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c5384cc2324dd4c829d3ae7f88166a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  medicineCount: 0
+  batteryCount: 0
+  ventolineCount: 0
+  inventoryUI: {fileID: 0}
 --- !u!1 &1579728731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}

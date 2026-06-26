@@ -1,15 +1,18 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System;
+
+[Serializable]
+public class Consumable
+{
+    public GameObject Image;
+    public TextMeshProUGUI Count;
+    public ConsumableType Type = ConsumableType.NONE;
+}
+
 public class DisplayInventory : MonoBehaviour
 {
-    public class Consumable
-    {
-        [SerializeField] public GameObject Image;
-        [SerializeField] public TextMeshProUGUI Count;
-        [SerializeField] public ConsumableType Type;
-    }
-
     [SerializeField] public List<Consumable> consumables;
     public void UpdateCount(Inventory _inv)
     {

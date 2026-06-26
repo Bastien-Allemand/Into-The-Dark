@@ -93,7 +93,7 @@ public class DropScript : MonoBehaviour
 
     private void Throw(HandContent hand, float charge)
     {
-        GameObject obj = hand.TakeOutObject();
+        GameObject obj = hand.TakeOutObject(true);
 
         if (obj == null)
             return;
