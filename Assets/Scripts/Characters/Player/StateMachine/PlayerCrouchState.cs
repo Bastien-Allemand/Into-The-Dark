@@ -15,11 +15,11 @@ public class PlayerCrouchState : PlayerBaseState
 
         if (playerCollider != null)
         {
-            playerCollider.height = stateMachine.crouchHeight;
-            playerCollider.center = new Vector3(0f, stateMachine.crouchCenterY, 0f);
+            playerCollider.height = stateMachine.crouchConfigs.crouchHeight;
+            playerCollider.center = new Vector3(0f, stateMachine.crouchConfigs.crouchCenterY, 0f);
         }
 
-        stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.crouchMultiplier;
+        stateMachine.currentSpeed = stateMachine.moveConfigs.walkSpeed * stateMachine.moveConfigs.crouchMultiplier;
     }
 
     public override void Update()
@@ -29,11 +29,11 @@ public class PlayerCrouchState : PlayerBaseState
 
         bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
 
-        if (stateMachine.moveInput == Vector2.zero && !crouchInput && !stateMachine.isCeilingAbove)
+        if (stateMachine.moveInput == Vector2.zero && !crouchInput && !stateMachine.crouchConfigs.isCeilingAbove)
         {
             stateMachine.ChangeState(stateMachine.IdleState);
         }
-        else if (!crouchInput && !stateMachine.isCeilingAbove)
+        else if (!crouchInput && !stateMachine.crouchConfigs.isCeilingAbove)
         {
             stateMachine.ChangeState(stateMachine.WalkState);
         }
@@ -41,7 +41,7 @@ public class PlayerCrouchState : PlayerBaseState
     public override void Exit()
     {
         
-        if (stateMachine.isCeilingAbove)
+        if (stateMachine.crouchConfigs.isCeilingAbove)
             return;
 
         if (stateMachine.debug)
@@ -49,8 +49,8 @@ public class PlayerCrouchState : PlayerBaseState
 
         if (playerCollider != null)
         {
-            playerCollider.height = stateMachine.standHeight;
-            playerCollider.center = new Vector3(0f, stateMachine.standCenterY, 0f);
+            playerCollider.height = stateMachine.crouchConfigs.standHeight;
+            playerCollider.center = new Vector3(0f, stateMachine.crouchConfigs.standCenterY, 0f);
         }
     }
 }

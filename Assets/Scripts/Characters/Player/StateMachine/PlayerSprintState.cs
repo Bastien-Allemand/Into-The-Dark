@@ -8,7 +8,7 @@ public class PlayerSprintState : PlayerBaseState
     {
         if (stateMachine.debug)
             Debug.Log("Sprint enter");
-        stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.sprintingMultiplier;
+        stateMachine.currentSpeed = stateMachine.moveConfigs.walkSpeed * stateMachine.moveConfigs.sprintingMultiplier;
     }
 
     public override void Update()
@@ -23,26 +23,26 @@ public class PlayerSprintState : PlayerBaseState
         {
             stateMachine.ChangeState(stateMachine.IdleState);
         }
-        else if (sprintInput  == false || stateMachine.isOutOfStamina == true)
+        else if (sprintInput  == false || stateMachine.staminaConfigs.isOutOfStamina == true)
         {
             stateMachine.ChangeState(stateMachine.WalkState);
         }
     }
     void DecreaseStamina()
     {
-        stateMachine.staminaTimer = 0f;
-        stateMachine.staminaLeft -= Time.deltaTime;
+        stateMachine.staminaConfigs.staminaTimer = 0f;
+        stateMachine.staminaConfigs.staminaLeft -= Time.deltaTime;
 
-        if (stateMachine.staminaLeft <= 0f)
+        if (stateMachine.staminaConfigs.staminaLeft <= 0f)
         {
-            stateMachine.staminaLeft = 0f;
-            stateMachine.isOutOfStamina = true;
+            stateMachine.staminaConfigs.staminaLeft = 0f;
+            stateMachine.staminaConfigs.isOutOfStamina = true;
         }
     }
 
     public override void Exit()
     {
-        stateMachine.currentSpeed = stateMachine.walkSpeed;
+        stateMachine.currentSpeed = stateMachine.moveConfigs.walkSpeed;
         if (stateMachine.debug) Debug.Log("Player: Exit Mode SPRINT");
     }
 }

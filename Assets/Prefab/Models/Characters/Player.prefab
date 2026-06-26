@@ -384,7 +384,7 @@ Transform:
   m_GameObject: {fileID: 4078298833225924823}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -620,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4968043094434973047}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.0271, y: 13.08, z: 25.21735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -752,21 +752,25 @@ MonoBehaviour:
   debug: 0
   rb: {fileID: 3478164072246470038}
   playerCollider: {fileID: 9077920826426697030}
-  sprintBarTransform: {fileID: 0}
   phoneScript: {fileID: 1855949690762412832}
-  walkSpeed: 5
-  sprintingMultiplier: 1.4
-  crouchMultiplier: 0.5
-  staminaLeft: 5
-  staminaTimer: 0
+  moveSettings:
+    walkSpeed: 5
+    sprintingMultiplier: 1.4
+    crouchMultiplier: 0.6
   currentSpeed: 0
-  isOutOfStamina: 1
-  standHeight: 2
-  standCenterY: 0
-  crouchHeight: 1.2
-  crouchCenterY: -0.2
-  ceilingCheckDistance: 1
-  isCeilingAbove: 0
+  staminaSettings:
+    staminaLeft: 5
+    staminaTimer: 0
+    maxStamina: 5
+    staminaRegenDelay: 1.5
+    isOutOfStamina: 0
+  crouchSettings:
+    standHeight: 2
+    standCenterY: 0
+    crouchHeight: 1.2
+    crouchCenterY: -0.2
+    ceilingCheckDistance: 0.6
+    isCeilingAbove: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -902,7 +906,7 @@ MonoBehaviour:
   maxBattery: 100
   maxTime: 60
   coeffBatteryLightUse: 5
-  fogMaterial: {fileID: 0}
+  fogMaterial: {fileID: 2100000, guid: 0081b89c9a6164d4d911547ca30098cd, type: 2}
   isLookingCamera: 0
   moveInput: {x: 0, y: 0}
   hideDistanceThreshold: 0.01

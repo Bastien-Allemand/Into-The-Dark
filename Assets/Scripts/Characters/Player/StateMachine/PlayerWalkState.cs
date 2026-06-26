@@ -11,7 +11,7 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void Update()
     {
-        Move(stateMachine.walkSpeed);
+        Move(stateMachine.moveConfigs.walkSpeed);
 
       
         bool sprintInput = InputManager.controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
@@ -21,7 +21,7 @@ public class PlayerWalkState : PlayerBaseState
         {
             stateMachine.ChangeState(stateMachine.IdleState);
         }
-        else if (sprintInput && stateMachine.isOutOfStamina == false)
+        else if (sprintInput && stateMachine.staminaConfigs.isOutOfStamina == false)
         {
             stateMachine.ChangeState(stateMachine.SprintState);
         }
