@@ -96,7 +96,7 @@ public class PlaceScript : MonoBehaviour
                 {
                     isPlacingLeft = false;
                     leftHandContent.itemScript.deployed = true;
-                    GameObject obj = leftHandContent.TakeOutObject();
+                    GameObject obj = leftHandContent.TakeOutObject(false);
 
                     if (obj != null && preview != null)
                     {
@@ -116,7 +116,7 @@ public class PlaceScript : MonoBehaviour
                 {
                     isPlacingLeft = false;
                     rightHandContent.itemScript.deployed = true;
-                    GameObject obj = rightHandContent.TakeOutObject();
+                    GameObject obj = rightHandContent.TakeOutObject(false);
 
                     if (obj != null && preview != null)
                     {
