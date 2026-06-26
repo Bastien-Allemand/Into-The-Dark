@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 8696044993972329095}
   - component: {fileID: 4336411935614673860}
   - component: {fileID: 3092876909558607972}
+  - component: {fileID: 1801515433969434650}
   m_Layer: 5
   m_Name: ui_player
   m_TagString: Untagged
@@ -467,6 +468,19 @@ MonoBehaviour:
   cursorWantedState: 1
   enter: 0
   exit: 0
+--- !u!114 &1801515433969434650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079938404556345137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3dd93a9e2e6c04da4bb5e902767208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  UIs: []
 --- !u!1 &1353119041592328868
 GameObject:
   m_ObjectHideFlags: 0
