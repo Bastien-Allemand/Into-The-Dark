@@ -7,7 +7,7 @@
             "id": "08ef6b46-bb37-4e74-9104-d15d73e47607",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "Movement",
                     "type": "Value",
                     "id": "0d6e5aa3-4e69-4a6a-bb98-a2b1d53367fd",
                     "expectedControlType": "Vector2",
@@ -43,7 +43,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "Throw Left Object",
                     "type": "Button",
                     "id": "46e06337-fbb6-45ea-a537-efbdb8f54776",
                     "expectedControlType": "",
@@ -52,7 +52,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Swap Phone",
+                    "name": "Throw Right Object",
+                    "type": "Button",
+                    "id": "224cdb9a-9b7b-4405-866b-186fbdf8a7ae",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Take/Hide Phone",
                     "type": "Button",
                     "id": "e3d6de0d-83bd-4fdb-9067-0e9ebe57ce3f",
                     "expectedControlType": "",
@@ -61,7 +70,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LookCamera",
+                    "name": "Look at camera",
                     "type": "Button",
                     "id": "eb2ee36f-a99d-4279-aae3-ff8ba78917b3",
                     "expectedControlType": "",
@@ -70,7 +79,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeCamera",
+                    "name": "Swap between camera's",
                     "type": "Button",
                     "id": "29fec897-ceb2-45a6-bed3-ccc43f59cdea",
                     "expectedControlType": "",
@@ -79,7 +88,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Edit",
+                    "name": "Take/Place object",
                     "type": "Button",
                     "id": "122c932c-812c-42c4-8cb3-e5062f1e1e0e",
                     "expectedControlType": "",
@@ -88,7 +97,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "EditSwitch",
+                    "name": "Enter/Leave Edit Mode",
                     "type": "Button",
                     "id": "ee5e32c2-76c0-4eef-b9df-9831dce24511",
                     "expectedControlType": "",
@@ -113,26 +122,17 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Active Flashlight",
-                    "type": "Button",
-                    "id": "bcfc59f2-0649-4be9-99d5-5d7f86eed87d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "WASD",
+                    "name": "Foward Backwards Left Right",
                     "id": "6bff145a-4b72-413e-8f47-89d495fc2bdb",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Movement",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -143,7 +143,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -154,7 +154,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -165,7 +165,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -176,7 +176,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -214,35 +214,24 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Hand",
+                    "name": "Left Hand",
                     "id": "7f8b217f-7c9f-413a-aaff-3935ddb3df68",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "Throw Left Object",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Negative",
+                    "name": "Positive",
                     "id": "73203056-ecee-4396-b0c4-5d5295c09f76",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Positive",
-                    "id": "ef704eca-dd1c-4fdf-af7e-9278161337fc",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
+                    "action": "Throw Left Object",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -253,7 +242,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap Phone",
+                    "action": "Take/Hide Phone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -264,7 +253,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LookCamera",
+                    "action": "Look at camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -275,64 +264,53 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeCamera",
+                    "action": "Swap between camera's",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "Negative",
                     "id": "f6914630-6d49-48c2-9a4f-bca8e956d512",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeCamera",
+                    "action": "Swap between camera's",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "Positive",
                     "id": "876776df-fc8f-4569-852d-4abd0621000c",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeCamera",
+                    "action": "Swap between camera's",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Right Left",
-                    "id": "8b8b8c13-b61c-49e6-bb77-418bf1bad605",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Edit",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "ee3af1e0-eb75-485c-abe5-76c2349582ec",
+                    "name": "",
+                    "id": "5ba8a7f6-81bf-4253-a1dc-a82eee6a57a9",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Edit",
+                    "action": "Take/Place object",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
-                    "id": "9fc598fe-2610-410a-99f6-53545872dd79",
+                    "name": "",
+                    "id": "cebd6856-c5a9-45c7-8d3a-490f8357bf2f",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Edit",
+                    "action": "Take/Place object",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -341,7 +319,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EditSwitch",
+                    "action": "Enter/Leave Edit Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -390,15 +368,26 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "31133004-3992-41d3-9ee9-a45884a2d943",
-                    "path": "<Mouse>/leftButton",
+                    "name": "Right Hand",
+                    "id": "82522d6a-773b-4bf0-96cb-b3bafa5a5641",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Active Flashlight",
-                    "isComposite": false,
+                    "action": "Throw Right Object",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Positive",
+                    "id": "22d4ed16-69a4-44ee-9b81-cbd34e5fbae3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw Right Object",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

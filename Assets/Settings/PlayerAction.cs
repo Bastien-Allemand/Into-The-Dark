@@ -93,7 +93,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""id"": ""08ef6b46-bb37-4e74-9104-d15d73e47607"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""0d6e5aa3-4e69-4a6a-bb98-a2b1d53367fd"",
                     ""expectedControlType"": ""Vector2"",
@@ -129,7 +129,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Throw Left Object"",
                     ""type"": ""Button"",
                     ""id"": ""46e06337-fbb6-45ea-a537-efbdb8f54776"",
                     ""expectedControlType"": """",
@@ -138,7 +138,16 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Swap Phone"",
+                    ""name"": ""Throw Right Object"",
+                    ""type"": ""Button"",
+                    ""id"": ""224cdb9a-9b7b-4405-866b-186fbdf8a7ae"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Take/Hide Phone"",
                     ""type"": ""Button"",
                     ""id"": ""e3d6de0d-83bd-4fdb-9067-0e9ebe57ce3f"",
                     ""expectedControlType"": """",
@@ -147,7 +156,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LookCamera"",
+                    ""name"": ""Look at camera"",
                     ""type"": ""Button"",
                     ""id"": ""eb2ee36f-a99d-4279-aae3-ff8ba78917b3"",
                     ""expectedControlType"": """",
@@ -156,7 +165,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeCamera"",
+                    ""name"": ""Swap between camera's"",
                     ""type"": ""Button"",
                     ""id"": ""29fec897-ceb2-45a6-bed3-ccc43f59cdea"",
                     ""expectedControlType"": """",
@@ -165,7 +174,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Edit"",
+                    ""name"": ""Take/Place object"",
                     ""type"": ""Button"",
                     ""id"": ""122c932c-812c-42c4-8cb3-e5062f1e1e0e"",
                     ""expectedControlType"": """",
@@ -174,7 +183,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""EditSwitch"",
+                    ""name"": ""Enter/Leave Edit Mode"",
                     ""type"": ""Button"",
                     ""id"": ""ee5e32c2-76c0-4eef-b9df-9831dce24511"",
                     ""expectedControlType"": """",
@@ -199,26 +208,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Active Flashlight"",
-                    ""type"": ""Button"",
-                    ""id"": ""bcfc59f2-0649-4be9-99d5-5d7f86eed87d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""Foward Backwards Left Right"",
                     ""id"": ""6bff145a-4b72-413e-8f47-89d495fc2bdb"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -229,7 +229,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -240,7 +240,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -251,7 +251,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -262,7 +262,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -300,35 +300,24 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Hand"",
+                    ""name"": ""Left Hand"",
                     ""id"": ""7f8b217f-7c9f-413a-aaff-3935ddb3df68"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Throw Left Object"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Negative"",
+                    ""name"": ""Positive"",
                     ""id"": ""73203056-ecee-4396-b0c4-5d5295c09f76"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""ef704eca-dd1c-4fdf-af7e-9278161337fc"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Throw Left Object"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -339,7 +328,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap Phone"",
+                    ""action"": ""Take/Hide Phone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -350,7 +339,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookCamera"",
+                    ""action"": ""Look at camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -361,64 +350,53 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeCamera"",
+                    ""action"": ""Swap between camera's"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""Negative"",
                     ""id"": ""f6914630-6d49-48c2-9a4f-bca8e956d512"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeCamera"",
+                    ""action"": ""Swap between camera's"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Positive"",
                     ""id"": ""876776df-fc8f-4569-852d-4abd0621000c"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeCamera"",
+                    ""action"": ""Swap between camera's"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Right Left"",
-                    ""id"": ""8b8b8c13-b61c-49e6-bb77-418bf1bad605"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Edit"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""ee3af1e0-eb75-485c-abe5-76c2349582ec"",
+                    ""name"": """",
+                    ""id"": ""5ba8a7f6-81bf-4253-a1dc-a82eee6a57a9"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Edit"",
+                    ""action"": ""Take/Place object"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""9fc598fe-2610-410a-99f6-53545872dd79"",
+                    ""name"": """",
+                    ""id"": ""cebd6856-c5a9-45c7-8d3a-490f8357bf2f"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Edit"",
+                    ""action"": ""Take/Place object"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -427,7 +405,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""EditSwitch"",
+                    ""action"": ""Enter/Leave Edit Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -476,15 +454,26 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""31133004-3992-41d3-9ee9-a45884a2d943"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""name"": ""Right Hand"",
+                    ""id"": ""82522d6a-773b-4bf0-96cb-b3bafa5a5641"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Active Flashlight"",
-                    ""isComposite"": false,
+                    ""action"": ""Throw Right Object"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""22d4ed16-69a4-44ee-9b81-cbd34e5fbae3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Right Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -521,19 +510,19 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
 }");
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
-        m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
+        m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
         m_GamePlay_Look = m_GamePlay.FindAction("Look", throwIfNotFound: true);
         m_GamePlay_Crouch = m_GamePlay.FindAction("Crouch", throwIfNotFound: true);
         m_GamePlay_Sprint = m_GamePlay.FindAction("Sprint", throwIfNotFound: true);
-        m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
-        m_GamePlay_SwapPhone = m_GamePlay.FindAction("Swap Phone", throwIfNotFound: true);
-        m_GamePlay_LookCamera = m_GamePlay.FindAction("LookCamera", throwIfNotFound: true);
-        m_GamePlay_ChangeCamera = m_GamePlay.FindAction("ChangeCamera", throwIfNotFound: true);
-        m_GamePlay_Edit = m_GamePlay.FindAction("Edit", throwIfNotFound: true);
-        m_GamePlay_EditSwitch = m_GamePlay.FindAction("EditSwitch", throwIfNotFound: true);
+        m_GamePlay_ThrowLeftObject = m_GamePlay.FindAction("Throw Left Object", throwIfNotFound: true);
+        m_GamePlay_ThrowRightObject = m_GamePlay.FindAction("Throw Right Object", throwIfNotFound: true);
+        m_GamePlay_TakeHidePhone = m_GamePlay.FindAction("Take/Hide Phone", throwIfNotFound: true);
+        m_GamePlay_Lookatcamera = m_GamePlay.FindAction("Look at camera", throwIfNotFound: true);
+        m_GamePlay_Swapbetweencameras = m_GamePlay.FindAction("Swap between camera's", throwIfNotFound: true);
+        m_GamePlay_TakePlaceobject = m_GamePlay.FindAction("Take/Place object", throwIfNotFound: true);
+        m_GamePlay_EnterLeaveEditMode = m_GamePlay.FindAction("Enter/Leave Edit Mode", throwIfNotFound: true);
         m_GamePlay_Inventory = m_GamePlay.FindAction("Inventory", throwIfNotFound: true);
         m_GamePlay_Consume = m_GamePlay.FindAction("Consume", throwIfNotFound: true);
-        m_GamePlay_ActiveFlashlight = m_GamePlay.FindAction("Active Flashlight", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
@@ -618,19 +607,19 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     // GamePlay
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
-    private readonly InputAction m_GamePlay_Move;
+    private readonly InputAction m_GamePlay_Movement;
     private readonly InputAction m_GamePlay_Look;
     private readonly InputAction m_GamePlay_Crouch;
     private readonly InputAction m_GamePlay_Sprint;
-    private readonly InputAction m_GamePlay_Interact;
-    private readonly InputAction m_GamePlay_SwapPhone;
-    private readonly InputAction m_GamePlay_LookCamera;
-    private readonly InputAction m_GamePlay_ChangeCamera;
-    private readonly InputAction m_GamePlay_Edit;
-    private readonly InputAction m_GamePlay_EditSwitch;
+    private readonly InputAction m_GamePlay_ThrowLeftObject;
+    private readonly InputAction m_GamePlay_ThrowRightObject;
+    private readonly InputAction m_GamePlay_TakeHidePhone;
+    private readonly InputAction m_GamePlay_Lookatcamera;
+    private readonly InputAction m_GamePlay_Swapbetweencameras;
+    private readonly InputAction m_GamePlay_TakePlaceobject;
+    private readonly InputAction m_GamePlay_EnterLeaveEditMode;
     private readonly InputAction m_GamePlay_Inventory;
     private readonly InputAction m_GamePlay_Consume;
-    private readonly InputAction m_GamePlay_ActiveFlashlight;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -643,9 +632,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public GamePlayActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Move".
+        /// Provides access to the underlying input action "GamePlay/Movement".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_GamePlay_Move;
+        public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
         /// <summary>
         /// Provides access to the underlying input action "GamePlay/Look".
         /// </summary>
@@ -659,29 +648,33 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_GamePlay_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Interact".
+        /// Provides access to the underlying input action "GamePlay/ThrowLeftObject".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
+        public InputAction @ThrowLeftObject => m_Wrapper.m_GamePlay_ThrowLeftObject;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/SwapPhone".
+        /// Provides access to the underlying input action "GamePlay/ThrowRightObject".
         /// </summary>
-        public InputAction @SwapPhone => m_Wrapper.m_GamePlay_SwapPhone;
+        public InputAction @ThrowRightObject => m_Wrapper.m_GamePlay_ThrowRightObject;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/LookCamera".
+        /// Provides access to the underlying input action "GamePlay/TakeHidePhone".
         /// </summary>
-        public InputAction @LookCamera => m_Wrapper.m_GamePlay_LookCamera;
+        public InputAction @TakeHidePhone => m_Wrapper.m_GamePlay_TakeHidePhone;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/ChangeCamera".
+        /// Provides access to the underlying input action "GamePlay/Lookatcamera".
         /// </summary>
-        public InputAction @ChangeCamera => m_Wrapper.m_GamePlay_ChangeCamera;
+        public InputAction @Lookatcamera => m_Wrapper.m_GamePlay_Lookatcamera;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Edit".
+        /// Provides access to the underlying input action "GamePlay/Swapbetweencameras".
         /// </summary>
-        public InputAction @Edit => m_Wrapper.m_GamePlay_Edit;
+        public InputAction @Swapbetweencameras => m_Wrapper.m_GamePlay_Swapbetweencameras;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/EditSwitch".
+        /// Provides access to the underlying input action "GamePlay/TakePlaceobject".
         /// </summary>
-        public InputAction @EditSwitch => m_Wrapper.m_GamePlay_EditSwitch;
+        public InputAction @TakePlaceobject => m_Wrapper.m_GamePlay_TakePlaceobject;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/EnterLeaveEditMode".
+        /// </summary>
+        public InputAction @EnterLeaveEditMode => m_Wrapper.m_GamePlay_EnterLeaveEditMode;
         /// <summary>
         /// Provides access to the underlying input action "GamePlay/Inventory".
         /// </summary>
@@ -690,10 +683,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/Consume".
         /// </summary>
         public InputAction @Consume => m_Wrapper.m_GamePlay_Consume;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/ActiveFlashlight".
-        /// </summary>
-        public InputAction @ActiveFlashlight => m_Wrapper.m_GamePlay_ActiveFlashlight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -720,9 +709,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GamePlayActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GamePlayActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
@@ -732,33 +721,33 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
-            @SwapPhone.started += instance.OnSwapPhone;
-            @SwapPhone.performed += instance.OnSwapPhone;
-            @SwapPhone.canceled += instance.OnSwapPhone;
-            @LookCamera.started += instance.OnLookCamera;
-            @LookCamera.performed += instance.OnLookCamera;
-            @LookCamera.canceled += instance.OnLookCamera;
-            @ChangeCamera.started += instance.OnChangeCamera;
-            @ChangeCamera.performed += instance.OnChangeCamera;
-            @ChangeCamera.canceled += instance.OnChangeCamera;
-            @Edit.started += instance.OnEdit;
-            @Edit.performed += instance.OnEdit;
-            @Edit.canceled += instance.OnEdit;
-            @EditSwitch.started += instance.OnEditSwitch;
-            @EditSwitch.performed += instance.OnEditSwitch;
-            @EditSwitch.canceled += instance.OnEditSwitch;
+            @ThrowLeftObject.started += instance.OnThrowLeftObject;
+            @ThrowLeftObject.performed += instance.OnThrowLeftObject;
+            @ThrowLeftObject.canceled += instance.OnThrowLeftObject;
+            @ThrowRightObject.started += instance.OnThrowRightObject;
+            @ThrowRightObject.performed += instance.OnThrowRightObject;
+            @ThrowRightObject.canceled += instance.OnThrowRightObject;
+            @TakeHidePhone.started += instance.OnTakeHidePhone;
+            @TakeHidePhone.performed += instance.OnTakeHidePhone;
+            @TakeHidePhone.canceled += instance.OnTakeHidePhone;
+            @Lookatcamera.started += instance.OnLookatcamera;
+            @Lookatcamera.performed += instance.OnLookatcamera;
+            @Lookatcamera.canceled += instance.OnLookatcamera;
+            @Swapbetweencameras.started += instance.OnSwapbetweencameras;
+            @Swapbetweencameras.performed += instance.OnSwapbetweencameras;
+            @Swapbetweencameras.canceled += instance.OnSwapbetweencameras;
+            @TakePlaceobject.started += instance.OnTakePlaceobject;
+            @TakePlaceobject.performed += instance.OnTakePlaceobject;
+            @TakePlaceobject.canceled += instance.OnTakePlaceobject;
+            @EnterLeaveEditMode.started += instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.performed += instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.canceled += instance.OnEnterLeaveEditMode;
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
             @Consume.started += instance.OnConsume;
             @Consume.performed += instance.OnConsume;
             @Consume.canceled += instance.OnConsume;
-            @ActiveFlashlight.started += instance.OnActiveFlashlight;
-            @ActiveFlashlight.performed += instance.OnActiveFlashlight;
-            @ActiveFlashlight.canceled += instance.OnActiveFlashlight;
         }
 
         /// <summary>
@@ -770,9 +759,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="GamePlayActions" />
         private void UnregisterCallbacks(IGamePlayActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
@@ -782,33 +771,33 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
-            @SwapPhone.started -= instance.OnSwapPhone;
-            @SwapPhone.performed -= instance.OnSwapPhone;
-            @SwapPhone.canceled -= instance.OnSwapPhone;
-            @LookCamera.started -= instance.OnLookCamera;
-            @LookCamera.performed -= instance.OnLookCamera;
-            @LookCamera.canceled -= instance.OnLookCamera;
-            @ChangeCamera.started -= instance.OnChangeCamera;
-            @ChangeCamera.performed -= instance.OnChangeCamera;
-            @ChangeCamera.canceled -= instance.OnChangeCamera;
-            @Edit.started -= instance.OnEdit;
-            @Edit.performed -= instance.OnEdit;
-            @Edit.canceled -= instance.OnEdit;
-            @EditSwitch.started -= instance.OnEditSwitch;
-            @EditSwitch.performed -= instance.OnEditSwitch;
-            @EditSwitch.canceled -= instance.OnEditSwitch;
+            @ThrowLeftObject.started -= instance.OnThrowLeftObject;
+            @ThrowLeftObject.performed -= instance.OnThrowLeftObject;
+            @ThrowLeftObject.canceled -= instance.OnThrowLeftObject;
+            @ThrowRightObject.started -= instance.OnThrowRightObject;
+            @ThrowRightObject.performed -= instance.OnThrowRightObject;
+            @ThrowRightObject.canceled -= instance.OnThrowRightObject;
+            @TakeHidePhone.started -= instance.OnTakeHidePhone;
+            @TakeHidePhone.performed -= instance.OnTakeHidePhone;
+            @TakeHidePhone.canceled -= instance.OnTakeHidePhone;
+            @Lookatcamera.started -= instance.OnLookatcamera;
+            @Lookatcamera.performed -= instance.OnLookatcamera;
+            @Lookatcamera.canceled -= instance.OnLookatcamera;
+            @Swapbetweencameras.started -= instance.OnSwapbetweencameras;
+            @Swapbetweencameras.performed -= instance.OnSwapbetweencameras;
+            @Swapbetweencameras.canceled -= instance.OnSwapbetweencameras;
+            @TakePlaceobject.started -= instance.OnTakePlaceobject;
+            @TakePlaceobject.performed -= instance.OnTakePlaceobject;
+            @TakePlaceobject.canceled -= instance.OnTakePlaceobject;
+            @EnterLeaveEditMode.started -= instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.performed -= instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.canceled -= instance.OnEnterLeaveEditMode;
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
             @Consume.started -= instance.OnConsume;
             @Consume.performed -= instance.OnConsume;
             @Consume.canceled -= instance.OnConsume;
-            @ActiveFlashlight.started -= instance.OnActiveFlashlight;
-            @ActiveFlashlight.performed -= instance.OnActiveFlashlight;
-            @ActiveFlashlight.canceled -= instance.OnActiveFlashlight;
         }
 
         /// <summary>
@@ -946,12 +935,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     public interface IGamePlayActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Movement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -974,47 +963,54 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Throw Left Object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteract(InputAction.CallbackContext context);
+        void OnThrowLeftObject(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Swap Phone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Throw Right Object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwapPhone(InputAction.CallbackContext context);
+        void OnThrowRightObject(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "LookCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Take/Hide Phone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLookCamera(InputAction.CallbackContext context);
+        void OnTakeHidePhone(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "ChangeCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Look at camera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnChangeCamera(InputAction.CallbackContext context);
+        void OnLookatcamera(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Edit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Swap between camera's" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEdit(InputAction.CallbackContext context);
+        void OnSwapbetweencameras(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "EditSwitch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Take/Place object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEditSwitch(InputAction.CallbackContext context);
+        void OnTakePlaceobject(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Enter/Leave Edit Mode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEnterLeaveEditMode(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1029,13 +1025,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConsume(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Active Flashlight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnActiveFlashlight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

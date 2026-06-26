@@ -88,32 +88,32 @@ public class PhoneScript : MonoBehaviour
 
     private void HandleInputs()
     {
-        bool swapPhoneInput = controls.GamePlay.SwapPhone.triggered;
+        //bool swapPhoneInput = controls.GamePlay.SwapPhone.triggered;
 
-        bool lookCameraInput = controls.GamePlay.LookCamera.triggered;
-        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
+        //bool lookCameraInput = controls.GamePlay.LookCamera.triggered;
+        //moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
-        if (swapPhoneInput == true)
-        {
-            TogglePhone();
-        }
-        if (lookCameraInput == true)
-        {
-            ToggleCameraMode();
-        }
-        if (moveInput != Vector2.zero && currentState == PhoneState.Camera && isSwapThisFrame && !wasSwitchLastFrame) 
-        { 
-            if(moveInput.x > 0)
-            {
-                Debug.Log("next cam");
-                CamerasScript.instance.NextCamera();
-            }
-            else if(moveInput.x < 0)
-            {
-                Debug.Log("previous cam");
-                CamerasScript.instance.PreviousCamera();
-            }
-        }
+        //if (swapPhoneInput == true)
+        //{
+        //    TogglePhone();
+        //}
+        //if (lookCameraInput == true)
+        //{
+        //    ToggleCameraMode();
+        //}
+        //if (moveInput != Vector2.zero && currentState == PhoneState.Camera && isSwapThisFrame && !wasSwitchLastFrame) 
+        //{ 
+        //    if(moveInput.x > 0)
+        //    {
+        //        Debug.Log("next cam");
+        //        CamerasScript.instance.NextCamera();
+        //    }
+        //    else if(moveInput.x < 0)
+        //    {
+        //        Debug.Log("previous cam");
+        //        CamerasScript.instance.PreviousCamera();
+        //    }
+        //}
 
         wasSwitchLastFrame = isSwapThisFrame;
     }
