@@ -860,6 +860,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34295bc20c12bbf4cb8c4c74fe3d7c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Raycast
+--- !u!1 &1466663340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1201688143073190090, guid: 6bf894b417e688742820eecf63fe1948, type: 3}
+  m_PrefabInstance: {fileID: 1514872057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1508385864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1252,6 +1257,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 266c4ddc680c9024b87fd8dcfcb17028, type: 3}
+--- !u!114 &2120531663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7957782273498077166, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+  m_PrefabInstance: {fileID: 1344184016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &28773706024490702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,6 +1528,8 @@ GameObject:
   - component: {fileID: 4729598843542720860}
   - component: {fileID: 8490928801625947841}
   - component: {fileID: 8490928801625947842}
+  - component: {fileID: 8490928801625947844}
+  - component: {fileID: 8490928801625947843}
   m_Layer: 0
   m_Name: item_phone
   m_TagString: MainCamera
@@ -1859,7 +1877,7 @@ MonoBehaviour:
   rb: {fileID: 2833487996808726012}
   playerCollider: {fileID: 6290706555044187168}
   sprintBarTransform: {fileID: 1836222010}
-  phoneScript: {fileID: 0}
+  phoneStateScrip: {fileID: 8490928801625947841}
   walkSpeed: 5
   sprintingMultiplier: 1.4
   crouchMultiplier: 0.5
@@ -1979,11 +1997,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f13fb65ca5b2e42a62c12f45d66a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CamerasScript
-  m_cameraUiText: {fileID: 0}
+  m_cameraUiText: {fileID: 2120531663}
   m_screenRenderTexture: {fileID: 8400000, guid: 5951d2779d5240040a133b1c31bd8fbd, type: 2}
   m_CamAmount: 0
-  phoneScript: {fileID: 0}
-  camActive: {fileID: 0}
+  phoneStateScript: {fileID: 8490928801625947841}
+  camActive: {fileID: 8719616975939050061}
 --- !u!1 &5150540501146136860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,7 +2070,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9185183132243174591}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2583,7 +2601,7 @@ Transform:
   m_GameObject: {fileID: 2028705160896650108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.900787, y: -26.23, z: 65.909424}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4049, y: 0.4049, z: 0.4049}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2683,6 +2701,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc83154e0da5f445981b4d398e17448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneStateScrip
+  isLookingCamera: 0
+  phoneTransform: {fileID: 8100116232215879863}
+  phoneMeshRenderer: {fileID: 2634152572391423770}
+  screenPhone: {fileID: 2504627129158431461}
+  battery: {fileID: 1466663340}
+  phoneLight: {fileID: 5472174398179857233}
+  uiBattery: {fileID: 8490928801625947842}
+  hiddenAnchor: {fileID: 409404783162064476}
+  idleAnchor: {fileID: 6228716109351434428}
+  cameraAnchor: {fileID: 8339693083438501356}
+  transitionSpeed: 8
+  hideDistanceThreshold: 0.01
 --- !u!114 &8490928801625947842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2695,23 +2725,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcebc1edecf1da49a118099e9967779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneScript
-  phoneTransform: {fileID: 0}
-  battery: {fileID: 0}
-  phoneLight: {fileID: 0}
-  batteryScript: {fileID: 0}
-  screenPhone: {fileID: 0}
-  phoneCanvaRectTransform: {fileID: 0}
-  hiddenAnchor: {fileID: 0}
-  idleAnchor: {fileID: 0}
-  cameraAnchor: {fileID: 0}
-  transitionSpeed: 8
-  maxBattery: 1e+11
+  battery: {fileID: 8986279180619138698}
+  batteryScript: {fileID: 3512890450784504550}
+  phoneLight: {fileID: 5472174398179857233}
+  maxBattery: 100
   maxTime: 60
   coeffBatteryLightUse: 5
-  fogMaterial: {fileID: 0}
-  isLookingCamera: 0
-  moveInput: {x: 0, y: 0}
-  hideDistanceThreshold: 0.01
+--- !u!114 &8490928801625947843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028705160896650108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f22708350d7adf48a01922b9ec84ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhoneLightScript
+  phoneLight: {fileID: 5472174398179857233}
+  phoneStateScript: {fileID: 8490928801625947841}
+  uiBattery: {fileID: 8490928801625947842}
+  fogMaterial: {fileID: 2100000, guid: e80c8e65c19df7c4a990afc1d698ba96, type: 2}
+--- !u!114 &8490928801625947844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028705160896650108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfa1017f61267e42b2a1bdd68c7ffe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraPhoneScript
+  phoneStateScript: {fileID: 8490928801625947841}
+  phoneCanvaRectTransform: {fileID: 4143242738140207804}
 --- !u!114 &8580484423938225489
 MonoBehaviour:
   m_ObjectHideFlags: 0

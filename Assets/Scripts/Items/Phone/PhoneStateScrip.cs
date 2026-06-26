@@ -12,16 +12,16 @@ public class PhoneStateScrip : MonoBehaviour
     [SerializeField] public bool isLookingCamera = false;
     public bool IsLookingCamera => isLookingCamera;
 
-    PlayerAction controls;
-
+    private PlayerAction controls;
     private PhoneState currentState = PhoneState.Hidden;
 
     [Header("References")]
     [SerializeField] private Transform phoneTransform;
+    [SerializeField] private MeshRenderer phoneMeshRenderer;
     [SerializeField] private GameObject screenPhone;
     [SerializeField] private GameObject battery;
     [SerializeField] private Light phoneLight;
-
+    [SerializeField] private UIBattery uiBattery;
 
     [Header("Anchors")]
     [SerializeField] private Transform hiddenAnchor;
@@ -30,45 +30,43 @@ public class PhoneStateScrip : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private float transitionSpeed = 8f;
-
-    [Header("Script")]
-    [SerializeField] private UIBattery uiBattery;
-
+    [SerializeField] private float hideDistanceThreshold = 0.01f;
 
     private bool waitingForHide;
-    private bool wasSwitchLastFrame = false;
+    private bool wasSwitchLastFrame;
+    private Vector2 moveInput;
 
-    [SerializeField] private float hideDistanceThreshold = 0.01f;
-    [SerializeField] private Vector2 moveInput;
-
-    void Awake()
+    private void Awake()
     {
         controls = InputManager.controls;
     }
 
-    void Start()
+    private void Start()
     {
         screenPhone.SetActive(false);
-        phoneTransform.gameObject.SetActive(false);
+        battery.SetActive(false);
+        phoneLight.enabled = false;
+
+        phoneMeshRenderer.enabled = false;
 
         phoneTransform.localPosition = hiddenAnchor.localPosition;
         phoneTransform.localRotation = hiddenAnchor.localRotation;
         phoneTransform.localScale = hiddenAnchor.localScale;
     }
 
-    void Update()
+    private void Update()
     {
         HandleInputs();
         UpdatePhoneTransform();
         UpdateBattery();
     }
 
-    void UpdateBattery()
+    private void UpdateBattery()
     {
-        if (currentState == PhoneState.Hidden)
-            return;
-
-        uiBattery.HandleBatteryDrain();
+        if (currentState != PhoneState.Hidden)
+        {
+            uiBattery.HandleBatteryDrain();
+        }
     }
 
     private Transform GetTargetAnchor()
@@ -86,9 +84,9 @@ public class PhoneStateScrip : MonoBehaviour
         Transform target = GetTargetAnchor();
 
         phoneTransform.localPosition = Vector3.Lerp(
-             phoneTransform.localPosition,
-             target.localPosition,
-             transitionSpeed * Time.deltaTime);
+            phoneTransform.localPosition,
+            target.localPosition,
+            transitionSpeed * Time.deltaTime);
 
         phoneTransform.localRotation = Quaternion.Slerp(
             phoneTransform.localRotation,
@@ -100,46 +98,39 @@ public class PhoneStateScrip : MonoBehaviour
             target.localScale,
             transitionSpeed * Time.deltaTime);
 
-
         if (waitingForHide && Vector3.Distance(phoneTransform.localPosition, target.localPosition) < hideDistanceThreshold)
         {
-
             phoneTransform.localPosition = target.localPosition;
             phoneTransform.localRotation = target.localRotation;
             phoneTransform.localScale = target.localScale;
 
-            phoneTransform.gameObject.SetActive(false);
             waitingForHide = false;
         }
     }
+
     private void HandleInputs()
     {
         bool swapPhoneInput = controls.GamePlay.TakeHidePhone.triggered;
-
         bool lookCameraInput = controls.GamePlay.Lookatcamera.triggered;
+
         moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
         bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
 
-        if (swapPhoneInput == true)
-        {
+        if (swapPhoneInput)
             TogglePhone();
-        }
-        if (lookCameraInput == true)
-        {
+
+        if (lookCameraInput)
             ToggleCameraMode();
-        }
-        if (moveInput != Vector2.zero && currentState == PhoneState.Camera && isSwapThisFrame && !wasSwitchLastFrame)
+
+        if (moveInput != Vector2.zero &&
+            currentState == PhoneState.Camera &&
+            isSwapThisFrame &&
+            !wasSwitchLastFrame)
         {
             if (moveInput.x > 0)
-            {
-                Debug.Log("next cam");
                 CamerasScript.instance.NextCamera();
-            }
             else if (moveInput.x < 0)
-            {
-                Debug.Log("previous cam");
                 CamerasScript.instance.PreviousCamera();
-            }
         }
 
         wasSwitchLastFrame = isSwapThisFrame;
@@ -149,12 +140,11 @@ public class PhoneStateScrip : MonoBehaviour
     {
         if (currentState == PhoneState.Hidden)
         {
-            phoneTransform.gameObject.SetActive(true);
-
             currentState = PhoneState.Idle;
 
+            phoneMeshRenderer.enabled = true;
             battery.SetActive(true);
-            //textBattery.enabled = true;
+            //uiBattery.textBattery.enabled = true;
 
             waitingForHide = false;
         }
@@ -162,16 +152,16 @@ public class PhoneStateScrip : MonoBehaviour
         {
             currentState = PhoneState.Hidden;
 
+            phoneMeshRenderer.enabled = false;
             battery.SetActive(false);
-            //textBattery.enabled = false;
+            //uiBattery.textBattery.enabled = false;
             phoneLight.enabled = false;
             screenPhone.SetActive(false);
 
             isLookingCamera = false;
+
             if (CamerasScript.instance != null)
-            {
                 CamerasScript.instance.SetCameraViewActive(false);
-            }
 
             waitingForHide = true;
         }
@@ -184,33 +174,22 @@ public class PhoneStateScrip : MonoBehaviour
 
         screenPhone.SetActive(!screenPhone.activeSelf);
         isLookingCamera = !isLookingCamera;
-        currentState = currentState == PhoneState.Camera ? PhoneState.Idle : PhoneState.Camera;
+
+        currentState = currentState == PhoneState.Camera
+            ? PhoneState.Idle
+            : PhoneState.Camera;
 
         if (CamerasScript.instance != null)
-        {
             CamerasScript.instance.SetCameraViewActive(currentState == PhoneState.Camera);
-        }
     }
 
     public bool CanWatchCamera()
     {
-        if (!uiBattery.HaveBattery)
-            return false;
-
-        return currentState.Equals(PhoneState.Idle);
+        return uiBattery.HaveBattery && currentState == PhoneState.Idle;
     }
 
     public PhoneState GetCurrentPhoneState()
     {
         return currentState;
-    }
-
-    private void OnEnable()
-    {
-
-    }
-    private void OnDisable()
-    {
-
     }
 }

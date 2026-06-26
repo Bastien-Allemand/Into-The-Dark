@@ -119,4 +119,14 @@ public class CamerasScript : MonoBehaviour
         m_onCamera = false;
 
     }
+
+    private void OnDisable()
+    {
+        Debug.Log("PhoneStateScrip DISABLED");
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("PhoneStateScrip ENABLED");
+    }
 }

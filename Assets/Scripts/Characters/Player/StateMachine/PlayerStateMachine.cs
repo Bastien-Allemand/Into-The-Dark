@@ -168,7 +168,6 @@ public class PlayerStateMachine : MonoBehaviour
         Color rayColor = Color.green;
         float castLength = ceilingCheckDistance;
 
-        
         if (Physics.BoxCast(origin, ceilingCheckSize * .75f, Vector3.up, Quaternion.identity, castLength, layerMask))
         {
             isCeilingAbove = true;

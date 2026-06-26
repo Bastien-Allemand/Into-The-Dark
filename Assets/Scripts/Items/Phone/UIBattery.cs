@@ -5,7 +5,7 @@ public class UIBattery : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject battery;
-    //[SerializeField] private TextMeshProUGUI textBattery;
+    //[SerializeField] public TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
     [SerializeField] private Light phoneLight;
 
@@ -46,7 +46,7 @@ public class UIBattery : MonoBehaviour
 
     private void UpdateUI()
     {
-        // textBattery.text = ((int)currentBattery) + "%"; 
+        //textBattery.text = ((int)currentBattery) + "%"; 
     }
 
     private void CheckBattery()
