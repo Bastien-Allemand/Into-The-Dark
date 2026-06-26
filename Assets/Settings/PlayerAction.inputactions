@@ -122,6 +122,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActiveFlashlight",
+                    "type": "Button",
+                    "id": "8bb2fd72-9e6d-4dc8-8d49-e538c1fc7b93",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -388,6 +397,17 @@
                     "action": "Throw Right Object",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e4ff079f-77c1-446b-8e0e-6b21da8cb167",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActiveFlashlight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

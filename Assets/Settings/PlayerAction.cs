@@ -208,6 +208,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActiveFlashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bb2fd72-9e6d-4dc8-8d49-e538c1fc7b93"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -474,6 +483,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""Throw Right Object"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4ff079f-77c1-446b-8e0e-6b21da8cb167"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActiveFlashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -523,6 +543,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_EnterLeaveEditMode = m_GamePlay.FindAction("Enter/Leave Edit Mode", throwIfNotFound: true);
         m_GamePlay_Inventory = m_GamePlay.FindAction("Inventory", throwIfNotFound: true);
         m_GamePlay_Consume = m_GamePlay.FindAction("Consume", throwIfNotFound: true);
+        m_GamePlay_ActiveFlashlight = m_GamePlay.FindAction("ActiveFlashlight", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
@@ -620,6 +641,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_EnterLeaveEditMode;
     private readonly InputAction m_GamePlay_Inventory;
     private readonly InputAction m_GamePlay_Consume;
+    private readonly InputAction m_GamePlay_ActiveFlashlight;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -683,6 +705,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/Consume".
         /// </summary>
         public InputAction @Consume => m_Wrapper.m_GamePlay_Consume;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/ActiveFlashlight".
+        /// </summary>
+        public InputAction @ActiveFlashlight => m_Wrapper.m_GamePlay_ActiveFlashlight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -748,6 +774,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Consume.started += instance.OnConsume;
             @Consume.performed += instance.OnConsume;
             @Consume.canceled += instance.OnConsume;
+            @ActiveFlashlight.started += instance.OnActiveFlashlight;
+            @ActiveFlashlight.performed += instance.OnActiveFlashlight;
+            @ActiveFlashlight.canceled += instance.OnActiveFlashlight;
         }
 
         /// <summary>
@@ -798,6 +827,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Consume.started -= instance.OnConsume;
             @Consume.performed -= instance.OnConsume;
             @Consume.canceled -= instance.OnConsume;
+            @ActiveFlashlight.started -= instance.OnActiveFlashlight;
+            @ActiveFlashlight.performed -= instance.OnActiveFlashlight;
+            @ActiveFlashlight.canceled -= instance.OnActiveFlashlight;
         }
 
         /// <summary>
@@ -1025,6 +1057,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConsume(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ActiveFlashlight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnActiveFlashlight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.
