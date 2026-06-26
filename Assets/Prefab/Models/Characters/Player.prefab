@@ -601,10 +601,8 @@ GameObject:
   - component: {fileID: 7801913923009114371}
   - component: {fileID: 1653404313279791581}
   - component: {fileID: 8589292547114541237}
-  - component: {fileID: 4050908566489799186}
   - component: {fileID: 2930897254122312196}
   - component: {fileID: 1855949690762412832}
-  - component: {fileID: 6565934799062674300}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -813,9 +811,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _camera: {fileID: 8616678334354961815}
-  pickUpScript: {fileID: 4050908566489799186}
   sensitivity: 0.25
   XMaxAngle: 75
+  canLook: 1
 --- !u!114 &8589292547114541237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,44 +826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72de838e29805a4a847537a29dc8980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputManager
---- !u!114 &4050908566489799186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4968043094434973047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96968b4042e4a224ba0fdf6b0af02eca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
-  chargeBarTransform: {fileID: 0}
-  objectPreview: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  batteryLayerMask:
-    serializedVersion: 2
-    m_Bits: 131072
-  leftHandSocket: {fileID: 5406487208239077327}
-  rightHandSocket: {fileID: 1413043958126300437}
-  pickupDistance: 99
-  playerCamera: {fileID: 8616678334354961815}
-  isLeftHandEmpty: 1
-  isRightHandEmpty: 1
-  chargeSpeed: 15
-  minThrowForce: 5
-  maxThrowForce: 25
-  currentThrowCharge: 0
-  editModeRight: 0
-  editModeLeft: 0
-  isRotating: 0
-  rotationSpeed: 3
-  pillsStack: 0
-  batteryStack: 0
-  ventolinStack: 0
-  isConsume: 0
 --- !u!114 &2930897254122312196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,21 +870,6 @@ MonoBehaviour:
   isLookingCamera: 0
   moveInput: {x: 0, y: 0}
   hideDistanceThreshold: 0.01
---- !u!114 &6565934799062674300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4968043094434973047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b1edd91a7edfbd42874152dbbadd49d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory
-  pillsCount: 0
-  batteryCount: 0
-  ventolinCount: 0
 --- !u!1 &5405384092929202536
 GameObject:
   m_ObjectHideFlags: 0
