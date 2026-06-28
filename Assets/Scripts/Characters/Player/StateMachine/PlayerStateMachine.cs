@@ -70,8 +70,6 @@ public class PlayerStateMachine : MonoBehaviour
     [Space(5)]
 
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private Vector3 ceilingCheckSize = new Vector3(0.6f, 2f, 0.6f);
-
 
     public Vector2 moveInput;
 
@@ -135,25 +133,8 @@ public class PlayerStateMachine : MonoBehaviour
     //    Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
     //    Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
     //}
-    void CheckIsCeilingAbove()
-    {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z);
-        Color rayColor = Color.green;
-        float castLength = crouchSettings.ceilingCheckDistance;
 
-        
-        if (Physics.BoxCast(origin, ceilingCheckSize * .75f, Vector3.up, Quaternion.identity, castLength, layerMask))
-        {
-            crouchSettings.isCeilingAbove = true;
-            rayColor = Color.red;
-        }
-        else
-        {
-            crouchSettings.isCeilingAbove = false;
-        }
-
-        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
-    }
+    
 
     void RegenStamina()
     {
@@ -178,8 +159,22 @@ public class PlayerStateMachine : MonoBehaviour
         {
             staminaSettings.staminaLeft = staminaSettings.maxStamina;
         }
-        //UpdateSprintUI();
+
+        
+
+    //UpdateSprintUI();
     }
 
-    
+    public float StaminaRatio
+    {
+        get
+        {
+            if (staminaConfigs == null || staminaConfigs.staminaLeft <= 0) return 0f;
+            return staminaConfigs.staminaLeft / staminaConfigs.maxStamina;
+        }
+    }
+
 }
+
+    
+

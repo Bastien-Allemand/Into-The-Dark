@@ -6,9 +6,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     [SerializeField] private float insaneMeter = 0f;
     [SerializeField] private float maxInsaneMeter = 100f;
-    [SerializeField] private float initalInsaneMeterWidth = 0f;
 
-    [SerializeField] private RectTransform insaneBarTransform;
 
     public Camera visionCam;
     public string targetTag = "Ghost";
@@ -24,10 +22,6 @@ public class InsaneMeterScript : MonoBehaviour
     [SerializeField] private float currentanimDuration = 0f;
     private void Start()
     {
-        if (insaneBarTransform != null)
-        {
-            initalInsaneMeterWidth = insaneBarTransform.rect.width;
-        }
     }
 
     private void OnEnable()
@@ -57,7 +51,6 @@ public class InsaneMeterScript : MonoBehaviour
 
         UpdateInsanity(target);
         CheckUsePill();
-        UpdateBarUI();
     }
 
     void UpdateInsanity(GameObject _target)
@@ -137,10 +130,12 @@ public class InsaneMeterScript : MonoBehaviour
         //}
     }
 
-    void UpdateBarUI()
+    public float insaneMeterRatio
     {
-        if (insaneBarTransform == null) return;
-        float percentLeft = insaneMeter / 100;
-        insaneBarTransform.sizeDelta = new Vector2(initalInsaneMeterWidth * percentLeft, insaneBarTransform.rect.height);
+        get
+        {
+            if (insaneMeter <= 0) return 0f;
+            return insaneMeter / 100;
+        }
     }
 }

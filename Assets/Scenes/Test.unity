@@ -516,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134231803695752702, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.62
+      value: 36.75
       objectReference: {fileID: 0}
     - target: {fileID: 9134231803695752702, guid: 260a8a8d11c0f194ba44ec0afa58c9ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -811,6 +811,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6556084633042015739, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423088036}
+    - targetCorrespondingSourceObject: {fileID: 194178184678847572, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1475916531}
   m_SourcePrefab: {fileID: 100100000, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
 --- !u!1 &1414382903 stripped
 GameObject:
@@ -991,6 +994,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34295bc20c12bbf4cb8c4c74fe3d7c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Raycast
+--- !u!1 &1475916527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 194178184678847572, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+  m_PrefabInstance: {fileID: 1344184016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1475916528 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9080469729034500655, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+  m_PrefabInstance: {fileID: 1344184016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1475916531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475916527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aed3ac06f2520e4ebbb0a6c9a0ab5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cursorWantedState: 1
+  enter: 0
+  exit: 0
+  insaneMeterTransform: {fileID: 1475916528}
+  insaneMeterScript: {fileID: 1545620002}
 --- !u!1001 &1508385864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1202,6 +1232,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37676ecb33b71c249af34ae2f11e3437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
+--- !u!114 &1545620002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7801913923009114371, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 279587165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545619973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de11208265d09743b535f9572569c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
 --- !u!1 &1579728731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}

@@ -18,8 +18,8 @@ public class SprintBarScript : UI
     void UpdateSprintUI()
     {
         if (sprintBarTransform == null) return;
-        
-        float percentLeft = playerStateMachine.staminaConfigs.staminaLeft / playerStateMachine.staminaConfigs.maxStamina;
+
+        float percentLeft = playerStateMachine.StaminaRatio;
         sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
     }
 }
