@@ -53,6 +53,8 @@ public class PlayerStateMachine : MonoBehaviour
     private float sprintBarInitialWidth;
 
     public event Action<bool> OnSprintStatusChanged;
+    public event Action<bool> OnExhaustionChanged;
+    private bool previousExhaustionState = false;
 
     void Awake()
     {
@@ -80,6 +82,11 @@ public class PlayerStateMachine : MonoBehaviour
         CheckIsCeilingAbove();
         HandleStamina();
         CheckState();
+        if (isOutOfStamina != previousExhaustionState)
+        {
+            OnExhaustionChanged?.Invoke(isOutOfStamina);
+            previousExhaustionState = isOutOfStamina;
+        }
         if (currentState != null)
         {
             currentState.Update();

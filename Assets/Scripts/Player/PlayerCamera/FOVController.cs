@@ -13,6 +13,7 @@ public class FOVController : MonoBehaviour
 
     private Camera cam;
     private float fovCible;
+    private bool isExhausted;
 
     void Awake()
     {
@@ -23,23 +24,39 @@ public class FOVController : MonoBehaviour
     void OnEnable()
     {
         if (stateMachine != null)
-            stateMachine.OnSprintStatusChanged += HandleSprintStatusChanged;
+        {
+            stateMachine.OnSprintStatusChanged += HandleSprintStatus;
+            stateMachine.OnExhaustionChanged += HandleExhaustion;
+        }
     }
 
     void OnDisable()
     {
         if (stateMachine != null)
-            stateMachine.OnSprintStatusChanged -= HandleSprintStatusChanged;
+        {
+            stateMachine.OnSprintStatusChanged -= HandleSprintStatus;
+            stateMachine.OnExhaustionChanged -= HandleExhaustion;
+        }
     }
 
-    private void HandleSprintStatusChanged(bool isSprinting)
+    private void HandleSprintStatus(bool isSprinting)
     {
-        fovCible = isSprinting ? fovCourse : fovMarche;
+        if (!isExhausted) fovCible = isSprinting ? fovCourse : fovMarche;
+    }
+
+    private void HandleExhaustion(bool exhausted)
+    {
+        isExhausted = exhausted;
+        if (exhausted)
+        {
+            cam.fieldOfView = fovMarche;
+            fovCible = fovMarche;
+        }
     }
 
     void Update()
     {
-        if (Mathf.Abs(cam.fieldOfView - fovCible) > 0.1f)
+        if (Mathf.Abs(cam.fieldOfView - fovCible) > 0.1f && !isExhausted)
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fovCible, Time.deltaTime * vitesseTransition);
         }
