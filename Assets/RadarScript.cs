@@ -8,7 +8,10 @@ public class RadarScript : MonoBehaviour
     public GameObject radar;
 
     [Header("Map")]
-    public RectTransform imageRadar;
+    public RectTransform rectImageRadarFloor1;
+    public RectTransform rectImageRadarFloor2;
+    public Image imageFloor1;
+    public Image imageFloor2;
 
     [Header("Icons")]
     public RectTransform playerIcon;
@@ -46,10 +49,13 @@ public class RadarScript : MonoBehaviour
 
     private bool isScanning = false;
 
+    private
+
     void Start()
     {
         ghostIcon.gameObject.SetActive(false);
         circle.gameObject.SetActive(false);
+        imageFloor2.enabled = false;
     }
 
     void Update()
@@ -58,7 +64,21 @@ public class RadarScript : MonoBehaviour
         {
             radar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
 
-            imageRadar.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+            rectImageRadarFloor1.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+            //rectImageRadarFloor2.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+        }
+
+        Debug.Log(player.position.y);
+
+        if (player.position.y >= 16.56f)
+        {
+            imageFloor1.enabled = false;
+            imageFloor2.enabled = true;
+        }
+        else if (player.position.y < 16.56f)
+        {
+            imageFloor1.enabled = true;
+            imageFloor2.enabled = false;
         }
 
         playerIcon.anchoredPosition = WorldToRadar(player.position);
