@@ -140,6 +140,32 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7329587487505920883, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
   m_PrefabInstance: {fileID: 2066829363858765108}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1633608652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2423474180165827347, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+  m_PrefabInstance: {fileID: 7359691806498632670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1633608654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633608652}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020988321, y: 0.0008356906, z: 0.020988321}
+  m_Center: {x: -0.000000057742, y: 0.00008478642, z: -0.00000012526289}
 --- !u!114 &2003428260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4993914514636030929, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
@@ -579,6 +605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2423474180165827347, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: m_TagString
+      value: Lootable
+      objectReference: {fileID: 0}
     - target: {fileID: 7261541869891903517, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: m_Name
       value: Map Layout
@@ -586,7 +616,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2423474180165827347, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1633608654}
   m_SourcePrefab: {fileID: 100100000, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
 --- !u!33 &7418515858262046007
 MeshFilter:

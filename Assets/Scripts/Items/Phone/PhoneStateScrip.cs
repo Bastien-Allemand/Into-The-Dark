@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum PhoneState
 {
@@ -56,9 +57,30 @@ public class PhoneStateScrip : MonoBehaviour
 
     private void Update()
     {
-        HandleInputs();
         UpdatePhoneTransform();
         UpdateBattery();
+    }
+
+    private void OnEnable()
+    {
+        controls.GamePlay.TakeHidePhone.started += OnTakeHidePhone;
+        controls.GamePlay.Lookatcamera.started += OnLookAtCamera;
+    }
+
+    private void OnDisable()
+    {
+        controls.GamePlay.TakeHidePhone.started -= OnTakeHidePhone;
+        controls.GamePlay.Lookatcamera.started -= OnLookAtCamera;
+    }
+
+    private void OnTakeHidePhone(InputAction.CallbackContext ctx)
+    {
+        TogglePhone();
+    }
+
+    private void OnLookAtCamera(InputAction.CallbackContext ctx)
+    {
+        ToggleCameraMode();
     }
 
     private void UpdateBattery()
@@ -110,17 +132,8 @@ public class PhoneStateScrip : MonoBehaviour
 
     private void HandleInputs()
     {
-        bool swapPhoneInput = controls.GamePlay.TakeHidePhone.triggered;
-        bool lookCameraInput = controls.GamePlay.Lookatcamera.triggered;
-
         moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
         bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
-
-        if (swapPhoneInput)
-            TogglePhone();
-
-        if (lookCameraInput)
-            ToggleCameraMode();
 
         if (moveInput != Vector2.zero &&
             currentState == PhoneState.Camera &&
