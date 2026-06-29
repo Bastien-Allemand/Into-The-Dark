@@ -266,4 +266,9 @@ public class PhoneScript : MonoBehaviour
 
         return currentState.Equals(PhoneState.Idle);
     }
+
+    public PhoneState GetCurrentPhoneState()
+    {
+        return currentState;
+    }
 }
