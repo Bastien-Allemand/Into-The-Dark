@@ -18,7 +18,7 @@ public class GameSaveManager : MonoBehaviour
             return _instance;
         }
     }
-    public GameSave gameSave;
+    public GameSave gameSave => JsonManager.gameSave;
 
     string currentJsonPathUsed; // full path
     //  save somewhere the current used json
@@ -37,22 +37,9 @@ public class GameSaveManager : MonoBehaviour
     private void Start()
     {
         Debug.Log(JsonManager.Instance);
-        currentJsonPathUsed = JsonManager.pathUsed.path_GameSave;
-        //  look if the default json is existing
-        if (!File.Exists(JsonManager.Instance.GetPath(JsonManager.path.GameSave, JsonManager.defaultName)))
-        {
-            GameSave actionMap = new GameSave();
-            JsonManager.Instance.Save(JsonManager.path.GameSave, JsonManager.defaultName, JsonUtility.ToJson(actionMap));
-        }
-        //  look if the current used json is existing
-        if (!File.Exists(currentJsonPathUsed))
-        {
-            currentJsonPathUsed = JsonManager.Instance.GetPath(JsonManager.path.GameSave, JsonManager.defaultName);
-            UsePathSave overide = JsonManager.pathUsed;
-            overide.path_GameSave = currentJsonPathUsed;
-            JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(overide, true));
-        }
-        gameSave = new GameSave();
+        currentJsonPathUsed = JsonManager.pathUsed.paths[(int)JsonManager.path.GameSave];
+
+        GameSave gameSave = new GameSave();
         JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), gameSave);
     }
 

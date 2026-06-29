@@ -2,55 +2,127 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.LookDev;
 
 public class JsonManager : MonoBehaviour
 {
-    public static JsonManager Instance { get; private set; }
-
+    private static JsonManager instance;
+    public static JsonManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                GameObject go = new GameObject("JsonManager");
+                instance = go.AddComponent<JsonManager>();
+                DontDestroyOnLoad(go);
+            }
+            return instance;
+        }
+    }
     public static string defaultName;
-    private string savePath;
+    private static string savePath;
+
+
     public static UsePathSave pathUsed;
-    PlayerAction controls => InputManager.controls;
+    public static PlayerAction controls;
+    public static GameSave gameSave;
     public enum path
     {
-        Use,
         Input,
-        GameSave
+        GameSave,
+        Use // keep Use as Last (function a bit like Size but not only for Size)
     }
+
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         Debug.Log("JsonManager Awake");
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
 
         defaultName = "Default";
         savePath = Application.persistentDataPath;
 
         pathUsed = getUsedPath();
+
+        //  update the pathUsed
+        for (int i = 0; i < (int)path.Use; i++)
+        {
+            object obj = Create((path)i);
+            if (!File.Exists(GetPath((path)i, defaultName)))    //  if default don't exist, create it
+            {
+                Save(GetPath((path)i, defaultName), JsonUtility.ToJson(obj));
+            }
+            string currentJsonPathUsed = pathUsed.paths[i];
+            if (!File.Exists(currentJsonPathUsed))              //  if current path don't exist, use default one
+            {
+                currentJsonPathUsed = Instance.GetPath(path.Input, defaultName);
+                pathUsed.paths[i] = currentJsonPathUsed;
+            }
+            else        //  merge the default and json then save the change (it change if the version change)
+            {
+                JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), obj);
+                Save(currentJsonPathUsed, JsonUtility.ToJson(obj));
+            }
+        }
+        PathChangeUpdate();
         Debug.Log("JsonManager Awake End");
-
     }
+    private object Create(path i)
+    {
+        switch (i)
+        {
+            case path.Use:
+                {
+                    var o = new UsePathSave();
+                    o.Default();
+                    return o;
+                }
 
+            case path.Input:
+                {
+                    var o = new PlayerAction();
+                    o.Enable();
+                    return o;
+                }
+
+            case path.GameSave:
+                return new GameSave();
+
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    public void PathChangeUpdate()
+    {
+        Debug.Log(pathUsed.paths[(int)path.Input]);
+        controls = JsonUtility.FromJson<PlayerAction>(pathUsed.paths[(int)path.Input]);
+        gameSave = JsonUtility.FromJson<GameSave>(pathUsed.paths[(int)path.GameSave]);
+    }
     public UsePathSave getUsedPath()
     {
         UsePathSave result;
         string usePath = GetPath(path.Use, defaultName);
-        if (!File.Exists(usePath))
+
+        result = new UsePathSave();
+        result.Default();
+        if (File.Exists(usePath))
         {
-            result = new UsePathSave();
-            result.Default();
-        }
-        else
-        {
-            result = new UsePathSave();
-            result.Default();
             Debug.Log(usePath);
             JsonUtility.FromJsonOverwrite(File.ReadAllText(usePath), result);
         }
+
         string json = JsonUtility.ToJson(result);
         Save(path.Use, defaultName, json);
         Debug.Log("Save Default Json");
@@ -69,7 +141,7 @@ public class JsonManager : MonoBehaviour
         if (string.IsNullOrEmpty(fileName))
         {
             resultPath = Path.Combine(
-                savePath, 
+                savePath,
                 state, path.ToString()
             );
         }

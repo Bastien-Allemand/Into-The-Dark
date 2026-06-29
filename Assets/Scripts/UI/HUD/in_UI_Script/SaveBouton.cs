@@ -12,10 +12,12 @@ public class SaveBouton : MonoBehaviour
     {
         //  get
         json = JsonManager.pathUsed;
-        //  change
-        json.path_map_PlayerActionMap_GamePlay = JsonManager.Instance.GetPath(JsonManager.path.Input, m_TextMeshPro.text);
-        //  rewrite
+        //  change  path
+        JsonManager.pathUsed.paths[(int)JsonManager.path.Input] = JsonManager.Instance.GetPath(JsonManager.path.Input, m_TextMeshPro.text);
+        //  rewrite usePath
         JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(json));
+        //  update jsonManager
+        JsonManager.Instance.PathChangeUpdate();
     }
     public void Supp()
     {

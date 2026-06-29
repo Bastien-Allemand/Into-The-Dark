@@ -16,7 +16,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     [SerializeField] private int pills = 1;
 
-    PlayerAction controls;
+    PlayerAction controls => JsonManager.controls;
 
     //Change in stunned state
     [SerializeField] private bool takingPills = false;
@@ -37,11 +37,6 @@ public class InsaneMeterScript : MonoBehaviour
     private void OnDisable()
     {
         Inventory.OnPillsCountChanged -= UpdatePills;
-    }
-
-    void Awake()
-    {
-        controls = InputManager.controls;
     }
 
     void Update()

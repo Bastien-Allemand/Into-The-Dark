@@ -8,7 +8,7 @@ using Debug = UnityEngine.Debug;
 
 public class PickUpScript : MonoBehaviour
 {
-    PlayerAction controls => InputManager.controls;
+    PlayerAction controls => JsonManager.controls;
 
     [Header("Reference")]
     [SerializeField] private RectTransform chargeBarTransform;

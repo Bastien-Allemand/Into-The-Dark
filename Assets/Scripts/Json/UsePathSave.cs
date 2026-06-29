@@ -1,15 +1,22 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class UsePathSave
 {
-    public string path_map_PlayerActionMap_GamePlay;
-    public string path_GameSave;
+    public List<string> paths = new List<string>();
     public UsePathSave() { }
     public void Default()
     {
-        path_map_PlayerActionMap_GamePlay = JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName);
-        path_GameSave = JsonManager.Instance.GetPath(JsonManager.path.GameSave, JsonManager.defaultName);
+        paths.Clear();
+        for (int i = 0; i < (int)JsonManager.path.Use; i++)
+        {
+            if ((JsonManager.path)i != JsonManager.path.Use)
+            {
+                paths.Add(JsonManager.Instance.GetPath((JsonManager.path)i, JsonManager.defaultName));
+            }
+        }
     }
 }

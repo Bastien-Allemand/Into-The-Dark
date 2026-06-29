@@ -4,7 +4,7 @@ public class PlayerStateMachine : MonoBehaviour
 {
     [SerializeField] public bool debug = false;
 
-    PlayerAction controls;
+    PlayerAction controls => JsonManager.controls;
     private IState currentState;
 
     public PlayerIdleState IdleState { get; private set; }
@@ -56,7 +56,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Awake()
     {
-        controls = InputManager.controls;
 
 //        controls = new PlayerAction();
 

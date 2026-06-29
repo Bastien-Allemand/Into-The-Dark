@@ -10,7 +10,7 @@ public enum PhoneState
 
 public class PhoneScript : MonoBehaviour
 {
-    PlayerAction controls;
+    PlayerAction controls => JsonManager.controls;
 
     [Header("References")]
     [SerializeField] private Transform phoneTransform;
@@ -68,11 +68,6 @@ public class PhoneScript : MonoBehaviour
         phoneTransform.localPosition = hiddenAnchor.localPosition;
         phoneTransform.localRotation = hiddenAnchor.localRotation;
         phoneTransform.localScale = hiddenAnchor.localScale;
-    }
-
-    private void Awake()
-    {
-        controls = InputManager.controls;
     }
 
     private void Update()

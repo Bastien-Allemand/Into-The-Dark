@@ -7,13 +7,12 @@ using UnityEngine.UIElements;
 
 public class Rebind : MonoBehaviour
 {
-    private PlayerAction controls;
+    private PlayerAction controls => JsonManager.controls;
 
     public InputAction m_action;
     public int m_bindingIndex = 0;
     private void Start()
     {
-        controls = InputManager.controls;
         UpdateBindingText();
     }
     public void Init(InputAction action, int bindingIndex)

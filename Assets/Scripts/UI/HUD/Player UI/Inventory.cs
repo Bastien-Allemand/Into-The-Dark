@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
-    PlayerAction controls;
+    PlayerAction controls => JsonManager.controls;
 
     public List<ItemType> Slots { get; private set; } = new List<ItemType> { ItemType.Battery, ItemType.Ventolin, ItemType.Pill };
 
@@ -24,7 +24,6 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        controls = InputManager.controls;
         if(instance == null)
         {
             instance = this;

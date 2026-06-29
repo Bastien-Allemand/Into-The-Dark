@@ -4,8 +4,8 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
-    PlayerAction controls;
-    
+    PlayerAction controls => JsonManager.controls;
+
     [Header("UI Visual References")]
     [SerializeField] private RawImage[] slotsImages = new RawImage[3];
     [SerializeField] private TextMeshProUGUI[] slotsTexts = new TextMeshProUGUI[3];
@@ -19,12 +19,6 @@ public class InventoryUI : MonoBehaviour
     private int currentPillsCount = 0;
     private int currentBatteryCount = 0;
     private int currentVentolinCount = 0;
-
-
-    private void Awake()
-    {
-        controls = InputManager.controls;
-    }
 
     void Start()
     {

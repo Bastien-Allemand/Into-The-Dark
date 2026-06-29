@@ -30,21 +30,7 @@ public class InputSaveManager : MonoBehaviour
     //  save somewhere the current used json
     private void Start()
     {
-        currentJsonPathUsed = JsonManager.pathUsed.path_map_PlayerActionMap_GamePlay;
-        //  look if the default json of input is existing
-        if (!File.Exists(JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName)))
-        {
-            PlayerAction actionMap = new PlayerAction();
-            JsonManager.Instance.SaveInputInJson(actionMap.GamePlay, JsonManager.defaultName);
-        }
-        //  look if the current used inputjson is existing
-        if (!File.Exists(currentJsonPathUsed))
-        {
-            currentJsonPathUsed = JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName);
-            UsePathSave overide = JsonManager.pathUsed;
-            overide.path_map_PlayerActionMap_GamePlay = currentJsonPathUsed;
-            JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(overide, true));
-        }
+        currentJsonPathUsed = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
         CreateBouton();
     }
     private void updateBouton()
@@ -63,7 +49,7 @@ public class InputSaveManager : MonoBehaviour
         if (fileName == null)
             fileName = currentJsonPathUsed;
         //  get automaticly the current used json
-        JsonManager.Instance.Save(JsonManager.path.Input, fileName, InputManager.controls.SaveBindingOverridesAsJson());
+        JsonManager.Instance.Save(JsonManager.path.Input, fileName, JsonManager.controls.SaveBindingOverridesAsJson());
     }
     public void CreateSave(string fileName)
     {
@@ -104,7 +90,6 @@ public class InputSaveManager : MonoBehaviour
             text.text = jsonName;
         }
     }
-
 
     public void ValidateSaveName()
     {

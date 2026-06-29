@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerView : MonoBehaviour
 {
-    PlayerAction controls;
+    PlayerAction controls => JsonManager.controls;
 
     [Header("Reference")]
     [SerializeField] private Camera _camera;
@@ -15,13 +15,6 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private float sensitivity = 0.5f;
     [SerializeField] private float XMaxAngle = 75f;
     private Vector2 targetRotation;
-
-
-
-    private void Awake()
-    {
-        controls = InputManager.controls;
-    }
 
 
     void Start()
