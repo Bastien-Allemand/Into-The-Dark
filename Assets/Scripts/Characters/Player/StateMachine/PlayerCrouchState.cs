@@ -4,7 +4,6 @@ public class PlayerCrouchState : PlayerBaseState
 {
     private CapsuleCollider playerCollider;
     private Vector3 ceilingCheckSize = new Vector3(0.6f, 2f, 0.6f);
-    private bool isCeilingAbove = false;
     public PlayerCrouchState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform, CapsuleCollider playerCollider)
         : base(stateMachine, rb, transform)
     {

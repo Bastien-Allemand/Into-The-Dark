@@ -112,15 +112,16 @@ public class PlaceScript : MonoBehaviour
         {
             if (rightHandContent.itemScript.needsToBePlaced)
             {
-                if (editMode && isPlacingLeft && preview.activeSelf)
+                if (editMode && isPlacingRight && preview.activeSelf)
                 {
-                    isPlacingLeft = false;
+                    isPlacingRight = false;
                     rightHandContent.itemScript.deployed = true;
                     GameObject obj = rightHandContent.TakeOutObject();
 
                     if (obj != null && preview != null)
                     {
                         obj.transform.position = preview.transform.position;
+                        obj.transform.rotation = preview.transform.rotation;
                     }
 
 

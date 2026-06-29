@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9080469729034500655}
   - component: {fileID: 4365212711419252999}
   - component: {fileID: 1516292157154880418}
+  - component: {fileID: 4974367046440557102}
   m_Layer: 5
   m_Name: insaneBar
   m_TagString: Untagged
@@ -75,6 +76,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4974367046440557102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194178184678847572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aed3ac06f2520e4ebbb0a6c9a0ab5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cursorWantedState: 1
+  enter: 0
+  exit: 0
+  insaneMeterTransform: {fileID: 9080469729034500655}
+  insaneMeterScript: {fileID: 0}
 --- !u!1 &466399667765507390
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8350973138865144079}
   - component: {fileID: 9003498494396514199}
+  - component: {fileID: 6682112927482871496}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -269,6 +288,23 @@ MonoBehaviour:
   - Image: {fileID: 3933152396285705347}
     Count: {fileID: 4651371191287975803}
     Type: 3
+--- !u!114 &6682112927482871496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751936839410235870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117675162412b934a8328bcfe793b28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerInventory: {fileID: 0}
+  batteryEffect: {fileID: 6783307299202033932}
+  pillEffect: {fileID: 6783307299202033932}
+  ventolineEffect: {fileID: 6783307299202033932}
+  takingPillsCurrentTime: 0
 --- !u!1 &925810587167622047
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +604,7 @@ GameObject:
   - component: {fileID: 3086585659293479596}
   - component: {fileID: 7919856829252984218}
   - component: {fileID: 4019512197224299659}
+  - component: {fileID: 6783307299202033932}
   m_Layer: 5
   m_Name: Slot 3
   m_TagString: Untagged
@@ -630,6 +667,19 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &6783307299202033932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970672812218797802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e931497ce3ebb41935f6ee8be4e814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  insaneMeterScript: {fileID: 0}
 --- !u!1 &2844912150146567807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1187,7 @@ GameObject:
   - component: {fileID: 3836738499853666264}
   - component: {fileID: 8505073848316683949}
   - component: {fileID: 3366047314863092027}
+  - component: {fileID: 6329615605936940628}
   m_Layer: 5
   m_Name: SprintBar
   m_TagString: Untagged
@@ -1201,6 +1252,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6329615605936940628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6556084633042015739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d600ee51a855ea4492ede00758bc653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SprintBarScript
+  cursorWantedState: 1
+  enter: 0
+  exit: 0
+  sprintBarTransform: {fileID: 3836738499853666264}
+  playerStateMachine: {fileID: 0}
 --- !u!1 &7344017754972604061
 GameObject:
   m_ObjectHideFlags: 0

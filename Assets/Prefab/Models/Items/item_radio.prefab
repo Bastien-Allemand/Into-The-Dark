@@ -78,15 +78,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.67
+      value: 33.279446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.15
+      value: 23.171993
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.27
+      value: 52.64
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -160,6 +160,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5574518373599129184}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 501547203121890603}
   m_SourcePrefab: {fileID: 100100000, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
 --- !u!4 &4910578837640875722 stripped
 Transform:
@@ -276,3 +279,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5723566893807359088}
   m_Mesh: {fileID: -2432090755550338912, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
+--- !u!114 &501547203121890603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5723566893807359088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbf2bca02cf2ec4aa4460127c3eaa60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  deployed: 0
+  canBeRepickUp: 0
+  needsToBePlaced: 1
+  usingTimer: 0
+  placingDelay: 0
+  timer: 0

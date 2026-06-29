@@ -165,8 +165,8 @@ public class PlayerStateMachine : MonoBehaviour
     //UpdateSprintUI();
     }
 
-    public float StaminaRatio
-    {
+   public float StaminaRatio
+   {
         get
         {
             if (staminaConfigs == null || staminaConfigs.staminaLeft <= 0) return 0f;

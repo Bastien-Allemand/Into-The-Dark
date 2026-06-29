@@ -3,9 +3,8 @@ using UnityEngine;
 public class InsaneMeterScript : MonoBehaviour
 {
     [SerializeField] private bool debug = false;
-
-    [SerializeField] private float insaneMeter = 0f;
-    [SerializeField] private float maxInsaneMeter = 100f;
+    [SerializeField] public float insaneMeter = 0f;
+    [SerializeField] public float maxInsaneMeter = 100f;
 
 
     public Camera visionCam;
@@ -14,12 +13,6 @@ public class InsaneMeterScript : MonoBehaviour
 
     [SerializeField] private int pills = 1;
 
-    PlayerAction controls;
-
-    //Change in stunned state
-    [SerializeField] private bool takingPills = false;
-    [SerializeField] private float animDuration = 2f;
-    [SerializeField] private float currentanimDuration = 0f;
     private void Start()
     {
     }
@@ -35,7 +28,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     void Awake()
     {
-        controls = InputManager.controls;
+       // controls = InputManager.controls;
     }
 
     void Update()
