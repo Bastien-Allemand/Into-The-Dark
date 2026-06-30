@@ -1,18 +1,19 @@
 using UnityEngine;
 
-public enum ItemType
+public enum ConsumableType
 {
-    Pill,
-    Battery,
-    Ventolin
+    NONE,
+    PILL,
+    BATTERY,
+    VENTOLINE
 }
 
-public class CollectibleScript : MonoBehaviour
+public class ConsumableTypeScript : MonoBehaviour
 {
-    [SerializeField] private ItemType myType;
+    [SerializeField] private ConsumableType ConsumableType;
 
-    public ItemType GetItemType()
+    public ConsumableType GetConsumambleType()
     {
-        return myType;
+        return ConsumableType;
     }
 }

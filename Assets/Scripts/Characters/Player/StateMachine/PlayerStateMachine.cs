@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
@@ -20,7 +21,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private RectTransform sprintBarTransform;
-    [SerializeField] private PhoneScript phoneScript;
+    [SerializeField] private PhoneStateScrip phoneStateScrip;
 
     [Space(5)]
 
@@ -53,6 +54,9 @@ public class PlayerStateMachine : MonoBehaviour
     private float staminaRegenDelay = 1.5f;
     private float sprintBarInitialWidth;
 
+    public event Action<bool> OnSprintStatusChanged;
+    public event Action<bool> OnExhaustionChanged;
+    private bool previousExhaustionState = false;
 
     void Awake()
     {
@@ -69,6 +73,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentState = IdleState;
         sprintBarInitialWidth = sprintBarTransform.rect.width;
+
+        Debug.Log("PhoneScript = " + phoneStateScrip);
     }
 
     //private void OnEnable() => controls.Enable();
@@ -79,6 +85,11 @@ public class PlayerStateMachine : MonoBehaviour
         CheckIsCeilingAbove();
         HandleStamina();
         CheckState();
+        if (isOutOfStamina != previousExhaustionState)
+        {
+            OnExhaustionChanged?.Invoke(isOutOfStamina);
+            previousExhaustionState = isOutOfStamina;
+        }
         if (currentState != null)
         {
             currentState.Update();
@@ -102,16 +113,16 @@ public class PlayerStateMachine : MonoBehaviour
 
     void CheckState()
     {
-       
-         
+        moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
 
-        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
         bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
+
         bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
+
         bool isMoving = moveInput != Vector2.zero;
 
 
-        if (phoneScript.IsLookingCamera == true)
+        if (phoneStateScrip.IsLookingCamera == true)
         {
             if (isMoving)
             {
@@ -165,7 +176,6 @@ public class PlayerStateMachine : MonoBehaviour
         Color rayColor = Color.green;
         float castLength = ceilingCheckDistance;
 
-        
         if (Physics.BoxCast(origin, ceilingCheckSize * .75f, Vector3.up, Quaternion.identity, castLength, layerMask))
         {
             isCeilingAbove = true;
@@ -211,5 +221,10 @@ public class PlayerStateMachine : MonoBehaviour
 
         float percentLeft = staminaLeft / maxStamina;
         sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
+    }
+
+    public void NotifySprintStatus(bool isSprinting)
+    {
+        OnSprintStatusChanged?.Invoke(isSprinting);
     }
 }

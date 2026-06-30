@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3707840590816380720}
   - component: {fileID: 5678750376550830787}
   - component: {fileID: -2182021481853898175}
+  - component: {fileID: -9102191163487582815}
   m_Layer: 0
   m_Name: Ventolin
   m_TagString: Collectible
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edbcf282dc2d464b991bb59763f3747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleScript
-  myType: 2
+  ConsumableType: 0
 --- !u!54 &-2182021481853898175
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,3 +155,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-9102191163487582815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400333275881931883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbf2bca02cf2ec4aa4460127c3eaa60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  deployed: 0
+  canBeRepickUp: 1
+  needsToBePlaced: 0
+  usingTimer: 1
+  placingDelay: 0
+  timer: 0.5

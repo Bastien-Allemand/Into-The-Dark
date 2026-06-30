@@ -2,31 +2,27 @@ using UnityEngine;
 
 public class PlayerView : MonoBehaviour
 {
-    PlayerAction controls => JsonManager.controls;
+    PlayerAction controls;
 
     [Header("Reference")]
     [SerializeField] private Camera _camera;
-    [SerializeField] private PickUpScript pickUpScript;
-
-    [Space(5)]
 
     [Header("Camera Settings")]
-    
     [SerializeField] private float sensitivity = 0.5f;
     [SerializeField] private float XMaxAngle = 75f;
+
     private Vector2 targetRotation;
 
+    public bool canLook = true; 
 
-    void Start()
+    private void Awake()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        controls = InputManager.controls;
     }
 
     void Update()
     {
-        if (pickUpScript != null && pickUpScript.IsRotating == true)
-            return;
-       Look();
+        Look();
     }
 
     private void FixedUpdate()
@@ -36,10 +32,13 @@ public class PlayerView : MonoBehaviour
 
     void Look()
     {
+        if (!canLook) return;
+
         Vector2 mouse = controls.GamePlay.Look.ReadValue<Vector2>() * sensitivity;
 
         targetRotation.x -= mouse.y;
         targetRotation.y += mouse.x;
+
         targetRotation.x = Mathf.Clamp(targetRotation.x, -XMaxAngle, XMaxAngle);
 
         _camera.transform.localRotation = Quaternion.Euler(targetRotation.x, 0, 0);

@@ -32,11 +32,11 @@ public class InsaneMeterScript : MonoBehaviour
 
     private void OnEnable()
     {
-        Inventory.OnPillsCountChanged += UpdatePills;
+        //Inventory.OnPillsCountChanged += UpdatePills;
     }
     private void OnDisable()
     {
-        Inventory.OnPillsCountChanged -= UpdatePills;
+        //Inventory.OnPillsCountChanged -= UpdatePills;
     }
 
     void Update()
@@ -106,30 +106,30 @@ public class InsaneMeterScript : MonoBehaviour
 
     void CheckUsePill()
     {
-        if (pills <= 0 || Inventory.instance.GetActiveSlot() != ItemType.Pill)
-            return;
+        //if (pills <= 0 || Inventory.instance.GetActiveSlot() != ConsumableType.Pill)
+        //    return;
 
-        if (controls.GamePlay.Consume.triggered && takingPills == false)
-        {
-           takingPills = true;
-        }
-        if (takingPills == true)
-        {
-            currentanimDuration += Time.deltaTime;
-            if (currentanimDuration >= animDuration)
-            {
-                pills--;
-                currentanimDuration = 0f;
-                takingPills = false;
-                insaneMeter -= maxInsaneMeter * 0.15f;
-                Inventory.instance.Remove(ItemType.Pill);
-                if (insaneMeter <= 0)
-                { 
-                    insaneMeter = 0; 
-                }
-                //Debug.Log("Pills taken");
-            }
-        }
+        //if (controls.GamePlay.Consume.triggered && takingPills == false)
+        //{
+        //   takingPills = true;
+        //}
+        //if (takingPills == true)
+        //{
+        //    currentanimDuration += Time.deltaTime;
+        //    if (currentanimDuration >= animDuration)
+        //    {
+        //        pills--;
+        //        currentanimDuration = 0f;
+        //        takingPills = false;
+        //        insaneMeter -= maxInsaneMeter * 0.15f;
+        //        Inventory.instance.Remove(ConsumableType.Pill);
+        //        if (insaneMeter <= 0)
+        //        { 
+        //            insaneMeter = 0; 
+        //        }
+        //        //Debug.Log("Pills taken");
+        //    }
+        //}
     }
 
     void UpdateBarUI()

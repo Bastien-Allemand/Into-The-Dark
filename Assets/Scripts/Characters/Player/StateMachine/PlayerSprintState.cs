@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerSprintState : IState
@@ -6,7 +7,6 @@ public class PlayerSprintState : IState
     private Transform transform;
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
-
     public PlayerSprintState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
     {
         this.stateMachine = stateMachine;
@@ -19,6 +19,7 @@ public class PlayerSprintState : IState
         if (stateMachine.debug)
             Debug.Log("Player: Enter Mode SPRINT");
         stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.sprintingMultiplier;
+        stateMachine.NotifySprintStatus(true);
     }
 
     public void Update()
@@ -56,6 +57,7 @@ public class PlayerSprintState : IState
     {
         if (stateMachine.debug)
             Debug.Log("Player: Exit Mode SPRINT");
+        stateMachine.NotifySprintStatus(false);
     }
 }
 
