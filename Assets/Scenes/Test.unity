@@ -119,37 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &213681618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
-  m_PrefabInstance: {fileID: 1344184016}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &213681619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213681618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b4d31c3783f3934d87f900c456b786c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisplayInventory
-  consumables: []
---- !u!114 &213681625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213681618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3dd93a9e2e6c04da4bb5e902767208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  UIs: []
 --- !u!1001 &219641193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,6 +199,9 @@ MonoBehaviour:
   usingTimer: 0
   placingDelay: 0
   timer: 0
+  usingEnergy: 0
+  energy: 100
+  rechargable: 0
 --- !u!1001 &389586540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -385,6 +357,9 @@ MonoBehaviour:
   usingTimer: 0
   placingDelay: 0
   timer: 0
+  usingEnergy: 0
+  energy: 100
+  rechargable: 0
 --- !u!114 &719285715 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6844997737729329805, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
@@ -651,6 +626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 323168192193907689, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+      propertyPath: consumables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
       propertyPath: m_Name
       value: ui_player
@@ -738,13 +717,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 213681619}
-    - targetCorrespondingSourceObject: {fileID: 1079938404556345137, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 213681625}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
 --- !u!1 &1425426090
 GameObject:
@@ -1014,6 +987,9 @@ MonoBehaviour:
   usingTimer: 0
   placingDelay: 0
   timer: 0
+  usingEnergy: 0
+  energy: 100
+  rechargable: 0
 --- !u!1 &1833075278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,7 +1416,7 @@ PrefabInstance:
     - target: {fileID: 7519673890077122050, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 213681619}
+      objectReference: {fileID: 0}
     - target: {fileID: 8900327865329010512, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: raycastUtil
       value: 
