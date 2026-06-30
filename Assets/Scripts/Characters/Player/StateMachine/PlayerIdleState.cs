@@ -18,9 +18,8 @@ public class PlayerIdleState : PlayerBaseState
         }
 
         bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
-        bool walkInput = InputManager.controls.GamePlay.Movement.triggered;
 
-        if (walkInput)
+        if (stateMachine.moveInput != Vector2.zero)
         {
             stateMachine.ChangeState(stateMachine.WalkState);
         }

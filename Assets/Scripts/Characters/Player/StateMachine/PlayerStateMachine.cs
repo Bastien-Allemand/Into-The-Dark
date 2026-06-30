@@ -1,3 +1,4 @@
+using Assets.Scripts.Items;
 using System;
 using UnityEngine;
 
@@ -47,8 +48,6 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private PhoneScript phoneScript;
-
 
     [Space(5)]
     [Header("Sprint Settings")]
