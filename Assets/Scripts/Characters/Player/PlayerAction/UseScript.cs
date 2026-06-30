@@ -13,6 +13,7 @@ public class PlaceScript : MonoBehaviour
     public HandContent rightHandContent;
 
     [SerializeField] public GameObject preview;
+    Mesh previewMesh;
 
     [Header("Auto Finding")]
 
@@ -63,6 +64,7 @@ public class PlaceScript : MonoBehaviour
                 {
                     isPlacingLeft = true;
                     playerView.canLook = false;
+                    preview.GetComponent<MeshFilter>().mesh = leftHandContent.inHand.GetComponent<MeshFilter>().mesh;
                 }
             }
             else
@@ -78,6 +80,7 @@ public class PlaceScript : MonoBehaviour
                 {
                     isPlacingRight = true;
                     playerView.canLook = false;
+                    preview.GetComponent<MeshFilter>().mesh = rightHandContent.inHand.GetComponent<MeshFilter>().mesh;
                 }
             }
             else
@@ -102,6 +105,13 @@ public class PlaceScript : MonoBehaviour
                     {
                         obj.transform.position = preview.transform.position;
                         obj.transform.rotation = preview.transform.rotation;
+                        preview.GetComponent<MeshFilter>().mesh = previewMesh;
+                    }
+
+                    if (!rightHandContent.filled && !leftHandContent.filled)
+                    {
+                        editMode = false;
+                        preview.SetActive(editMode);
                     }
 
                     playerView.canLook = true;
@@ -112,18 +122,24 @@ public class PlaceScript : MonoBehaviour
         {
             if (rightHandContent.itemScript.needsToBePlaced)
             {
-                if (editMode && isPlacingLeft && preview.activeSelf)
+                if (editMode && isPlacingRight && preview.activeSelf)
                 {
-                    isPlacingLeft = false;
+                    isPlacingRight = false;
                     rightHandContent.itemScript.deployed = true;
                     GameObject obj = rightHandContent.TakeOutObject(false);
 
                     if (obj != null && preview != null)
                     {
                         obj.transform.position = preview.transform.position;
+                        obj.transform.rotation = preview.transform.rotation;
+                        preview.GetComponent<MeshFilter>().mesh = previewMesh;
                     }
 
-
+                    if (!rightHandContent.filled && !leftHandContent.filled)
+                    {
+                        editMode = false;
+                        preview.SetActive(editMode);
+                    }
                     playerView.canLook = true;
                 }
             }
@@ -131,8 +147,12 @@ public class PlaceScript : MonoBehaviour
     }
     private void SwitchEditMode(InputAction.CallbackContext _context)
     {
-        editMode = !editMode;
-        preview.SetActive(editMode);
+        if (rightHandContent.filled || leftHandContent.filled)
+        {
+            editMode = !editMode;
+            preview.SetActive(editMode);
+        }
+
         Debug.Log($"Edit Mode: {editMode}");
     }
 
@@ -152,6 +172,7 @@ public class PlaceScript : MonoBehaviour
     private void Awake()
     {
         controls = InputManager.controls;
+        previewMesh = preview.GetComponent<MeshFilter>().mesh;
     }
 
     public void Update()
