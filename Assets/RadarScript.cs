@@ -8,8 +8,7 @@ public class RadarScript : MonoBehaviour
     public GameObject radar;
 
     [Header("Map")]
-    public RectTransform rectImageRadarFloor1;
-    public RectTransform rectImageRadarFloor2;
+    public RectTransform rectCanva;
     public Image imageFloor1;
     public Image imageFloor2;
 
@@ -48,6 +47,7 @@ public class RadarScript : MonoBehaviour
     public AudioClip radarSound;
 
     private bool isScanning = false;
+    private float firstFloorHeight = 17f;
 
     private
 
@@ -64,18 +64,17 @@ public class RadarScript : MonoBehaviour
         {
             radar.transform.localRotation = Quaternion.Euler(90f, 90f, 90f);
 
-            rectImageRadarFloor1.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
-            //rectImageRadarFloor2.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+            rectCanva.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
         }
 
         Debug.Log(player.position.y);
 
-        if (player.position.y >= 16.56f)
+        if (player.position.y >= firstFloorHeight)
         {
             imageFloor1.enabled = false;
             imageFloor2.enabled = true;
         }
-        else if (player.position.y < 16.56f)
+        else if (player.position.y < firstFloorHeight)
         {
             imageFloor1.enabled = true;
             imageFloor2.enabled = false;

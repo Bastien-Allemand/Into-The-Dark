@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!224 &390326617 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4408129577742971699, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
-  m_PrefabInstance: {fileID: 785444549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &390326618 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 515778129957885956, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
@@ -192,7 +187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5d647d5d3670bc2449c2976f61bdf536, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dcc7ba69b00e024a971d000e993a863, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -291,6 +286,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2066829363858765112}
     m_Modifications:
+    - target: {fileID: 515778129957885956, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d647d5d3670bc2449c2976f61bdf536, type: 3}
     - target: {fileID: 4503481710175946029, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
       propertyPath: m_Name
       value: Radar
@@ -356,6 +355,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4503481710175946029, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 785444557}
+    - targetCorrespondingSourceObject: {fileID: 1653392075907074635, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2038907350}
   m_SourcePrefab: {fileID: 100100000, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
 --- !u!4 &785444550 stripped
 Transform:
@@ -503,8 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RadarScript
   radar: {fileID: 785444556}
-  rectImageRadarFloor1: {fileID: 390326617}
-  rectImageRadarFloor2: {fileID: 419216477}
+  rectCanva: {fileID: 1163764826}
   imageFloor1: {fileID: 390326618}
   imageFloor2: {fileID: 419216478}
   playerIcon: {fileID: 785444552}
@@ -523,6 +524,16 @@ MonoBehaviour:
   ghostPathfinding: {fileID: 706771596}
   audioSource: {fileID: 785444557}
   radarSound: {fileID: 8300000, guid: 7b7d28d8fde364e41b8090aa1686121f, type: 3}
+--- !u!1 &1036978184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1653392075907074635, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
+  m_PrefabInstance: {fileID: 785444549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1163764826 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8602228246929047123, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
+  m_PrefabInstance: {fileID: 785444549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1474648408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -531,6 +542,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1413043958126300437, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413043958126300437, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1413043958126300437, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.56
@@ -596,6 +615,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5406487208239077327, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406487208239077327, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406487208239077327, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.71
       objectReference: {fileID: 0}
@@ -634,6 +661,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6704275109216281388, guid: 9959f0642f184da4a91a87e9c0bf62e9, type: 3}
   m_PrefabInstance: {fileID: 785444549}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2038907350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036978184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1001 &2066829363858765108
 PrefabInstance:
   m_ObjectHideFlags: 0
