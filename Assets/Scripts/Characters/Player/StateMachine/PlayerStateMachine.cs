@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
@@ -53,6 +54,9 @@ public class PlayerStateMachine : MonoBehaviour
     private float staminaRegenDelay = 1.5f;
     private float sprintBarInitialWidth;
 
+    public event Action<bool> OnSprintStatusChanged;
+    public event Action<bool> OnExhaustionChanged;
+    private bool previousExhaustionState = false;
 
     void Awake()
     {
@@ -82,6 +86,11 @@ public class PlayerStateMachine : MonoBehaviour
         CheckIsCeilingAbove();
         HandleStamina();
         CheckState();
+        if (isOutOfStamina != previousExhaustionState)
+        {
+            OnExhaustionChanged?.Invoke(isOutOfStamina);
+            previousExhaustionState = isOutOfStamina;
+        }
         if (currentState != null)
         {
             currentState.Update();
@@ -213,5 +222,10 @@ public class PlayerStateMachine : MonoBehaviour
 
         float percentLeft = staminaLeft / maxStamina;
         sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
+    }
+
+    public void NotifySprintStatus(bool isSprinting)
+    {
+        OnSprintStatusChanged?.Invoke(isSprinting);
     }
 }

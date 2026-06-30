@@ -1,8 +1,10 @@
+using System.Collections.Generic;
+using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Collections;
-
+using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -69,7 +73,6 @@ public class GameManager : MonoBehaviour
             gameOverCanvasGroup.alpha = 0f;
         }
     }
-
     public void TogglePause()
     {
         if (isGameOver || isTransitioning) return;
