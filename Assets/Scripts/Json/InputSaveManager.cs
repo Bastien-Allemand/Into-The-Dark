@@ -5,7 +5,19 @@ using UnityEngine.InputSystem;
 
 public class InputSaveManager : MonoBehaviour
 {
+    private static InputSaveManager _instance;
+    public static InputSaveManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<InputSaveManager>();
+            }
 
+            return _instance;
+        }
+    }
     private InputSaveManager() { }
 
     [SerializeField] public TMP_InputField inputField;
@@ -15,6 +27,10 @@ public class InputSaveManager : MonoBehaviour
 
     string currentJsonPathUsed; // full path
     //  save somewhere the current used json
+    private void OnDestroy()
+    {
+        _instance = null;
+    }
     private void Start()
     {
         currentJsonPathUsed = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];

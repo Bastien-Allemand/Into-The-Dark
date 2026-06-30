@@ -6,22 +6,24 @@ using UnityEngine.InputSystem;
 public class SaveBouton : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI m_TextMeshPro;
-    UsePathSave json;
 
     public void Use()
     {
-        //  get
-        json = JsonManager.pathUsed;
         //  change  path
         JsonManager.pathUsed.paths[(int)JsonManager.path.Input] = JsonManager.Instance.GetPath(JsonManager.path.Input, m_TextMeshPro.text);
-        //  rewrite usePath
-        JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(json));
+        //  rewrite usePath (default because there isn't any other because it's UsePath)
+        JsonManager.Instance.Save(JsonManager.path.Use, JsonManager.defaultName, JsonUtility.ToJson(JsonManager.pathUsed));
         //  update jsonManager
         JsonManager.Instance.PathChangeUpdate();
     }
     public void Supp()
     {
-        InputSaveManager.Instance.SuppSave(m_TextMeshPro.text);
+        JsonManager.Instance.supp_File(
+            JsonManager.Instance.GetPath(
+                JsonManager.path.Input,
+                m_TextMeshPro.text
+            )
+        );
     }
     public void NewSave(string name, InputActionMap map)
     {

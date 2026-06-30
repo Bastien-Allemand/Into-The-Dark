@@ -149,7 +149,7 @@ public class JsonManager : MonoBehaviour
         InputActionAsset asset = controls.asset;
         asset = InputActionAsset.FromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
         gameSave = JsonUtility.FromJson<GameSave>(File.ReadAllText(pathUsed.paths[(int)path.GameSave]));
-        InputSaveManager.Instance.updateBoutonText();
+        //InputSaveManager.Instance.updateBoutonText();
 
         if (gameObject.activeSelf)
             controls.Enable();
