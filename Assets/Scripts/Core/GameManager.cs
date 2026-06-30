@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup gameOverCanvasGroup;
 
     [Header("Timer Settings")]
-    [SerializeField] private float timeToSurvive = 5f;
+    [SerializeField] private float timeToSurvive = 6f;
     [SerializeField] private TextMeshProUGUI timerText;
 
     [Header("Story Transition Settings")]
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         else
         {
             currentTime = 0;
-            TriggerStoryTransition();
+            //TriggerStoryTransition();
         }
 
         UpdateTimerUI();
