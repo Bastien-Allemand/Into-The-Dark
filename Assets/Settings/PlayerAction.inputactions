@@ -324,13 +324,24 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "356e9e36-994c-4b58-9aae-ae975ed44b08",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Slots",
                     "id": "fbdb0ce2-96c7-4e05-9595-04a7d4179cbc",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Inventory",
+                    "action": "Consume",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -341,7 +352,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Inventory",
+                    "action": "Consume",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -352,20 +363,9 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "356e9e36-994c-4b58-9aae-ae975ed44b08",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "Consume",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "Right Hand",
@@ -414,6 +414,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PcInteract",
+            "id": "3f3c66c2-df9a-400e-87be-f1e2b8ae5ab1",
+            "actions": [
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "e4bda3e2-a68e-4033-aa4c-ed0674ae4523",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "64d367bd-46d6-4335-ae45-57d1ee2b536e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

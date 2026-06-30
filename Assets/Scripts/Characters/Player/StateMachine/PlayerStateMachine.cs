@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
@@ -5,8 +6,15 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] public bool debug = false;
 
     PlayerAction controls;
-    private IState currentState;
 
+    public enum state
+    {
+        NONE,
+        IDLE,
+        WALK,
+        SPRINT
+
+    }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerSprintState SprintState { get; private set; }
@@ -16,6 +24,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public PlayerOnPhoneState OnPhoneState { get; private set; }
 
+    [SerializeField] public IState currentState;
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
@@ -48,6 +57,8 @@ public class PlayerStateMachine : MonoBehaviour
 
 
     public Vector2 moveInput;
+
+    public state STATE = state.NONE;
 
     private float maxStamina = 5f;
     private float staminaRegenDelay = 1.5f;
@@ -128,10 +139,12 @@ public class PlayerStateMachine : MonoBehaviour
             if (crouchInput == true || isCeilingAbove == true)
             {
                 ChangeState(CrouchState);
+                STATE = state.NONE;
             }
             else if (isCeilingAbove == false)
             {
                 ChangeState(IdleState);
+                STATE = state.IDLE;
             }
                 
             
@@ -139,20 +152,24 @@ public class PlayerStateMachine : MonoBehaviour
         else if (crouchInput == true)
         {
             ChangeState(CrouchState);
+            STATE= state.NONE;
         }
         else if (sprintInput == true && isOutOfStamina == false)
         {
             ChangeState(SprintState);
+            STATE = state.SPRINT;
         }
         else if (crouchInput == false && sprintInput == false)
         {
             if (isCeilingAbove == true)
             {
                 ChangeState(CrouchState);
+                STATE = state.NONE;
                 return;
             }
 
             ChangeState(WalkState);
+            STATE = state.WALK;
             
         }
     }
