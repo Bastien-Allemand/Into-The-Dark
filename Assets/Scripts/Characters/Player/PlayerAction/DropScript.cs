@@ -16,14 +16,14 @@ public class DropScript : MonoBehaviour
 
     [Header("Throw settings")]
     [SerializeField] private float minForce = 5f;
-    [SerializeField] private float maxForce = 20f;
+    [SerializeField] public float maxForce = 20f;
     [SerializeField] private float chargeSpeed = 10f;
 
-    private float leftCharge;
-    private float rightCharge;
+    public float leftCharge;
+    public float rightCharge;
 
-    private bool chargingLeft;
-    private bool chargingRight;
+    public bool chargingLeft;
+    public bool chargingRight;
 
     private void Awake()
     {
@@ -93,7 +93,7 @@ public class DropScript : MonoBehaviour
 
     private void Throw(HandContent hand, float charge)
     {
-        GameObject obj = hand.TakeOutObject();
+        GameObject obj = hand.TakeOutObject(true);
 
         if (obj == null)
             return;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1323195853854645275}
   - component: {fileID: 1300438899659346561}
   - component: {fileID: 9159948122168312309}
+  - component: {fileID: -6040086266763341821}
   m_Layer: 0
   m_Name: Pills
   m_TagString: Consumable
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edbcf282dc2d464b991bb59763f3747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleScript
-  ConsumableType: 1
+  ConsumableType: 0
 --- !u!54 &9159948122168312309
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,3 +157,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6040086266763341821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073360214278151633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbf2bca02cf2ec4aa4460127c3eaa60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  deployed: 1
+  canBeRepickUp: 0
+  needsToBePlaced: 0
+  usingTimer: 0
+  placingDelay: 0
+  timer: 0

@@ -10,6 +10,10 @@ public class ItemScript : MonoBehaviour
     public float placingDelay = 0f;
     public float timer = 0f;
 
+    public bool usingEnergy = false;
+    public float energy = 100f;
+    public bool rechargable = false; 
+
     public void Update()
     {
         if (deployed && usingTimer)
@@ -21,5 +25,10 @@ public class ItemScript : MonoBehaviour
             timer -= Time.deltaTime;
             placingDelay -= Time.deltaTime; 
         }
+        if (usingEnergy)
+        {
+            energy -= Time.deltaTime;
+        }
+
     }
 }
