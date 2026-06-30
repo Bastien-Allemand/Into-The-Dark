@@ -140,6 +140,71 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7329587487505920883, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
   m_PrefabInstance: {fileID: 2066829363858765108}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &861449282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861449284}
+  - component: {fileID: 861449283}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &861449283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861449282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e29d7a1445cdc4fbc3df54e3ab0f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  chaptersSequence: []
+  nightNameText: {fileID: 0}
+  timerText: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  transitionPanel: {fileID: 0}
+  transitionText: {fileID: 0}
+  chapterTransitionPanel: {fileID: 0}
+  chapterTitleText: {fileID: 0}
+  chapterIntroTextUI: {fileID: 0}
+  gameOverReasonText: {fileID: 0}
+  gameOverCanvasGroup: {fileID: 0}
+  timeToWaitBeforeNextScene: 3
+  timeToWaitChapterTransition: 6
+  glitchTriggerTime: 0.5
+  minBlinkDelay: 0.05
+  maxBlinkDelay: 0.25
+  startBlinkingAt: 10
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  fadeDuration: 1.5
+  textTypeSpeed: 0.05
+--- !u!4 &861449284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861449282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 680.9383, y: 559.45416, z: -923.6131}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633608652 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2423474180165827347, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
@@ -637,3 +702,4 @@ SceneRoots:
   - {fileID: 2066829363858765108}
   - {fileID: 5050230139285730104}
   - {fileID: 5630893175526493309}
+  - {fileID: 861449284}
