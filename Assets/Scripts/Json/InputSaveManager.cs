@@ -6,25 +6,12 @@ using UnityEngine.InputSystem;
 public class InputSaveManager : MonoBehaviour
 {
 
-
-    private static InputSaveManager _instance;
-    public static InputSaveManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new InputSaveManager();
-            }
-
-            return _instance;
-        }
-    }
     private InputSaveManager() { }
 
     [SerializeField] public TMP_InputField inputField;
     [SerializeField] public Transform boutonSlider_content;
     [SerializeField] private GameObject boutonPrefab;
+    [SerializeField] private TextMeshProUGUI current_json_name;
 
     string currentJsonPathUsed; // full path
     //  save somewhere the current used json
@@ -32,6 +19,14 @@ public class InputSaveManager : MonoBehaviour
     {
         currentJsonPathUsed = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
         CreateBouton();
+    }
+    private void OnEnable()
+    {
+        updateBoutonText();
+    }
+    public void updateBoutonText()
+    {
+        current_json_name.text = System.IO.Path.GetFileNameWithoutExtension(JsonManager.pathUsed.paths[(int)JsonManager.path.Input]);
     }
     private void updateBouton()
     {

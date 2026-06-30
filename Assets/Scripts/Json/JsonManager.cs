@@ -36,9 +36,22 @@ public class JsonManager : MonoBehaviour
         GameSave,
         Use // keep Use as Last (function a bit like Size but not only for Size)
     }
+    private void OnEnable()
+    {
 
+        Debug.Log("JsonManager : OnEnable");
+        if (controls != null)
+            controls.Enable();
+    }
+    private void OnDisable()
+    {
+        Debug.Log("JsonManager : OnDisable");
+        if (controls != null)
+            controls.Disable();
+    }
     private void Awake()
     {
+        Debug.Log("JsonManager : Awake Start");
         if (instance == null)
         {
             instance = this;
@@ -46,10 +59,10 @@ public class JsonManager : MonoBehaviour
         }
         else if (instance != this)
         {
+            Debug.Log("JsonManager : Awake Destroy (is copie)");
             Destroy(gameObject);
         }
 
-        Debug.Log("JsonManager Awake");
 
         defaultName = "Default";
         savePath = Application.persistentDataPath;
@@ -59,12 +72,22 @@ public class JsonManager : MonoBehaviour
         //  update the pathUsed
         for (int i = 0; i < (int)path.Use; i++)
         {
+            string currentJsonPathUsed;
             object obj = Create((path)i);
+            InputActionAsset asset = null;
+            if (obj is PlayerAction action)
+            {
+                asset = action.asset;
+                Debug.Log(obj);
+            }
             if (!File.Exists(GetPath((path)i, defaultName)))    //  if default don't exist, create it
             {
-                Save(GetPath((path)i, defaultName), JsonUtility.ToJson(obj));
+                if (asset != null)
+                    Save(GetPath((path)i, defaultName), asset.ToJson());
+                else
+                    Save(GetPath((path)i, defaultName), JsonUtility.ToJson(obj));
             }
-            string currentJsonPathUsed = pathUsed.paths[i];
+            currentJsonPathUsed = pathUsed.paths[i];
             if (!File.Exists(currentJsonPathUsed))              //  if current path don't exist, use default one
             {
                 currentJsonPathUsed = Instance.GetPath(path.Input, defaultName);
@@ -72,12 +95,22 @@ public class JsonManager : MonoBehaviour
             }
             else        //  merge the default and json then save the change (it change if the version change)
             {
-                JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), obj);
-                Save(currentJsonPathUsed, JsonUtility.ToJson(obj));
+                if (asset != null)
+                {
+                    JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), asset);
+                    Save(currentJsonPathUsed, asset.ToJson());
+                }
+                else
+                {
+                    JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), obj);
+                    Save(currentJsonPathUsed, JsonUtility.ToJson(obj));
+                }
             }
+            break;
         }
+
         PathChangeUpdate();
-        Debug.Log("JsonManager Awake End");
+        Debug.Log("JsonManager : Awake End");
     }
     private object Create(path i)
     {
@@ -104,11 +137,22 @@ public class JsonManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+
     public void PathChangeUpdate()
     {
-        Debug.Log(pathUsed.paths[(int)path.Input]);
-        controls = JsonUtility.FromJson<PlayerAction>(pathUsed.paths[(int)path.Input]);
-        gameSave = JsonUtility.FromJson<GameSave>(pathUsed.paths[(int)path.GameSave]);
+        Debug.Log(controls);
+        if (controls == null)
+            controls = new();
+
+        controls.Disable();
+
+        InputActionAsset asset = controls.asset;
+        asset = InputActionAsset.FromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
+        gameSave = JsonUtility.FromJson<GameSave>(File.ReadAllText(pathUsed.paths[(int)path.GameSave]));
+        InputSaveManager.Instance.updateBoutonText();
+
+        if (gameObject.activeSelf)
+            controls.Enable();
     }
     public UsePathSave getUsedPath()
     {
@@ -130,7 +174,6 @@ public class JsonManager : MonoBehaviour
     }
     public string GetPath(path path, string fileName = null)
     {
-        Debug.Log("Get Path Called");
         string state = "bug";
 #if UNITY_EDITOR
         state = "Editor";

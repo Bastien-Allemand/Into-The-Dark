@@ -33,10 +33,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("UIManager : Awake Start");
         Init();
+        Debug.Log("UIManager : Awake End");
     }
+
     private void Update()
     {
+
         for (int i = 0; i < UIs.Count; i++)
         {
             if (!UIs[i].gameObject.activeSelf)  //  check if enter condition is true    because it's inactif
@@ -55,7 +59,6 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-
     }
     private void Init()
     {
@@ -69,9 +72,7 @@ public class UIManager : MonoBehaviour
                 Debug.Log($"Add in UIs : {enfant.name}");
             }
         }
-        Debug.Log($"UIs : {UIs.Count}");
         FoncInit();
-        Debug.Log("end funcInit");
 
         UpdateCursorState();
     }

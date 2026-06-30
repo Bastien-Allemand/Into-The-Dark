@@ -16,8 +16,10 @@ public class LevelMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        Debug.Log("LevelMenu : Awake Start");
         m_button = new List<Button>();
         CallUpdate();
+        Debug.Log("LevelMenu : Awake End");
     }
     public void CallUpdate()
     {

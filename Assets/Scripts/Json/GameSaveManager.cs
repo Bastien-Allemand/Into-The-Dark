@@ -24,23 +24,28 @@ public class GameSaveManager : MonoBehaviour
     //  save somewhere the current used json
     private void Awake()
     {
+        Debug.Log("GameSaveManager : Awake Start");
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
+            Debug.Log("GameSaveManager : Awake Destroy GameObject (is copie)");
             return;
         }
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
+        Debug.Log("GameSaveManager : Awake End");
     }
     //  récupaire les var du json dedans persistant path puis vérifié que le path exist
     private void Start()
     {
+        Debug.Log("GameSaveManager : Start Start");
         Debug.Log(JsonManager.Instance);
         currentJsonPathUsed = JsonManager.pathUsed.paths[(int)JsonManager.path.GameSave];
 
         GameSave gameSave = new GameSave();
         JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), gameSave);
+        Debug.Log("GameSaveManager : Start End");
     }
 
     public void Save()

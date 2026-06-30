@@ -13,7 +13,6 @@ public class PauseMenu : UI
 
     public override bool EnterCondition()
     {
-        Debug.Log(JsonManager.controls);
         if (JsonManager.controls.Menu.Pause.WasPressedThisFrame())
         {
             enter = true;
@@ -36,8 +35,11 @@ public class PauseMenu : UI
     }
     private void Awake()
     {
+        Debug.Log("Pause Menu : Awake Start");
 
         cursorWantedState = CursorLockMode.None;
+
+        ResetBuffer();
 
         Transform target = manager.GetUIs<MainMenu>();
         if (target)
@@ -58,12 +60,13 @@ public class PauseMenu : UI
                 continue;
             CreateBoutonFromAction(action, GO_Controls_Content.transform);
         }
+        Debug.Log("Pause Menu : Awake End");
     }
     private void OnEnable()
     {
-        Debug.Log("Pause Menu : Enter");
+        Debug.Log("Pause Menu : OnEnable");
 
-        controls_buffer = new PlayerAction();
+        ResetBuffer();
 
         exit = false;
         //  can be opti, but a bit weird to t
@@ -77,6 +80,7 @@ public class PauseMenu : UI
     }
     private void OnDisable()
     {
+        Debug.Log("Pause Menu : OnDisable");
         foreach (var ui in UIManager.Instance.UIs)
         {
             if (ui.GetComponent<MainMenu>() != null)
@@ -85,7 +89,12 @@ public class PauseMenu : UI
             }
         }
     }
-
+    void ResetBuffer()
+    {
+        controls_buffer = new PlayerAction();
+        controls_buffer.Disable();
+        controls_buffer.asset.LoadBindingOverridesFromJson(File.ReadAllText(JsonManager.pathUsed.paths[(int)JsonManager.path.Input]));
+    }
     private void CreateBoutonFromAction(InputAction action, Transform parent)
     {
         int bindingIndex = 0;

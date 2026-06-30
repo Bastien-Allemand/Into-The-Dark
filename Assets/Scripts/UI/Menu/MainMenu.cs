@@ -13,7 +13,19 @@ public class MainMenu : UI
     }
     private void Awake()
     {
+        Debug.Log("MainMenu : Awake Start");
+
+
         cursorWantedState = CursorLockMode.None;
+
+
+        Debug.Log("MainMenu : Awake End");
+    }
+    private void Start()
+    {
+        Debug.Log("MainMenu : Start Start");
+
+
         Transform target = manager.GetUIs<PauseMenu>();
         if (target)
         {
@@ -23,5 +35,8 @@ public class MainMenu : UI
         }
         else
             Debug.Log("No Pause Menu");
+
+
+        Debug.Log("MainMenu : Start End");
     }
 }
