@@ -312,6 +312,8 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Prochaine nuit ! On conserve la scène : {activeSceneName}");
         }
 
+        
+        
         if (hasNewChapter)
         {
             yield return StartCoroutine(ShowChapterIntroductionSequence(chaptersSequence[currentChapterIndex]));

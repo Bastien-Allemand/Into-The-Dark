@@ -747,7 +747,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e29d7a1445cdc4fbc3df54e3ab0f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  chaptersSequence: []
+  chaptersSequence:
+  - chapterName: Chapter 1
+    chapterIntroText: Chapter 1 intro test
+    nights:
+    - nightName: Night 1 with lilian
+      duration: 5
+      changeScene: 0
+      sceneToLoad: 
+    - nightName: Night 2
+      duration: 10
+      changeScene: 0
+      sceneToLoad: 
+  - chapterName: Chapter 2
+    chapterIntroText: Chapter 2 intro test
+    nights:
+    - nightName: Night 1
+      duration: 45
+      changeScene: 0
+      sceneToLoad: 
+    - nightName: Night 2
+      duration: 60
+      changeScene: 0
+      sceneToLoad: 
   nightNameText: {fileID: 1176874576}
   timerText: {fileID: 353007034}
   gameOverPanel: {fileID: 621882679}
@@ -776,12 +798,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861449282}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 680.9383, y: 559.45416, z: -923.6131}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 681.9454, y: 559.45416, z: -944.39575}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2101857708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &896035890
 GameObject:
@@ -1432,7 +1454,7 @@ RectTransform:
   - {fileID: 353007033}
   - {fileID: 1176874575}
   - {fileID: 518530571}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2101857708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1706,6 +1728,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34295bc20c12bbf4cb8c4c74fe3d7c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Raycast
+--- !u!4 &2101857708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7504741572829378263, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+  m_PrefabInstance: {fileID: 2066829363858765108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2066829363858765108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1896,7 +1923,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7504741572829378263, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1428272796}
+    - targetCorrespondingSourceObject: {fileID: 7504741572829378263, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 861449284}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 891582874362338477, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       insertIndex: -1
@@ -2149,5 +2182,3 @@ SceneRoots:
   - {fileID: 2066829363858765108}
   - {fileID: 5050230139285730104}
   - {fileID: 5630893175526493309}
-  - {fileID: 861449284}
-  - {fileID: 1428272796}
