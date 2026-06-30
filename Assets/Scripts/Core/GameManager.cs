@@ -26,6 +26,14 @@ public class GameManager : MonoBehaviour
         public List<NightData> nights;
     }
 
+
+    [Header("Debug / Sandbox Settings")]
+    [Tooltip("Si coché, le système de chapitres/nuits est désactivé. La scène actuelle tourne à l'infini (le timer reste à 00:00 ou s'arrête).")]
+    [SerializeField] private bool infiniteMode = false;
+    [Tooltip("Si vrai en mode infini, le timer compte à rebours puis se bloque à 0. Si faux, le timer n'apparaît pas ou ne décompte pas.")]
+    [SerializeField] private bool keepTimerInInfiniteMode = true;
+
+
     [Header("Story Progression")]
     [SerializeField] private List<ChapterData> chaptersSequence = new List<ChapterData>();
 
@@ -89,6 +97,24 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (infiniteMode)
+        {
+            activeSceneName = SceneManager.GetActiveScene().name;
+            currentTime = (chaptersSequence != null && chaptersSequence.Count > 0 && chaptersSequence[0].nights.Count > 0)
+                ? chaptersSequence[0].nights[0].duration
+                : 300f;
+
+            if (nightNameText != null) nightNameText.text = "Mode Sans Fin / Sandbox";
+            if (gameOverPanel != null) gameOverPanel.SetActive(false);
+            if (transitionPanel != null) transitionPanel.SetActive(false);
+            if (gameOverCanvasGroup != null) gameOverCanvasGroup.alpha = 0f;
+
+            if (!keepTimerInInfiniteMode && timerText != null)
+                timerText.gameObject.SetActive(false);
+
+            return;
+        }
+
         if (chaptersSequence == null || chaptersSequence.Count == 0 || chaptersSequence[currentChapterIndex].nights.Count == 0)
         {
             Debug.LogWarning("Structure de chapitres vide !");
@@ -114,6 +140,11 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (transitionPanel != null) transitionPanel.SetActive(false);
         if (gameOverCanvasGroup != null) gameOverCanvasGroup.alpha = 0f;
+
+        if (currentChapterIndex == 0 && currentNightIndex == 0)
+        {
+            StartCoroutine(StartGameWithIntroSequence(currentChapter));
+        }
     }
 
     private void GenerateDefaultData()
@@ -197,12 +228,22 @@ public class GameManager : MonoBehaviour
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
-            if (timerText != null && !timerText.gameObject.activeSelf) timerText.gameObject.SetActive(true);
-            if (nightNameText != null && !nightNameText.gameObject.activeSelf) nightNameText.gameObject.SetActive(true);
+            if (timerText != null && !timerText.gameObject.activeSelf && (!infiniteMode || keepTimerInInfiniteMode))
+                timerText.gameObject.SetActive(true);
+            if (nightNameText != null && !nightNameText.gameObject.activeSelf)
+                nightNameText.gameObject.SetActive(true);
         }
         else
         {
             currentTime = 0;
+
+            // Si on est en mode infini, on bloque le timer à 0 et on NE déclenche PAS la transition
+            if (infiniteMode)
+            {
+                UpdateTimerUI();
+                return;
+            }
+
             TriggerStoryTransition();
         }
 
@@ -262,6 +303,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator StartGameWithIntroSequence(ChapterData firstChapterData)
+    {
+        isTransitioning = true;
+
+        if (timerText != null) timerText.gameObject.SetActive(false);
+        if (nightNameText != null) nightNameText.gameObject.SetActive(false);
+
+        yield return StartCoroutine(ShowChapterIntroductionSequence(firstChapterData));
+
+        isTransitioning = false;
+
+        if (timerText != null) timerText.gameObject.SetActive(true);
+        if (nightNameText != null) nightNameText.gameObject.SetActive(true);
+    }
+
     public void TriggerStoryTransition()
     {
         if (isGameOver || isTransitioning) return;
@@ -312,8 +368,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Prochaine nuit ! On conserve la scène : {activeSceneName}");
         }
 
-        
-        
+
         if (hasNewChapter)
         {
             yield return StartCoroutine(ShowChapterIntroductionSequence(chaptersSequence[currentChapterIndex]));

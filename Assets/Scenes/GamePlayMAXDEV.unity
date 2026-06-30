@@ -747,6 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e29d7a1445cdc4fbc3df54e3ab0f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  infiniteMode: 1
+  keepTimerInInfiniteMode: 0
   chaptersSequence:
   - chapterName: Chapter 1
     chapterIntroText: Chapter 1 intro test
@@ -1813,6 +1815,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3232599649399460022, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5165926732961330467, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: m_SizeDelta.y
       value: 10
@@ -2153,6 +2159,22 @@ PrefabInstance:
     - target: {fileID: 2423474180165827347, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: m_TagString
       value: Lootable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905665621509045061, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905665621509045061, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905665621509045061, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: m_CookingOptions
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905665621509045061, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7261541869891903517, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: m_Name
