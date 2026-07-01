@@ -78,7 +78,7 @@ public class JsonManager : MonoBehaviour
             if (!File.Exists(GetPath((path)i, defaultName)))    //  if default don't exist, create it
             {
                 if (obj is PlayerAction action)
-                    SaveInputInJson(action.asset,defaultName);
+                    SaveInputInJson(action,defaultName);
                 else
                     Save(GetPath((path)i, defaultName), JsonUtility.ToJson(obj));
             }
@@ -137,8 +137,7 @@ public class JsonManager : MonoBehaviour
     {
         controls.Disable();
 
-        controls.asset.RemoveAllBindingOverrides();
-        controls.asset.LoadBindingOverridesFromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
+        GetInputFromJson(controls);
 
         gameSave = JsonUtility.FromJson<GameSave>(File.ReadAllText(pathUsed.paths[(int)path.GameSave]));
         //InputSaveManager.Instance.updateBoutonText();
@@ -217,12 +216,28 @@ public class JsonManager : MonoBehaviour
         }
         File.WriteAllText(fullPath, json);
     }
-    public void SaveInputInJson(InputActionAsset asset, string fileName)
+
+    //  input
+    public void SaveInputInJson(PlayerAction action, string fileName = null)
     {
-        string json = asset.SaveBindingOverridesAsJson();
+        if (fileName == null)
+        {
+            fileName = pathUsed.paths[(int)path.Input]; //  get path then get file name
+        }
+        fileName = System.IO.Path.GetFileNameWithoutExtension(fileName);
+
+        string json = action.asset.SaveBindingOverridesAsJson();
         Save(path.Input, fileName, json);
     }
-    
+    public void GetInputFromJson(PlayerAction action)
+    {
+        string json = File.ReadAllText(pathUsed.paths[(int)path.Input]);
+
+        action.asset.RemoveAllBindingOverrides();
+        action.asset.LoadBindingOverridesFromJson(json);
+    }
+
+
     public string[] getJsonNames(path path)
     {
         string[] files = Directory.GetFiles(GetPath(path), "*.json");

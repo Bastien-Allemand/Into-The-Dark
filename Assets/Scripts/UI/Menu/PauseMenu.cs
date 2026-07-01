@@ -116,8 +116,7 @@ public class PauseMenu : UI
     }
     void ResetBuffer()
     {
-        controls.asset.RemoveAllBindingOverrides();
-        controls_buffer.asset.LoadBindingOverridesFromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
+        JsonManager.Instance.GetInputFromJson(controls_buffer);
     }
     private void CreateBoutonFromAction(InputAction action, Transform parent)
     {
@@ -162,25 +161,16 @@ public class PauseMenu : UI
         }
         CreateBouton();
     }
-    public void SaveInput(string fileName = null)
+    public void SaveInput(string fileName)
     {
-        if (fileName == null)
-            fileName = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
-
-        fileName = System.IO.Path.GetFileNameWithoutExtension(fileName);
         //  get automaticly the current used json
-        JsonManager.Instance.SaveInputInJson(controls_buffer.asset, fileName);
-        JsonManager.Instance.Save(JsonManager.path.Input, fileName, JsonManager.controls.asset.ToJson());
+        JsonManager.Instance.SaveInputInJson(controls_buffer, fileName);
         JsonManager.Instance.PathChangeUpdate();
     }
     public void SaveInput()
     {
-        string fileName = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
-
-        fileName = System.IO.Path.GetFileNameWithoutExtension(fileName);
         //  get automaticly the current used json
-        JsonManager.Instance.SaveInputInJson(controls_buffer.asset, fileName);
-        JsonManager.Instance.Save(JsonManager.path.Input, fileName, JsonManager.controls.asset.ToJson());
+        JsonManager.Instance.SaveInputInJson(controls_buffer);
         JsonManager.Instance.PathChangeUpdate();
     }
     public void CreateSave(string fileName)
