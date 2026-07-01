@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -38,10 +39,10 @@ public class JsonManager : MonoBehaviour
     }
     private void OnEnable()
     {
-
         Debug.Log("JsonManager : OnEnable");
         if (controls != null)
             controls.Enable();
+
     }
     private void OnDisable()
     {
@@ -68,22 +69,16 @@ public class JsonManager : MonoBehaviour
         savePath = Application.persistentDataPath;
 
         pathUsed = getUsedPath();
-
+        controls = new PlayerAction();
         //  update the pathUsed
         for (int i = 0; i < (int)path.Use; i++)
         {
             string currentJsonPathUsed;
             object obj = Create((path)i);
-            InputActionAsset asset = null;
-            if (obj is PlayerAction action)
-            {
-                asset = action.asset;
-                Debug.Log(obj);
-            }
             if (!File.Exists(GetPath((path)i, defaultName)))    //  if default don't exist, create it
             {
-                if (asset != null)
-                    Save(GetPath((path)i, defaultName), asset.ToJson());
+                if (obj is PlayerAction action)
+                    SaveInputInJson(action.asset,defaultName);
                 else
                     Save(GetPath((path)i, defaultName), JsonUtility.ToJson(obj));
             }
@@ -95,10 +90,10 @@ public class JsonManager : MonoBehaviour
             }
             else        //  merge the default and json then save the change (it change if the version change)
             {
-                if (asset != null)
+                if (obj is PlayerAction action)
                 {
-                    JsonUtility.FromJsonOverwrite(File.ReadAllText(currentJsonPathUsed), asset);
-                    Save(currentJsonPathUsed, asset.ToJson());
+                    action.asset.LoadBindingOverridesFromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
+                    Save(currentJsonPathUsed, action.asset.SaveBindingOverridesAsJson());
                 }
                 else
                 {
@@ -126,7 +121,7 @@ public class JsonManager : MonoBehaviour
             case path.Input:
                 {
                     var o = new PlayerAction();
-                    o.Enable();
+                    o.Disable();
                     return o;
                 }
 
@@ -140,14 +135,11 @@ public class JsonManager : MonoBehaviour
 
     public void PathChangeUpdate()
     {
-        Debug.Log(controls);
-        if (controls == null)
-            controls = new();
-
         controls.Disable();
 
-        InputActionAsset asset = controls.asset;
-        asset = InputActionAsset.FromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
+        controls.asset.RemoveAllBindingOverrides();
+        controls.asset.LoadBindingOverridesFromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
+
         gameSave = JsonUtility.FromJson<GameSave>(File.ReadAllText(pathUsed.paths[(int)path.GameSave]));
         //InputSaveManager.Instance.updateBoutonText();
 
@@ -199,6 +191,7 @@ public class JsonManager : MonoBehaviour
     }
     public void Save(path jsonpath, string fileName, string text)
     {
+
         string extention = ".json";
         if (!fileName.EndsWith(extention, System.StringComparison.OrdinalIgnoreCase))
         {
@@ -214,7 +207,6 @@ public class JsonManager : MonoBehaviour
         {
             Debug.Log("path already existing : overwriting");
         }
-
         File.WriteAllText(path, text);
     }
     public void Save(string fullPath, string json) // no as secure as the other one
@@ -225,12 +217,12 @@ public class JsonManager : MonoBehaviour
         }
         File.WriteAllText(fullPath, json);
     }
-    public void SaveInputInJson(InputActionMap map, string fileName)
+    public void SaveInputInJson(InputActionAsset asset, string fileName)
     {
-        string json = map.SaveBindingOverridesAsJson();
+        string json = asset.SaveBindingOverridesAsJson();
         Save(path.Input, fileName, json);
     }
-
+    
     public string[] getJsonNames(path path)
     {
         string[] files = Directory.GetFiles(GetPath(path), "*.json");
@@ -280,6 +272,7 @@ public class JsonManager : MonoBehaviour
             Debug.Log("loading ...");
 
             string json = File.ReadAllText(path);
+            controls.asset.RemoveAllBindingOverrides();
             controls.asset.LoadBindingOverridesFromJson(json);
 
             Debug.Log($"Input prefab {targetPath} Loaded");

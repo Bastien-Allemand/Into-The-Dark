@@ -1,6 +1,10 @@
 using System.IO;
+using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using static JsonManager;
 
 public class PauseMenu : UI
 {
@@ -11,6 +15,15 @@ public class PauseMenu : UI
     [SerializeField] private Bouton b_continue;
     [SerializeField] private Bouton b_main_menu;
 
+    [Header("Saves var")]
+
+    [SerializeField] public TMP_InputField inputField;
+    [SerializeField] public Transform boutonSlider_content;
+    [SerializeField] private GameObject boutonPrefab;
+    [SerializeField] private TextMeshProUGUI current_json_name;
+
+    string currentJsonPathUsed; // full path
+    //  save somewhere the current used json
     public override bool EnterCondition()
     {
         if (JsonManager.controls.Menu.Pause.WasPressedThisFrame())
@@ -39,6 +52,8 @@ public class PauseMenu : UI
 
         cursorWantedState = CursorLockMode.None;
 
+        controls_buffer = new PlayerAction();
+        controls_buffer.Disable();
         ResetBuffer();
 
         Transform target = manager.GetUIs<MainMenu>();
@@ -62,9 +77,14 @@ public class PauseMenu : UI
         }
         Debug.Log("Pause Menu : Awake End");
     }
+    private void Start()
+    {
+        currentJsonPathUsed = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
+        CreateBouton();
+    }
     private void OnEnable()
     {
-        Debug.Log("Pause Menu : OnEnable");
+        Debug.Log("Pause Menu : OnEnable Start");
 
         ResetBuffer();
 
@@ -77,6 +97,11 @@ public class PauseMenu : UI
                 ui.gameObject.SetActive(false);
             }
         }
+
+
+        updateBoutonText();
+        Debug.Log("Pause Menu : OnEnable End");
+
     }
     private void OnDisable()
     {
@@ -91,9 +116,8 @@ public class PauseMenu : UI
     }
     void ResetBuffer()
     {
-        controls_buffer = new PlayerAction();
-        controls_buffer.Disable();
-        controls_buffer.asset.LoadBindingOverridesFromJson(File.ReadAllText(JsonManager.pathUsed.paths[(int)JsonManager.path.Input]));
+        controls.asset.RemoveAllBindingOverrides();
+        controls_buffer.asset.LoadBindingOverridesFromJson(File.ReadAllText(pathUsed.paths[(int)path.Input]));
     }
     private void CreateBoutonFromAction(InputAction action, Transform parent)
     {
@@ -119,5 +143,88 @@ public class PauseMenu : UI
 
             bindingIndex++;
         }
+    }
+
+
+
+    public void updateBoutonText()
+    {
+        current_json_name.text = System.IO.Path.GetFileNameWithoutExtension(JsonManager.pathUsed.paths[(int)JsonManager.path.Input]);
+    }
+    private void updateBouton()
+    {
+        //  supp all ui bouton json and recreate all
+        //  (an update for when there is a rename, create or supp)
+        Transform[] childs = boutonSlider_content.GetComponentsInChildren<Transform>();
+        for (int i = childs.Length - 1; i >= 0; i--)
+        {
+            Destroy(childs[i].gameObject);
+        }
+        CreateBouton();
+    }
+    public void SaveInput(string fileName = null)
+    {
+        if (fileName == null)
+            fileName = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
+
+        fileName = System.IO.Path.GetFileNameWithoutExtension(fileName);
+        //  get automaticly the current used json
+        JsonManager.Instance.SaveInputInJson(controls_buffer.asset, fileName);
+        JsonManager.Instance.Save(JsonManager.path.Input, fileName, JsonManager.controls.asset.ToJson());
+        JsonManager.Instance.PathChangeUpdate();
+    }
+    public void SaveInput()
+    {
+        string fileName = JsonManager.pathUsed.paths[(int)JsonManager.path.Input];
+
+        fileName = System.IO.Path.GetFileNameWithoutExtension(fileName);
+        //  get automaticly the current used json
+        JsonManager.Instance.SaveInputInJson(controls_buffer.asset, fileName);
+        JsonManager.Instance.Save(JsonManager.path.Input, fileName, JsonManager.controls.asset.ToJson());
+        JsonManager.Instance.PathChangeUpdate();
+    }
+    public void CreateSave(string fileName)
+    {
+        //ask filename inputfield
+        SaveInput(fileName);
+        updateBouton();
+    }
+    public void SuppSave(string name)
+    {
+        //  name without path
+        JsonManager.Instance.supp_File(
+            JsonManager.Instance.GetPath(
+                JsonManager.path.Input,
+                name
+            )
+        );
+        updateBouton();
+    }
+    public void RenameSave(string newName)
+    {
+        JsonManager.Instance.Rename_MoveFile(
+            currentJsonPathUsed,
+            JsonManager.Instance.GetPath(
+                JsonManager.path.Input,
+                newName
+            )
+        );
+        updateBouton();
+    }
+    private void CreateBouton()
+    {
+        string[] jsonNames = JsonManager.Instance.getJsonNames(JsonManager.path.Input);
+        foreach (string jsonName in jsonNames)
+        {
+            GameObject go = Instantiate(boutonPrefab, boutonSlider_content);
+            go.name = jsonName;
+            TMPro.TMP_Text text = go.GetComponentInChildren<TMPro.TMP_Text>();
+            text.text = jsonName;
+        }
+    }
+
+    public void ValidateSaveName()
+    {
+        string texte = inputField.text;
     }
 }

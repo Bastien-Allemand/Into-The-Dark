@@ -35,10 +35,4 @@ public class SaveBouton : MonoBehaviour
         }
         JsonManager.Instance.Save(JsonManager.path.Input, name, map.ToJson());
     }
-    public void Rename(string newName) //  inputfield  | input fiel is actif after a bouton
-    {
-        InputSaveManager.Instance.RenameSave(newName);
-    }
-
-
 }
