@@ -155,6 +155,9 @@ GameObject:
   - component: {fileID: 3634712952109286734}
   - component: {fileID: 7093136849826498789}
   - component: {fileID: 9164411916581893259}
+  - component: {fileID: 8523647177080753401}
+  - component: {fileID: 8021894303614882823}
+  - component: {fileID: 3369399921392180549}
   m_Layer: 0
   m_Name: item_phone
   m_TagString: MainCamera
@@ -264,7 +267,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215166630931501594}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcc83154e0da5f445981b4d398e17448, type: 3}
   m_Name: 
@@ -329,6 +332,55 @@ MonoBehaviour:
   phoneStateScript: {fileID: 9158044018250668688}
   uiBattery: {fileID: 3634712952109286734}
   fogMaterial: {fileID: 2100000, guid: 62e490639adcbc1408e20415f297691f, type: 2}
+--- !u!114 &8523647177080753401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215166630931501594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27278785a4022104f9c1ba91ba1bdf89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  uiBattery: {fileID: 3634712952109286734}
+--- !u!114 &8021894303614882823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215166630931501594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e178a27bc2f1e419a2251dc778b476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  phoneController: {fileID: 8523647177080753401}
+--- !u!114 &3369399921392180549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215166630931501594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b871a0322360301498c37f14906d945f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  phoneController: {fileID: 8523647177080753401}
+  phoneTransform: {fileID: 740921917343396850}
+  phoneMeshRenderer: {fileID: 3423457669281146109}
+  screenPhone: {fileID: 8975650751979822765}
+  batteryModel: {fileID: 8659944106694131525}
+  phoneLight: {fileID: 6846377873392358750}
+  hiddenAnchor: {fileID: 7112043432210229894}
+  idleAnchor: {fileID: 3819380543846885410}
+  cameraAnchor: {fileID: 8902232016454511281}
+  transitionSpeed: 8
+  hideDistanceThreshold: 0.01
 --- !u!1 &1825527968189926907
 GameObject:
   m_ObjectHideFlags: 0

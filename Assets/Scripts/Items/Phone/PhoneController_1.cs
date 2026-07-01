@@ -8,7 +8,7 @@ public enum PhoneState
     Camera
 }
 
-public class PhoneStateScrip : MonoBehaviour
+public class PhoneStateScript : MonoBehaviour
 {
     [SerializeField] public bool isLookingCamera = false;
     public bool IsLookingCamera => isLookingCamera;
