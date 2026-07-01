@@ -210,9 +210,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ActiveFlashlight"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""8bb2fd72-9e6d-4dc8-8d49-e538c1fc7b93"",
+                    ""id"": ""6be4ff55-6e5c-478d-8ef3-3fb45eb8851e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -419,6 +419,39 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""Slots"",
+                    ""id"": ""fbdb0ce2-96c7-4e05-9595-04a7d4179cbc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""68b7d954-c1de-4aac-acab-e0c9392f0077"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""c5f34771-74c2-4b48-9fe1-11a26fc4d812"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""356e9e36-994c-4b58-9aae-ae975ed44b08"",
                     ""path"": ""<Keyboard>/r"",
@@ -453,34 +486,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e4ff079f-77c1-446b-8e0e-6b21da8cb167"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""2f546cd8-2bdb-409f-8ee2-2440bb844c1c"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ActiveFlashlight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""04db4062-3a16-4215-8136-aac5efebebcf"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""abc8f3a1-c97a-4f89-b0f7-bf4d35ca584c"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -532,7 +543,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_GamePlay_EnterLeaveEditMode = m_GamePlay.FindAction("Enter/Leave Edit Mode", throwIfNotFound: true);
         m_GamePlay_Inventory = m_GamePlay.FindAction("Inventory", throwIfNotFound: true);
         m_GamePlay_Consume = m_GamePlay.FindAction("Consume", throwIfNotFound: true);
-        m_GamePlay_ActiveFlashlight = m_GamePlay.FindAction("ActiveFlashlight", throwIfNotFound: true);
+        m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
@@ -630,7 +641,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_EnterLeaveEditMode;
     private readonly InputAction m_GamePlay_Inventory;
     private readonly InputAction m_GamePlay_Consume;
-    private readonly InputAction m_GamePlay_ActiveFlashlight;
+    private readonly InputAction m_GamePlay_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -695,9 +706,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Consume => m_Wrapper.m_GamePlay_Consume;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/ActiveFlashlight".
+        /// Provides access to the underlying input action "GamePlay/Interact".
         /// </summary>
-        public InputAction @ActiveFlashlight => m_Wrapper.m_GamePlay_ActiveFlashlight;
+        public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -763,9 +774,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Consume.started += instance.OnConsume;
             @Consume.performed += instance.OnConsume;
             @Consume.canceled += instance.OnConsume;
-            @ActiveFlashlight.started += instance.OnActiveFlashlight;
-            @ActiveFlashlight.performed += instance.OnActiveFlashlight;
-            @ActiveFlashlight.canceled += instance.OnActiveFlashlight;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -816,9 +827,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Consume.started -= instance.OnConsume;
             @Consume.performed -= instance.OnConsume;
             @Consume.canceled -= instance.OnConsume;
-            @ActiveFlashlight.started -= instance.OnActiveFlashlight;
-            @ActiveFlashlight.performed -= instance.OnActiveFlashlight;
-            @ActiveFlashlight.canceled -= instance.OnActiveFlashlight;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -1047,12 +1058,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConsume(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "ActiveFlashlight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnActiveFlashlight(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

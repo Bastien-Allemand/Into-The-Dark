@@ -59,8 +59,18 @@ public class GadgetSpawn : MonoBehaviour
     // Nouvelle fonction qui s'occupe de faire spawner LE gadget dont le temps est écoulé
     private bool SpawnSpecificGadget(GadgetData gadgetToSpawn)
     {
-        // 1. Chercher un socket libre
-        List<GadgetSocket> availableSockets = new List<GadgetSocket>();
+
+    if (gadgetToSpawn == null)
+        return false;
+
+    if (gadgetToSpawn.gadgetPrefab == null)
+    {
+        return false;
+
+    }
+
+    // 1. Chercher un socket libre
+    List<GadgetSocket> availableSockets = new List<GadgetSocket>();
         foreach (var socket in sockets)
         {
             if (socket.gadgetSocket != null && !socket.isOccupied)

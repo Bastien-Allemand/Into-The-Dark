@@ -25,8 +25,8 @@ public class FOVController : MonoBehaviour
     {
         if (stateMachine != null)
         {
-            //stateMachine.OnSprintStatusChanged += HandleSprintStatus;
-            //stateMachine.OnExhaustionChanged += HandleExhaustion;
+            stateMachine.OnSprintStatusChanged += HandleSprintStatus;
+            stateMachine.OnExhaustionChanged += HandleExhaustion;
         }
     }
 
@@ -34,8 +34,8 @@ public class FOVController : MonoBehaviour
     {
         if (stateMachine != null)
         {
-            //stateMachine.OnSprintStatusChanged -= HandleSprintStatus;
-            //stateMachine.OnExhaustionChanged -= HandleExhaustion;
+            stateMachine.OnSprintStatusChanged -= HandleSprintStatus;
+            stateMachine.OnExhaustionChanged -= HandleExhaustion;
         }
     }
 

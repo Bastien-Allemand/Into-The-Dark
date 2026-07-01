@@ -30,14 +30,14 @@ public class HeadBobber : MonoBehaviour
 
     void OnEnable()
     {
-        //if (stateMachine != null)
-        //    stateMachine.OnSprintStatusChanged += HandleSprintStatus;
+        if (stateMachine != null)
+            stateMachine.OnSprintStatusChanged += HandleSprintStatus;
     }
 
     void OnDisable()
     {
-        //if (stateMachine != null)
-        //    stateMachine.OnSprintStatusChanged -= HandleSprintStatus;
+        if (stateMachine != null)
+            stateMachine.OnSprintStatusChanged -= HandleSprintStatus;
     }
 
     private void HandleSprintStatus(bool sprinting)

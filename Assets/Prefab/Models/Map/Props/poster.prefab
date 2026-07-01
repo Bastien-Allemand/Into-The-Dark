@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6122471582488743268}
   - component: {fileID: 6011359735418729981}
   - component: {fileID: 5221185507830163094}
-  - component: {fileID: 1380482877964750471}
+  - component: {fileID: -1530740750884019308}
   m_Layer: 15
   m_Name: poster
   m_TagString: Untagged
@@ -91,19 +91,19 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &1380482877964750471
-NavMeshObstacle:
+--- !u!114 &-1530740750884019308
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6872783140674997295}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.012, y: 0.00001, z: 0.0050000004}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b72ce4e60bb0204095ee8488fb823e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Readable
+  playerCamera: {fileID: 0}
+  readLocalPosition: {x: 0, y: -0.1, z: 0.5}
+  readLocalRotation: {x: 90, y: -90, z: 90}
+  animationDuration: 0.5

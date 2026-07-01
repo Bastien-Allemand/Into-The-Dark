@@ -3,9 +3,12 @@ using UnityEngine;
 public class InsaneMeterScript : MonoBehaviour
 {
     [SerializeField] private bool debug = false;
-    [SerializeField] public float insaneMeter = 0f;
-    [SerializeField] public float maxInsaneMeter = 100f;
 
+    [SerializeField] private float insaneMeter = 0f;
+    [SerializeField] private float maxInsaneMeter = 100f;
+    [SerializeField] private float initalInsaneMeterWidth = 0f;
+
+    [SerializeField] private RectTransform insaneBarTransform;
 
     public Camera visionCam;
     public string targetTag = "Ghost";
@@ -13,8 +16,18 @@ public class InsaneMeterScript : MonoBehaviour
 
     [SerializeField] private int pills = 1;
 
+    PlayerAction controls;
+
+    //Change in stunned state
+    [SerializeField] private bool takingPills = false;
+    [SerializeField] private float animDuration = 2f;
+    [SerializeField] private float currentanimDuration = 0f;
     private void Start()
     {
+        if (insaneBarTransform != null)
+        {
+            initalInsaneMeterWidth = insaneBarTransform.rect.width;
+        }
     }
 
     private void OnEnable()
@@ -28,7 +41,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     void Awake()
     {
-       // controls = InputManager.controls;
+        controls = InputManager.controls;
     }
 
     void Update()
@@ -44,6 +57,7 @@ public class InsaneMeterScript : MonoBehaviour
 
         UpdateInsanity(target);
         CheckUsePill();
+        UpdateBarUI();
     }
 
     void UpdateInsanity(GameObject _target)
@@ -123,12 +137,10 @@ public class InsaneMeterScript : MonoBehaviour
         }
     }
 
-    public float insaneMeterRatio
+    void UpdateBarUI()
     {
-        get
-        {
-            if (insaneMeter <= 0) return 0f;
-            return insaneMeter / 100;
-        }
+        if (insaneBarTransform == null) return;
+        float percentLeft = insaneMeter / 100;
+        insaneBarTransform.sizeDelta = new Vector2(initalInsaneMeterWidth * percentLeft, insaneBarTransform.rect.height);
     }
 }
