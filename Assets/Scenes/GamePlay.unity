@@ -783,6 +783,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02098832, y: 0.0008356905, z: 0.02098832}
   m_Center: {x: 0.0000000018626451, y: 0.00008475661, z: -0.00000003585592}
+--- !u!95 &439553287
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439553280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d6eed7c65fbb98408913ea4909e7bfc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &511073986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,6 +1598,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1061849835
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061849832}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ad2aeb740dc86745817959f1a7bb216, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1085741746 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 658206059198893257, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
@@ -3601,7 +3645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163021969887230651, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: m_TagString
-      value: Readable
+      value: Lootable
       objectReference: {fileID: 0}
     - target: {fileID: 327119740069561283, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: playerCamera
@@ -3863,6 +3907,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lootable
       objectReference: {fileID: 0}
+    - target: {fileID: 4611516152709741386, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00004341126
+      objectReference: {fileID: 0}
     - target: {fileID: 4874526974030859988, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: m_TagString
       value: Lootable
@@ -3986,6 +4034,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7261541869891903517, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1061849834}
+    - targetCorrespondingSourceObject: {fileID: 7261541869891903517, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1061849835}
     - targetCorrespondingSourceObject: {fileID: 2278463814892792642, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1375691021}
@@ -4220,6 +4271,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 163021969887230651, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 439553285}
+    - targetCorrespondingSourceObject: {fileID: 163021969887230651, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 439553287}
     - targetCorrespondingSourceObject: {fileID: 8270485846000519021, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 265231273}
