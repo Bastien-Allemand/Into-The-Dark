@@ -21,7 +21,7 @@ public class GameSaveManager : MonoBehaviour
     public GameSave gameSave => JsonManager.gameSave;
 
     string currentJsonPathUsed; // full path
-    //  save somewhere the current used json
+                                //  save somewhere the current used json
     private void Awake()
     {
         Debug.Log("GameSaveManager : Awake Start");
@@ -33,10 +33,14 @@ public class GameSaveManager : MonoBehaviour
         }
 
         _instance = this;
+
+        transform.SetParent(null);
+
         DontDestroyOnLoad(gameObject);
         Debug.Log("GameSaveManager : Awake End");
     }
-    //  récupaire les var du json dedans persistant path puis vérifié que le path exist
+
+    //  récupère les var du json dedans persistant path puis vérifié que le path exist
     private void Start()
     {
         Debug.Log("GameSaveManager : Start Start");

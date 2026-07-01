@@ -23,19 +23,8 @@ public class CamerasScript : MonoBehaviour
     }
 
     void Start()
-    {
-        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
-        foreach (GameObject item in allItems)
-        {
-            Camera childCam = item.GetComponentInChildren<Camera>();
-            if (childCam != null)
-            {
-                m_cameras.Add(childCam);
-                childCam.enabled = false;
-                childCam.targetTexture = null;
-                m_CamAmount++;
-            }
-        }
+    { 
+
     }
 
     private void Update()
@@ -128,5 +117,16 @@ public class CamerasScript : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("PhoneStateScrip ENABLED");
+    }
+    public void RegisterCamera(Camera cam)
+    {
+        if (m_cameras.Contains(cam)) return;
+
+        m_cameras.Add(cam);
+    }
+
+    public void UnregisterCamera(Camera cam)
+    {
+        m_cameras.Remove(cam);
     }
 }
