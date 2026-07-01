@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Debug / Sandbox Settings")]
-    [Tooltip("Si coché, le système de chapitres/nuits est désactivé. La scène actuelle tourne à l'infini (le timer reste à 00:00 ou s'arrête).")]
+    [Tooltip("If true, chapters/nights system is disabled.")]
     [SerializeField] private bool infiniteMode = false;
-    [Tooltip("Si vrai en mode infini, le timer compte à rebours puis se bloque à 0. Si faux, le timer n'apparaît pas ou ne décompte pas.")]
+    [Tooltip("If true timer stops at 0, else timer does not shows.")]
     [SerializeField] private bool keepTimerInInfiniteMode = true;
 
 
@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float fadeDuration = 1.5f;
     [SerializeField] private float textTypeSpeed = 0.05f;
 
+    [Header("End Game Settings")]
+    [SerializeField] private string endgameSceneName = "MainMenu";
+
     private float currentTime;
     private bool isPaused = false;
     private bool isGameOver = false;
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -338,6 +342,7 @@ public class GameManager : MonoBehaviour
         if (transitionPanel != null) transitionPanel.SetActive(false);
 
         bool hasNewChapter = false;
+        bool isGameFullyFinished = false; // Indique si le jeu est complètement fini
 
         if (currentNightIndex < chaptersSequence[currentChapterIndex].nights.Count - 1)
         {
@@ -351,23 +356,33 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Jeu fini ! Fin de la séquence complète.");
-            currentChapterIndex = 0;
-            currentNightIndex = 0;
+            Debug.Log("FÉLICITATIONS ! Fin de la séquence complète du jeu.");
+            isGameFullyFinished = true;
+        }
+
+        if (isGameFullyFinished)
+        {
+            if (!string.IsNullOrEmpty(endgameSceneName))
+            {
+                Time.timeScale = 1f;
+                SceneManager.LoadScene(endgameSceneName);
+            }
+            else
+            {
+                Debug.LogError("Le jeu est fini, mais 'endgameSceneName' est vide dans l'inspecteur !");
+            }
+            yield break;
         }
 
         NightData nextNight = chaptersSequence[currentChapterIndex].nights[currentNightIndex];
         if (nextNight.changeScene && !string.IsNullOrEmpty(nextNight.sceneToLoad))
         {
             activeSceneName = nextNight.sceneToLoad;
-            Debug.Log($"Prochaine nuit ! Changement de scène demandé : {activeSceneName}");
         }
         else
         {
             DetermineActiveScene();
-            Debug.Log($"Prochaine nuit ! On conserve la scène : {activeSceneName}");
         }
-
 
         if (hasNewChapter)
         {
@@ -460,6 +475,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Debug.Log("[CHEAT] Skip night.");
+                isTransitioning = false;
+                isGameOver = false;
+                currentTime = 0f;
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Debug.Log("[CHEAT] Trigger Game Over.");
+                isTransitioning = false;
+                TriggerGameOver(deathCause.Caught);
+                return;
+            }
+        }
+
+        // Logique normale du jeu
         if (isGameOver || isTransitioning) return;
         HandleTimer();
     }

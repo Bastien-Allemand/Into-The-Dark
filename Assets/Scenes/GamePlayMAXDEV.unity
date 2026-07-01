@@ -747,18 +747,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e29d7a1445cdc4fbc3df54e3ab0f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  infiniteMode: 1
+  infiniteMode: 0
   keepTimerInInfiniteMode: 0
   chaptersSequence:
   - chapterName: Chapter 1
     chapterIntroText: Chapter 1 intro test
     nights:
-    - nightName: Night 1 with lilian
-      duration: 5
+    - nightName: Night 1
+      duration: 10
       changeScene: 0
       sceneToLoad: 
     - nightName: Night 2
-      duration: 10
+      duration: 15
       changeScene: 0
       sceneToLoad: 
   - chapterName: Chapter 2
@@ -792,6 +792,7 @@ MonoBehaviour:
   warningColor: {r: 1, g: 0, b: 0, a: 1}
   fadeDuration: 1.5
   textTypeSpeed: 0.05
+  endgameSceneName: MainMenu
 --- !u!4 &861449284
 Transform:
   m_ObjectHideFlags: 0
