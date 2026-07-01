@@ -17,6 +17,7 @@ public class PcScript : MonoBehaviour
     void Awake()
     {
         controls = InputManager.controls;
+        uiElement.alpha = 0;
     }
 
     // Update is called once per frame
@@ -64,6 +65,10 @@ public class PcScript : MonoBehaviour
 
     public void ActivateExe()
     {
-        ExecutableCamera = true;
+        uiElement.alpha = 1;
+    }
+    public void DeactivateExe()
+    {
+        uiElement.alpha = 0;
     }
 }
