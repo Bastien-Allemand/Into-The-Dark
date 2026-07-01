@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3199834948388071411}
   - component: {fileID: 8466766486281180134}
   - component: {fileID: 5060639977205798068}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 5284475482795691102}
   - component: {fileID: 4092705162293678574}
   - component: {fileID: 4616481113900422141}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 8049592953084770046}
   - component: {fileID: 1947745112368924607}
   - component: {fileID: 6481381231336126636}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Camera
   m_TagString: Camera
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       propertyPath: m_TagString
@@ -444,6 +444,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9142179122168102090}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3657409901242561977}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8976595998546014869}
   m_SourcePrefab: {fileID: 100100000, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
 --- !u!4 &1413415523402696457 stripped
 Transform:
@@ -549,7 +555,7 @@ MonoBehaviour:
   batteryRemaining: 0
   timeToReload: 1
   currentTimeReload: 0
-  blackScreen: {fileID: 0}
+  blackScreen: {fileID: 3499068552881771103, guid: e68737d5b17ba8c43aaac222da767bdf, type: 3}
   canReload: 0
 --- !u!114 &-1487488160480901711
 MonoBehaviour:
@@ -569,6 +575,9 @@ MonoBehaviour:
   usingTimer: 0
   placingDelay: 0
   timer: 0
+  usingEnergy: 0
+  energy: 100
+  rechargable: 0
 --- !u!54 &9142179122168102090
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -596,3 +605,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3657409901242561977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789799607140654515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b7e780a242eff478ddca94f9f5763d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GadgetCameraRegister
+--- !u!114 &-8976595998546014869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789799607140654515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c18d1c8ed8a084ea8ff7b3b94cd05b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldCameraItem
+  isPickedUp: 0

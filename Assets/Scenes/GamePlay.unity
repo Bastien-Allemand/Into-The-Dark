@@ -1196,6 +1196,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1343651443990469801, guid: 2c604ec96c4abeb48bee865e71f805af, type: 3}
+--- !u!114 &730014969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7248847972075648126, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+  m_PrefabInstance: {fileID: 5050230139285730104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58d982d7d74e1b48a1564ccc8aada2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUp
 --- !u!1 &762825322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5547140955362575443, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
@@ -3436,6 +3447,10 @@ PrefabInstance:
       propertyPath: preview
       value: 
       objectReference: {fileID: 3500102835355492166}
+    - target: {fileID: 6920534379100613054, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+      propertyPath: pickUpScript
+      value: 
+      objectReference: {fileID: 730014969}
     - target: {fileID: 8480174477354143103, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.49333
