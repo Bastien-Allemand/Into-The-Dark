@@ -293,7 +293,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4548437638039400514}
-  m_Mesh: {fileID: 2959467708922500008, guid: 43d547a562b08bd44a08b376bd66435f, type: 3}
+  m_Mesh: {fileID: 2959467708922500008, guid: 4a7a46b2ad8e82347b0866b69e894ce8, type: 3}
 --- !u!23 &2939539667845043288
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -359,8 +359,13 @@ MonoBehaviour:
   canBeRepickUp: 1
   needsToBePlaced: 0
   usingTimer: 1
-  placingDelay: 0
-  timer: 1
+  placingDelay: 2
+  timer: 15
+  usingEnergy: 0
+  energy: 100
+  maxEnergy: 100
+  rechargable: 0
+  type: 0
 --- !u!1 &4881197362663449659
 GameObject:
   m_ObjectHideFlags: 0

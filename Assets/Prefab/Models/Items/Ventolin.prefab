@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edbcf282dc2d464b991bb59763f3747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleScript
-  ConsumableType: 0
+  ConsumableType: 2
 --- !u!54 &-2182021481853898175
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,3 +173,8 @@ MonoBehaviour:
   usingTimer: 1
   placingDelay: 0
   timer: 0.5
+  usingEnergy: 0
+  energy: 100
+  maxEnergy: 100
+  rechargable: 0
+  type: 0

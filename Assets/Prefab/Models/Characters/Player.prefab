@@ -151,7 +151,6 @@ GameObject:
   - component: {fileID: 1168099837011736770}
   - component: {fileID: 3423457669281146109}
   - component: {fileID: 1619233522485729002}
-  - component: {fileID: 9158044018250668688}
   - component: {fileID: 3634712952109286734}
   - component: {fileID: 7093136849826498789}
   - component: {fileID: 9164411916581893259}
@@ -193,7 +192,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215166630931501594}
-  m_Mesh: {fileID: -2432090755550338912, guid: 33f75392ed5bfc546b505877decee80d, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: 0733e601e719c00419b72a54fc2e3832, type: 3}
 --- !u!23 &3423457669281146109
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -258,32 +257,8 @@ MonoBehaviour:
   m_cameraUiText: {fileID: 0}
   m_screenRenderTexture: {fileID: 8400000, guid: 5951d2779d5240040a133b1c31bd8fbd, type: 2}
   m_CamAmount: 0
-  phoneStateScript: {fileID: 9158044018250668688}
+  phoneStateScript: {fileID: 8523647177080753401}
   camActive: {fileID: 3102255341727323076}
---- !u!114 &9158044018250668688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215166630931501594}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc83154e0da5f445981b4d398e17448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PhoneStateScrip
-  isLookingCamera: 0
-  phoneTransform: {fileID: 740921917343396850}
-  phoneMeshRenderer: {fileID: 3423457669281146109}
-  screenPhone: {fileID: 8975650751979822765}
-  battery: {fileID: 8659944106694131525}
-  phoneLight: {fileID: 6846377873392358750}
-  uiBattery: {fileID: 3634712952109286734}
-  hiddenAnchor: {fileID: 7112043432210229894}
-  idleAnchor: {fileID: 3819380543846885410}
-  cameraAnchor: {fileID: 8902232016454511281}
-  transitionSpeed: 8
-  hideDistanceThreshold: 0.01
 --- !u!114 &3634712952109286734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfa1017f61267e42b2a1bdd68c7ffe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraPhoneScript
-  phoneStateScript: {fileID: 9158044018250668688}
+  phoneStateScript: {fileID: 8523647177080753401}
   phoneCanvaRectTransform: {fileID: 8170113686184424419}
 --- !u!114 &9164411916581893259
 MonoBehaviour:
@@ -329,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneLightScript
   phoneLight: {fileID: 6846377873392358750}
-  phoneStateScript: {fileID: 9158044018250668688}
+  phoneController: {fileID: 8523647177080753401}
   uiBattery: {fileID: 3634712952109286734}
   fogMaterial: {fileID: 2100000, guid: 62e490639adcbc1408e20415f297691f, type: 2}
 --- !u!114 &8523647177080753401
@@ -408,14 +383,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825527968189926907}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.981056, z: -0, w: -0.19372451}
   m_LocalPosition: {x: 0, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 740921917343396850}
   m_Father: {fileID: 1609720527858994278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 517.66003, z: 0}
 --- !u!20 &3102255341727323076
 Camera:
   m_ObjectHideFlags: 0
