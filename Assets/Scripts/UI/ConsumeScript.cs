@@ -5,13 +5,15 @@ public class ConsumeScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Inventory playerInventory;
+    [SerializeField] private Camera playerCamera; 
 
     [Header("Effects Configurations")]
-    [SerializeField] private GameEffect batteryEffect;
+    [SerializeField] private EffectBattery batteryEffect; 
     [SerializeField] private GameEffect pillEffect;
     [SerializeField] private GameEffect ventolineEffect;
+    [SerializeField] ConsumableType targetType = ConsumableType.NONE;
 
-    [SerializeField] ConsumableType targetedType = ConsumableType.NONE;
+    private bool reloadCamera = true;
 
     private bool takingPills;
     private float takingPillsDuration = 2f;
@@ -20,7 +22,6 @@ public class ConsumeScript : MonoBehaviour
     private bool takingVentolin;
     private float takingVentolinDuration = 0.1f;
     [SerializeField] private float takingVentolinCurrentTime = 0f;
-
 
     private PlayerAction controls;
 
@@ -34,41 +35,60 @@ public class ConsumeScript : MonoBehaviour
 
     private void Update()
     {
-        CheckConsume(targetedType);
-
+        CheckConsume();
     }
 
     void OnInteract(InputAction.CallbackContext context)
     {
         if (playerInventory == null) return;
 
-        targetedType = ConsumableType.NONE;
+        targetType = ConsumableType.NONE;
         
         if (context.control.name == "1")
         {
-            targetedType = ConsumableType.BATTERY;
+            targetType = ConsumableType.BATTERY;
+            reloadCamera = true;
+        }
+        else if (context.control.name == "2")
+        {
+            targetType = ConsumableType.PILL;
+            takingPills = true;
+
         }
         //else if (context.control.name == "2")
         //{
-        //    targetedType = ConsumableType.PILL;
-        //    takingPills = true;
+        //    targetedType = ConsumableType.VENTOLINE;
+        //    takingVentolin = true;
 
         //}
-        else if (context.control.name == "2")
-        {
-            targetedType = ConsumableType.VENTOLINE;
-            takingVentolin = true;
-
-        }
     }
 
-    void CheckConsume(ConsumableType targetType)
+    void CheckConsume()
     {
-        int availableCount = playerInventory.GetConsumableCount(targetType);
+        bool availableCount = playerInventory.GetConsumableCount(targetType) > 0;
         switch (targetType)
         {
             case ConsumableType.BATTERY:
                 {
+
+                    Camera cam = playerCamera != null ? playerCamera : gameObject.GetComponentInChildren<Camera>();
+                    if (cam == null) return;
+                    var result = Raycast.CheckRaycast(cam, 10f);
+
+                    if(result != null && result.hitObject != null)
+                    {
+                       if(result.hitObject.TryGetComponent(out ItemScript item))
+                       {
+                            if(item.rechargable  && item.energy < 100f && availableCount)
+                            {
+                                if (TryConsumeBattery(result.hitObject))
+                                {
+
+                                    targetType = ConsumableType.NONE;
+                                }
+                            }
+                       }
+                    }
                     break;
                 }
             case ConsumableType.PILL:
@@ -76,11 +96,11 @@ public class ConsumeScript : MonoBehaviour
                     if (takingPills)
                     {
                         takingPillsCurrentTime += Time.deltaTime;
-                        if (takingPillsCurrentTime >= takingPillsDuration && availableCount > 0)
+                        if (takingPillsCurrentTime >= takingPillsDuration && availableCount)
                         {
-                            if(TryConsume(targetType))
+                            if(TryConsume(pillEffect))
                             { 
-                                targetedType = ConsumableType.NONE;
+                                targetType = ConsumableType.NONE;
                             }
                             takingPillsCurrentTime = 0f;
                             takingPills = false;
@@ -93,11 +113,11 @@ public class ConsumeScript : MonoBehaviour
                     if (takingVentolin)
                     {
                         takingVentolinCurrentTime += Time.deltaTime;
-                        if (takingVentolinCurrentTime >= takingVentolinDuration && availableCount > 0)
+                        if (takingVentolinCurrentTime >= takingVentolinDuration && availableCount)
                         {
-                            if(TryConsume(targetType))
+                            if(TryConsume(ventolineEffect))
                             {
-                                targetedType = ConsumableType.NONE;
+                                targetType = ConsumableType.NONE;
                             }
                             takingVentolinCurrentTime = 0f;
                             takingVentolin = false;
@@ -112,16 +132,29 @@ public class ConsumeScript : MonoBehaviour
         }
         
     }
-    
-    bool TryConsume(ConsumableType targetType)
-    {
-        GameEffect effectToApply = pillEffect;
 
-        if (targetedType == ConsumableType.NONE || effectToApply == null) return false;
+    bool TryConsumeBattery(GameObject targetObject)
+    {
+        if (batteryEffect == null) 
+            return false;
+
+      
+        batteryEffect.ApplyBatteryEffect(targetObject, 5f);
+
+
+        playerInventory.Remove(1, ConsumableType.BATTERY);
+
+        return true;
+    }
+
+    bool TryConsume(GameEffect effectToApply)
+    {
+       
+        if (targetType == ConsumableType.NONE || effectToApply == null) return false;
 
         effectToApply.ApplyEffect();
 
-        playerInventory.Remove(1, targetedType);
+        playerInventory.Remove(1, targetType);
 
         return true;
       

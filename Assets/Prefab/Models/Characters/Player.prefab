@@ -762,11 +762,10 @@ MonoBehaviour:
   debug: 0
   rb: {fileID: 2558153957045355166}
   playerCollider: {fileID: 3259128438521581388}
-  phoneScript: {fileID: 0}
   moveSettings:
-    walkSpeed: 0
-    sprintingMultiplier: 0
-    crouchMultiplier: 0
+    walkSpeed: 5
+    sprintingMultiplier: 1.4
+    crouchMultiplier: 0.6
   currentSpeed: 0
   staminaSettings:
     staminaLeft: 0
@@ -971,7 +970,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.36001757, y: 0}
-  m_SizeDelta: {x: -1.2799649, y: 0}
+  m_SizeDelta: {x: -1.2799649, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &51150624447083647
 CanvasRenderer:

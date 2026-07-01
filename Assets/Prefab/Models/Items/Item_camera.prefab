@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &651969380494340721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5284475482795691102
 RectTransform:
   m_ObjectHideFlags: 0
@@ -328,15 +328,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.351243
+      value: 38.532646
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.890453
+      value: 24.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 54.983677
+      value: 50.56597
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b409f510e63d1e4a8629a667eba45e6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -549,7 +549,7 @@ MonoBehaviour:
   batteryRemaining: 0
   timeToReload: 1
   currentTimeReload: 0
-  blackScreen: {fileID: 0}
+  blackScreen: {fileID: 4283336897544776541}
   canReload: 0
 --- !u!114 &-1487488160480901711
 MonoBehaviour:
@@ -569,6 +569,9 @@ MonoBehaviour:
   usingTimer: 0
   placingDelay: 0
   timer: 0
+  usingEnergy: 0
+  energy: 100
+  rechargable: 0
 --- !u!54 &9142179122168102090
 Rigidbody:
   m_ObjectHideFlags: 0

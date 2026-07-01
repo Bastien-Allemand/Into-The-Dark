@@ -89,10 +89,10 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentState = IdleState;
 
-        //moveSettings.walkSpeed = 5f;
-        //moveSettings.sprintingMultiplier = 1.4f;
-        //moveSettings.crouchMultiplier = 0.6f;
-        //moveSettings.currentSpeed = moveSettings.walkSpeed;
+        moveSettings.walkSpeed = 5f;
+        moveSettings.sprintingMultiplier = 1.4f;
+        moveSettings.crouchMultiplier = 0.6f;
+        currentSpeed = moveSettings.walkSpeed;
 
         //staminaSettings.maxStamina = 5f;
         //staminaSettings.staminaRegenDelay = 1.5f;

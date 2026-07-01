@@ -28,6 +28,10 @@ public class ItemScript : MonoBehaviour
         if (usingEnergy)
         {
             energy -= Time.deltaTime;
+            if(energy <= 0f)
+            { 
+                energy = 0f; 
+            }
         }
 
     }
