@@ -4,7 +4,7 @@ using System.Collections;
 public class Readable : MonoBehaviour
 {
     [Header("Player Camera")]
-    [SerializeField] private Camera playerCam;
+    [SerializeField] private Camera playerCamera;
 
     [Header("Reading Position")]
     [SerializeField] private Vector3 readLocalPosition = new Vector3(0f, -0.1f, 0.5f);
@@ -29,6 +29,12 @@ public class Readable : MonoBehaviour
 
     private void Start()
     {
+        originalParent = transform.parent;
+        originalWorldPosition = transform.position;
+        originalWorldRotation = transform.rotation;
+
+        Debug.Log($"Camera = {playerCamera}");
+
         originalParent = transform.parent;
         originalWorldPosition = transform.position;
         originalWorldRotation = transform.rotation;
@@ -63,7 +69,7 @@ public class Readable : MonoBehaviour
         originalWorldPosition = transform.position;
         originalWorldRotation = transform.rotation;
 
-        transform.SetParent(playerCam.transform, true);
+        transform.SetParent(playerCamera.transform, true);
 
         if (currentAnimation != null)
             StopCoroutine(currentAnimation);
