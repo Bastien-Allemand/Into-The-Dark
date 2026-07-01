@@ -144,7 +144,9 @@ MonoBehaviour:
   timer: 0
   usingEnergy: 0
   energy: 100
+  maxEnergy: 100
   rechargable: 0
+  type: 0
 --- !u!1001 &389586540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,6 +357,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139136611454015033, guid: 2cc9b701577cd444f9b1eef819dd9810, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139136611454015033, guid: 2cc9b701577cd444f9b1eef819dd9810, type: 3}
+      propertyPath: maxEnergy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 139136611454015033, guid: 2cc9b701577cd444f9b1eef819dd9810, type: 3}
+      propertyPath: usingEnergy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139136611454015033, guid: 2cc9b701577cd444f9b1eef819dd9810, type: 3}
+      propertyPath: needsToBePlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8242594635773939259, guid: 2cc9b701577cd444f9b1eef819dd9810, type: 3}
       propertyPath: m_Name
       value: Item_camera
@@ -651,6 +669,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34295bc20c12bbf4cb8c4c74fe3d7c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Raycast
+--- !u!1 &1446049468 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 610903479324853219, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 9000932046596281570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1456139791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -679,6 +702,14 @@ PrefabInstance:
       propertyPath: playerStateMachine
       value: 
       objectReference: {fileID: 9000932046596281572}
+    - target: {fileID: 6682112927482871496, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 1446049468}
+    - target: {fileID: 6682112927482871496, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 1498897270}
     - target: {fileID: 6682112927482871496, guid: 6721608fc16bb7e49b5ccd0194ccfdcf, type: 3}
       propertyPath: playerCamera
       value: 
@@ -886,6 +917,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6825747527833209318, guid: e7fa44d9dc690cb4ab3bdf921dda83f3, type: 3}
   m_PrefabInstance: {fileID: 1467175390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1498897270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562498034682667740, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 9000932046596281570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1579728731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3534903169028923267, guid: 03f365b56cfefa84db20cdd3aa80717c, type: 3}
@@ -916,7 +952,9 @@ MonoBehaviour:
   timer: 0
   usingEnergy: 0
   energy: 100
+  maxEnergy: 100
   rechargable: 0
+  type: 0
 --- !u!20 &1691520887 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3102255341727323076, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}

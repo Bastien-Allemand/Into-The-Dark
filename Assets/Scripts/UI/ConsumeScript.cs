@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
+using static ItemScript;
 
 public class ConsumeScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private Camera playerCamera; 
+    [SerializeField] private GameObject rightHand;
+    [SerializeField] private GameObject leftHand;
 
     [Header("Effects Configurations")]
     [SerializeField] private EffectBattery batteryEffect; 
@@ -70,26 +74,46 @@ public class ConsumeScript : MonoBehaviour
         {
             case ConsumableType.BATTERY:
                 {
-
-                    Camera cam = playerCamera != null ? playerCamera : gameObject.GetComponentInChildren<Camera>();
-                    if (cam == null) return;
-                    var result = Raycast.CheckRaycast(cam, 10f);
-
-                    if(result != null && result.hitObject != null)
+                    if (rightHand != null && leftHand != null
+                        && rightHand.TryGetComponent(out HandContent rightHD)
+                        && leftHand.TryGetComponent(out HandContent leftHD)
+                        && availableCount)
                     {
-                       if(result.hitObject.TryGetComponent(out ItemScript item))
-                       {
-                            if(item.rechargable  && item.energy < 100f && availableCount)
-                            {
-                                if (TryConsumeBattery(result.hitObject))
-                                {
+                        ItemScript itemToReload = null;
+                        GameObject targetObj = null;
 
-                                    targetType = ConsumableType.NONE;
-                                }
+                        if (rightHD.inHand != null && rightHD.inHand.TryGetComponent(out ItemScript itemRight))
+                        {
+                            if (itemRight.type == ItemType.ITEM_CAMERA)
+                            {
+                                itemToReload = itemRight;
+                                targetObj = rightHD.inHand;
                             }
-                       }
+                        }
+                        else if (leftHD.inHand != null && leftHD.inHand.TryGetComponent(out ItemScript itemLeft))
+                        {
+                            if (itemLeft.type == ItemType.ITEM_CAMERA)
+                            {
+                                itemToReload = itemLeft;
+                                targetObj = leftHD.inHand;
+                            }
+                        }
+
+                        if (itemToReload != null && itemToReload.rechargable && itemToReload.energy < itemToReload.maxEnergy)
+                        {
+                            if (TryConsumeBattery(targetObj))
+                            {
+     
+                                targetType = ConsumableType.NONE;
+                            }
+                        }
+                        else
+                        {
+                            targetType = ConsumableType.NONE;
+                        }
                     }
                     break;
+
                 }
             case ConsumableType.PILL:
                 {
@@ -139,7 +163,7 @@ public class ConsumeScript : MonoBehaviour
             return false;
 
       
-        batteryEffect.ApplyBatteryEffect(targetObject, 5f);
+        batteryEffect.ApplyBatteryEffect(targetObject);
 
 
         playerInventory.Remove(1, ConsumableType.BATTERY);
@@ -160,3 +184,23 @@ public class ConsumeScript : MonoBehaviour
       
     }
 }
+
+//-----------------------RAYCAST VERSION-----------------------------------//
+//Camera cam = playerCamera != null ? playerCamera : gameObject.GetComponentInChildren<Camera>();
+//if (cam == null) return;
+//var result = Raycast.CheckRaycast(cam, 10f);
+
+//if(result != null && result.hitObject != null)
+//{
+//   if(result.hitObject.TryGetComponent(out ItemScript item))
+//   {
+//        if(item.rechargable  && item.energy < 100f && availableCount)
+//        {
+//            if (TryConsumeBattery(result.hitObject))
+//            {
+
+//                targetType = ConsumableType.NONE;
+//            }
+//        }
+//   }
+//}
