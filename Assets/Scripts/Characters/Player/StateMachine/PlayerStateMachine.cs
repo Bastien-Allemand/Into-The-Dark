@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-using UnityEditor;
-=======
 using Assets.Scripts.Items;
 using System;
->>>>>>> origin/DEV
 using UnityEngine;
 
 
@@ -85,16 +81,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     public Vector2 moveInput;
 
-<<<<<<< HEAD
-    public state STATE = state.NONE;
-
-    private float maxStamina = 5f;
-    private float staminaRegenDelay = 1.5f;
-    private float sprintBarInitialWidth;
-
-
-=======
->>>>>>> origin/DEV
     void Awake()
     {
         controls = InputManager.controls;
@@ -170,92 +156,7 @@ public class PlayerStateMachine : MonoBehaviour
 
             if (staminaSettings.staminaTimer < staminaSettings.staminaRegenDelay)
             {
-<<<<<<< HEAD
-                moveInput = new Vector2(0, 0);
-            }
-            return;
-        }
-
-        if (isMoving == false)
-        {
-            if (crouchInput == true || isCeilingAbove == true)
-            {
-                ChangeState(CrouchState);
-                STATE = state.NONE;
-            }
-            else if (isCeilingAbove == false)
-            {
-                ChangeState(IdleState);
-                STATE = state.IDLE;
-            }
-                
-            
-        }
-        else if (crouchInput == true)
-        {
-            ChangeState(CrouchState);
-            STATE= state.NONE;
-        }
-        else if (sprintInput == true && isOutOfStamina == false)
-        {
-            ChangeState(SprintState);
-            STATE = state.SPRINT;
-        }
-        else if (crouchInput == false && sprintInput == false)
-        {
-            if (isCeilingAbove == true)
-            {
-                ChangeState(CrouchState);
-                STATE = state.NONE;
-                return;
-            }
-
-            ChangeState(WalkState);
-            STATE = state.WALK;
-            
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
-        Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
-    }
-    void CheckIsCeilingAbove()
-    {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z);
-        Color rayColor = Color.green;
-        float castLength = ceilingCheckDistance;
-
-        if (Physics.BoxCast(origin, ceilingCheckSize * .75f, Vector3.up, Quaternion.identity, castLength, layerMask))
-        {
-            isCeilingAbove = true;
-            rayColor = Color.red;
-        }
-        else
-        {
-            isCeilingAbove = false;
-        }
-
-        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
-    }
-
-    void HandleStamina()
-    {
-        if (isOutOfStamina == true && staminaLeft > 3f)
-        {
-            isOutOfStamina = false;
-        }
-
-        if (staminaLeft < maxStamina)
-        {
-
-            if (staminaTimer < staminaRegenDelay)
-            {
-                staminaTimer += Time.deltaTime;
-=======
                 staminaSettings.staminaTimer += Time.deltaTime;
->>>>>>> origin/DEV
             }
             else
             {
