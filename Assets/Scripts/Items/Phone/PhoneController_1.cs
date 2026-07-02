@@ -8,7 +8,7 @@ public enum PhoneState
     Camera
 }
 
-public class PhoneStateScrip : MonoBehaviour
+public class PhoneStateScript : MonoBehaviour
 {
     [SerializeField] public bool isLookingCamera = false;
     public bool IsLookingCamera => isLookingCamera;
@@ -23,7 +23,6 @@ public class PhoneStateScrip : MonoBehaviour
     [SerializeField] private GameObject battery;
     [SerializeField] private Light phoneLight;
     [SerializeField] private UIBattery uiBattery;
-    [SerializeField] private PickUp pickUpScript;
 
     [Header("Anchors")]
     [SerializeField] private Transform hiddenAnchor;
@@ -152,7 +151,6 @@ public class PhoneStateScrip : MonoBehaviour
 
     private void TogglePhone()
     {
-
         if (currentState == PhoneState.Hidden)
         {
             currentState = PhoneState.Idle;
@@ -160,9 +158,6 @@ public class PhoneStateScrip : MonoBehaviour
             phoneMeshRenderer.enabled = true;
             battery.SetActive(true);
             //uiBattery.textBattery.enabled = true;
-
-            if (pickUpScript != null)
-                pickUpScript.DropLeftHand(true);
 
             waitingForHide = false;
         }
@@ -172,6 +167,7 @@ public class PhoneStateScrip : MonoBehaviour
 
             phoneMeshRenderer.enabled = false;
             battery.SetActive(false);
+            //uiBattery.textBattery.enabled = false;
             phoneLight.enabled = false;
             screenPhone.SetActive(false);
 
