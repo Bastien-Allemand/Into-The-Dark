@@ -12,7 +12,16 @@ public class ItemScript : MonoBehaviour
 
     public bool usingEnergy = false;
     public float energy = 100f;
+    public float maxEnergy = 100f;
     public bool rechargable = false; 
+
+    public enum ItemType
+    {
+        NONE,
+        ITEM_CAMERA
+    }
+
+   [SerializeField] public ItemType type = ItemType.NONE;
 
     public void Update()
     {
@@ -28,6 +37,10 @@ public class ItemScript : MonoBehaviour
         if (usingEnergy)
         {
             energy -= Time.deltaTime;
+            if(energy <= 0f)
+            { 
+                energy = 0f; 
+            }
         }
 
     }

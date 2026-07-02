@@ -9,7 +9,7 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
-    [SerializeField] private PhoneStateScrip phoneStateScript;
+    [SerializeField] private PhoneController phoneStateScript;
 
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
@@ -23,8 +23,19 @@ public class CamerasScript : MonoBehaviour
     }
 
     void Start()
-    { 
-
+    {
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
+        {
+            Camera childCam = item.GetComponentInChildren<Camera>();
+            if (childCam != null)
+            {
+                m_cameras.Add(childCam);
+                childCam.enabled = false;
+                childCam.targetTexture = null;
+                m_CamAmount++;
+            }
+        }
     }
 
     private void Update()
@@ -50,7 +61,6 @@ public class CamerasScript : MonoBehaviour
         {
             m_currentCamera = 0;
         }
-
         UpdateCameraDisplay();
     }
 
@@ -74,6 +84,7 @@ public class CamerasScript : MonoBehaviour
             bool isTarget = (m_onCamera && i == m_currentCamera);
 
             m_cameras[i].enabled = isTarget;
+            m_cameras[i].GetComponentInParent<ItemScript>().usingEnergy = isTarget;
             m_cameras[i].targetTexture = isTarget ? m_screenRenderTexture : null;
         }
 
@@ -117,16 +128,5 @@ public class CamerasScript : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("PhoneStateScrip ENABLED");
-    }
-    public void RegisterCamera(Camera cam)
-    {
-        if (m_cameras.Contains(cam)) return;
-
-        m_cameras.Add(cam);
-    }
-
-    public void UnregisterCamera(Camera cam)
-    {
-        m_cameras.Remove(cam);
     }
 }

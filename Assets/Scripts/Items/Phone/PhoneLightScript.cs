@@ -3,7 +3,7 @@ using UnityEngine;
 public class PhoneLightScript : MonoBehaviour
 {
     [SerializeField] private Light phoneLight;
-    [SerializeField] private PhoneStateScrip phoneStateScript;
+    [SerializeField] private PhoneController phoneController;
     [SerializeField] private UIBattery uiBattery;
 
     [SerializeField] private Material fogMaterial;
@@ -21,7 +21,7 @@ public class PhoneLightScript : MonoBehaviour
 
     private void HandleLight()
     {
-        if (Input.GetMouseButtonDown(0) && phoneStateScript.GetCurrentPhoneState() != PhoneState.Hidden && uiBattery.HaveBattery)
+        if (Input.GetMouseButtonDown(0) && phoneController.GetCurrentPhoneState() != PhoneState.Hidden && uiBattery.HaveBattery)
         {
             phoneLight.enabled = !phoneLight.enabled;
         }

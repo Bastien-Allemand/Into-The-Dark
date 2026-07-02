@@ -14,6 +14,7 @@ public class CameraBattery : MonoBehaviour
     private Camera myCam;
     void Start()
     {
+        blackScreen.SetActive(false);
         batteryRemaining = maxBattery;
         myCam = GetComponentInChildren<Camera>();
     }
@@ -39,13 +40,17 @@ public class CameraBattery : MonoBehaviour
                 blackScreen.SetActive(true);
             }
         }
+        else
+        {
+            blackScreen.SetActive(false);
+        }
     }
     //Add verif for left or right hand by use the PickUpScript => isLeftHandEmpty/isRightHandEmpty
     public void Reload()
     {
         batteryRemaining = maxBattery;
         if (myCam != null) myCam.enabled = true;
-        Debug.Log($"Cam {gameObject.name} reload");
+        //Debug.Log($"Cam {gameObject.name} reload");
     }
 
     void UpdateReload()
