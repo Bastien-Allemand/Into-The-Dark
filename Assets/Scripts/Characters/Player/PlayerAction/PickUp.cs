@@ -11,8 +11,8 @@ public class PickUp : MonoBehaviour
     [SerializeField] public GameObject leftHand;
     [SerializeField] public GameObject rightHand;
 
-    public HandContent leftHandContent;
-    public HandContent rightHandContent;
+    private HandContent leftHandContent;
+    private HandContent rightHandContent;
 
     private PlayerAction controls;
 
@@ -54,44 +54,38 @@ public class PickUp : MonoBehaviour
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
-        if (item == itemType.NONE || hitObject == null)
+        if (item == itemType.NONE)
+            return;
+        if (hitObject == null)
             return;
 
         switch (item)
         {
             case itemType.GADGET:
 
-                ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                if (itemScript == null)
-                    return;
-
-                if (itemScript.deployed && !itemScript.canBeRepickUp)
-                    return;
-
-                if (itemScript.deployed && itemScript.canBeRepickUp)
-                    itemScript.deployed = false;
-
-                WorldCameraItem cameraItem = hitObject.GetComponent<WorldCameraItem>();
-
-                if (context.control.name == "leftButton")
+                if (context.control.name == "leftButton" && !leftHandContent.filled)
                 {
-                    if (!leftHandContent.filled)
+                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
+                    if (itemScript.deployed)
                     {
-                        leftHandContent.GiveObject(hitObject);
-
-                        if (cameraItem != null)
-                            cameraItem.PickUp();
+                        if (itemScript.canBeRepickUp)
+                            itemScript.deployed = false;
+                        else
+                            return;
                     }
+                    leftHandContent.GiveObject(hitObject);
                 }
-                else if (context.control.name == "rightButton")
+                else if (context.control.name == "rightButton" && !rightHandContent.filled)
                 {
-                    if (!rightHandContent.filled)
+                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
+                    if (itemScript.deployed)
                     {
-                        rightHandContent.GiveObject(hitObject);
-
-                        if (cameraItem != null)
-                            cameraItem.PickUp();
+                        if (itemScript.canBeRepickUp)
+                            itemScript.deployed = false;
+                        else
+                            return;
                     }
+                    rightHandContent.GiveObject(hitObject);
                 }
 
                 break;
@@ -99,6 +93,7 @@ public class PickUp : MonoBehaviour
             case itemType.CONSUMABLE:
 
                 inventoryscript.AddConsumable(hitObject);
+
                 Destroy(hitObject);
 
                 break;
@@ -118,13 +113,5 @@ public class PickUp : MonoBehaviour
         controls = InputManager.controls;
         leftHandContent = leftHand.GetComponent<HandContent>();
         rightHandContent = rightHand.GetComponent<HandContent>();
-    }
-
-    public void DropLeftHand(bool restoreRb)
-    {
-        if (leftHandContent != null)
-        {
-            GameObject obj = leftHandContent.TakeOutObject(restoreRb);
-        }
     }
 }

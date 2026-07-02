@@ -1,47 +1,35 @@
 using UnityEngine;
 
-public class PlayerWalkState : IState
+public class PlayerWalkState : PlayerBaseState
 {
-    private PlayerStateMachine stateMachine;
-    private Transform transform;
-    private Rigidbody rb;
-    private Vector3 velocity = Vector3.zero;
-    public PlayerWalkState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform)
+    public PlayerWalkState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform) : base(stateMachine, rb, transform) { }
+
+    public override void Enter()
     {
-        this.stateMachine = stateMachine;
-        this.rb = rb;
-        this.transform = transform;
+        if (stateMachine.debug) Debug.Log("Enter WALK");
     }
 
-    public void Enter()
+    public override void Update()
     {
-        if (stateMachine.debug)
-            Debug.Log("Player: Enter Mode WALK");
-        stateMachine.currentSpeed = stateMachine.walkSpeed;
-    }
+        Move(stateMachine.moveConfigs.walkSpeed);
 
-    public void Update()
-    {
-        Move();
-    }
+      
+        bool sprintInput = InputManager.controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
+        bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
 
-    void Move()
-    {
-        Vector3 targetVel = Vector3.zero;
-        if (stateMachine.moveInput != Vector2.zero)
+        if (stateMachine.moveInput == Vector2.zero)
         {
-            targetVel = (transform.forward * stateMachine.moveInput.y + transform.right * stateMachine.moveInput.x) * stateMachine.currentSpeed;
+            stateMachine.ChangeState(stateMachine.IdleState);
         }
-
-        Vector3 currentVel = rb.linearVelocity;
-        Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
-
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.fixedDeltaTime);
+        else if (sprintInput && stateMachine.staminaConfigs.isOutOfStamina == false)
+        {
+            stateMachine.ChangeState(stateMachine.SprintState);
+        }
+        else if (crouchInput)
+        {
+            stateMachine.ChangeState(stateMachine.CrouchState);
+        }
     }
 
-    public void Exit()
-    {
-        if (stateMachine.debug)
-            Debug.Log("Player: Exit Mode WALK");
-    }
+    public override void Exit() { }
 }

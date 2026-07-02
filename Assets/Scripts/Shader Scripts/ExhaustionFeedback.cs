@@ -27,14 +27,14 @@ public class ExhaustionFeedback : MonoBehaviour
 
     void OnEnable()
     {
-        if (stateMachine != null)
-            stateMachine.OnExhaustionChanged += HandleExhaustion;
+        //if (stateMachine != null)
+        //    stateMachine.OnExhaustionChanged += HandleExhaustion;
     }
 
     void OnDisable()
     {
-        if (stateMachine != null)
-            stateMachine.OnExhaustionChanged -= HandleExhaustion;
+        //if (stateMachine != null)
+        //    stateMachine.OnExhaustionChanged -= HandleExhaustion;
     }
 
     private void HandleExhaustion(bool isExhausted)
