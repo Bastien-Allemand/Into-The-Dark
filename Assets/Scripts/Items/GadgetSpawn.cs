@@ -28,18 +28,43 @@ public class GadgetSpawn : MonoBehaviour
 
     private int currentTotalGadgets = 0;
 
+    void Start()
+    {
+        // 1. On va chercher le composant ItemSpawner présent dans la scène
+        ItemSpawner spawnerConfig = FindAnyObjectByType<ItemSpawner>();
+
+        if (spawnerConfig == null)
+        {
+            Debug.LogError("GadgetSpawn : Aucun ItemSpawner trouvé dans la scène !");
+            return;
+        }
+
+        // 2. On récupère la liste des prefabs autorisés pour cette nuit via l'ItemSpawner
+        // (La logique interne de ton ItemSpawner filtre déjà par nuit grâce à ton code précédent)
+        List<GameObject> prefabsAutorises = spawnerConfig.GetAllowedPrefabsForCurrentNight();
+
+        // 3. On filtre notre liste de gadgets : on retire ceux qui ne font pas partie de la nuit actuelle
+        for (int i = gadgets.Count - 1; i >= 0; i--)
+        {
+            if (!prefabsAutorises.Contains(gadgets[i].gadgetPrefab))
+            {
+                gadgets.RemoveAt(i); // Ce gadget n'a pas le droit de spawn cette nuit
+            }
+        }
+    }
+
     void Update()
     {
         // 1. Si la map est pleine, on ne fait rien (on fige les chronos)
         if (currentTotalGadgets >= maxGadgetsOnMap) return;
 
-        // 2. On fait tourner le chrono pour chaque gadget
+        // 2. On fait tourner le chrono pour chaque gadget restant/autorisé
         foreach (var gadget in gadgets)
         {
             // On ne lance le chrono que si le gadget n'a pas atteint sa limite
             if (gadget.currentInstances < gadget.maxInstances)
             {
-                gadget.timer += Time.deltaTime; // Time.deltaTime = le temps écoulé depuis la dernière frame
+                gadget.timer += Time.deltaTime;
 
                 // 3. Si le temps est écoulé, on le fait apparaître !
                 if (gadget.timer >= gadget.spawnTime)
@@ -56,10 +81,8 @@ public class GadgetSpawn : MonoBehaviour
         }
     }
 
-    // Nouvelle fonction qui s'occupe de faire spawner LE gadget dont le temps est écoulé
     private bool SpawnSpecificGadget(GadgetData gadgetToSpawn)
     {
-        // 1. Chercher un socket libre
         List<GadgetSocket> availableSockets = new List<GadgetSocket>();
         foreach (var socket in sockets)
         {
@@ -69,25 +92,17 @@ public class GadgetSpawn : MonoBehaviour
             }
         }
 
-        // Sécurité : Aucun socket libre
         if (availableSockets.Count == 0) return false;
 
-        // 2. Tirer un socket au hasard parmi ceux qui sont libres
         int randSocketIndex = UnityEngine.Random.Range(0, availableSockets.Count);
         GadgetSocket chosenSocket = availableSockets[randSocketIndex];
 
-        // 3. Instanciation
         GameObject spawnedObj = Instantiate(
             gadgetToSpawn.gadgetPrefab,
             chosenSocket.gadgetSocket.transform.position,
             chosenSocket.gadgetSocket.transform.rotation
         );
 
-        // (Si tu as utilisé le script GadgetItem de ma réponse précédente, décommente ces lignes)
-        // GadgetItem itemScript = spawnedObj.GetComponent<GadgetItem>();
-        // if (itemScript != null) itemScript.Setup(gadgetToSpawn, chosenSocket);
-
-        // 4. Mise à jour des compteurs
         chosenSocket.isOccupied = true;
         gadgetToSpawn.currentInstances++;
         currentTotalGadgets++;

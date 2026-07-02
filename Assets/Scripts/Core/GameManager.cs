@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public static int CurrentChapterIndex => currentChapterIndex;
+    public static int CurrentNightIndex => currentNightIndex;
+
     [System.Serializable]
     public struct NightData
     {
