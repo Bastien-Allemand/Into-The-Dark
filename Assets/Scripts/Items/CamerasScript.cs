@@ -79,6 +79,13 @@ public class CamerasScript : MonoBehaviour
 
     private void UpdateCameraDisplay()
     {
+
+        if (m_cameras == null || m_cameras.Count == 0)
+        {
+            camActive = null;
+            return;
+        }
+
         for (int i = 0; i < m_cameras.Count; i++)
         {
             bool isTarget = (m_onCamera && i == m_currentCamera);
