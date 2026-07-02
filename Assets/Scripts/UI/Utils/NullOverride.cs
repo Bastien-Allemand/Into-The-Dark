@@ -10,13 +10,4 @@ public class NullOverride : UI
     {
         return false;
     }
-    public override void Init()
-    {
-    }
-    public override void Enter()
-    {
-    }
-    public override void Exit()
-    {
-    }
 }

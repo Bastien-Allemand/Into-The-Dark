@@ -15,7 +15,7 @@ public class PlayerOnPhoneState : IState
     {
         if (stateMachine.debug)
             Debug.Log("Player: Enter Mode ON PHONE");
-        stateMachine.currentSpeed = stateMachine.walkSpeed;
+        stateMachine.currentSpeed = stateMachine.moveConfigs.walkSpeed;
     }
 
     public void Update()

@@ -16,21 +16,9 @@ public class UI : MonoBehaviour
         debug("ExitCondition");
         return false;
     }
-    public virtual void Init()
-    {
-        debug("Init");
-    }
-    public virtual void Enter()
-    {
-        debug("Enter");
-    }
-    public virtual void Exit()
-    {
-        debug("Exit");
-    }
 
     private void debug(string func)
     {
-        Debug.Log($"Null : {GetType().FullName} : {func}");
+        //Debug.Log($"Null : {GetType().FullName} : {func}");
     }
 }

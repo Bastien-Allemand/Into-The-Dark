@@ -5,9 +5,12 @@ public class PauseMenu : UI
 {
     PlayerAction controls => InputManager.controls;
 
-    [SerializeField] public Transform GO_Controls_Content;
+                        //  first letter of var, then what it does
+    [SerializeField] public GameObject GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
+    [SerializeField] private Bouton b_main_menu;
+
     public override bool EnterCondition()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
@@ -30,7 +33,7 @@ public class PauseMenu : UI
         exit = false;
         return result;
     }
-    public override void Init()
+    private void Awake()
     {
         cursorWantedState = CursorLockMode.None;
 
@@ -39,28 +42,44 @@ public class PauseMenu : UI
         {
             b_continue.show_target.Add(target);
             Debug.Log(target.transform);
+            b_main_menu.gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("No MainMenu");
+            b_main_menu.gameObject.SetActive(true);
         }
 
         foreach (InputAction action in controls.GamePlay.Get())
         {
             if (action.name == "Look")
                 continue;
-            CreateBoutonFromAction(action,GO_Controls_Content);
+            CreateBoutonFromAction(action, GO_Controls_Content.transform);
         }
     }
-    public override void Enter()
+    private void OnEnable()
     {
         Debug.Log("Pause Menu : Enter");
         exit = false;
-        manager.Pause(true);
+        Pause(true);
+        foreach (var ui in UIManager.Instance.UIs)
+        {
+            if (ui.GetComponent<MainMenu>() != null)
+            {
+                ui.gameObject.SetActive(false);
+            }
+        }
     }
-    public override void Exit()
+    private void OnDisable()
     {
-        manager.Pause(false);
+        Pause(false);
+        foreach (var ui in UIManager.Instance.UIs)
+        {
+            if (ui.GetComponent<MainMenu>() != null)
+            {
+                ui.gameObject.SetActive(true);
+            }
+        }
     }
 
     private void CreateBoutonFromAction(InputAction action, Transform parent)
@@ -86,6 +105,23 @@ public class PauseMenu : UI
                 Debug.Log("script Rebind not found");
 
             bindingIndex++;
+        }
+    }
+
+    public void Pause(bool pause)
+    {
+        //  il faut rajouter la pause pour les entité
+        if (pause)
+        {
+            Debug.Log("Time : Pause");
+            controls.GamePlay.Disable();
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Debug.Log("Time : Continue");
+            controls.GamePlay.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

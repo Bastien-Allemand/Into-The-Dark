@@ -122,6 +122,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActiveFlashlight",
+                    "type": "Button",
+                    "id": "8bb2fd72-9e6d-4dc8-8d49-e538c1fc7b93",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -330,6 +339,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+<<<<<<< HEAD
                     "action": "Consume",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -363,6 +373,8 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+=======
+>>>>>>> origin/DEV
                     "action": "Consume",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -388,6 +400,39 @@
                     "action": "Throw Right Object",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e4ff079f-77c1-446b-8e0e-6b21da8cb167",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActiveFlashlight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04db4062-3a16-4215-8136-aac5efebebcf",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abc8f3a1-c97a-4f89-b0f7-bf4d35ca584c",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
