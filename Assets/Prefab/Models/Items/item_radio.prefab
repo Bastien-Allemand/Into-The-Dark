@@ -163,6 +163,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6660427893961526142}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2801676929857235790}
   m_SourcePrefab: {fileID: 100100000, guid: 1339caa4f390bb54289fc4d0ffc537fc, type: 3}
 --- !u!4 &4910578837640875722 stripped
 Transform:
@@ -302,3 +305,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.765411, y: 1.037865, z: 0.630618}
   m_Center: {x: 0.00034050643, y: 0.49469954, z: 0.010104999}
+--- !u!114 &-2801676929857235790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5723566893807359088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e1026206a54004b95ba6ad49bbb324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RadioScript
+  targetTag: Ghost
+  isActivated: 0
