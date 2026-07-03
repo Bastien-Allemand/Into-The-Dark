@@ -1,40 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class ItemSpawner : MonoBehaviour
 {
-    [Header("Groups of objects for each night")]
-    [Tooltip("Objects exclusives to night 1 (index 0)")]
-    [SerializeField] private GameObject[] objectsNight1;
-
-    [Tooltip("Objects exclusives to night 2 (index 1)")]
-    [SerializeField] private GameObject[] objectsNight2;
-
-    [Tooltip("Objects spawning from night 3 (index 2)")]
-    [SerializeField] private GameObject[] objectsNight3;
-
     void Start()
     {
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("[ItemSpawner] GameManager instance not found in the scene.");
+            return;
+        }
+
+        int currentChapter = GameManager.CurrentChapterIndex;
         int currentNight = GameManager.CurrentNightIndex;
 
-        SetGroupActive(objectsNight1, false);
-        SetGroupActive(objectsNight2, false);
-        SetGroupActive(objectsNight3, false);
+        // 1. Désactiver d'abord TOUS les objets de toutes les nuits du chapitre actuel pour nettoyer la scène
+        var nightsInChapter = GameManager.Instance.ChaptersSequence[currentChapter].nights;
+        foreach (var night in nightsInChapter)
+        {
+            SetGroupActive(night.objectsToSpawn, false);
+        }
 
-        if (currentNight == 0)
+        // 2. Activer les objets de manière cumulative (de la nuit 0 jusqu'à la nuit en cours)
+        if (currentNight >= 0 && currentNight < nightsInChapter.Count)
         {
-            SetGroupActive(objectsNight1, true);
-        }
-        else if (currentNight == 1)
-        {
-            SetGroupActive(objectsNight2, true);
-        }
-        else if (currentNight >= 2)
-        {
-            SetGroupActive(objectsNight1, true);
-            SetGroupActive(objectsNight2, true);
-            SetGroupActive(objectsNight3, true);
+            for (int i = 0; i <= currentNight; i++)
+            {
+                SetGroupActive(nightsInChapter[i].objectsToSpawn, true);
+            }
         }
     }
 
@@ -50,21 +43,23 @@ public class ItemSpawner : MonoBehaviour
     public List<GameObject> GetAllowedPrefabsForCurrentNight()
     {
         List<GameObject> allowed = new List<GameObject>();
-        int currentNight = GameManager.CurrentNightIndex;
 
-        if (currentNight == 0) // Nuit 1
+        if (GameManager.Instance == null) return allowed;
+
+        int currentChapter = GameManager.CurrentChapterIndex;
+        int currentNight = GameManager.CurrentNightIndex;
+        var nightsInChapter = GameManager.Instance.ChaptersSequence[currentChapter].nights;
+
+        if (currentNight >= 0 && currentNight < nightsInChapter.Count)
         {
-            allowed.AddRange(objectsNight1);
-        }
-        else if (currentNight == 1) // Nuit 2
-        {
-            allowed.AddRange(objectsNight2);
-        }
-        else if (currentNight >= 2) // Nuit 3 et +
-        {
-            allowed.AddRange(objectsNight1);
-            allowed.AddRange(objectsNight2);
-            allowed.AddRange(objectsNight3);
+            // Remplit la liste de prefabs de manière cumulative
+            for (int i = 0; i <= currentNight; i++)
+            {
+                if (nightsInChapter[i].objectsToSpawn != null)
+                {
+                    allowed.AddRange(nightsInChapter[i].objectsToSpawn);
+                }
+            }
         }
 
         return allowed;

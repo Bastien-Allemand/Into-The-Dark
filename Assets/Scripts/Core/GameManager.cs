@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -19,6 +18,8 @@ public class GameManager : MonoBehaviour
         public float duration;
         public bool changeScene;
         public string sceneToLoad;
+        [Tooltip("Objects that will activate or spawn for this specific night")]
+        public GameObject[] objectsToSpawn; // <-- AJOUTÉ ICI
     }
 
     [System.Serializable]
@@ -29,13 +30,12 @@ public class GameManager : MonoBehaviour
         public List<NightData> nights;
     }
 
+    // Le reste de ton script GameManager reste STRICTEMENT IDENTIQUE, 
+    // pas besoin de modifier le reste de ta logique de timer ou de transitions.
 
     [Header("Debug / Sandbox Settings")]
-    [Tooltip("If true, chapters/nights system is disabled.")]
     [SerializeField] private bool infiniteMode = false;
-    [Tooltip("If true timer stops at 0, else timer does not shows.")]
     [SerializeField] private bool keepTimerInInfiniteMode = true;
-
 
     [Header("Story Progression")]
     [SerializeField] private List<ChapterData> chaptersSequence = new List<ChapterData>();
@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
     private bool isTransitioning = false;
 
     private Coroutine blinkCoroutine;
+
+    // Ajout d'une propriété publique pour que l'ItemSpawner puisse lire les chapitres facilement
+    public List<ChapterData> ChaptersSequence => chaptersSequence;
 
     private void Awake()
     {
@@ -161,7 +164,8 @@ public class GameManager : MonoBehaviour
             nightName = "Nuit 1",
             duration = 300f,
             changeScene = true,
-            sceneToLoad = SceneManager.GetActiveScene().name
+            sceneToLoad = SceneManager.GetActiveScene().name,
+            objectsToSpawn = new GameObject[0]
         };
 
         ChapterData defaultChapter = new ChapterData
@@ -244,7 +248,6 @@ public class GameManager : MonoBehaviour
         {
             currentTime = 0;
 
-            // Si on est en mode infini, on bloque le timer à 0 et on NE déclenche PAS la transition
             if (infiniteMode)
             {
                 UpdateTimerUI();
@@ -345,7 +348,7 @@ public class GameManager : MonoBehaviour
         if (transitionPanel != null) transitionPanel.SetActive(false);
 
         bool hasNewChapter = false;
-        bool isGameFullyFinished = false; // Indique si le jeu est complètement fini
+        bool isGameFullyFinished = false;
 
         if (currentNightIndex < chaptersSequence[currentChapterIndex].nights.Count - 1)
         {
@@ -498,7 +501,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Logique normale du jeu
         if (isGameOver || isTransitioning) return;
         HandleTimer();
     }
