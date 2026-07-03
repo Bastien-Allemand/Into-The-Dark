@@ -52,6 +52,14 @@ public class Interact : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, interactDistance))
             return;
 
+        ComplexAnimatorScript animatorObject = hit.collider.GetComponentInParent<ComplexAnimatorScript>();
+
+        if (animatorObject != null)
+        {
+            animatorObject.Interact();
+            return;
+        }
+
         BasicAnimationScript lootItem = hit.collider.GetComponentInParent<BasicAnimationScript>();
 
         if (lootItem != null)
