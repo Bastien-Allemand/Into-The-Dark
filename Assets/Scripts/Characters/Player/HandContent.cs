@@ -18,7 +18,7 @@ public class HandContent : MonoBehaviour
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localRotation = Quaternion.identity;
 
-            obj.transform.localScale = Vector3.one;
+            //obj.transform.localScale = Vector3.one;
 
             foreach (Collider col in obj.GetComponentsInChildren<Collider>())
             {
