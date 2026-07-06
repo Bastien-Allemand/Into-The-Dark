@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -20,7 +19,7 @@ public class GameManager : MonoBehaviour
         public bool changeScene;
         public string sceneToLoad;
         [Tooltip("Objects that will activate or spawn for this specific night")]
-        public GameObject[] objectsToSpawn; // <-- AJOUT� ICI
+        public GameObject[] objectsToSpawn; // <-- AJOUTÉ ICI
     }
 
     [System.Serializable]
@@ -68,9 +67,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeToWaitChapterTransition = 6f;
 
     [Header("Glitch Effect Settings")]
-    //[SerializeField] private float glitchTriggerTime = 0.5f;
-    //[SerializeField] private float minBlinkDelay = 0.05f;
-    //[SerializeField] private float maxBlinkDelay = 0.25f;
+    [SerializeField] private float glitchTriggerTime = 0.5f;
+    [SerializeField] private float minBlinkDelay = 0.05f;
+    [SerializeField] private float maxBlinkDelay = 0.25f;
 
     [Header("Timer Polish Settings")]
     [SerializeField] private float startBlinkingAt = 10f;
@@ -90,8 +89,6 @@ public class GameManager : MonoBehaviour
     private bool isTransitioning = false;
 
     private Coroutine blinkCoroutine;
-
-    // Ajout d'une propri�t� publique pour que l'ItemSpawner puisse lire les chapitres facilement
     public List<ChapterData> ChaptersSequence => chaptersSequence;
 
     private void Awake()
@@ -115,7 +112,7 @@ public class GameManager : MonoBehaviour
                 ? chaptersSequence[0].nights[0].duration
                 : 300f;
 
-            if (nightNameText != null) nightNameText.text = "Mode Sans Fin / Sandbox";
+            if (nightNameText != null) nightNameText.text = "Infinite / Sandbox";
             if (gameOverPanel != null) gameOverPanel.SetActive(false);
             if (transitionPanel != null) transitionPanel.SetActive(false);
             if (gameOverCanvasGroup != null) gameOverCanvasGroup.alpha = 0f;
@@ -128,7 +125,7 @@ public class GameManager : MonoBehaviour
 
         if (chaptersSequence == null || chaptersSequence.Count == 0 || chaptersSequence[currentChapterIndex].nights.Count == 0)
         {
-            Debug.LogWarning("Structure de chapitres vide !");
+            Debug.LogWarning("Empty chapter structure !");
             GenerateDefaultData();
         }
 
@@ -363,7 +360,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("F�LICITATIONS ! Fin de la s�quence compl�te du jeu.");
             isGameFullyFinished = true;
         }
 
@@ -376,7 +372,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Le jeu est fini, mais 'endgameSceneName' est vide dans l'inspecteur !");
+                Debug.LogError("'endgameSceneName' is empty !");
             }
             yield break;
         }
@@ -420,7 +416,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Erreur technique : Le nom de la sc�ne active est vide !");
+            Debug.LogError("Technical issue : the name of the active scene is empty !");
         }
     }
 
