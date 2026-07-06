@@ -9,9 +9,7 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
-    public bool PlayerLookCamera = false; 
-
-    private List<Camera> m_cameras = new List<Camera>();
+   private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
     private int m_currentCamera = 0;
     public Camera camActive;
@@ -40,7 +38,7 @@ public class CamerasScript : MonoBehaviour
 
     private void Update()
     {
-        if (!PlayerLookCamera)
+        if (!m_onCamera)
         {
             DisableAllCam();
         }
@@ -80,6 +78,8 @@ public class CamerasScript : MonoBehaviour
 
     private void UpdateCameraDisplay()
     {
+        if (!m_onCamera || m_cameras.Count == 0) return;
+
         for (int i = 0; i < m_cameras.Count; i++)
         {
             bool isTarget = (m_onCamera && i == m_currentCamera);

@@ -10,6 +10,7 @@ public class PcScript : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject playerCamera;
     [SerializeField] private CanvasGroup uiElement;
+    [SerializeField] private GameObject pcScreen ;
 
     public PlayerAction controls;
     public bool OnPC = false;
@@ -18,6 +19,7 @@ public class PcScript : MonoBehaviour
     {
         controls = InputManager.controls;
         uiElement.alpha = 0;
+        pcScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -66,9 +68,11 @@ public class PcScript : MonoBehaviour
     public void ActivateExe()
     {
         uiElement.alpha = 1;
+        pcScreen.SetActive(true);
     }
     public void DeactivateExe()
     {
         uiElement.alpha = 0;
+        pcScreen.SetActive(false);
     }
 }

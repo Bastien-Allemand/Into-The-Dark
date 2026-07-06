@@ -434,7 +434,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-<<<<<<< HEAD
                     ""action"": ""Consume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -468,8 +467,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-=======
->>>>>>> origin/DEV
                     ""action"": ""Consume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
