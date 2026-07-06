@@ -24,8 +24,8 @@ public class CameraPhoneScript : MonoBehaviour
     {
         if (phoneStateScript != null && phoneStateScript.GetCurrentPhoneState() == PhoneState.Camera)
         {
-            phoneCanvaRectTransform.localPosition = new Vector3(-0.05f, -0.39f, -0.45f);
-            phoneCanvaRectTransform.localRotation = Quaternion.Euler(0f, phoneCanvaRectTransform.localEulerAngles.y, 90f);
+            phoneCanvaRectTransform.localPosition = new Vector3(-0.05f, -0.31f, -0.42f);
+            phoneCanvaRectTransform.localRotation = Quaternion.Euler(0f, phoneCanvaRectTransform.localEulerAngles.y, -90f);
         }
         else
         {

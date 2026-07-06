@@ -15,6 +15,8 @@ public class ItemScript : MonoBehaviour
     public float maxEnergy = 100f;
     public bool rechargable = false; 
 
+    [SerializeField] private BatteryScript batteryScript;
+
     public enum ItemType
     {
         NONE,
@@ -22,6 +24,16 @@ public class ItemScript : MonoBehaviour
     }
 
    [SerializeField] public ItemType type = ItemType.NONE;
+
+    void Start()
+    {
+        batteryScript = GetComponentInChildren<BatteryScript>();
+        if (batteryScript != null)
+        {
+            batteryScript.SetMaxBattery(maxEnergy);
+        }
+
+    }
 
     public void Update()
     {
@@ -37,6 +49,10 @@ public class ItemScript : MonoBehaviour
         if (usingEnergy)
         {
             energy -= Time.deltaTime;
+            if(batteryScript != null)
+            {
+                batteryScript.SetBattery(energy);
+            }
             if(energy <= 0f)
             { 
                 energy = 0f; 
