@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         public bool changeScene;
         public string sceneToLoad;
         [Tooltip("Objects that will activate or spawn for this specific night")]
-        public GameObject[] objectsToSpawn; // <-- AJOUTÉ ICI
+        public GameObject[] objectsToSpawn;
     }
 
     [System.Serializable]
@@ -30,8 +30,6 @@ public class GameManager : MonoBehaviour
         public List<NightData> nights;
     }
 
-    // Le reste de ton script GameManager reste STRICTEMENT IDENTIQUE, 
-    // pas besoin de modifier le reste de ta logique de timer ou de transitions.
 
     [Header("Debug / Sandbox Settings")]
     [SerializeField] private bool infiniteMode = false;

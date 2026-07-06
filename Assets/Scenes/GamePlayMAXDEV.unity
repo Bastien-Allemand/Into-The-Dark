@@ -2059,103 +2059,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632065020}
   m_CullTransparentMesh: 1
---- !u!1 &680025515
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 680025516}
-  - component: {fileID: 680025517}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &680025516
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680025515}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 681.9454, y: 559.45416, z: -944.39575}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1284397831}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &680025517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680025515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e29d7a1445cdc4fbc3df54e3ab0f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  infiniteMode: 0
-  keepTimerInInfiniteMode: 0
-  chaptersSequence:
-  - chapterName: Chapter 1
-    chapterIntroText: Chapter 1 intro test
-    nights:
-    - nightName: Night 1
-      duration: 10
-      changeScene: 0
-      sceneToLoad: 
-      objectsToSpawn:
-      - {fileID: 5723566893807359088, guid: 5848ca6b0d925dd47827aee2caf4d3cd, type: 3}
-    - nightName: Night 2
-      duration: 15
-      changeScene: 0
-      sceneToLoad: 
-      objectsToSpawn:
-      - {fileID: 5723566893807359088, guid: 5848ca6b0d925dd47827aee2caf4d3cd, type: 3}
-      - {fileID: 3563341664786806886, guid: fc55a8bfe64d47c48a7f5f283b297090, type: 3}
-  - chapterName: Chapter 2
-    chapterIntroText: Chapter 2 intro test
-    nights:
-    - nightName: Night 1
-      duration: 45
-      changeScene: 0
-      sceneToLoad: 
-      objectsToSpawn: []
-    - nightName: Night 2
-      duration: 60
-      changeScene: 0
-      sceneToLoad: 
-      objectsToSpawn: []
-  nightNameText: {fileID: 980806795}
-  timerText: {fileID: 751485927}
-  gameOverPanel: {fileID: 472118432}
-  transitionPanel: {fileID: 630396417}
-  transitionText: {fileID: 120730486}
-  chapterTransitionPanel: {fileID: 879793455}
-  chapterTitleText: {fileID: 770871167}
-  chapterIntroTextUI: {fileID: 309726888}
-  gameOverReasonText: {fileID: 1773850670}
-  gameOverCanvasGroup: {fileID: 472118433}
-  timeToWaitBeforeNextScene: 3
-  timeToWaitChapterTransition: 6
-  glitchTriggerTime: 0.5
-  minBlinkDelay: 0.05
-  maxBlinkDelay: 0.25
-  startBlinkingAt: 10
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
-  fadeDuration: 1.5
-  textTypeSpeed: 0.05
-  endgameSceneName: MainMenu
 --- !u!1 &707212475
 GameObject:
   m_ObjectHideFlags: 0
@@ -3475,6 +3378,106 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 751485927}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: infiniteMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 472118432}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: nightNameText
+      value: 
+      objectReference: {fileID: 980806795}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: transitionText
+      value: 
+      objectReference: {fileID: 120730486}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: transitionPanel
+      value: 
+      objectReference: {fileID: 630396417}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chapterTitleText
+      value: 
+      objectReference: {fileID: 770871167}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chapterIntroTextUI
+      value: 
+      objectReference: {fileID: 309726888}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: gameOverReasonText
+      value: 
+      objectReference: {fileID: 1773850670}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: gameOverCanvasGroup
+      value: 
+      objectReference: {fileID: 472118433}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chapterTransitionPanel
+      value: 
+      objectReference: {fileID: 879793455}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: keepTimerInInfiniteMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].chapterName
+      value: Chapter 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].chapterIntroText
+      value: Chapter 1 intro test
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[1].nights.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.data[0].duration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.data[1].duration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.data[0].nightName
+      value: Night 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.data[1].nightName
+      value: Night 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.data[0].objectsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: chaptersSequence.Array.data[0].nights.Array.data[1].objectsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: 'chaptersSequence.Array.data[0].nights.Array.data[0].objectsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5723566893807359088, guid: 5848ca6b0d925dd47827aee2caf4d3cd, type: 3}
+    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: 'chaptersSequence.Array.data[0].nights.Array.data[1].objectsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3563341664786806886, guid: fc55a8bfe64d47c48a7f5f283b297090, type: 3}
     - target: {fileID: 5165926732961330467, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: m_SizeDelta.y
       value: 10
@@ -3589,9 +3592,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7504741572829378263, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       insertIndex: -1
       addedObject: {fileID: 132896476}
-    - targetCorrespondingSourceObject: {fileID: 7504741572829378263, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 680025516}
     - targetCorrespondingSourceObject: {fileID: 7504741572829378263, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       insertIndex: -1
       addedObject: {fileID: 302396565}
