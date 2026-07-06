@@ -14,14 +14,12 @@ public class ItemSpawner : MonoBehaviour
         int currentChapter = GameManager.CurrentChapterIndex;
         int currentNight = GameManager.CurrentNightIndex;
 
-        // 1. Désactiver d'abord TOUS les objets de toutes les nuits du chapitre actuel pour nettoyer la scène
         var nightsInChapter = GameManager.Instance.ChaptersSequence[currentChapter].nights;
         foreach (var night in nightsInChapter)
         {
             SetGroupActive(night.objectsToSpawn, false);
         }
 
-        // 2. Activer les objets de manière cumulative (de la nuit 0 jusqu'à la nuit en cours)
         if (currentNight >= 0 && currentNight < nightsInChapter.Count)
         {
             for (int i = 0; i <= currentNight; i++)
@@ -52,7 +50,6 @@ public class ItemSpawner : MonoBehaviour
 
         if (currentNight >= 0 && currentNight < nightsInChapter.Count)
         {
-            // Remplit la liste de prefabs de manière cumulative
             for (int i = 0; i <= currentNight; i++)
             {
                 if (nightsInChapter[i].objectsToSpawn != null)
