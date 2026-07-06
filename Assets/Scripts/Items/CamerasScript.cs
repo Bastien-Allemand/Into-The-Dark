@@ -9,7 +9,7 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
-    [SerializeField] private PhoneController phoneStateScript;
+    public bool PlayerLookCamera = false; 
 
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
@@ -40,7 +40,7 @@ public class CamerasScript : MonoBehaviour
 
     private void Update()
     {
-        if (phoneStateScript != null && phoneStateScript.GetCurrentPhoneState() != PhoneState.Camera)
+        if (!PlayerLookCamera)
         {
             DisableAllCam();
         }
@@ -61,6 +61,7 @@ public class CamerasScript : MonoBehaviour
         {
             m_currentCamera = 0;
         }
+
         UpdateCameraDisplay();
     }
 
@@ -84,7 +85,6 @@ public class CamerasScript : MonoBehaviour
             bool isTarget = (m_onCamera && i == m_currentCamera);
 
             m_cameras[i].enabled = isTarget;
-            m_cameras[i].GetComponentInParent<ItemScript>().usingEnergy = isTarget;
             m_cameras[i].targetTexture = isTarget ? m_screenRenderTexture : null;
         }
 
