@@ -270,6 +270,7 @@ MonoBehaviour:
   player: {fileID: 921758814}
   playerCamera: {fileID: 1576195909}
   uiElement: {fileID: 1009935351}
+  pcScreen: {fileID: 421734078}
   OnPC: 0
   ExecutableCamera: 0
 --- !u!4 &315394824 stripped
@@ -304,6 +305,7 @@ GameObject:
   - component: {fileID: 334699396}
   - component: {fileID: 334699398}
   - component: {fileID: 334699397}
+  - component: {fileID: 334699399}
   m_Layer: 5
   m_Name: CameraExecutable
   m_TagString: Untagged
@@ -365,6 +367,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334699395}
   m_CullTransparentMesh: 1
+--- !u!114 &334699399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334699395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 334699397}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 315394823}
+        m_TargetAssemblyTypeName: PcScript, Assembly-CSharp
+        m_MethodName: ActivateExe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &421734078
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +450,7 @@ Transform:
   m_GameObject: {fileID: 421734078}
   serializedVersion: 2
   m_LocalRotation: {x: 0.33765703, y: 0.6212791, z: -0.6212791, w: 0.33765703}
-  m_LocalPosition: {x: 0.00616, y: 0.01103, z: 0.0065}
+  m_LocalPosition: {x: 0.00593, y: 0.01103, z: 0.00665}
   m_LocalScale: {x: 0.00080025697, y: 0.0002025, z: 0.00046663347}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -881,6 +939,10 @@ PrefabInstance:
     - target: {fileID: 6736220736441767232, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356269092158637709, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1600,7 +1662,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567711333}
   m_LocalRotation: {x: 0, y: 0.29172072, z: 0, w: 0.9565035}
-  m_LocalPosition: {x: 0, y: 0, z: 56.305}
+  m_LocalPosition: {x: 0, y: 0, z: 56.325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1608,7 +1670,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 33.922, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -533.23737, y: -233.55792}
+  m_AnchoredPosition: {x: -533.2673, y: -233.56488}
   m_SizeDelta: {x: 0.2899, y: 0.2743}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1567711335
