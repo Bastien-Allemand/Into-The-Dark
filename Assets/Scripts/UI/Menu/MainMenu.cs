@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MainMenu : UI
 {
-    [SerializeField] private Bouton option;
+    [SerializeField] private Bouton b_option;
     public override bool EnterCondition()
     {
         return false;
@@ -11,26 +11,17 @@ public class MainMenu : UI
     {
         return false;
     }
-    public override void Init()
+    private void Awake()
     {
         cursorWantedState = CursorLockMode.None;
         Transform target = manager.GetUIs<PauseMenu>();
         if (target)
         {
-            option.show_target.Add(target);
+            Debug.Log("Found PauseMenu");
+            b_option.show_target.Add(target);
             Debug.Log(target.transform);
         }
         else
             Debug.Log("No Pause Menu");
-    }
-    public override void Enter()
-    {
-    }
-    public void Update()
-    {
-        Cursor.lockState = CursorLockMode.None;
-    }
-    public override void Exit()
-    {
     }
 }

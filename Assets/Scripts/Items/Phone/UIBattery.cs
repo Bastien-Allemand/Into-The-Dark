@@ -14,7 +14,7 @@ public class UIBattery : MonoBehaviour
     [SerializeField] private float maxBattery = 100000000000f;
     [SerializeField] private float maxTime = 60f;
 
-    PhoneStateScrip phoneStateScript;
+    PhoneController phoneStateScript;
     [SerializeField] private float coeffBatteryLightUse = 5f;
 
 
@@ -34,7 +34,7 @@ public class UIBattery : MonoBehaviour
 
     private void Awake()
     {
-        phoneStateScript = GetComponent<PhoneStateScrip>();
+        phoneStateScript = GetComponent<PhoneController>();
     }
 
     private void Update()

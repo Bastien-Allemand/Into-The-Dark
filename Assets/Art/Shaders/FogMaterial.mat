@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5987462570290369014
+--- !u!114 &-2534684297957922997
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FogMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 9e94c1828b17cc443b9a82e293c022dc, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: ae3a37c1d22a0b046b2b034287d7e011, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -51,14 +51,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BaseDensity: 0
-    - _CamFadeDist: 0
-    - _EdgeSoftness: 0
-    - _FlashlightRange: 0
-    - _HeightFalloff: 0
-    - _HeightOffset: 0
-    - _NoiseScale: 0
-    - _NoiseStrength: 0
+    - _BlurIntensity: 0
+    - _IsRunning: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

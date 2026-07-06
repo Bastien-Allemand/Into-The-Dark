@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
         public bool changeScene;
         public string sceneToLoad;
         [Tooltip("Objects that will activate or spawn for this specific night")]
-        public GameObject[] objectsToSpawn; // <-- AJOUTÉ ICI
+        public GameObject[] objectsToSpawn; // <-- AJOUTï¿½ ICI
     }
 
     [System.Serializable]
@@ -67,9 +68,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeToWaitChapterTransition = 6f;
 
     [Header("Glitch Effect Settings")]
-    [SerializeField] private float glitchTriggerTime = 0.5f;
-    [SerializeField] private float minBlinkDelay = 0.05f;
-    [SerializeField] private float maxBlinkDelay = 0.25f;
+    //[SerializeField] private float glitchTriggerTime = 0.5f;
+    //[SerializeField] private float minBlinkDelay = 0.05f;
+    //[SerializeField] private float maxBlinkDelay = 0.25f;
 
     [Header("Timer Polish Settings")]
     [SerializeField] private float startBlinkingAt = 10f;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     private Coroutine blinkCoroutine;
 
-    // Ajout d'une propriété publique pour que l'ItemSpawner puisse lire les chapitres facilement
+    // Ajout d'une propriï¿½tï¿½ publique pour que l'ItemSpawner puisse lire les chapitres facilement
     public List<ChapterData> ChaptersSequence => chaptersSequence;
 
     private void Awake()
@@ -362,7 +363,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("FÉLICITATIONS ! Fin de la séquence complète du jeu.");
+            Debug.Log("Fï¿½LICITATIONS ! Fin de la sï¿½quence complï¿½te du jeu.");
             isGameFullyFinished = true;
         }
 
@@ -419,7 +420,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Erreur technique : Le nom de la scène active est vide !");
+            Debug.LogError("Erreur technique : Le nom de la scï¿½ne active est vide !");
         }
     }
 

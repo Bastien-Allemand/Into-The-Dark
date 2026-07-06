@@ -10,7 +10,8 @@ public class DisplayID : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        itemText.gameObject.SetActive(false);
+        if (itemText != null)
+            itemText.gameObject.SetActive(false);
 
         Ray ray = playerCamera.ViewportPointToRay(
             new Vector3(0.5f, 0.5f, 0f));

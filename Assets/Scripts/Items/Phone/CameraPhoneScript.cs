@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class CameraPhoneScript : MonoBehaviour
 {
-    [SerializeField] private PhoneStateScrip phoneStateScript;
+    [SerializeField] private PhoneController phoneStateScript;
     [SerializeField] private RectTransform phoneCanvaRectTransform;
 
     private void Awake()
     {
-        phoneStateScript = GetComponent<PhoneStateScrip>();
+        phoneStateScript = GetComponent<PhoneController>();
     }
 
     private void Start()
