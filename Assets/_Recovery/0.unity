@@ -367,30 +367,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bb74e6f23ad4984b893214a6fb5d000, type: 3}
---- !u!1 &1570506777 stripped
+--- !u!1 &1987386312 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4968043094434973047, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
   m_PrefabInstance: {fileID: 6157844250686611324}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1570506778
+--- !u!114 &1987386313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570506777}
+  m_GameObject: {fileID: 1987386312}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 433dbc2754a338c40b81d80ef48c06b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityLightController
-  lampeTorche: {fileID: 1767666198}
+  sourceDeLumiere: {fileID: 1996560615}
   rayonDeLumiere: 5
   materiauxCibles:
   - {fileID: 2100000, guid: 676468b4040f7fd4e90c9d6a25d10166, type: 2}
---- !u!108 &1767666198 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 7447064034265946738, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+--- !u!4 &1996560615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4944828750354661864, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
   m_PrefabInstance: {fileID: 6157844250686611324}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2066829363858765108
@@ -874,10 +874,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7447064034265946738, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
-      propertyPath: m_Range
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7801913923009114371, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: insaneBarTransform
       value: 
@@ -888,7 +884,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4968043094434973047, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1570506778}
+      addedObject: {fileID: 1987386313}
   m_SourcePrefab: {fileID: 100100000, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
 --- !u!1001 &7359691806498632670
 PrefabInstance:
@@ -946,10 +942,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map Layout
       objectReference: {fileID: 0}
-    - target: {fileID: 7608361189783768548, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 676468b4040f7fd4e90c9d6a25d10166, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
