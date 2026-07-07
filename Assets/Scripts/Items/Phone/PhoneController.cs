@@ -45,7 +45,8 @@ public class PhoneController : MonoBehaviour
         {
             ChangeState(PhoneState.Idle);
         }
-        else
+       
+        else if (currentState == PhoneState.Idle && uiBattery != null && uiBattery.HaveBattery)
         {
             ChangeState(PhoneState.Camera);
         }
