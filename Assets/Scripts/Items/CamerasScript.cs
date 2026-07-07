@@ -10,7 +10,7 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
    private List<Camera> m_cameras = new List<Camera>();
-    private bool m_onCamera = false;
+    public bool m_onCamera = false;
     private int m_currentCamera = 0;
     public Camera camActive;
     

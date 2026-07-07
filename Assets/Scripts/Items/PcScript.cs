@@ -6,20 +6,26 @@ public class PcScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] public bool debug;
-    [SerializeField] public Transform posCam;
-    [SerializeField] public GameObject player;
-    [SerializeField] public GameObject playerCamera;
+
     [SerializeField] private CanvasGroup uiElement;
+
     [SerializeField] private GameObject pcScreen ;
+    [SerializeField] private GameObject player ;
+
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Camera pcCamera;
 
     public PlayerAction controls;
     public bool OnPC = false;
     public bool ExecutableCamera = false;
+
     void Awake()
     {
         controls = InputManager.controls;
         uiElement.alpha = 0;
         pcScreen.SetActive(false);
+
+        pcCamera.enabled = false;
     }
 
     // Update is called once per frame
@@ -49,10 +55,10 @@ public class PcScript : MonoBehaviour
 
         Rigidbody rigidbody = player.GetComponent<Rigidbody>();
 
-        rigidbody.position = posCam.position;
-        playerCamera.transform.rotation = posCam.rotation;
-        OnPC = true;
+        playerCamera.enabled = !playerCamera.enabled;
+        pcCamera.enabled = !pcCamera.enabled;
 
+        OnPC = true;
     }
     void DesactivatePC()
     {
@@ -63,16 +69,38 @@ public class PcScript : MonoBehaviour
         OnPC = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        playerCamera.enabled = !playerCamera.enabled;
+        pcCamera.enabled = !pcCamera.enabled;
     }
 
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.control.name == "a")
+            CamerasScript.instance.PreviousCamera();
+        else if (context.control.name == "d")
+            CamerasScript.instance.NextCamera();
+    }
     public void ActivateExe()
     {
         uiElement.alpha = 1;
         pcScreen.SetActive(true);
+
+        CamerasScript.instance.SetCameraViewActive(true);
     }
     public void DeactivateExe()
     {
         uiElement.alpha = 0;
         pcScreen.SetActive(false);
+        CamerasScript.instance.SetCameraViewActive(false);
+    }
+
+    private void OnEnable()
+    {
+        controls.PcInteract.SwitchCamera.performed += OnInteract;
+    }
+    private void OnDisable()
+    {
+        controls.PcInteract.SwitchCamera.performed -= OnInteract;
     }
 }
