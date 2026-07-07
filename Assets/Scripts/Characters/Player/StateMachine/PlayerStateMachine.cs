@@ -26,6 +26,7 @@ public class PlayerStateMachine : MonoBehaviour
     [Space(5)]
 
     [Header("Sprint Settings")]
+    [SerializeField] private Material optiqueMaterial;
     public float walkSpeed = 5f;
     public float sprintingMultiplier = 1.4f;
     public float crouchMultiplier = 0.6f;
@@ -212,6 +213,10 @@ public class PlayerStateMachine : MonoBehaviour
         {
             staminaLeft = maxStamina;
         }
+
+        float optiqueIntensite = (1 - (staminaLeft / maxStamina)) * 3.0f;
+        optiqueMaterial.SetFloat("_Stamina", optiqueIntensite);
+
         UpdateSprintUI();
     }
 

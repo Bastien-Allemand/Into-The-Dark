@@ -8,6 +8,9 @@ public class InsaneMeterScript : MonoBehaviour
     [SerializeField] private float maxInsaneMeter = 100f;
     [SerializeField] private float initalInsaneMeterWidth = 0f;
 
+    [SerializeField] private Material crazyShader;
+    [SerializeField] private Material optiqueShader;
+
     [SerializeField] private RectTransform insaneBarTransform;
 
     public Camera visionCam;
@@ -58,6 +61,7 @@ public class InsaneMeterScript : MonoBehaviour
         UpdateInsanity(target);
         CheckUsePill();
         UpdateBarUI();
+        UpdateCrazyShader();
     }
 
     void UpdateInsanity(GameObject _target)
@@ -142,5 +146,15 @@ public class InsaneMeterScript : MonoBehaviour
         if (insaneBarTransform == null) return;
         float percentLeft = insaneMeter / 100;
         insaneBarTransform.sizeDelta = new Vector2(initalInsaneMeterWidth * percentLeft, insaneBarTransform.rect.height);
+    }
+
+    void UpdateCrazyShader()
+    {
+        float crazyIntensiteShader = insaneMeter / maxInsaneMeter * 0.04f;
+        float distortionIntensiteShader = insaneMeter / maxInsaneMeter * 0.06f;
+        float optiqueIntensiteShader = insaneMeter / maxInsaneMeter * 3.0f;
+        crazyShader.SetFloat("_FolieIntensite", crazyIntensiteShader);
+        crazyShader.SetFloat("_DistorsionIntensite", distortionIntensiteShader);
+        optiqueShader.SetFloat("_Folie", optiqueIntensiteShader);
     }
 }

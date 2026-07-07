@@ -63,7 +63,7 @@ public class SpeedVisualEffect : MonoBehaviour
         {
             float currentBlur = _currentWeight * maxBlurIntensity;
             if (currentBlur < 0.0005f) currentBlur = 0f;
-            runMaterial.SetFloat(BlurIntensityID, currentBlur);
+            runMaterial.SetFloat(BlurIntensityID, currentBlur);            
         }
     }
 }
