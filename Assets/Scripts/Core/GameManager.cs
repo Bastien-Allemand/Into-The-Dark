@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private string nextSceneName = "NextSceneHistoire";
 
     [Header("Glitch Effect Settings")]
-    //[SerializeField] private float glitchTriggerTime = 0.5f;
-    //[SerializeField] private float minBlinkDelay = 0.05f;
-    //[SerializeField] private float maxBlinkDelay = 0.25f;
+    [SerializeField] private float glitchTriggerTime = 0.5f;
+    [SerializeField] private float minBlinkDelay = 0.05f;
+    [SerializeField] private float maxBlinkDelay = 0.25f;
 
     [Header("Timer Polish Settings")]
     [SerializeField] private float startBlinkingAt = 10f;

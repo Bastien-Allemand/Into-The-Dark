@@ -1,34 +1,6 @@
-using Assets.Scripts.Items;
 using System;
 using UnityEngine;
 
-
-[System.Serializable]
-public class CrouchSettings
-{
-    public float standHeight;
-    public float standCenterY;
-    public float crouchHeight;
-    public float crouchCenterY;
-    public float ceilingCheckDistance;
-    public bool isCeilingAbove;
-}
-[System.Serializable]
-public class MoveSettings
-{
-    public float walkSpeed;
-    public float sprintingMultiplier;
-    public float crouchMultiplier;
-}
-[System.Serializable]
-public class StaminaSettings
-{
-    public float staminaLeft;
-    public float staminaTimer;
-    public float maxStamina;
-    public float staminaRegenDelay;
-    public bool isOutOfStamina;
-}
 public class PlayerStateMachine : MonoBehaviour
 {
     [SerializeField] public bool debug = false;
@@ -40,16 +12,19 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerWalkState WalkState { get; private set; }
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
-    public PlayerOnPhoneState OnPhoneState { get; private set; }
+
     public deathCause LastDeathCause { get; set; }
 
-
+    public PlayerOnPhoneState OnPhoneState { get; private set; }
 
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private RectTransform sprintBarTransform;
+    [SerializeField] private PhoneScript phoneScript;
 
     [Space(5)]
+
     [Header("Sprint Settings")]
     [SerializeField] private Material optiqueMaterial;
     public float walkSpeed = 5f;
@@ -57,35 +32,40 @@ public class PlayerStateMachine : MonoBehaviour
     public float crouchMultiplier = 0.6f;
     public float staminaLeft = 5f;
     public float staminaTimer = 0f;
-    [SerializeField] private MoveSettings moveSettings;
-    public MoveSettings moveConfigs => moveSettings;
-
     public float currentSpeed;
+    public bool isOutOfStamina = false;
 
     [Space(5)]
-    [Header("Stamina Settings")]
-    [SerializeField] private StaminaSettings staminaSettings;
-    public StaminaSettings staminaConfigs => staminaSettings;
 
-
-    [Space(5)]
     [Header("Crouch Settings")]
-    [SerializeField] private CrouchSettings crouchSettings;
-    public CrouchSettings crouchConfigs => crouchSettings;
-
-    [Space(5)]
+    public float standHeight = 2f;
+    public float standCenterY = 0f;
+    public float crouchHeight = 1.2f;
+    public float crouchCenterY = -0.2f;
+    public float ceilingCheckDistance = .6f;
+    [SerializeField] public bool isCeilingAbove = false;
 
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Vector3 ceilingCheckSize = new Vector3(0.6f, 2f, 0.6f);
+
 
     public Vector2 moveInput;
+
+    private float maxStamina = 5f;
+    private float staminaRegenDelay = 1.5f;
+    private float sprintBarInitialWidth;
+
+    public event Action<bool> OnSprintStatusChanged;
+    public event Action<bool> OnExhaustionChanged;
+    private bool previousExhaustionState = false;
 
     void Awake()
     {
         controls = InputManager.controls;
 
-        //        controls = new PlayerAction();
+//        controls = new PlayerAction();
 
-        IdleState = new PlayerIdleState(this, rb, transform);
+        IdleState = new PlayerIdleState(this, rb);
         WalkState = new PlayerWalkState(this, rb, transform);
         SprintState = new PlayerSprintState(this, rb, transform);
         CrouchState = new PlayerCrouchState(this, rb, transform, playerCollider);
@@ -94,37 +74,29 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         currentState = IdleState;
-
-        moveSettings.walkSpeed = 5f;
-        moveSettings.sprintingMultiplier = 1.4f;
-        moveSettings.crouchMultiplier = 0.6f;
-        currentSpeed = moveSettings.walkSpeed;
-
-        staminaSettings.staminaRegenDelay = 1.5f;
-        staminaSettings.staminaLeft = staminaSettings.maxStamina;
-        staminaSettings.staminaTimer = 0f;
-        staminaSettings.isOutOfStamina = false;
-
-        crouchSettings.standHeight = 2f;
-        crouchSettings.standCenterY = 0f;
-        crouchSettings.crouchHeight = 1.2f;
-        crouchSettings.crouchHeight = -0.2f;
-        crouchSettings.ceilingCheckDistance = 0.6f;
+        sprintBarInitialWidth = sprintBarTransform.rect.width;
     }
+
+    //private void OnEnable() => controls.Enable();
+    //private void OnDisable() => controls.Disable();
 
     void Update()
     {
-        moveInput = InputManager.controls.GamePlay.Movement.ReadValue<Vector2>();
-
-        if (currentState != SprintState)
+        CheckIsCeilingAbove();
+        HandleStamina();
+        CheckState();
+        if (isOutOfStamina != previousExhaustionState)
         {
-            RegenStamina();
+            OnExhaustionChanged?.Invoke(isOutOfStamina);
+            previousExhaustionState = isOutOfStamina;
         }
-
-        currentState?.Update();
+        if (currentState != null)
+        {
+            currentState.Update();
+        }
     }
 
-    public void ChangeState(IState newState)
+    void ChangeState(IState newState)
     {
         if (newState == null || currentState.GetType() == newState.GetType())
         {
@@ -139,36 +111,107 @@ public class PlayerStateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
-    //    Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
-    //}
-
-    
-
-    void RegenStamina()
+    void CheckState()
     {
-        if (staminaSettings.isOutOfStamina == true && staminaSettings.staminaLeft > 3f)
+       
+         
+
+        moveInput = controls.GamePlay.Move.ReadValue<Vector2>();
+        bool sprintInput = controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
+        bool crouchInput = controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
+        bool isMoving = moveInput != Vector2.zero;
+
+
+        if (phoneScript.IsLookingCamera == true)
         {
-            staminaSettings.isOutOfStamina = false;
+            if (isMoving)
+            {
+                moveInput = new Vector2(0, 0);
+            }
+            return;
         }
 
-        if (staminaSettings.staminaLeft < staminaSettings.maxStamina)
+        if (isMoving == false)
+        {
+            if (crouchInput == true || isCeilingAbove == true)
+            {
+                ChangeState(CrouchState);
+            }
+            else if (isCeilingAbove == false)
+            {
+                ChangeState(IdleState);
+            }
+                
+            
+        }
+        else if (crouchInput == true)
+        {
+            ChangeState(CrouchState);
+        }
+        else if (sprintInput == true && isOutOfStamina == false)
+        {
+            ChangeState(SprintState);
+        }
+        else if (crouchInput == false && sprintInput == false)
+        {
+            if (isCeilingAbove == true)
+            {
+                ChangeState(CrouchState);
+                return;
+            }
+
+            ChangeState(WalkState);
+            
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+        Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
+    }
+    void CheckIsCeilingAbove()
+    {
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z);
+        Color rayColor = Color.green;
+        float castLength = ceilingCheckDistance;
+
+        
+        if (Physics.BoxCast(origin, ceilingCheckSize * .75f, Vector3.up, Quaternion.identity, castLength, layerMask))
+        {
+            isCeilingAbove = true;
+            rayColor = Color.red;
+        }
+        else
+        {
+            isCeilingAbove = false;
+        }
+
+        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
+    }
+
+    void HandleStamina()
+    {
+        if (isOutOfStamina == true && staminaLeft > 3f)
+        {
+            isOutOfStamina = false;
+        }
+
+        if (staminaLeft < maxStamina)
         {
 
-            if (staminaSettings.staminaTimer < staminaSettings.staminaRegenDelay)
+            if (staminaTimer < staminaRegenDelay)
             {
-                staminaSettings.staminaTimer += Time.deltaTime;
+                staminaTimer += Time.deltaTime;
             }
             else
             {
-                staminaSettings.staminaLeft += (Time.deltaTime * 0.75f);
+                staminaLeft += (Time.deltaTime * 0.75f);
             }
         }
         else
         {
-            staminaSettings.staminaLeft = staminaSettings.maxStamina;
+            staminaLeft = maxStamina;
         }
 
         float optiqueIntensite = (1 - (staminaLeft / maxStamina)) * 3.0f;
@@ -177,16 +220,16 @@ public class PlayerStateMachine : MonoBehaviour
         UpdateSprintUI();
     }
 
-   public float StaminaRatio
-   {
-        get
-        {
-            if (staminaConfigs == null || staminaConfigs.staminaLeft <= 0) return 0f;
-            return staminaConfigs.staminaLeft / staminaConfigs.maxStamina;
-        }
+    void UpdateSprintUI()
+    {
+        if (sprintBarTransform == null) return;
+
+        float percentLeft = staminaLeft / maxStamina;
+        sprintBarTransform.sizeDelta = new Vector2(sprintBarInitialWidth * percentLeft, sprintBarTransform.rect.height);
     }
 
+    public void NotifySprintStatus(bool isSprinting)
+    {
+        OnSprintStatusChanged?.Invoke(isSprinting);
+    }
 }
-
-    
-
