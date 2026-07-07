@@ -11,8 +11,8 @@ public class ItemScript : MonoBehaviour
     public float timer = 0f;
 
     public bool usingEnergy = false;
-    public float energy = 100f;
-    public float maxEnergy = 100f;
+    public float energy = 200f;
+    public float maxEnergy = 200f;
     public bool rechargable = false; 
 
     [SerializeField] private BatteryScript batteryScript;
@@ -49,13 +49,13 @@ public class ItemScript : MonoBehaviour
         if (usingEnergy)
         {
             energy -= Time.deltaTime;
-            if(batteryScript != null)
-            {
-                batteryScript.SetBattery(energy);
-            }
             if(energy <= 0f)
             { 
                 energy = 0f; 
+            }
+            if(batteryScript != null)
+            {
+                batteryScript.SetBattery(energy);
             }
         }
 

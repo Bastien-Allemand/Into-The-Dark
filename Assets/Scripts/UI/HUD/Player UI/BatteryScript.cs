@@ -21,9 +21,4 @@ public class BatteryScript : MonoBehaviour
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
-
-    void Update()
-    {
-        
-    }
 }
