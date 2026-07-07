@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PcScript : MonoBehaviour
@@ -31,6 +33,9 @@ public class PcScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+      
+
         if (debug)
         {
             if (!OnPC && Input.GetKeyDown(KeyCode.T))
@@ -40,6 +45,7 @@ public class PcScript : MonoBehaviour
         }
         if (!OnPC)
             return;
+
         if (!ExecutableCamera)
             return;
 
@@ -59,6 +65,7 @@ public class PcScript : MonoBehaviour
         pcCamera.enabled = !pcCamera.enabled;
 
         OnPC = true;
+
     }
     void DesactivatePC()
     {
