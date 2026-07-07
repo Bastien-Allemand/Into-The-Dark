@@ -89,13 +89,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     ""name"": ""PlayerAction"",
     ""maps"": [
         {
-            ""name"": ""GamePlay"",
-            ""id"": ""08ef6b46-bb37-4e74-9104-d15d73e47607"",
+            ""name"": ""GeneriqueMove"",
+            ""id"": ""0c5f92c8-5b5a-4e35-902e-5fb7200906e2"",
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Value"",
-                    ""id"": ""0d6e5aa3-4e69-4a6a-bb98-a2b1d53367fd"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ea8f47fa-553e-45ce-8438-aaee43d0f776"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -103,135 +103,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""9591ac03-025b-41ad-b4cf-fd2e23ec4e1d"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""48681376-2900-4972-8797-d3c9a88bcb70"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""172a376b-c426-4a78-aab5-b11de9057fc7"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""4c840e99-7040-4dd6-98c2-bd42387faf1e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Throw Left Object"",
-                    ""type"": ""Button"",
-                    ""id"": ""46e06337-fbb6-45ea-a537-efbdb8f54776"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Throw Right Object"",
-                    ""type"": ""Button"",
-                    ""id"": ""224cdb9a-9b7b-4405-866b-186fbdf8a7ae"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Take/Hide Phone"",
-                    ""type"": ""Button"",
-                    ""id"": ""e3d6de0d-83bd-4fdb-9067-0e9ebe57ce3f"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Look at camera"",
-                    ""type"": ""Button"",
-                    ""id"": ""eb2ee36f-a99d-4279-aae3-ff8ba78917b3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Swap between camera's"",
-                    ""type"": ""Button"",
-                    ""id"": ""29fec897-ceb2-45a6-bed3-ccc43f59cdea"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Take/Place object"",
-                    ""type"": ""Button"",
-                    ""id"": ""122c932c-812c-42c4-8cb3-e5062f1e1e0e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Enter/Leave Edit Mode"",
-                    ""type"": ""Button"",
-                    ""id"": ""ee5e32c2-76c0-4eef-b9df-9831dce24511"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Inventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""59efa6d3-c0a2-44f3-aec4-773eed325010"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Consume"",
-                    ""type"": ""Button"",
-                    ""id"": ""7dc2c038-1fc4-43d2-87aa-c1d5908a0c54"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ActiveFlashlight"",
-                    ""type"": ""Button"",
-                    ""id"": ""8bb2fd72-9e6d-4dc8-8d49-e538c1fc7b93"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""abd364d8-be28-46f5-821e-541c81e69629"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""Foward Backwards Left Right"",
-                    ""id"": ""6bff145a-4b72-413e-8f47-89d495fc2bdb"",
+                    ""id"": ""e10cf922-6580-42dd-8eb0-6a4886d0ebd9"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -242,7 +125,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""2e44424c-9809-449a-ab66-27cb0ef024c3"",
+                    ""id"": ""ed1aaf74-7c51-4127-845a-287f5e179886"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -253,7 +136,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""c32598ec-259f-4a05-bda5-17c2936f0d57"",
+                    ""id"": ""2805555b-b5bc-441b-9848-31d5e74d189c"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -264,7 +147,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""064facaa-4706-486b-b4de-bde671d8d082"",
+                    ""id"": ""56f201bb-d03b-406e-9a16-61a8952f9faa"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -275,7 +158,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""3652d75e-4f8d-4fdb-a19c-4e136e071db6"",
+                    ""id"": ""fc969138-142d-4963-9036-ab0121a51d13"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -286,7 +169,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""faca18ea-585e-4a1f-bd8b-ef2f8bb57700"",
+                    ""id"": ""5070c309-1c7c-4b73-97c7-1b7814122e1e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c369d153-05f8-4c44-a13c-a0063997e7f8"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -297,7 +191,44 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""752b3517-8905-4c6b-9b5c-d4218941f3b1"",
+                    ""id"": ""0b8aeab6-64e6-47da-a28b-37d5cffb07ff"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerUniqueMove"",
+            ""id"": ""00bd8fe3-1d4e-433e-a469-cb66d23e342d"",
+            ""actions"": [
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""535d0ee4-ce64-4dae-8ab9-28d93fe31ef1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd454d0e-a904-40ab-bbce-d073726fcf8f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""47d183b9-888e-41ce-aee2-921cedb3274d"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -308,7 +239,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a1b0cfd5-34e7-40cb-90d9-89dcd9e7381e"",
+                    ""id"": ""4137adad-3517-4a40-89a5-f0411f6b3070"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f7fc68e-3088-4745-8d09-dfbc987ad4ea"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -318,52 +260,75 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Left Hand"",
-                    ""id"": ""7f8b217f-7c9f-413a-aaff-3935ddb3df68"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""47b622a5-b87a-4d2a-8984-5056d295ebd1"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Throw Left Object"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""73203056-ecee-4396-b0c4-5d5295c09f76"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throw Left Object"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""DroneUniqueMove"",
+            ""id"": ""891f361f-4b6c-48b7-917d-f319f140ccdc"",
+            ""actions"": [
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c8cd165-fcd2-4f07-8cf3-f31b5c28040a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4cb52f20-7723-475c-8a81-7e547e7c4d3f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ed6c6879-8f44-4647-8f51-6832cc9f12ab"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""3a62a5ec-686f-4412-b949-cf25eed90524"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Take/Hide Phone"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""CameraUnique"",
+            ""id"": ""67a4970d-43a8-4b6a-b04b-df4ea6b8d694"",
+            ""actions"": [
                 {
-                    ""name"": """",
-                    ""id"": ""bdb7fb9a-3304-4321-8881-b2e994b33fda"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
+                    ""name"": ""Swap between camera's"",
+                    ""type"": ""Button"",
+                    ""id"": ""432282db-7f5d-4165-bc22-9d5dc4b9ade7"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look at camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
-                    ""name"": ""Axis"",
-                    ""id"": ""27b1dcc9-db5d-4825-b3a0-1107762d9200"",
+                    ""name"": ""Axis_keybind"",
+                    ""id"": ""1ac653a4-cf63-4d33-b78d-3a0a0726e8d0"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -374,7 +339,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Negative"",
-                    ""id"": ""f6914630-6d49-48c2-9a4f-bca8e956d512"",
+                    ""id"": ""2a372a11-d497-4d26-a2a8-a64b7c4511ea"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -385,7 +350,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Positive"",
-                    ""id"": ""876776df-fc8f-4569-852d-4abd0621000c"",
+                    ""id"": ""544abf47-789f-4564-a9d8-d79e81fc9401"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -395,30 +360,447 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Axis_manette"",
+                    ""id"": ""cde3070b-a14c-462e-a09c-9a0940922548"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap between camera's"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""4dc05fb8-5ee8-4c5e-ae34-e6e3ec271700"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap between camera's"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""f0f15cf5-e01c-4837-9de3-6f078d06537c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap between camera's"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""3bb53fdc-b26b-4669-bd18-8c4215d7980e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap between camera's"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""11c4329d-209d-421d-b0e1-ca3f7778fb7e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap between camera's"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerInteraction"",
+            ""id"": ""813521d8-9aed-4f5b-bd1b-e0f54008a665"",
+            ""actions"": [
+                {
+                    ""name"": ""Throw Left Object"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8c45ef0-4fca-475c-8ab5-d43cca135c66"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw Right Object"",
+                    ""type"": ""Button"",
+                    ""id"": ""6262596b-786d-417d-99c1-2b2863b79cf3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Take/Use Left object"",
+                    ""type"": ""Button"",
+                    ""id"": ""5435d23e-4d78-4d59-855d-d71a7141b2f4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Take/Use Right object"",
+                    ""type"": ""Button"",
+                    ""id"": ""17379f1d-7c10-49c7-ab18-579142ff5245"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Take/Hide Phone"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1a0ad26-3c6e-48a0-a8f9-a3296efbbba2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look at camera"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbc2e98c-0ab3-44b8-ad14-045ced6405ad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1934311-ef4e-4383-85e1-80ad51e6a797"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Consume"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f54f36d-d8b2-489b-8e1f-694b5b61edd1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""4faca098-1917-4c6b-a8cd-2d8da5958ba6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter/Leave Edit Mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""1655fed8-614f-4617-b69e-1185c7ba81ea"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""5ba8a7f6-81bf-4253-a1dc-a82eee6a57a9"",
+                    ""id"": ""a583c825-e181-4a83-a0b9-3181177df1c2"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Left Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""bbe484a0-21e8-4733-b731-b6148da42d87"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Left Object"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""30923b29-f8ab-48ab-9e56-23a86bbcb97a"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Left Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""9e77f128-a78d-4d4e-9fa8-6c5cb31068cf"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Left Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d144e03-8dc8-4710-a16b-a28f91a891b8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Right Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""c52d5dbb-4019-46eb-8564-96dd2c63c084"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Right Object"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""2186953e-226e-4f44-8792-4ace1051482f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Right Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""df53c888-591e-438f-a99c-e51273936045"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Right Object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2342b222-fabb-4801-adc2-cd22069fd105"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take/Hide Phone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71bb9dba-ee4e-4281-b86b-b4a1c7ea2722"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take/Hide Phone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""399bcf92-9c7f-4fa7-8f50-c41553065269"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look at camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27d5a6bf-20f3-45eb-8821-91af69dbd879"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look at camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60098bdb-f7e3-4d54-a93c-37a410c044ef"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Take/Place object"",
+                    ""action"": ""Take/Use Left object"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cebd6856-c5a9-45c7-8d3a-490f8357bf2f"",
+                    ""id"": ""2d2bcda9-33da-4a9f-8291-8f703c209702"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take/Use Left object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4a0d962-7aba-45f1-9acb-c67ad9ddb9cd"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Take/Place object"",
+                    ""action"": ""Take/Use Right object"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a06ca871-3bc4-41d4-9bbe-f1c29960148e"",
+                    ""id"": ""3be814ab-7ba3-4a26-9597-877e60ece7a2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take/Use Right object"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""a558135c-dfac-49c5-ba6b-6b84eb92705d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b6d08f8c-8bf9-4756-9f22-162981f16b93"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b642af0c-9d40-4d08-afbf-533ca4084ef0"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f2eccdb7-8700-436f-8fd4-7c44c3aeb43f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""4b9100ea-732a-4931-b06e-be1eb3d42732"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""53b02f26-c639-4481-9c01-168236b24638"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2121ade4-bdd5-4ef8-a59f-b4676d73c7cb"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Consume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9756029d-6131-481e-94ba-af6a96615133"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Consume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""569adc1a-7dbc-4df6-9d08-92912d3e1def"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9e3f4a5-8f95-42a5-b776-cd7a3cae6701"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1a45a2f-403a-498c-b0aa-e92f415c4a87"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -429,78 +811,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""356e9e36-994c-4b58-9aae-ae975ed44b08"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""id"": ""e3f1599f-136b-4b30-b5dc-3d8289fd6462"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Consume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Right Hand"",
-                    ""id"": ""82522d6a-773b-4bf0-96cb-b3bafa5a5641"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throw Right Object"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""22d4ed16-69a4-44ee-9b81-cbd34e5fbae3"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throw Right Object"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e4ff079f-77c1-446b-8e0e-6b21da8cb167"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ActiveFlashlight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""04db4062-3a16-4215-8136-aac5efebebcf"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""abc8f3a1-c97a-4f89-b0f7-bf4d35ca584c"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e9e2aa4d-e982-4300-8f12-cede9fcf687d"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Enter/Leave Edit Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -531,29 +847,49 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dd02cef-e6c9-4ad9-bf85-1f521a5e3e38"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // GamePlay
-        m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
-        m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
-        m_GamePlay_Look = m_GamePlay.FindAction("Look", throwIfNotFound: true);
-        m_GamePlay_Crouch = m_GamePlay.FindAction("Crouch", throwIfNotFound: true);
-        m_GamePlay_Sprint = m_GamePlay.FindAction("Sprint", throwIfNotFound: true);
-        m_GamePlay_ThrowLeftObject = m_GamePlay.FindAction("Throw Left Object", throwIfNotFound: true);
-        m_GamePlay_ThrowRightObject = m_GamePlay.FindAction("Throw Right Object", throwIfNotFound: true);
-        m_GamePlay_TakeHidePhone = m_GamePlay.FindAction("Take/Hide Phone", throwIfNotFound: true);
-        m_GamePlay_Lookatcamera = m_GamePlay.FindAction("Look at camera", throwIfNotFound: true);
-        m_GamePlay_Swapbetweencameras = m_GamePlay.FindAction("Swap between camera's", throwIfNotFound: true);
-        m_GamePlay_TakePlaceobject = m_GamePlay.FindAction("Take/Place object", throwIfNotFound: true);
-        m_GamePlay_EnterLeaveEditMode = m_GamePlay.FindAction("Enter/Leave Edit Mode", throwIfNotFound: true);
-        m_GamePlay_Inventory = m_GamePlay.FindAction("Inventory", throwIfNotFound: true);
-        m_GamePlay_Consume = m_GamePlay.FindAction("Consume", throwIfNotFound: true);
-        m_GamePlay_ActiveFlashlight = m_GamePlay.FindAction("ActiveFlashlight", throwIfNotFound: true);
-        m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
+        // GeneriqueMove
+        m_GeneriqueMove = asset.FindActionMap("GeneriqueMove", throwIfNotFound: true);
+        m_GeneriqueMove_Movement = m_GeneriqueMove.FindAction("Movement", throwIfNotFound: true);
+        m_GeneriqueMove_Look = m_GeneriqueMove.FindAction("Look", throwIfNotFound: true);
+        // PlayerUniqueMove
+        m_PlayerUniqueMove = asset.FindActionMap("PlayerUniqueMove", throwIfNotFound: true);
+        m_PlayerUniqueMove_Sprint = m_PlayerUniqueMove.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerUniqueMove_Crouch = m_PlayerUniqueMove.FindAction("Crouch", throwIfNotFound: true);
+        // DroneUniqueMove
+        m_DroneUniqueMove = asset.FindActionMap("DroneUniqueMove", throwIfNotFound: true);
+        m_DroneUniqueMove_Jump = m_DroneUniqueMove.FindAction("Jump", throwIfNotFound: true);
+        // CameraUnique
+        m_CameraUnique = asset.FindActionMap("CameraUnique", throwIfNotFound: true);
+        m_CameraUnique_Swapbetweencameras = m_CameraUnique.FindAction("Swap between camera's", throwIfNotFound: true);
+        // PlayerInteraction
+        m_PlayerInteraction = asset.FindActionMap("PlayerInteraction", throwIfNotFound: true);
+        m_PlayerInteraction_ThrowLeftObject = m_PlayerInteraction.FindAction("Throw Left Object", throwIfNotFound: true);
+        m_PlayerInteraction_ThrowRightObject = m_PlayerInteraction.FindAction("Throw Right Object", throwIfNotFound: true);
+        m_PlayerInteraction_TakeUseLeftobject = m_PlayerInteraction.FindAction("Take/Use Left object", throwIfNotFound: true);
+        m_PlayerInteraction_TakeUseRightobject = m_PlayerInteraction.FindAction("Take/Use Right object", throwIfNotFound: true);
+        m_PlayerInteraction_TakeHidePhone = m_PlayerInteraction.FindAction("Take/Hide Phone", throwIfNotFound: true);
+        m_PlayerInteraction_Lookatcamera = m_PlayerInteraction.FindAction("Look at camera", throwIfNotFound: true);
+        m_PlayerInteraction_Inventory = m_PlayerInteraction.FindAction("Inventory", throwIfNotFound: true);
+        m_PlayerInteraction_Consume = m_PlayerInteraction.FindAction("Consume", throwIfNotFound: true);
+        m_PlayerInteraction_Interact = m_PlayerInteraction.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerInteraction_EnterLeaveEditMode = m_PlayerInteraction.FindAction("Enter/Leave Edit Mode", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
@@ -561,7 +897,11 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
 
     ~@PlayerAction()
     {
-        UnityEngine.Debug.Assert(!m_GamePlay.enabled, "This will cause a leak and performance issues, PlayerAction.GamePlay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_GeneriqueMove.enabled, "This will cause a leak and performance issues, PlayerAction.GeneriqueMove.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerUniqueMove.enabled, "This will cause a leak and performance issues, PlayerAction.PlayerUniqueMove.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DroneUniqueMove.enabled, "This will cause a leak and performance issues, PlayerAction.DroneUniqueMove.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CameraUnique.enabled, "This will cause a leak and performance issues, PlayerAction.CameraUnique.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerInteraction.enabled, "This will cause a leak and performance issues, PlayerAction.PlayerInteraction.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerAction.Menu.Disable() has not been called.");
     }
 
@@ -635,99 +975,34 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // GamePlay
-    private readonly InputActionMap m_GamePlay;
-    private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
-    private readonly InputAction m_GamePlay_Movement;
-    private readonly InputAction m_GamePlay_Look;
-    private readonly InputAction m_GamePlay_Crouch;
-    private readonly InputAction m_GamePlay_Sprint;
-    private readonly InputAction m_GamePlay_ThrowLeftObject;
-    private readonly InputAction m_GamePlay_ThrowRightObject;
-    private readonly InputAction m_GamePlay_TakeHidePhone;
-    private readonly InputAction m_GamePlay_Lookatcamera;
-    private readonly InputAction m_GamePlay_Swapbetweencameras;
-    private readonly InputAction m_GamePlay_TakePlaceobject;
-    private readonly InputAction m_GamePlay_EnterLeaveEditMode;
-    private readonly InputAction m_GamePlay_Inventory;
-    private readonly InputAction m_GamePlay_Consume;
-    private readonly InputAction m_GamePlay_ActiveFlashlight;
-    private readonly InputAction m_GamePlay_Interact;
+    // GeneriqueMove
+    private readonly InputActionMap m_GeneriqueMove;
+    private List<IGeneriqueMoveActions> m_GeneriqueMoveActionsCallbackInterfaces = new List<IGeneriqueMoveActions>();
+    private readonly InputAction m_GeneriqueMove_Movement;
+    private readonly InputAction m_GeneriqueMove_Look;
     /// <summary>
-    /// Provides access to input actions defined in input action map "GamePlay".
+    /// Provides access to input actions defined in input action map "GeneriqueMove".
     /// </summary>
-    public struct GamePlayActions
+    public struct GeneriqueMoveActions
     {
         private @PlayerAction m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public GamePlayActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        public GeneriqueMoveActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Movement".
+        /// Provides access to the underlying input action "GeneriqueMove/Movement".
         /// </summary>
-        public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
+        public InputAction @Movement => m_Wrapper.m_GeneriqueMove_Movement;
         /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Look".
+        /// Provides access to the underlying input action "GeneriqueMove/Look".
         /// </summary>
-        public InputAction @Look => m_Wrapper.m_GamePlay_Look;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Crouch".
-        /// </summary>
-        public InputAction @Crouch => m_Wrapper.m_GamePlay_Crouch;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Sprint".
-        /// </summary>
-        public InputAction @Sprint => m_Wrapper.m_GamePlay_Sprint;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/ThrowLeftObject".
-        /// </summary>
-        public InputAction @ThrowLeftObject => m_Wrapper.m_GamePlay_ThrowLeftObject;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/ThrowRightObject".
-        /// </summary>
-        public InputAction @ThrowRightObject => m_Wrapper.m_GamePlay_ThrowRightObject;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/TakeHidePhone".
-        /// </summary>
-        public InputAction @TakeHidePhone => m_Wrapper.m_GamePlay_TakeHidePhone;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Lookatcamera".
-        /// </summary>
-        public InputAction @Lookatcamera => m_Wrapper.m_GamePlay_Lookatcamera;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Swapbetweencameras".
-        /// </summary>
-        public InputAction @Swapbetweencameras => m_Wrapper.m_GamePlay_Swapbetweencameras;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/TakePlaceobject".
-        /// </summary>
-        public InputAction @TakePlaceobject => m_Wrapper.m_GamePlay_TakePlaceobject;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/EnterLeaveEditMode".
-        /// </summary>
-        public InputAction @EnterLeaveEditMode => m_Wrapper.m_GamePlay_EnterLeaveEditMode;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Inventory".
-        /// </summary>
-        public InputAction @Inventory => m_Wrapper.m_GamePlay_Inventory;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Consume".
-        /// </summary>
-        public InputAction @Consume => m_Wrapper.m_GamePlay_Consume;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/ActiveFlashlight".
-        /// </summary>
-        public InputAction @ActiveFlashlight => m_Wrapper.m_GamePlay_ActiveFlashlight;
-        /// <summary>
-        /// Provides access to the underlying input action "GamePlay/Interact".
-        /// </summary>
-        public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
+        public InputAction @Look => m_Wrapper.m_GeneriqueMove_Look;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
+        public InputActionMap Get() { return m_Wrapper.m_GeneriqueMove; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -735,9 +1010,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="GamePlayActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="GeneriqueMoveActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(GamePlayActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(GeneriqueMoveActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -745,56 +1020,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="GamePlayActions" />
-        public void AddCallbacks(IGamePlayActions instance)
+        /// <seealso cref="GeneriqueMoveActions" />
+        public void AddCallbacks(IGeneriqueMoveActions instance)
         {
-            if (instance == null || m_Wrapper.m_GamePlayActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GamePlayActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GeneriqueMoveActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GeneriqueMoveActionsCallbackInterfaces.Add(instance);
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
-            @Sprint.started += instance.OnSprint;
-            @Sprint.performed += instance.OnSprint;
-            @Sprint.canceled += instance.OnSprint;
-            @ThrowLeftObject.started += instance.OnThrowLeftObject;
-            @ThrowLeftObject.performed += instance.OnThrowLeftObject;
-            @ThrowLeftObject.canceled += instance.OnThrowLeftObject;
-            @ThrowRightObject.started += instance.OnThrowRightObject;
-            @ThrowRightObject.performed += instance.OnThrowRightObject;
-            @ThrowRightObject.canceled += instance.OnThrowRightObject;
-            @TakeHidePhone.started += instance.OnTakeHidePhone;
-            @TakeHidePhone.performed += instance.OnTakeHidePhone;
-            @TakeHidePhone.canceled += instance.OnTakeHidePhone;
-            @Lookatcamera.started += instance.OnLookatcamera;
-            @Lookatcamera.performed += instance.OnLookatcamera;
-            @Lookatcamera.canceled += instance.OnLookatcamera;
-            @Swapbetweencameras.started += instance.OnSwapbetweencameras;
-            @Swapbetweencameras.performed += instance.OnSwapbetweencameras;
-            @Swapbetweencameras.canceled += instance.OnSwapbetweencameras;
-            @TakePlaceobject.started += instance.OnTakePlaceobject;
-            @TakePlaceobject.performed += instance.OnTakePlaceobject;
-            @TakePlaceobject.canceled += instance.OnTakePlaceobject;
-            @EnterLeaveEditMode.started += instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.performed += instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.canceled += instance.OnEnterLeaveEditMode;
-            @Inventory.started += instance.OnInventory;
-            @Inventory.performed += instance.OnInventory;
-            @Inventory.canceled += instance.OnInventory;
-            @Consume.started += instance.OnConsume;
-            @Consume.performed += instance.OnConsume;
-            @Consume.canceled += instance.OnConsume;
-            @ActiveFlashlight.started += instance.OnActiveFlashlight;
-            @ActiveFlashlight.performed += instance.OnActiveFlashlight;
-            @ActiveFlashlight.canceled += instance.OnActiveFlashlight;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -803,8 +1039,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="GamePlayActions" />
-        private void UnregisterCallbacks(IGamePlayActions instance)
+        /// <seealso cref="GeneriqueMoveActions" />
+        private void UnregisterCallbacks(IGeneriqueMoveActions instance)
         {
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
@@ -812,54 +1048,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
-            @Sprint.started -= instance.OnSprint;
-            @Sprint.performed -= instance.OnSprint;
-            @Sprint.canceled -= instance.OnSprint;
-            @ThrowLeftObject.started -= instance.OnThrowLeftObject;
-            @ThrowLeftObject.performed -= instance.OnThrowLeftObject;
-            @ThrowLeftObject.canceled -= instance.OnThrowLeftObject;
-            @ThrowRightObject.started -= instance.OnThrowRightObject;
-            @ThrowRightObject.performed -= instance.OnThrowRightObject;
-            @ThrowRightObject.canceled -= instance.OnThrowRightObject;
-            @TakeHidePhone.started -= instance.OnTakeHidePhone;
-            @TakeHidePhone.performed -= instance.OnTakeHidePhone;
-            @TakeHidePhone.canceled -= instance.OnTakeHidePhone;
-            @Lookatcamera.started -= instance.OnLookatcamera;
-            @Lookatcamera.performed -= instance.OnLookatcamera;
-            @Lookatcamera.canceled -= instance.OnLookatcamera;
-            @Swapbetweencameras.started -= instance.OnSwapbetweencameras;
-            @Swapbetweencameras.performed -= instance.OnSwapbetweencameras;
-            @Swapbetweencameras.canceled -= instance.OnSwapbetweencameras;
-            @TakePlaceobject.started -= instance.OnTakePlaceobject;
-            @TakePlaceobject.performed -= instance.OnTakePlaceobject;
-            @TakePlaceobject.canceled -= instance.OnTakePlaceobject;
-            @EnterLeaveEditMode.started -= instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.performed -= instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.canceled -= instance.OnEnterLeaveEditMode;
-            @Inventory.started -= instance.OnInventory;
-            @Inventory.performed -= instance.OnInventory;
-            @Inventory.canceled -= instance.OnInventory;
-            @Consume.started -= instance.OnConsume;
-            @Consume.performed -= instance.OnConsume;
-            @Consume.canceled -= instance.OnConsume;
-            @ActiveFlashlight.started -= instance.OnActiveFlashlight;
-            @ActiveFlashlight.performed -= instance.OnActiveFlashlight;
-            @ActiveFlashlight.canceled -= instance.OnActiveFlashlight;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GamePlayActions.UnregisterCallbacks(IGamePlayActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GeneriqueMoveActions.UnregisterCallbacks(IGeneriqueMoveActions)" />.
         /// </summary>
-        /// <seealso cref="GamePlayActions.UnregisterCallbacks(IGamePlayActions)" />
-        public void RemoveCallbacks(IGamePlayActions instance)
+        /// <seealso cref="GeneriqueMoveActions.UnregisterCallbacks(IGeneriqueMoveActions)" />
+        public void RemoveCallbacks(IGeneriqueMoveActions instance)
         {
-            if (m_Wrapper.m_GamePlayActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GeneriqueMoveActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -869,21 +1066,515 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="GamePlayActions.AddCallbacks(IGamePlayActions)" />
-        /// <seealso cref="GamePlayActions.RemoveCallbacks(IGamePlayActions)" />
-        /// <seealso cref="GamePlayActions.UnregisterCallbacks(IGamePlayActions)" />
-        public void SetCallbacks(IGamePlayActions instance)
+        /// <seealso cref="GeneriqueMoveActions.AddCallbacks(IGeneriqueMoveActions)" />
+        /// <seealso cref="GeneriqueMoveActions.RemoveCallbacks(IGeneriqueMoveActions)" />
+        /// <seealso cref="GeneriqueMoveActions.UnregisterCallbacks(IGeneriqueMoveActions)" />
+        public void SetCallbacks(IGeneriqueMoveActions instance)
         {
-            foreach (var item in m_Wrapper.m_GamePlayActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GeneriqueMoveActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_GamePlayActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GeneriqueMoveActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="GamePlayActions" /> instance referencing this action map.
+    /// Provides a new <see cref="GeneriqueMoveActions" /> instance referencing this action map.
     /// </summary>
-    public GamePlayActions @GamePlay => new GamePlayActions(this);
+    public GeneriqueMoveActions @GeneriqueMove => new GeneriqueMoveActions(this);
+
+    // PlayerUniqueMove
+    private readonly InputActionMap m_PlayerUniqueMove;
+    private List<IPlayerUniqueMoveActions> m_PlayerUniqueMoveActionsCallbackInterfaces = new List<IPlayerUniqueMoveActions>();
+    private readonly InputAction m_PlayerUniqueMove_Sprint;
+    private readonly InputAction m_PlayerUniqueMove_Crouch;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PlayerUniqueMove".
+    /// </summary>
+    public struct PlayerUniqueMoveActions
+    {
+        private @PlayerAction m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PlayerUniqueMoveActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerUniqueMove/Sprint".
+        /// </summary>
+        public InputAction @Sprint => m_Wrapper.m_PlayerUniqueMove_Sprint;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerUniqueMove/Crouch".
+        /// </summary>
+        public InputAction @Crouch => m_Wrapper.m_PlayerUniqueMove_Crouch;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PlayerUniqueMove; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PlayerUniqueMoveActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PlayerUniqueMoveActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PlayerUniqueMoveActions" />
+        public void AddCallbacks(IPlayerUniqueMoveActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerUniqueMoveActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerUniqueMoveActionsCallbackInterfaces.Add(instance);
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PlayerUniqueMoveActions" />
+        private void UnregisterCallbacks(IPlayerUniqueMoveActions instance)
+        {
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerUniqueMoveActions.UnregisterCallbacks(IPlayerUniqueMoveActions)" />.
+        /// </summary>
+        /// <seealso cref="PlayerUniqueMoveActions.UnregisterCallbacks(IPlayerUniqueMoveActions)" />
+        public void RemoveCallbacks(IPlayerUniqueMoveActions instance)
+        {
+            if (m_Wrapper.m_PlayerUniqueMoveActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PlayerUniqueMoveActions.AddCallbacks(IPlayerUniqueMoveActions)" />
+        /// <seealso cref="PlayerUniqueMoveActions.RemoveCallbacks(IPlayerUniqueMoveActions)" />
+        /// <seealso cref="PlayerUniqueMoveActions.UnregisterCallbacks(IPlayerUniqueMoveActions)" />
+        public void SetCallbacks(IPlayerUniqueMoveActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerUniqueMoveActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerUniqueMoveActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PlayerUniqueMoveActions" /> instance referencing this action map.
+    /// </summary>
+    public PlayerUniqueMoveActions @PlayerUniqueMove => new PlayerUniqueMoveActions(this);
+
+    // DroneUniqueMove
+    private readonly InputActionMap m_DroneUniqueMove;
+    private List<IDroneUniqueMoveActions> m_DroneUniqueMoveActionsCallbackInterfaces = new List<IDroneUniqueMoveActions>();
+    private readonly InputAction m_DroneUniqueMove_Jump;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "DroneUniqueMove".
+    /// </summary>
+    public struct DroneUniqueMoveActions
+    {
+        private @PlayerAction m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public DroneUniqueMoveActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "DroneUniqueMove/Jump".
+        /// </summary>
+        public InputAction @Jump => m_Wrapper.m_DroneUniqueMove_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_DroneUniqueMove; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="DroneUniqueMoveActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(DroneUniqueMoveActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="DroneUniqueMoveActions" />
+        public void AddCallbacks(IDroneUniqueMoveActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DroneUniqueMoveActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DroneUniqueMoveActionsCallbackInterfaces.Add(instance);
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="DroneUniqueMoveActions" />
+        private void UnregisterCallbacks(IDroneUniqueMoveActions instance)
+        {
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DroneUniqueMoveActions.UnregisterCallbacks(IDroneUniqueMoveActions)" />.
+        /// </summary>
+        /// <seealso cref="DroneUniqueMoveActions.UnregisterCallbacks(IDroneUniqueMoveActions)" />
+        public void RemoveCallbacks(IDroneUniqueMoveActions instance)
+        {
+            if (m_Wrapper.m_DroneUniqueMoveActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="DroneUniqueMoveActions.AddCallbacks(IDroneUniqueMoveActions)" />
+        /// <seealso cref="DroneUniqueMoveActions.RemoveCallbacks(IDroneUniqueMoveActions)" />
+        /// <seealso cref="DroneUniqueMoveActions.UnregisterCallbacks(IDroneUniqueMoveActions)" />
+        public void SetCallbacks(IDroneUniqueMoveActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DroneUniqueMoveActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DroneUniqueMoveActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="DroneUniqueMoveActions" /> instance referencing this action map.
+    /// </summary>
+    public DroneUniqueMoveActions @DroneUniqueMove => new DroneUniqueMoveActions(this);
+
+    // CameraUnique
+    private readonly InputActionMap m_CameraUnique;
+    private List<ICameraUniqueActions> m_CameraUniqueActionsCallbackInterfaces = new List<ICameraUniqueActions>();
+    private readonly InputAction m_CameraUnique_Swapbetweencameras;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "CameraUnique".
+    /// </summary>
+    public struct CameraUniqueActions
+    {
+        private @PlayerAction m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public CameraUniqueActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "CameraUnique/Swapbetweencameras".
+        /// </summary>
+        public InputAction @Swapbetweencameras => m_Wrapper.m_CameraUnique_Swapbetweencameras;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_CameraUnique; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="CameraUniqueActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(CameraUniqueActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="CameraUniqueActions" />
+        public void AddCallbacks(ICameraUniqueActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraUniqueActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraUniqueActionsCallbackInterfaces.Add(instance);
+            @Swapbetweencameras.started += instance.OnSwapbetweencameras;
+            @Swapbetweencameras.performed += instance.OnSwapbetweencameras;
+            @Swapbetweencameras.canceled += instance.OnSwapbetweencameras;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="CameraUniqueActions" />
+        private void UnregisterCallbacks(ICameraUniqueActions instance)
+        {
+            @Swapbetweencameras.started -= instance.OnSwapbetweencameras;
+            @Swapbetweencameras.performed -= instance.OnSwapbetweencameras;
+            @Swapbetweencameras.canceled -= instance.OnSwapbetweencameras;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CameraUniqueActions.UnregisterCallbacks(ICameraUniqueActions)" />.
+        /// </summary>
+        /// <seealso cref="CameraUniqueActions.UnregisterCallbacks(ICameraUniqueActions)" />
+        public void RemoveCallbacks(ICameraUniqueActions instance)
+        {
+            if (m_Wrapper.m_CameraUniqueActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="CameraUniqueActions.AddCallbacks(ICameraUniqueActions)" />
+        /// <seealso cref="CameraUniqueActions.RemoveCallbacks(ICameraUniqueActions)" />
+        /// <seealso cref="CameraUniqueActions.UnregisterCallbacks(ICameraUniqueActions)" />
+        public void SetCallbacks(ICameraUniqueActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraUniqueActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraUniqueActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="CameraUniqueActions" /> instance referencing this action map.
+    /// </summary>
+    public CameraUniqueActions @CameraUnique => new CameraUniqueActions(this);
+
+    // PlayerInteraction
+    private readonly InputActionMap m_PlayerInteraction;
+    private List<IPlayerInteractionActions> m_PlayerInteractionActionsCallbackInterfaces = new List<IPlayerInteractionActions>();
+    private readonly InputAction m_PlayerInteraction_ThrowLeftObject;
+    private readonly InputAction m_PlayerInteraction_ThrowRightObject;
+    private readonly InputAction m_PlayerInteraction_TakeUseLeftobject;
+    private readonly InputAction m_PlayerInteraction_TakeUseRightobject;
+    private readonly InputAction m_PlayerInteraction_TakeHidePhone;
+    private readonly InputAction m_PlayerInteraction_Lookatcamera;
+    private readonly InputAction m_PlayerInteraction_Inventory;
+    private readonly InputAction m_PlayerInteraction_Consume;
+    private readonly InputAction m_PlayerInteraction_Interact;
+    private readonly InputAction m_PlayerInteraction_EnterLeaveEditMode;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PlayerInteraction".
+    /// </summary>
+    public struct PlayerInteractionActions
+    {
+        private @PlayerAction m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PlayerInteractionActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/ThrowLeftObject".
+        /// </summary>
+        public InputAction @ThrowLeftObject => m_Wrapper.m_PlayerInteraction_ThrowLeftObject;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/ThrowRightObject".
+        /// </summary>
+        public InputAction @ThrowRightObject => m_Wrapper.m_PlayerInteraction_ThrowRightObject;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/TakeUseLeftobject".
+        /// </summary>
+        public InputAction @TakeUseLeftobject => m_Wrapper.m_PlayerInteraction_TakeUseLeftobject;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/TakeUseRightobject".
+        /// </summary>
+        public InputAction @TakeUseRightobject => m_Wrapper.m_PlayerInteraction_TakeUseRightobject;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/TakeHidePhone".
+        /// </summary>
+        public InputAction @TakeHidePhone => m_Wrapper.m_PlayerInteraction_TakeHidePhone;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/Lookatcamera".
+        /// </summary>
+        public InputAction @Lookatcamera => m_Wrapper.m_PlayerInteraction_Lookatcamera;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/Inventory".
+        /// </summary>
+        public InputAction @Inventory => m_Wrapper.m_PlayerInteraction_Inventory;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/Consume".
+        /// </summary>
+        public InputAction @Consume => m_Wrapper.m_PlayerInteraction_Consume;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_PlayerInteraction_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/EnterLeaveEditMode".
+        /// </summary>
+        public InputAction @EnterLeaveEditMode => m_Wrapper.m_PlayerInteraction_EnterLeaveEditMode;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PlayerInteraction; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PlayerInteractionActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PlayerInteractionActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PlayerInteractionActions" />
+        public void AddCallbacks(IPlayerInteractionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Add(instance);
+            @ThrowLeftObject.started += instance.OnThrowLeftObject;
+            @ThrowLeftObject.performed += instance.OnThrowLeftObject;
+            @ThrowLeftObject.canceled += instance.OnThrowLeftObject;
+            @ThrowRightObject.started += instance.OnThrowRightObject;
+            @ThrowRightObject.performed += instance.OnThrowRightObject;
+            @ThrowRightObject.canceled += instance.OnThrowRightObject;
+            @TakeUseLeftobject.started += instance.OnTakeUseLeftobject;
+            @TakeUseLeftobject.performed += instance.OnTakeUseLeftobject;
+            @TakeUseLeftobject.canceled += instance.OnTakeUseLeftobject;
+            @TakeUseRightobject.started += instance.OnTakeUseRightobject;
+            @TakeUseRightobject.performed += instance.OnTakeUseRightobject;
+            @TakeUseRightobject.canceled += instance.OnTakeUseRightobject;
+            @TakeHidePhone.started += instance.OnTakeHidePhone;
+            @TakeHidePhone.performed += instance.OnTakeHidePhone;
+            @TakeHidePhone.canceled += instance.OnTakeHidePhone;
+            @Lookatcamera.started += instance.OnLookatcamera;
+            @Lookatcamera.performed += instance.OnLookatcamera;
+            @Lookatcamera.canceled += instance.OnLookatcamera;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
+            @Consume.started += instance.OnConsume;
+            @Consume.performed += instance.OnConsume;
+            @Consume.canceled += instance.OnConsume;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @EnterLeaveEditMode.started += instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.performed += instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.canceled += instance.OnEnterLeaveEditMode;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PlayerInteractionActions" />
+        private void UnregisterCallbacks(IPlayerInteractionActions instance)
+        {
+            @ThrowLeftObject.started -= instance.OnThrowLeftObject;
+            @ThrowLeftObject.performed -= instance.OnThrowLeftObject;
+            @ThrowLeftObject.canceled -= instance.OnThrowLeftObject;
+            @ThrowRightObject.started -= instance.OnThrowRightObject;
+            @ThrowRightObject.performed -= instance.OnThrowRightObject;
+            @ThrowRightObject.canceled -= instance.OnThrowRightObject;
+            @TakeUseLeftobject.started -= instance.OnTakeUseLeftobject;
+            @TakeUseLeftobject.performed -= instance.OnTakeUseLeftobject;
+            @TakeUseLeftobject.canceled -= instance.OnTakeUseLeftobject;
+            @TakeUseRightobject.started -= instance.OnTakeUseRightobject;
+            @TakeUseRightobject.performed -= instance.OnTakeUseRightobject;
+            @TakeUseRightobject.canceled -= instance.OnTakeUseRightobject;
+            @TakeHidePhone.started -= instance.OnTakeHidePhone;
+            @TakeHidePhone.performed -= instance.OnTakeHidePhone;
+            @TakeHidePhone.canceled -= instance.OnTakeHidePhone;
+            @Lookatcamera.started -= instance.OnLookatcamera;
+            @Lookatcamera.performed -= instance.OnLookatcamera;
+            @Lookatcamera.canceled -= instance.OnLookatcamera;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
+            @Consume.started -= instance.OnConsume;
+            @Consume.performed -= instance.OnConsume;
+            @Consume.canceled -= instance.OnConsume;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @EnterLeaveEditMode.started -= instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.performed -= instance.OnEnterLeaveEditMode;
+            @EnterLeaveEditMode.canceled -= instance.OnEnterLeaveEditMode;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerInteractionActions.UnregisterCallbacks(IPlayerInteractionActions)" />.
+        /// </summary>
+        /// <seealso cref="PlayerInteractionActions.UnregisterCallbacks(IPlayerInteractionActions)" />
+        public void RemoveCallbacks(IPlayerInteractionActions instance)
+        {
+            if (m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PlayerInteractionActions.AddCallbacks(IPlayerInteractionActions)" />
+        /// <seealso cref="PlayerInteractionActions.RemoveCallbacks(IPlayerInteractionActions)" />
+        /// <seealso cref="PlayerInteractionActions.UnregisterCallbacks(IPlayerInteractionActions)" />
+        public void SetCallbacks(IPlayerInteractionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PlayerInteractionActions" /> instance referencing this action map.
+    /// </summary>
+    public PlayerInteractionActions @PlayerInteraction => new PlayerInteractionActions(this);
 
     // Menu
     private readonly InputActionMap m_Menu;
@@ -981,11 +1672,11 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     /// </summary>
     public MenuActions @Menu => new MenuActions(this);
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "GamePlay" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "GeneriqueMove" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="GamePlayActions.AddCallbacks(IGamePlayActions)" />
-    /// <seealso cref="GamePlayActions.RemoveCallbacks(IGamePlayActions)" />
-    public interface IGamePlayActions
+    /// <seealso cref="GeneriqueMoveActions.AddCallbacks(IGeneriqueMoveActions)" />
+    /// <seealso cref="GeneriqueMoveActions.RemoveCallbacks(IGeneriqueMoveActions)" />
+    public interface IGeneriqueMoveActions
     {
         /// <summary>
         /// Method invoked when associated input action "Movement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -1001,13 +1692,14 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrouch(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerUniqueMove" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PlayerUniqueMoveActions.AddCallbacks(IPlayerUniqueMoveActions)" />
+    /// <seealso cref="PlayerUniqueMoveActions.RemoveCallbacks(IPlayerUniqueMoveActions)" />
+    public interface IPlayerUniqueMoveActions
+    {
         /// <summary>
         /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1015,6 +1707,51 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCrouch(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "DroneUniqueMove" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="DroneUniqueMoveActions.AddCallbacks(IDroneUniqueMoveActions)" />
+    /// <seealso cref="DroneUniqueMoveActions.RemoveCallbacks(IDroneUniqueMoveActions)" />
+    public interface IDroneUniqueMoveActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnJump(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraUnique" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="CameraUniqueActions.AddCallbacks(ICameraUniqueActions)" />
+    /// <seealso cref="CameraUniqueActions.RemoveCallbacks(ICameraUniqueActions)" />
+    public interface ICameraUniqueActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Swap between camera's" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwapbetweencameras(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerInteraction" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PlayerInteractionActions.AddCallbacks(IPlayerInteractionActions)" />
+    /// <seealso cref="PlayerInteractionActions.RemoveCallbacks(IPlayerInteractionActions)" />
+    public interface IPlayerInteractionActions
+    {
         /// <summary>
         /// Method invoked when associated input action "Throw Left Object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1030,6 +1767,20 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnThrowRightObject(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "Take/Use Left object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTakeUseLeftobject(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Take/Use Right object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTakeUseRightobject(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Take/Hide Phone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1043,27 +1794,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLookatcamera(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Swap between camera's" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwapbetweencameras(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Take/Place object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTakePlaceobject(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Enter/Leave Edit Mode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEnterLeaveEditMode(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1079,19 +1809,19 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConsume(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "ActiveFlashlight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnActiveFlashlight(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Enter/Leave Edit Mode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEnterLeaveEditMode(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

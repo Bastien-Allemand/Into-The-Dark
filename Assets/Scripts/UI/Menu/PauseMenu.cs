@@ -50,10 +50,31 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
-        foreach (InputAction action in controls.GamePlay.Get())
+        //   ugly code ...
+        foreach (InputAction action in controls.GeneriqueMove.Get())
         {
             if (action.name == "Look")
                 continue;
+            CreateBoutonFromAction(action, GO_Controls_Content.transform);
+        }
+
+        foreach (InputAction action in controls.PlayerUniqueMove.Get())
+        {
+            CreateBoutonFromAction(action, GO_Controls_Content.transform);
+        }
+
+        foreach (InputAction action in controls.PlayerInteraction.Get())
+        {
+            CreateBoutonFromAction(action, GO_Controls_Content.transform);
+        }
+
+        foreach (InputAction action in controls.Menu.Get())
+        {
+            CreateBoutonFromAction(action, GO_Controls_Content.transform);
+        }
+
+        foreach (InputAction action in controls.CameraUnique.Get())
+        {
             CreateBoutonFromAction(action, GO_Controls_Content.transform);
         }
     }
@@ -61,7 +82,6 @@ public class PauseMenu : UI
     {
         Debug.Log("Pause Menu : Enter");
         exit = false;
-        Pause(true);
         foreach (var ui in UIManager.Instance.UIs)
         {
             if (ui.GetComponent<MainMenu>() != null)
@@ -72,7 +92,6 @@ public class PauseMenu : UI
     }
     private void OnDisable()
     {
-        Pause(false);
         foreach (var ui in UIManager.Instance.UIs)
         {
             if (ui.GetComponent<MainMenu>() != null)
@@ -105,23 +124,6 @@ public class PauseMenu : UI
                 Debug.Log("script Rebind not found");
 
             bindingIndex++;
-        }
-    }
-
-    public void Pause(bool pause)
-    {
-        //  il faut rajouter la pause pour les entité
-        if (pause)
-        {
-            Debug.Log("Time : Pause");
-            controls.GamePlay.Disable();
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            Debug.Log("Time : Continue");
-            controls.GamePlay.Enable();
-            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

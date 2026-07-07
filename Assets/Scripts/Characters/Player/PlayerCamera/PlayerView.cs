@@ -34,7 +34,7 @@ public class PlayerView : MonoBehaviour
     {
         if (!canLook) return;
 
-        Vector2 mouse = controls.GamePlay.Look.ReadValue<Vector2>() * sensitivity;
+        Vector2 mouse = controls.GeneriqueMove.Look.ReadValue<Vector2>() * sensitivity;
 
         targetRotation.x -= mouse.y;
         targetRotation.y += mouse.x;

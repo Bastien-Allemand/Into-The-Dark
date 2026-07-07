@@ -49,8 +49,13 @@ public class PickUp : MonoBehaviour
 
         return itemType.NONE;
     }
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnInteract(HandContent hand)
     {
+        if (hand == null)
+        {
+            Debug.Log($"hand == {hand}");
+            return;
+        }
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -63,7 +68,7 @@ public class PickUp : MonoBehaviour
         {
             case itemType.GADGET:
 
-                if (context.control.name == "leftButton" && !leftHandContent.filled)
+                if (hand.filled)
                 {
                     ItemScript itemScript = hitObject.GetComponent<ItemScript>();
                     if (itemScript.deployed)
@@ -73,21 +78,8 @@ public class PickUp : MonoBehaviour
                         else
                             return;
                     }
-                    leftHandContent.GiveObject(hitObject);
+                    hand.GiveObject(hitObject);
                 }
-                else if (context.control.name == "rightButton" && !rightHandContent.filled)
-                {
-                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                    if (itemScript.deployed)
-                    {
-                        if (itemScript.canBeRepickUp)
-                            itemScript.deployed = false;
-                        else
-                            return;
-                    }
-                    rightHandContent.GiveObject(hitObject);
-                }
-
                 break;
 
             case itemType.CONSUMABLE:
@@ -102,11 +94,13 @@ public class PickUp : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.TakePlaceobject.performed += OnInteract;
+        controls.PlayerInteraction.TakeUseLeftobject.performed += _ => OnInteract(leftHandContent);
+        controls.PlayerInteraction.TakeUseRightobject.performed += _ => OnInteract(rightHandContent);
     }
     private void OnDisable()
     {
-        controls.GamePlay.TakePlaceobject.performed -= OnInteract;
+        controls.PlayerInteraction.TakeUseLeftobject.performed -= _ => OnInteract(leftHandContent);
+        controls.PlayerInteraction.TakeUseRightobject.performed -= _ => OnInteract(rightHandContent);
     }
     private void Awake()
     {

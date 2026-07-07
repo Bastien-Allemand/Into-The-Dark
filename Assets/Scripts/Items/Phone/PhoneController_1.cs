@@ -63,14 +63,14 @@ public class PhoneStateScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.TakeHidePhone.started += OnTakeHidePhone;
-        controls.GamePlay.Lookatcamera.started += OnLookAtCamera;
+        controls.PlayerInteraction.TakeHidePhone.started += OnTakeHidePhone;
+        controls.PlayerInteraction.Lookatcamera.started += OnLookAtCamera;
     }
 
     private void OnDisable()
     {
-        controls.GamePlay.TakeHidePhone.started -= OnTakeHidePhone;
-        controls.GamePlay.Lookatcamera.started -= OnLookAtCamera;
+        controls.PlayerInteraction.TakeHidePhone.started -= OnTakeHidePhone;
+        controls.PlayerInteraction.Lookatcamera.started -= OnLookAtCamera;
     }
 
     private void OnTakeHidePhone(InputAction.CallbackContext ctx)
@@ -132,7 +132,7 @@ public class PhoneStateScript : MonoBehaviour
 
     private void HandleInputs()
     {
-        moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
+        moveInput = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
         bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
 
         if (moveInput != Vector2.zero &&

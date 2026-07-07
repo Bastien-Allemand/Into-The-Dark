@@ -34,20 +34,20 @@ public class DropScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        controls.GamePlay.ThrowLeftObject.started += OnLeftStart;
-        controls.GamePlay.ThrowLeftObject.canceled += OnLeftRelease;
+        controls.PlayerInteraction.ThrowLeftObject.started += OnLeftStart;
+        controls.PlayerInteraction.ThrowLeftObject.canceled += OnLeftRelease;
 
-        controls.GamePlay.ThrowRightObject.started += OnRightStart;
-        controls.GamePlay.ThrowRightObject.canceled += OnRightRelease;
+        controls.PlayerInteraction.ThrowRightObject.started += OnRightStart;
+        controls.PlayerInteraction.ThrowRightObject.canceled += OnRightRelease;
     }
 
     private void OnDisable()
     {
-        controls.GamePlay.ThrowLeftObject.started -= OnLeftStart;
-        controls.GamePlay.ThrowLeftObject.canceled -= OnLeftRelease;
+        controls.PlayerInteraction.ThrowLeftObject.started -= OnLeftStart;
+        controls.PlayerInteraction.ThrowLeftObject.canceled -= OnLeftRelease;
 
-        controls.GamePlay.ThrowRightObject.started -= OnRightStart;
-        controls.GamePlay.ThrowRightObject.canceled -= OnRightRelease;
+        controls.PlayerInteraction.ThrowRightObject.started -= OnRightStart;
+        controls.PlayerInteraction.ThrowRightObject.canceled -= OnRightRelease;
     }
 
     private void OnLeftStart(InputAction.CallbackContext ctx)

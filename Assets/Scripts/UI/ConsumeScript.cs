@@ -34,8 +34,8 @@ public class ConsumeScript : MonoBehaviour
         controls = InputManager.controls;
     }
 
-    private void OnEnable() => controls.GamePlay.Inventory.performed += OnInteract;
-    private void OnDisable() => controls.GamePlay.Inventory.performed -= OnInteract;
+    private void OnEnable() => controls.PlayerInteraction.Inventory.performed += OnInteract;
+    private void OnDisable() => controls.PlayerInteraction.Inventory.performed -= OnInteract;
 
     private void Update()
     {
@@ -48,7 +48,7 @@ public class ConsumeScript : MonoBehaviour
 
         targetType = ConsumableType.NONE;
         
-        if (context.control.name == "1")
+        if (context.v == "1")
         {
             targetType = ConsumableType.BATTERY;
             reloadCamera = true;

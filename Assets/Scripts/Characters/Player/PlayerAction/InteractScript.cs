@@ -21,7 +21,7 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
-        float interactValue = controls.GamePlay.Interact.ReadValue<float>();
+        float interactValue = controls.PlayerInteraction.Interact.ReadValue<float>();
         bool isInteractingThisFrame = Mathf.Abs(interactValue) > 0.5f;
 
         if (isInteractingThisFrame && !wasInteractingLastFrame)

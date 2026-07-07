@@ -35,7 +35,7 @@ public class InputSaveManager : MonoBehaviour
         if (!File.Exists(JsonManager.Instance.GetPath(JsonManager.path.Input, JsonManager.defaultName)))
         {
             PlayerAction actionMap = new PlayerAction();
-            JsonManager.Instance.SaveInputInJson(actionMap.GamePlay, JsonManager.defaultName);
+            JsonManager.Instance.SaveInputInJson(actionMap.asset, JsonManager.defaultName);
         }
         //  look if the current used inputjson is existing
         if (!File.Exists(currentJsonPathUsed))

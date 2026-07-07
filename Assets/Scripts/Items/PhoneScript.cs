@@ -225,7 +225,7 @@ namespace Assets.Scripts.Items
 
         private void HandleLight()
         {
-            bool isClick = controls.GamePlay.ActiveFlashlight.triggered;
+            bool isClick = controls.PlayerInteraction.ActiveFlashlight.triggered;
             if (isClick == true
                 && currentState == PhoneState.Idle
                 && HaveBattery)

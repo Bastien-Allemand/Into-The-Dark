@@ -33,10 +33,10 @@ public class Rebind : MonoBehaviour
     }
     public void KeyRebind()
     {
-        bool previousState = controls.GamePlay.enabled;
+        bool previousState = controls.asset.enabled;
 
         if (previousState)
-            controls.GamePlay.Disable();
+            controls.asset.Disable();
 
         m_action.PerformInteractiveRebinding(m_bindingIndex)
                     .OnComplete(op =>
@@ -48,6 +48,6 @@ public class Rebind : MonoBehaviour
         .Start();
 
         if (previousState)
-            controls.GamePlay.Enable();
+            controls.asset.Enable();
     }
 }
