@@ -143,6 +143,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: crouchSettings.standHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: staminaSettings.maxStamina
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: crouchSettings.crouchHeight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: staminaSettings.staminaLeft
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: crouchSettings.crouchCenterY
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: staminaSettings.staminaRegenDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815887968740831673, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: crouchSettings.ceilingCheckDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825527968189926907, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_Name
+      value: PlayerCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942903042006063600, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942903042006063600, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942903042006063600, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215448690526952735, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215448690526952735, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -158,10 +210,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1825527968189926907, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5979470389704915415}
   m_SourcePrefab: {fileID: 100100000, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+--- !u!1 &452842494041997013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1825527968189926907, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 2242024994438869806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5979470389704915415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452842494041997013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49071d4a3939cca4884290078f620642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interact
+  playerCamera: {fileID: 3751543644556124394}
+  interactDistance: 5
 --- !u!4 &669811007784484680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1609720527858994278, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
+  m_PrefabInstance: {fileID: 2242024994438869806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &3751543644556124394 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3102255341727323076, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
   m_PrefabInstance: {fileID: 2242024994438869806}
   m_PrefabAsset: {fileID: 0}
