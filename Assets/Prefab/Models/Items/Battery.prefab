@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3306441595332856354}
   - component: {fileID: 5022377346608265641}
   - component: {fileID: 8317195866727361734}
+  - component: {fileID: 884815349714447407}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Collectible
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201688143073190090}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.5206103, y: 11.62, z: 36.93241}
   m_LocalScale: {x: 0.23, y: 0.23, z: 0.23}
   m_ConstrainProportionsScale: 1
@@ -155,4 +156,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edbcf282dc2d464b991bb59763f3747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleScript
-  myType: 1
+  ConsumableType: 0
+--- !u!114 &884815349714447407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201688143073190090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbf2bca02cf2ec4aa4460127c3eaa60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  deployed: 0
+  canBeRepickUp: 1
+  needsToBePlaced: 0
+  usingTimer: 0
+  placingDelay: 0
+  timer: 0
