@@ -19,5 +19,8 @@ public class DroneMovement : MonoBehaviour
         transform.position += transform.forward * input.y * moveSpeed * Time.deltaTime;
 
         transform.Rotate(0f, input.x * rotationSpeed * Time.deltaTime, 0f);
+
+        Vector3 euler = transform.eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, euler.y, 0f);
     }
 }
