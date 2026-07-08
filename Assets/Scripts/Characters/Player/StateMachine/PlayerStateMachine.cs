@@ -94,11 +94,16 @@ public class PlayerStateMachine : MonoBehaviour
         moveSettings.crouchMultiplier = 0.6f;
         currentSpeed = moveSettings.walkSpeed;
 
-        //staminaSettings.maxStamina = 5f;
-        //staminaSettings.staminaRegenDelay = 1.5f;
-        //staminaSettings.staminaLeft = 5f;
-        //staminaSettings.staminaTimer = 0f;
-        //staminaSettings.isOutOfStamina = false;
+        staminaSettings.staminaRegenDelay = 1.5f;
+        staminaSettings.staminaLeft = staminaSettings.maxStamina;
+        staminaSettings.staminaTimer = 0f;
+        staminaSettings.isOutOfStamina = false;
+
+        crouchSettings.standHeight = 2f;
+        crouchSettings.standCenterY = 0f;
+        crouchSettings.crouchHeight = 1.2f;
+        crouchSettings.crouchHeight = -0.2f;
+        crouchSettings.ceilingCheckDistance = 0.6f;
     }
 
     void Update()

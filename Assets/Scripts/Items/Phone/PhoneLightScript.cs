@@ -13,17 +13,36 @@ public class PhoneLightScript : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        phoneController.OnPhoneStateChanged += HandlePhoneStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        phoneController.OnPhoneStateChanged -= HandlePhoneStateChanged;
+    }
+
     void Update()
     {
-        HandleLight();
         FlashLightShaderUpdate();
     }
 
-    private void HandleLight()
+    public void ToggleFlashlight()
     {
-        if (Input.GetMouseButtonDown(0) && phoneController.GetCurrentPhoneState() != PhoneState.Hidden && uiBattery.HaveBattery)
+        if (phoneLight == null || uiBattery == null) return;
+
+        if (phoneController.GetCurrentPhoneState() == PhoneState.Idle && uiBattery.HaveBattery)
         {
             phoneLight.enabled = !phoneLight.enabled;
+        }
+    }   
+    
+    private void HandlePhoneStateChanged(PhoneState newState)
+    {
+        if (newState != PhoneState.Idle && phoneLight != null)
+        {
+            phoneLight.enabled = false;
         }
     }
 
