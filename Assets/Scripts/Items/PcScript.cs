@@ -52,7 +52,7 @@ public class PcScript : MonoBehaviour
     }
     void ActivatePC()
     {
-        controls.GamePlay.Disable();
+        controls.asset.Disable();
         controls.PcInteract.Enable();
         player.GetComponent<PlayerView>().canLook = false;
 
@@ -70,8 +70,8 @@ public class PcScript : MonoBehaviour
     void DesactivatePC()
     {
 
+        controls.asset.Enable();
         controls.PcInteract.Disable();
-        controls.GamePlay.Enable();
         player.GetComponent<PlayerView>().canLook = true;
         OnPC = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,12 +81,12 @@ public class PcScript : MonoBehaviour
         pcCamera.enabled = !pcCamera.enabled;
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnInteract()
     {
-        if (context.control.name == "a")
-            CamerasScript.instance.PreviousCamera();
-        else if (context.control.name == "d")
-            CamerasScript.instance.NextCamera();
+        //if (context.control.name == "a")
+        //    CamerasScript.instance.PreviousCamera();
+        //else if (context.control.name == "d")
+        //    CamerasScript.instance.NextCamera();
     }
     public void ActivateExe()
     {
@@ -104,10 +104,10 @@ public class PcScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PcInteract.SwitchCamera.performed += OnInteract;
+        controls.PcInteract.SwitchCamera.performed += _ => OnInteract();
     }
     private void OnDisable()
     {
-        controls.PcInteract.SwitchCamera.performed -= OnInteract;
+        controls.PcInteract.SwitchCamera.performed -= _ => OnInteract();
     }
 }

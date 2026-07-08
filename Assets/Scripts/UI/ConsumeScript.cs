@@ -48,7 +48,7 @@ public class ConsumeScript : MonoBehaviour
 
         targetType = ConsumableType.NONE;
         
-        if (context.v == "1")
+        if (context.control.name == "1")
         {
             targetType = ConsumableType.BATTERY;
             reloadCamera = true;
