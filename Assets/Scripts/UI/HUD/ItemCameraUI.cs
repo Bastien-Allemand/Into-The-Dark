@@ -4,6 +4,7 @@ public class ItemCameraUI : MonoBehaviour
 {
     ItemScript itemScript;
     [SerializeField] private GameObject blackScreen;
+
     private void Start()
     {
         itemScript = GetComponent<ItemScript>();
@@ -24,7 +25,4 @@ public class ItemCameraUI : MonoBehaviour
             }
         }
     }
-
-
-
 }

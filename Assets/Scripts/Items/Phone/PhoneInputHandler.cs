@@ -5,6 +5,7 @@ public class PhoneInputHandler : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PhoneController phoneController;
+    [SerializeField] private PhoneLightScript phoneLightScript;
 
     private PlayerAction controls;
     private Vector2 moveInput;
@@ -17,14 +18,16 @@ public class PhoneInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeHidePhone.started += OnTakeHidePhone;
-        controls.PlayerInteraction.Lookatcamera.started += OnLookAtCamera;
+        controls.GamePlay.TakeHidePhone.started += OnTakeHidePhone;
+        controls.GamePlay.Lookatcamera.started += OnLookAtCamera;
+        controls.GamePlay.ActiveFlashlight.started += HandleFlashlightInput;
     }
 
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeHidePhone.started -= OnTakeHidePhone;
-        controls.PlayerInteraction.Lookatcamera.started -= OnLookAtCamera;
+        controls.GamePlay.TakeHidePhone.started -= OnTakeHidePhone;
+        controls.GamePlay.Lookatcamera.started -= OnLookAtCamera;
+        controls.GamePlay.ActiveFlashlight.started -= HandleFlashlightInput;
     }
 
     private void Update()
@@ -36,11 +39,13 @@ public class PhoneInputHandler : MonoBehaviour
     {
         if (phoneController == null) return;
         phoneController.TogglePhone();
+        
     }
 
     private void OnLookAtCamera(InputAction.CallbackContext ctx)
     {
         if (phoneController == null) return;
+
         phoneController.ToggleCameraMode();
     }
     private void HandleCameraSwitchInput()
@@ -49,7 +54,7 @@ public class PhoneInputHandler : MonoBehaviour
 
         if (phoneController.GetCurrentPhoneState() != PhoneState.Camera) return;
 
-        moveInput = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
+        moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
         bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
 
         if (isSwapThisFrame && !wasSwitchLastFrame)
@@ -66,4 +71,14 @@ public class PhoneInputHandler : MonoBehaviour
 
         wasSwitchLastFrame = isSwapThisFrame;
     }
-}
+
+    private void HandleFlashlightInput(InputAction.CallbackContext ctx)
+    {
+        if (phoneController == null || phoneLightScript == null) return;
+
+        if (phoneController.GetCurrentPhoneState() == PhoneState.Idle)
+        {
+            phoneLightScript.ToggleFlashlight();
+        }
+    }
+}                                         

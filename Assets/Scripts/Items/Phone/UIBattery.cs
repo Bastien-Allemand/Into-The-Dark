@@ -5,6 +5,7 @@ public class UIBattery : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject battery;
+    [SerializeField] private GameObject noBatteryScreen;
     //[SerializeField] public TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
     [SerializeField] private Light phoneLight;
@@ -29,6 +30,7 @@ public class UIBattery : MonoBehaviour
         currentTimer = maxTime;
 
         batteryScript.SetMaxBattery((int)maxBattery);
+        noBatteryScreen.SetActive(false);
         UpdateUI();
     }
 
@@ -41,7 +43,6 @@ public class UIBattery : MonoBehaviour
     {
         UpdateUI();
         CheckBattery();
-
     }
 
     private void UpdateUI()
@@ -53,9 +54,13 @@ public class UIBattery : MonoBehaviour
     {
         if (currentTimer > 0)
             return;
+        
 
         currentBattery = 0;
         phoneLight.enabled = false;
+        noBatteryScreen.SetActive(true);
+        batteryScript.fill.enabled = false;
+        batteryScript.slider.enabled = false;
     }
 
     public void HandleBatteryDrain()
