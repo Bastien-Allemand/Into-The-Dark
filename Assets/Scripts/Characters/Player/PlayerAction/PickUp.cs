@@ -69,11 +69,16 @@ public class PickUp : MonoBehaviour
                     if (itemScript.deployed)
                     {
                         if (itemScript.canBeRepickUp)
+                        {
                             itemScript.deployed = false;
+                            itemScript.PickUpItem();
+                            Debug.Log("get it");
+                        }
                         else
                             return;
                     }
                     leftHandContent.GiveObject(hitObject);
+                    itemScript.DeployItem();
                 }
                 else if (context.control.name == "rightButton" && !rightHandContent.filled)
                 {
@@ -81,11 +86,16 @@ public class PickUp : MonoBehaviour
                     if (itemScript.deployed)
                     {
                         if (itemScript.canBeRepickUp)
+                        {
                             itemScript.deployed = false;
+                            itemScript.PickUpItem();
+                            Debug.Log("get it");
+                        }
                         else
                             return;
                     }
                     rightHandContent.GiveObject(hitObject);
+                    itemScript.DeployItem();
                 }
 
                 break;

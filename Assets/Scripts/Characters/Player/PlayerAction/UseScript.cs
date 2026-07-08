@@ -191,9 +191,9 @@ public class PlaceScript : MonoBehaviour
 
                 preview.transform.localRotation = Quaternion.Euler(0, currentRotation, 0);
             }
-            Debug.Log(preview);
-            Debug.Log(playerView);
-            Debug.Log(controls);
+            //Debug.Log(preview);
+            //Debug.Log(playerView);
+            //Debug.Log(controls);
         }
     }
 
