@@ -1,10 +1,16 @@
 using System;
 using UnityEngine;
 
+public enum PhoneState
+{
+    Hidden,
+    Idle,
+    Camera
+}
+
 public class PhoneController : MonoBehaviour
 {
     public event Action<PhoneState> OnPhoneStateChanged;
-
     [Header("References")]
     [SerializeField] private UIBattery uiBattery;
 

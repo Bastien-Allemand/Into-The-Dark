@@ -34,8 +34,15 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] public bool debug = false;
 
     PlayerAction controls;
-    private IState currentState;
 
+    public enum state
+    {
+        NONE,
+        IDLE,
+        WALK,
+        SPRINT
+
+    }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerSprintState SprintState { get; private set; }
@@ -45,6 +52,7 @@ public class PlayerStateMachine : MonoBehaviour
 
 
 
+    [SerializeField] public IState currentState;
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
