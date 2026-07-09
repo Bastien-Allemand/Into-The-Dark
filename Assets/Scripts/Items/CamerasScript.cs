@@ -6,113 +6,35 @@ public class CamerasScript : MonoBehaviour
 {
     public static CamerasScript instance { get; private set; }
 
-    [Header("UI References")]
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
-
-    [Header("Controller Reference")]
+    [SerializeField] private int m_CamAmount;
     [SerializeField] private PhoneController phoneStateScript;
 
     private List<Camera> m_cameras = new List<Camera>();
     private bool m_onCamera = false;
-    [SerializeField] private int mCamAmount = 0;
-    [SerializeField] private int m_currentCamera = 0;
-
-    [HideInInspector] public Camera camActive;
-
-    private void Awake()
+    private int m_currentCamera = 0;
+    public Camera camActive;
+    
+    void Awake()
     {
         instance = this;
-
-        ClearScreenToBlack();
     }
 
-    private void OnEnable()
+    void Start()
     {
-        ItemScript.OnCameraDeployed += RegisterCamera;
-        ItemScript.OnCameraRemoved += UnregisterCamera;
-
-        if (phoneStateScript != null)
-        {
-            phoneStateScript.OnPhoneStateChanged += HandlePhoneStateChanged;
-            HandlePhoneStateChanged(phoneStateScript.GetCurrentPhoneState());
-        }
+        
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        ItemScript.OnCameraDeployed -= RegisterCamera;
-        ItemScript.OnCameraRemoved -= UnregisterCamera;
-
-        if (phoneStateScript != null)
-        {
-            phoneStateScript.OnPhoneStateChanged -= HandlePhoneStateChanged;
-        }
-    }
-
-    private void HandlePhoneStateChanged(PhoneState newState)
-    {
-        bool isLookingAtTabs = (newState == PhoneState.Camera);
-
-        if (isLookingAtTabs)
-        {
-            if (m_cameras == null || m_cameras.Count == 0)
-            {
-                DisableAllCam();
-            }
-            else
-            {
-                SetCameraViewActive(true);
-            }
-        }
-        else
+        if (phoneStateScript != null && phoneStateScript.GetCurrentPhoneState() != PhoneState.Camera)
         {
             DisableAllCam();
         }
-    }
-    private void Update()
-    {
-    }
 
-    private void RegisterCamera(Camera camera)
-    {
-        if (camera == null) return;
-
-        if (!m_cameras.Contains(camera))
-        {
-            m_cameras.Add(camera);
-            camera.enabled = false;
-            camera.targetTexture = null;
-            if (m_onCamera) UpdateCameraDisplay();
-            mCamAmount++;
-        }
-    }
-
-    private void UnregisterCamera(Camera camera)
-    {
-        if (camera == null) return;
-
-        if (m_cameras.Contains(camera))
-        {
-            camera.enabled = false;
-            camera.targetTexture = null;
-            ItemScript item = camera.GetComponentInParent<ItemScript>();
-            if (item != null)
-            {
-                item.usingEnergy = false;
-            }
-
-            m_cameras.Remove(camera);
-           
-
-            if (m_currentCamera >= m_cameras.Count)
-            {
-                m_currentCamera = Mathf.Max(0, m_cameras.Count - 1);
-            }
-            mCamAmount--;
-            Debug.Log("removed");
-            UpdateCameraDisplay();
-        }
+        GetItemCamera();
+        RemoveItemCamera();
     }
 
     public void SetCameraViewActive(bool active)
@@ -125,8 +47,11 @@ public class CamerasScript : MonoBehaviour
     {
         if (!m_onCamera || m_cameras.Count == 0) return;
 
-        m_currentCamera = (m_currentCamera + 1) % m_cameras.Count;
-
+        m_currentCamera++;
+        if (m_currentCamera >= m_cameras.Count)
+        {
+            m_currentCamera = 0;
+        }
         UpdateCameraDisplay();
     }
 
@@ -145,92 +70,145 @@ public class CamerasScript : MonoBehaviour
 
     private void UpdateCameraDisplay()
     {
+
         if (m_cameras == null || m_cameras.Count == 0)
         {
             camActive = null;
-            if (m_cameraUiText != null) m_cameraUiText.gameObject.SetActive(false);
-            ClearScreenToBlack();
+
+            if (m_screenRenderTexture != null)
+            {
+                RenderTexture activeBuffer = RenderTexture.active;
+                RenderTexture.active = m_screenRenderTexture;
+                GL.Clear(true, true, Color.black);
+                RenderTexture.active = activeBuffer;
+            }
+
             return;
+
+
         }
 
         for (int i = 0; i < m_cameras.Count; i++)
         {
-            if (m_cameras[i] == null) continue;
-
             bool isTarget = (m_onCamera && i == m_currentCamera);
-            ItemScript itemscript = m_cameras[i].GetComponentInParent<ItemScript>();
-            if (isTarget)
-            {
-                m_cameras[i].targetTexture = m_screenRenderTexture;
-                m_cameras[i].enabled = true;
-            }
-            else
-            {
-                m_cameras[i].enabled = false;
-                m_cameras[i].targetTexture = null;
-            }
 
-
-            if (itemscript != null)
-            {
-                itemscript.usingEnergy = isTarget;
-            }
+            m_cameras[i].enabled = isTarget;
+            m_cameras[i].GetComponentInParent<ItemScript>().usingEnergy = isTarget;
+            m_cameras[i].targetTexture = isTarget ? m_screenRenderTexture : null;
         }
 
         if (m_cameraUiText != null)
         {
             m_cameraUiText.gameObject.SetActive(m_onCamera);
-            if (m_onCamera && m_currentCamera < m_cameras.Count)
-            {
+            if (m_onCamera && m_cameras.Count > 0)
                 m_cameraUiText.text = "CAM " + (m_currentCamera + 1);
-            }
         }
 
-        if (m_currentCamera < m_cameras.Count)
-        {
-            camActive = m_cameras[m_currentCamera];
-        }
+        camActive = m_cameras[m_currentCamera];
     }
 
-    private void LateUpdate()
+    void LateUpdate()
     {
-        if (m_onCamera && m_currentCamera < m_cameras.Count)
+        if (m_onCamera && m_cameras.Count > m_currentCamera)
         {
-            if (m_cameras[m_currentCamera] != null && m_cameras[m_currentCamera].enabled)
+            
+            if (m_cameras[m_currentCamera].enabled)
             {
                 m_cameras[m_currentCamera].Render();
             }
         }
     }
 
-    private void DisableAllCam()
+    void DisableAllCam()
     {
-        m_onCamera = false;
-
-        for (int i = 0; i < m_cameras.Count; i++)
+        for(int i = 0; i < m_cameras.Count; i++)
         {
-            if (m_cameras[i] != null)
-            {
-                m_cameras[i].enabled = false;
-                m_cameras[i].targetTexture = null;
-
-                ItemScript item = m_cameras[i].GetComponentInParent<ItemScript>();
-                if (item != null) item.usingEnergy = false;
-            }
+            m_cameras [i].enabled = false;
         }
         camActive = null;
-        if (m_cameraUiText != null) m_cameraUiText.gameObject.SetActive(false);
-        ClearScreenToBlack();
+        m_onCamera = false;
+
     }
 
-    private void ClearScreenToBlack()
+    void GetItemCamera()
     {
-        if (m_screenRenderTexture != null)
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
         {
-            RenderTexture activeBuffer = RenderTexture.active;
-            RenderTexture.active = m_screenRenderTexture;
-            GL.Clear(true, true, Color.black);
-            RenderTexture.active = activeBuffer;
+            Camera childCam = item.GetComponentInChildren<Camera>();
+            ItemScript itemscript = item.GetComponent<ItemScript>();
+
+            if (childCam != null && itemscript.deployed == true && item.layer == 17)
+            {
+                int nbCam = m_cameras.Count;
+
+                if(nbCam <= 0)
+                {
+                    m_cameras.Add(childCam);
+                    childCam.enabled = false;
+                    childCam.targetTexture = null;
+                    m_CamAmount++;
+                }
+                else
+                {
+                    for (int i = 0; i < nbCam; i++)
+                    {
+                        if (!m_cameras.Contains(childCam))
+                        {
+                            m_cameras.Add(childCam);
+                            childCam.enabled = false;
+                            childCam.targetTexture = null;
+                            m_CamAmount = m_cameras.Count;
+
+                            UpdateCameraDisplay();
+                        }
+                    }
+                } 
+            }
         }
+    }
+
+    void RemoveItemCamera()
+    {
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
+        {
+            Camera childCam = item.GetComponentInChildren<Camera>();
+            ItemScript itemscript = item.GetComponent<ItemScript>();
+
+            if (childCam != null && itemscript.deployed == false && item.layer == 17)
+            {
+                
+                int nbCam = m_cameras.Count;
+                for (int i = 0; i < nbCam; i++)
+                {
+                    if (m_cameras.Contains(childCam))
+                    {
+                        Debug.Log("removed");
+                        childCam.enabled = false;
+                        childCam.targetTexture = null;
+                        m_cameras.Remove(childCam);
+                        m_CamAmount--;
+
+                        if (m_currentCamera >= m_cameras.Count)
+                        {
+                            m_currentCamera = Mathf.Max(0, m_cameras.Count - 1);
+                        }
+
+                        UpdateCameraDisplay();
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("PhoneStateScrip DISABLED");
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("PhoneStateScrip ENABLED");
     }
 }

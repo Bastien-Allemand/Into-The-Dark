@@ -78,7 +78,6 @@ public class PickUp : MonoBehaviour
                             return;
                     }
                     leftHandContent.GiveObject(hitObject);
-                    itemScript.DeployItem();
                 }
                 else if (context.control.name == "rightButton" && !rightHandContent.filled)
                 {
@@ -95,7 +94,6 @@ public class PickUp : MonoBehaviour
                             return;
                     }
                     rightHandContent.GiveObject(hitObject);
-                    itemScript.DeployItem();
                 }
 
                 break;

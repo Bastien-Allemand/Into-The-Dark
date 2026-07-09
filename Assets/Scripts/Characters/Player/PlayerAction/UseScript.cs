@@ -70,6 +70,11 @@ public class PlaceScript : MonoBehaviour
             else
             {
                 leftHandContent.itemScript.deployed = true;
+                ItemScript itemScript = leftHandContent.GetComponentInChildren<ItemScript>();
+                if(itemScript != null)
+                {
+                    itemScript.DeployItem();
+                }
             }
         }
         else if (_context.control.name == "rightButton" && rightHandContent.filled)
@@ -86,6 +91,11 @@ public class PlaceScript : MonoBehaviour
             else
             {
                 rightHandContent.itemScript.deployed = true;
+                ItemScript itemScript = leftHandContent.GetComponentInChildren<ItemScript>();
+                if (itemScript != null)
+                {
+                    itemScript.DeployItem();
+                }
             }
         }
     }
