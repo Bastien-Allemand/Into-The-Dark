@@ -187,22 +187,42 @@ public class GadgetSpawn : MonoBehaviour
                 {
                     Gizmos.color = new Color(0f, 0.8f, 1f, 0.35f);
 
-                    MeshFilter[] meshFilters = previewPrefab.GetComponentsInChildren<MeshFilter>();
+                    // Matrice du socket (là où on veut dessiner)
+                    Matrix4x4 socketMatrix = socket.gadgetSocket.transform.localToWorldMatrix;
+    
+                    // Matrice inverse du prefab racine (pour neutraliser ses coordonnées d'asset)
+                    Matrix4x4 prefabRootMatrix = previewPrefab.transform.worldToLocalMatrix;
 
+                    // --- 1. Dessiner les Mesh statiques ---
+                    MeshFilter[] meshFilters = previewPrefab.GetComponentsInChildren<MeshFilter>();
                     foreach (var mf in meshFilters)
                     {
                         if (mf.sharedMesh == null) continue;
 
-                        Matrix4x4 socketMatrix = socket.gadgetSocket.transform.localToWorldMatrix;
-                        Matrix4x4 meshLocalMatrix = mf.transform.localToWorldMatrix;
-
-                        Gizmos.matrix = socketMatrix * meshLocalMatrix;
+                        Matrix4x4 meshWorldMatrix = mf.transform.localToWorldMatrix;
+        
+                        // Ordre crucial : On prend la position du mesh, on la rend relative au prefab, puis on l'applique au socket
+                        Gizmos.matrix = socketMatrix * prefabRootMatrix * meshWorldMatrix;
 
                         Gizmos.DrawMesh(mf.sharedMesh);
-
                         Gizmos.DrawWireMesh(mf.sharedMesh);
                     }
 
+                    // --- 2. Dessiner les Mesh animés (SkinnedMeshRenderers) ---
+                    SkinnedMeshRenderer[] skinnedMeshes = previewPrefab.GetComponentsInChildren<SkinnedMeshRenderer>();
+                    foreach (var smr in skinnedMeshes)
+                    {
+                        if (smr.sharedMesh == null) continue;
+
+                        Matrix4x4 meshWorldMatrix = smr.transform.localToWorldMatrix;
+        
+                        Gizmos.matrix = socketMatrix * prefabRootMatrix * meshWorldMatrix;
+
+                        Gizmos.DrawMesh(smr.sharedMesh);
+                        Gizmos.DrawWireMesh(smr.sharedMesh);
+                    }
+
+                    // On réinitialise la matrice globale pour ne pas affecter les autres Gizmos
                     Gizmos.matrix = Matrix4x4.identity;
                 }
             }
