@@ -1,84 +1,59 @@
 using UnityEngine;
 
-public class PlayerCrouchState : PlayerBaseState
+public class PlayerCrouchState : IState
 {
+    private PlayerStateMachine stateMachine;
+    private Transform transform;
     private CapsuleCollider playerCollider;
-    private Vector3 ceilingCheckSize = new Vector3(0.6f, 2f, 0.6f);
+    private Rigidbody rb;
+    private Vector3 velocity = Vector3.zero;
+
     public PlayerCrouchState(PlayerStateMachine stateMachine, Rigidbody rb, Transform transform, CapsuleCollider playerCollider)
-        : base(stateMachine, rb, transform)
     {
+        this.stateMachine = stateMachine;
+        this.rb = rb;
+        this.transform = transform;
         this.playerCollider = playerCollider;
     }
-    public override void Enter()
 
+    public void Enter()
     {
         if (stateMachine.debug)
             Debug.Log("Player: Enter Mode CROUCH");
 
-        if (playerCollider != null)
-        {
-            playerCollider.height = stateMachine.crouchConfigs.crouchHeight;
-            playerCollider.center = new Vector3(0f, stateMachine.crouchConfigs.crouchCenterY, 0f);
-        }
-
-        stateMachine.currentSpeed = stateMachine.moveConfigs.walkSpeed * stateMachine.moveConfigs.crouchMultiplier;
+        playerCollider.height = stateMachine.crouchHeight;
+        playerCollider.center = new Vector3(0f, stateMachine.crouchCenterY, 0f);
+        stateMachine.currentSpeed = stateMachine.walkSpeed * stateMachine.crouchMultiplier;
     }
 
-    public override void Update()
+    public void Update()
     {
-       
-        Move(stateMachine.currentSpeed);
-        CheckIsCeilingAbove();
-
-        bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
-
-        if (!crouchInput && !stateMachine.crouchConfigs.isCeilingAbove)
-        {
-            if (stateMachine.moveInput == Vector2.zero)
-            {
-                stateMachine.ChangeState(stateMachine.IdleState);
-            }
-            else
-            {
-                stateMachine.ChangeState(stateMachine.WalkState);
-            }
-        }
+        Move();
     }
-    public override void Exit()
+
+    void Move()
     {
-        
-        if (stateMachine.crouchConfigs.isCeilingAbove)
+        Vector3 targetVel = Vector3.zero;
+        if (stateMachine.moveInput != Vector2.zero)
+        {
+            targetVel = (transform.forward * stateMachine.moveInput.y + transform.right * stateMachine.moveInput.x) * stateMachine.currentSpeed;
+        }
+
+        Vector3 currentVel = rb.linearVelocity;
+        Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
+
+        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.fixedDeltaTime);
+    }
+
+    public void Exit()
+    {
+        if (stateMachine.isCeilingAbove == true)
             return;
 
         if (stateMachine.debug)
             Debug.Log("Player: Exit Mode CROUCH");
 
-        if (playerCollider != null)
-        {
-            playerCollider.height = stateMachine.crouchConfigs.standHeight;
-            playerCollider.center = new Vector3(0f, stateMachine.crouchConfigs.standCenterY, 0f);
-        }
-    }
-
-    void CheckIsCeilingAbove()
-    {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        Color rayColor = Color.green;
-        float castLength = stateMachine.crouchConfigs.ceilingCheckDistance;
-
-        var result = Raycast.CheckBoxCast(transform, ceilingCheckSize, Vector3.up, Quaternion.identity, castLength);
-
-        bool hasCeiling = (result != null);
-
-        if (hasCeiling)
-        {
-            stateMachine.crouchConfigs.isCeilingAbove = true;
-            rayColor = Color.red;
-        }
-        else
-        {
-            stateMachine.crouchConfigs.isCeilingAbove = false;
-        }
-        Debug.DrawRay(origin, Vector3.up * castLength, rayColor);
+        playerCollider.height = stateMachine.standHeight;
+        playerCollider.center = new Vector3(0f, stateMachine.standCenterY, 0f);
     }
 }

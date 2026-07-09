@@ -23,8 +23,8 @@ public class SpeedVisualEffect : MonoBehaviour
         if (stateMachine == null)
             stateMachine = GetComponent<PlayerStateMachine>();
 
-        //if (stateMachine != null)
-        //    stateMachine.OnSprintStatusChanged += UpdateVisualTarget;
+        if (stateMachine != null)
+            stateMachine.OnSprintStatusChanged += UpdateVisualTarget;
 
         // On réinitialise le shader au démarrage
         if (runMaterial != null)
@@ -33,8 +33,8 @@ public class SpeedVisualEffect : MonoBehaviour
 
     private void OnDestroy()
     {
-        //if (stateMachine != null)
-        //    stateMachine.OnSprintStatusChanged -= UpdateVisualTarget;
+        if (stateMachine != null)
+            stateMachine.OnSprintStatusChanged -= UpdateVisualTarget;
 
         // Sécurité : On nettoie le shader quand on quitte le jeu
         if (runMaterial != null)
@@ -63,7 +63,7 @@ public class SpeedVisualEffect : MonoBehaviour
         {
             float currentBlur = _currentWeight * maxBlurIntensity;
             if (currentBlur < 0.0005f) currentBlur = 0f;
-            runMaterial.SetFloat(BlurIntensityID, currentBlur);
+            runMaterial.SetFloat(BlurIntensityID, currentBlur);            
         }
     }
 }

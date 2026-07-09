@@ -1,35 +1,31 @@
 using UnityEngine;
 
-public class PlayerIdleState : PlayerBaseState
+public class PlayerIdleState : IState
 {
+    private PlayerStateMachine stateMachine;
+    private Rigidbody rb;
+
     
-    public PlayerIdleState(PlayerStateMachine sm, Rigidbody rb, Transform t) : base(sm, rb, t) { }
-    public override void Enter()
+    public PlayerIdleState(PlayerStateMachine stateMachine, Rigidbody rb)
+    {
+        this.stateMachine = stateMachine;
+        this.rb = rb;
+    }
+    public void Enter()
     {
         if (stateMachine.debug)
             Debug.Log("Player: Enter Mode IDLE");
     }
 
-    public override void Update()
+    public void Update()
     {
         if (rb != null)
         {
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         }
-
-        bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
-
-        if (stateMachine.moveInput != Vector2.zero)
-        {
-            stateMachine.ChangeState(stateMachine.WalkState);
-        }
-        else if (crouchInput)
-        {
-            stateMachine.ChangeState(stateMachine.CrouchState);
-        }
     }
 
-    public override void Exit()
+    public void Exit()
     {
         if (stateMachine.debug)
             Debug.Log("Player: Exit Mode IDLE");

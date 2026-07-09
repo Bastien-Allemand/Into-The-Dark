@@ -142,8 +142,6 @@ GameObject:
   - component: {fileID: 6818007062863712880}
   - component: {fileID: 1039434968144207262}
   - component: {fileID: 4562040307110196632}
-  - component: {fileID: 6148107296862219282}
-  - component: {fileID: 7070148902987110969}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: Item
@@ -288,51 +286,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonkeyVisionScript
   visionCam: {fileID: 5196952030704320368}
   targetTag: Ghost
---- !u!114 &6148107296862219282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563341664786806886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbf2bca02cf2ec4aa4460127c3eaa60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
-  deployed: 1
-  canBeRepickUp: 1
-  needsToBePlaced: 1
-  usingTimer: 0
-  placingDelay: 0
-  timer: 0
-  usingEnergy: 0
-  energy: 100
-  maxEnergy: 100
-  rechargable: 0
-  batteryScript: {fileID: 0}
-  type: 0
---- !u!114 &7070148902987110969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563341664786806886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbf2bca02cf2ec4aa4460127c3eaa60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
-  deployed: 0
-  canBeRepickUp: 1
-  needsToBePlaced: 1
-  usingTimer: 0
-  placingDelay: 0
-  timer: 0
-  usingEnergy: 0
-  energy: 100
-  maxEnergy: 100
-  rechargable: 0
-  batteryScript: {fileID: 0}
-  type: 0

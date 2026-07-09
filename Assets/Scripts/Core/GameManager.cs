@@ -1,68 +1,29 @@
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public static int CurrentChapterIndex => currentChapterIndex;
-    public static int CurrentNightIndex => currentNightIndex;
-
-    [System.Serializable]
-    public struct NightData
-    {
-        public string nightName;
-        public float duration;
-        public bool changeScene;
-        public string sceneToLoad;
-        [Tooltip("Objects that will activate or spawn for this specific night")]
-        public GameObject[] objectsToSpawn;
-    }
-
-    [System.Serializable]
-    public struct ChapterData
-    {
-        public string chapterName;
-        [TextArea(3, 10)] public string chapterIntroText;
-        public List<NightData> nights;
-    }
-
-
-    [Header("Debug / Sandbox Settings")]
-    [SerializeField] private bool infiniteMode = false;
-    [SerializeField] private bool keepTimerInInfiniteMode = true;
-
-    [Header("Story Progression")]
-    [SerializeField] private List<ChapterData> chaptersSequence = new List<ChapterData>();
-
-    [Header("Sequence Informations Settings")]
-    [SerializeField] private TextMeshProUGUI nightNameText;
-    [SerializeField] private TextMeshProUGUI timerText;
-    private float timeToSurvive;
-
-    private static int currentChapterIndex = 0;
-    private static int currentNightIndex = 0;
-    private static string activeSceneName = "";
-
-    [Header("UI Panels (Nights)")]
+    [Header("UI Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject transitionPanel;
     [SerializeField] private GameObject transitionText;
 
-    [Header("UI Panels (Chapters Intro)")]
-    [SerializeField] private GameObject chapterTransitionPanel;
-    [SerializeField] private TextMeshProUGUI chapterTitleText;
-    [SerializeField] private TextMeshProUGUI chapterIntroTextUI;
-
     [SerializeField] private TextMeshProUGUI gameOverReasonText;
     [SerializeField] private CanvasGroup gameOverCanvasGroup;
 
+    [Header("Timer Settings")]
+    [SerializeField] private float timeToSurvive = 5f;
+    [SerializeField] private TextMeshProUGUI timerText;
+
     [Header("Story Transition Settings")]
     [SerializeField] private float timeToWaitBeforeNextScene = 3f;
-    [SerializeField] private float timeToWaitChapterTransition = 6f;
+    //[SerializeField] private string nextSceneName = "NextSceneHistoire";
 
     [Header("Glitch Effect Settings")]
     [SerializeField] private float glitchTriggerTime = 0.5f;
@@ -78,16 +39,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float fadeDuration = 1.5f;
     [SerializeField] private float textTypeSpeed = 0.05f;
 
-    [Header("End Game Settings")]
-    [SerializeField] private string endgameSceneName = "MainMenu";
-
     private float currentTime;
     private bool isPaused = false;
     private bool isGameOver = false;
     private bool isTransitioning = false;
 
+
+    // Coroutine reference to ensure we don't start multiple blinking loops
     private Coroutine blinkCoroutine;
-    public List<ChapterData> ChaptersSequence => chaptersSequence;
 
     private void Awake()
     {
@@ -96,164 +55,71 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
     }
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (infiniteMode)
-        {
-            activeSceneName = SceneManager.GetActiveScene().name;
-            currentTime = (chaptersSequence != null && chaptersSequence.Count > 0 && chaptersSequence[0].nights.Count > 0)
-                ? chaptersSequence[0].nights[0].duration
-                : 300f;
-
-            if (nightNameText != null) nightNameText.text = "Infinite / Sandbox";
-            if (gameOverPanel != null) gameOverPanel.SetActive(false);
-            if (transitionPanel != null) transitionPanel.SetActive(false);
-            if (gameOverCanvasGroup != null) gameOverCanvasGroup.alpha = 0f;
-
-            if (!keepTimerInInfiniteMode && timerText != null)
-                timerText.gameObject.SetActive(false);
-
-            return;
-        }
-
-        if (chaptersSequence == null || chaptersSequence.Count == 0 || chaptersSequence[currentChapterIndex].nights.Count == 0)
-        {
-            Debug.LogWarning("Empty chapter structure !");
-            GenerateDefaultData();
-        }
-
-        if (currentChapterIndex >= chaptersSequence.Count) currentChapterIndex = chaptersSequence.Count - 1;
-        if (currentNightIndex >= chaptersSequence[currentChapterIndex].nights.Count) currentNightIndex = chaptersSequence[currentChapterIndex].nights.Count - 1;
-
-        ChapterData currentChapter = chaptersSequence[currentChapterIndex];
-        NightData currentNight = currentChapter.nights[currentNightIndex];
-
-        timeToSurvive = currentNight.duration;
         currentTime = timeToSurvive;
-
-        DetermineActiveScene();
-
-        if (nightNameText != null)
-        {
-            nightNameText.text = $"{currentChapter.chapterName} - {currentNight.nightName}";
-        }
 
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (transitionPanel != null) transitionPanel.SetActive(false);
-        if (gameOverCanvasGroup != null) gameOverCanvasGroup.alpha = 0f;
 
-        if (currentChapterIndex == 0 && currentNightIndex == 0)
+        if (gameOverCanvasGroup != null)
         {
-            StartCoroutine(StartGameWithIntroSequence(currentChapter));
+            gameOverCanvasGroup.alpha = 0f;
+        }
+    }
+    public void TogglePause()
+    {
+        if (isGameOver || isTransitioning) return;
+
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
     }
 
-    private void GenerateDefaultData()
-    {
-        NightData defaultNight = new NightData
-        {
-            nightName = "Nuit 1",
-            duration = 300f,
-            changeScene = true,
-            sceneToLoad = SceneManager.GetActiveScene().name,
-            objectsToSpawn = new GameObject[0]
-        };
-
-        ChapterData defaultChapter = new ChapterData
-        {
-            chapterName = "Chapitre 1",
-            nights = new List<NightData> { defaultNight }
-        };
-        chaptersSequence = new List<ChapterData> { defaultChapter };
-    }
-
-    private void DetermineActiveScene()
-    {
-        int ch = currentChapterIndex;
-        int n = currentNightIndex;
-
-        while (ch >= 0)
-        {
-            while (n >= 0)
-            {
-                NightData night = chaptersSequence[ch].nights[n];
-                if (night.changeScene && !string.IsNullOrEmpty(night.sceneToLoad))
-                {
-                    activeSceneName = night.sceneToLoad;
-                    return;
-                }
-                n--;
-            }
-            ch--;
-            if (ch >= 0) n = chaptersSequence[ch].nights.Count - 1;
-        }
-
-        activeSceneName = SceneManager.GetActiveScene().name;
-    }
-
-    public void PauseGame()
-    {
-        if (isGameOver || isTransitioning) return;
-        isPaused = true;
-        Time.timeScale = 0f;
-        if (timerText != null) timerText.gameObject.SetActive(false);
-        if (nightNameText != null) nightNameText.gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        AudioListener.pause = true;
-    }
-
-    public void ResumeGame()
-    {
-        if (isGameOver || isTransitioning) return;
-        isPaused = false;
-        Time.timeScale = 1f;
-        if (timerText != null) timerText.gameObject.SetActive(true);
-        if (nightNameText != null) nightNameText.gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        AudioListener.pause = false;
-    }
 
     private void HandleTimer()
     {
+
         if (isTransitioning || isGameOver || isPaused)
         {
-            if (isTransitioning || isGameOver)
+            if ((isTransitioning || isGameOver) && timerText != null)
             {
-                if (timerText != null) timerText.gameObject.SetActive(false);
-                if (nightNameText != null) nightNameText.gameObject.SetActive(false);
+                timerText.gameObject.SetActive(false);
             }
             return;
         }
+
 
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
-            if (timerText != null && !timerText.gameObject.activeSelf && (!infiniteMode || keepTimerInInfiniteMode))
+
+            if (timerText != null && !timerText.gameObject.activeSelf)
+            {
                 timerText.gameObject.SetActive(true);
-            if (nightNameText != null && !nightNameText.gameObject.activeSelf)
-                nightNameText.gameObject.SetActive(true);
+            }
         }
         else
         {
             currentTime = 0;
-
-            if (infiniteMode)
-            {
-                UpdateTimerUI();
-                return;
-            }
-
             TriggerStoryTransition();
         }
 
         UpdateTimerUI();
+
         HandleBlinkTrigger();
     }
 
@@ -261,8 +127,11 @@ public class GameManager : MonoBehaviour
     {
         if (timerText != null)
         {
+            // Minutes and secondes
             int minutes = Mathf.FloorToInt(currentTime / 60);
             int seconds = Mathf.FloorToInt(currentTime % 60);
+
+            // Format MM:SS
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
@@ -275,6 +144,7 @@ public class GameManager : MonoBehaviour
         {
             if (blinkCoroutine == null)
             {
+                // Smooth transition to red initially
                 blinkCoroutine = StartCoroutine(BlinkTimerRed());
             }
         }
@@ -284,6 +154,7 @@ public class GameManager : MonoBehaviour
             {
                 StopCoroutine(blinkCoroutine);
                 blinkCoroutine = null;
+
                 timerText.color = normalColor;
             }
         }
@@ -292,48 +163,49 @@ public class GameManager : MonoBehaviour
     private IEnumerator BlinkTimerRed()
     {
         float duration = 1f;
+
         while (true)
         {
             float elapsed = 0f;
             while (elapsed < duration)
             {
                 if (isTransitioning || isGameOver) yield break;
+
                 elapsed += Time.unscaledDeltaTime;
+
                 float t = (Mathf.Sin(elapsed * Mathf.PI * 2f / duration) + 1f) / 2f;
+
                 if (timerText != null)
                 {
                     timerText.color = Color.Lerp(normalColor, warningColor, t);
                 }
+
                 yield return null;
             }
         }
     }
 
-    private IEnumerator StartGameWithIntroSequence(ChapterData firstChapterData)
-    {
-        isTransitioning = true;
-
-        if (timerText != null) timerText.gameObject.SetActive(false);
-        if (nightNameText != null) nightNameText.gameObject.SetActive(false);
-
-        yield return StartCoroutine(ShowChapterIntroductionSequence(firstChapterData));
-
-        isTransitioning = false;
-
-        if (timerText != null) timerText.gameObject.SetActive(true);
-        if (nightNameText != null) nightNameText.gameObject.SetActive(true);
-    }
-
     public void TriggerStoryTransition()
     {
         if (isGameOver || isTransitioning) return;
+
         isTransitioning = true;
 
-        if (timerText != null) timerText.gameObject.SetActive(false);
-        if (nightNameText != null) nightNameText.gameObject.SetActive(false);
+        // Unable timer once transition starts
+        if (timerText != null)
+        {
+            timerText.gameObject.SetActive(false);
+        }
 
-        if (transitionPanel != null) transitionPanel.SetActive(true);
-        if (transitionText != null) transitionText.SetActive(true);
+        if (transitionPanel != null)
+        {
+            transitionPanel.SetActive(true);
+        }
+
+        if (transitionText != null)
+        {
+            transitionText.SetActive(true);
+        }
 
         StartCoroutine(WaitAndLoadNextScene());
     }
@@ -341,81 +213,15 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitAndLoadNextScene()
     {
         yield return new WaitForSeconds(timeToWaitBeforeNextScene);
-        if (transitionPanel != null) transitionPanel.SetActive(false);
 
-        bool hasNewChapter = false;
-        bool isGameFullyFinished = false;
-
-        if (currentNightIndex < chaptersSequence[currentChapterIndex].nights.Count - 1)
+        if (transitionPanel != null)
         {
-            currentNightIndex++;
-        }
-        else if (currentChapterIndex < chaptersSequence.Count - 1)
-        {
-            currentChapterIndex++;
-            currentNightIndex = 0;
-            hasNewChapter = true;
-        }
-        else
-        {
-            isGameFullyFinished = true;
+            transitionPanel.SetActive(false);
         }
 
-        if (isGameFullyFinished)
-        {
-            if (!string.IsNullOrEmpty(endgameSceneName))
-            {
-                Time.timeScale = 1f;
-                SceneManager.LoadScene(endgameSceneName);
-            }
-            else
-            {
-                Debug.LogError("'endgameSceneName' is empty !");
-            }
-            yield break;
-        }
+        //SceneManager.LoadScene(nextSceneName);
 
-        NightData nextNight = chaptersSequence[currentChapterIndex].nights[currentNightIndex];
-        if (nextNight.changeScene && !string.IsNullOrEmpty(nextNight.sceneToLoad))
-        {
-            activeSceneName = nextNight.sceneToLoad;
-        }
-        else
-        {
-            DetermineActiveScene();
-        }
-
-        if (hasNewChapter)
-        {
-            yield return StartCoroutine(ShowChapterIntroductionSequence(chaptersSequence[currentChapterIndex]));
-        }
-
-        LoadCalculatedScene();
-    }
-
-    private IEnumerator ShowChapterIntroductionSequence(ChapterData dynamicChapterData)
-    {
-        if (chapterTransitionPanel == null) yield break;
-
-        if (chapterTitleText != null) chapterTitleText.text = dynamicChapterData.chapterName;
-        if (chapterIntroTextUI != null) chapterIntroTextUI.text = dynamicChapterData.chapterIntroText;
-
-        chapterTransitionPanel.SetActive(true);
-        yield return new WaitForSeconds(timeToWaitChapterTransition);
-        chapterTransitionPanel.SetActive(false);
-    }
-
-    private void LoadCalculatedScene()
-    {
-        if (!string.IsNullOrEmpty(activeSceneName))
-        {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene(activeSceneName);
-        }
-        else
-        {
-            Debug.LogError("Technical issue : the name of the active scene is empty !");
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void TriggerGameOver(deathCause cause)
@@ -423,17 +229,18 @@ public class GameManager : MonoBehaviour
         if (isGameOver || isTransitioning) return;
         isGameOver = true;
 
-        if (timerText != null) timerText.gameObject.SetActive(false);
-        if (nightNameText != null) nightNameText.gameObject.SetActive(false);
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        string deathMessage = "You died.";
+        string deathMessage = "Vous avez péri.";
         switch (cause)
         {
-            case deathCause.Caught: deathMessage = "You got caught..."; break;
-            case deathCause.Insanity: deathMessage = "Your mind has descended into profound madness."; break;
+            case deathCause.Caught:
+                deathMessage = "Vous avez été attrapé...";
+                break;
+            case deathCause.Insanity:
+                deathMessage = "Votre esprit a sombré dans la folie profonde.";
+                break;
         }
 
         StartCoroutine(GameOverSequence(deathMessage));
@@ -471,32 +278,16 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(activeSceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+
+
+    // Update is called once per frame
     void Update()
     {
-        if (Application.isEditor)
-        {
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                Debug.Log("[CHEAT] Skip night.");
-                isTransitioning = false;
-                isGameOver = false;
-                currentTime = 0f;
-                return;
-            }
-
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                Debug.Log("[CHEAT] Trigger Game Over.");
-                isTransitioning = false;
-                TriggerGameOver(deathCause.Caught);
-                return;
-            }
-        }
-
         if (isGameOver || isTransitioning) return;
+
         HandleTimer();
     }
 }

@@ -1,13 +1,21 @@
 {
   "dependencies": {
-    "com.dgreenheck.openfracture": {
-      "version": "file:../Assets/Plugins/OpenFracture-main",
+    "com.cqf.urpvolumetricfog": {
+      "version": "https://github.com/CristianQiu/Unity-URP-Volumetric-Light.git",
       "depth": 0,
-      "source": "local",
+      "source": "git",
+      "dependencies": {},
+      "hash": "613d1e8e553054cd5130b3c2b27da75a8b41ff33"
+    },
+    "com.dgreenheck.openfracture": {
+      "version": "https://github.com/dgreenheck/OpenFracture.git",
+      "depth": 0,
+      "source": "git",
       "dependencies": {
         "com.unity.test-framework": "1.1.30",
         "com.unity.testtools.codecoverage": "1.0.1"
-      }
+      },
+      "hash": "6d0ddff64173193f024638c2de2dbeb8a2525965"
     },
     "com.unity.ai.navigation": {
       "version": "2.0.12",
@@ -103,18 +111,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.probuilder": {
-      "version": "6.0.9",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.shadergraph": "17.0.3",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.settings-manager": "1.0.3"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.render-pipelines.core": {
       "version": "17.3.0",
       "depth": 1,
@@ -156,7 +152,7 @@
     },
     "com.unity.settings-manager": {
       "version": "2.1.1",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

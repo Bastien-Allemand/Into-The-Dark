@@ -3,9 +3,15 @@ using UnityEngine;
 public class InsaneMeterScript : MonoBehaviour
 {
     [SerializeField] private bool debug = false;
-    [SerializeField] public float insaneMeter = 0f;
-    [SerializeField] public float maxInsaneMeter = 100f;
 
+    [SerializeField] private float insaneMeter = 0f;
+    [SerializeField] private float maxInsaneMeter = 100f;
+    [SerializeField] private float initalInsaneMeterWidth = 0f;
+
+    [SerializeField] private Material crazyShader;
+    [SerializeField] private Material optiqueShader;
+
+    [SerializeField] private RectTransform insaneBarTransform;
 
     public Camera visionCam;
     public string targetTag = "Ghost";
@@ -13,22 +19,32 @@ public class InsaneMeterScript : MonoBehaviour
 
     [SerializeField] private int pills = 1;
 
+    PlayerAction controls;
+
+    //Change in stunned state
+    [SerializeField] private bool takingPills = false;
+    [SerializeField] private float animDuration = 2f;
+    [SerializeField] private float currentanimDuration = 0f;
     private void Start()
     {
+        if (insaneBarTransform != null)
+        {
+            initalInsaneMeterWidth = insaneBarTransform.rect.width;
+        }
     }
 
     private void OnEnable()
     {
-        //Inventory.OnPillsCountChanged += UpdatePills;
+        Inventory.OnPillsCountChanged += UpdatePills;
     }
     private void OnDisable()
     {
-        //Inventory.OnPillsCountChanged -= UpdatePills;
+        Inventory.OnPillsCountChanged -= UpdatePills;
     }
 
     void Awake()
     {
-       // controls = InputManager.controls;
+        controls = InputManager.controls;
     }
 
     void Update()
@@ -44,6 +60,8 @@ public class InsaneMeterScript : MonoBehaviour
 
         UpdateInsanity(target);
         CheckUsePill();
+        UpdateBarUI();
+        UpdateCrazyShader();
     }
 
     void UpdateInsanity(GameObject _target)
@@ -97,38 +115,46 @@ public class InsaneMeterScript : MonoBehaviour
 
     void CheckUsePill()
     {
-        //if (pills <= 0 || Inventory.instance.GetActiveSlot() != ConsumableType.Pill)
-        //    return;
+        if (pills <= 0 || Inventory.instance.GetActiveSlot() != ItemType.Pill)
+            return;
 
-        //if (controls.GamePlay.Consume.triggered && takingPills == false)
-        //{
-        //   takingPills = true;
-        //}
-        //if (takingPills == true)
-        //{
-        //    currentanimDuration += Time.deltaTime;
-        //    if (currentanimDuration >= animDuration)
-        //    {
-        //        pills--;
-        //        currentanimDuration = 0f;
-        //        takingPills = false;
-        //        insaneMeter -= maxInsaneMeter * 0.15f;
-        //        Inventory.instance.Remove(ConsumableType.Pill);
-        //        if (insaneMeter <= 0)
-        //        { 
-        //            insaneMeter = 0; 
-        //        }
-        //        //Debug.Log("Pills taken");
-        //    }
-        //}
+        if (controls.GamePlay.Consume.triggered && takingPills == false)
+        {
+           takingPills = true;
+        }
+        if (takingPills == true)
+        {
+            currentanimDuration += Time.deltaTime;
+            if (currentanimDuration >= animDuration)
+            {
+                pills--;
+                currentanimDuration = 0f;
+                takingPills = false;
+                insaneMeter -= maxInsaneMeter * 0.15f;
+                Inventory.instance.Remove(ItemType.Pill);
+                if (insaneMeter <= 0)
+                { 
+                    insaneMeter = 0; 
+                }
+                //Debug.Log("Pills taken");
+            }
+        }
     }
 
-    public float insaneMeterRatio
+    void UpdateBarUI()
     {
-        get
-        {
-            if (insaneMeter <= 0) return 0f;
-            return insaneMeter / 100;
-        }
+        if (insaneBarTransform == null) return;
+        float percentLeft = insaneMeter / 100;
+        insaneBarTransform.sizeDelta = new Vector2(initalInsaneMeterWidth * percentLeft, insaneBarTransform.rect.height);
+    }
+
+    void UpdateCrazyShader()
+    {
+        float crazyIntensiteShader = insaneMeter / maxInsaneMeter * 0.04f;
+        float distortionIntensiteShader = insaneMeter / maxInsaneMeter * 0.06f;
+        float optiqueIntensiteShader = insaneMeter / maxInsaneMeter * 3.0f;
+        crazyShader.SetFloat("_FolieIntensite", crazyIntensiteShader);
+        crazyShader.SetFloat("_DistorsionIntensite", distortionIntensiteShader);
+        optiqueShader.SetFloat("_Folie", optiqueIntensiteShader);
     }
 }

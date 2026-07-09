@@ -19,6 +19,6 @@ public class UI : MonoBehaviour
 
     private void debug(string func)
     {
-        //Debug.Log($"Null : {GetType().FullName} : {func}");
+        Debug.Log($"Null : {GetType().FullName} : {func}");
     }
 }
