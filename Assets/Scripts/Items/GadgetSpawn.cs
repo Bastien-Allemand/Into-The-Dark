@@ -32,6 +32,31 @@ public class GadgetSpawn : MonoBehaviour
 
     private int currentTotalGadgets = 0;
 
+    void Start()
+    {
+        // 1. On va chercher le composant ItemSpawner présent dans la scène
+        ItemSpawner spawnerConfig = FindAnyObjectByType<ItemSpawner>();
+
+        if (spawnerConfig == null)
+        {
+            Debug.LogError("GadgetSpawn : Aucun ItemSpawner trouvé dans la scène !");
+            return;
+        }
+
+        // 2. On récupère la liste des prefabs autorisés pour cette nuit via l'ItemSpawner
+        // (La logique interne de ton ItemSpawner filtre déjà par nuit grâce à ton code précédent)
+        List<GameObject> prefabsAutorises = spawnerConfig.GetAllowedPrefabsForCurrentNight();
+
+        // 3. On filtre notre liste de gadgets : on retire ceux qui ne font pas partie de la nuit actuelle
+        for (int i = gadgets.Count - 1; i >= 0; i--)
+        {
+            if (!prefabsAutorises.Contains(gadgets[i].gadgetPrefab))
+            {
+                gadgets.RemoveAt(i); // Ce gadget n'a pas le droit de spawn cette nuit
+            }
+        }
+    }
+
     void Update()
     {
         if (currentTotalGadgets >= maxGadgetsOnMap) return;
