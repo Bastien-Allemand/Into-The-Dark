@@ -1,6 +1,8 @@
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlaceScript : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class PlaceScript : MonoBehaviour
     [SerializeField] public PlayerView playerView;
     [SerializeField] public PlayerAction controls;
 
+    private HandContent hand;
     public HandContent leftHandContent;
     public HandContent rightHandContent;
 
@@ -54,8 +57,14 @@ public class PlaceScript : MonoBehaviour
         }
             return result;
     }
-    private void OnInteract(HandContent hand)
+    private void OnInteract()
     {
+        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
+
+        if (side < 0) hand = leftHandContent;
+        else if (side > 0) hand = rightHandContent;
+        else return;
+
         if (hand.filled)
         {
             if(hand.itemScript.needsToBePlaced)
@@ -73,7 +82,7 @@ public class PlaceScript : MonoBehaviour
             }
         }
     }
-    private void PlaceObject(HandContent hand)
+    private void PlaceObject()
     {
         if (hand.filled)
         {
@@ -116,21 +125,17 @@ public class PlaceScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeUseLeftobject.started += _ => OnInteract(leftHandContent);
-        controls.PlayerInteraction.TakeUseRightobject.started += _ => OnInteract(rightHandContent);
+        controls.PlayerInteraction.TakeUseObject.started += _ => OnInteract();
 
-        controls.PlayerInteraction.TakeUseLeftobject.canceled += _ => PlaceObject(leftHandContent);
-        controls.PlayerInteraction.TakeUseRightobject.canceled += _ => PlaceObject(rightHandContent);
+        controls.PlayerInteraction.TakeUseObject.canceled += _ => PlaceObject();
 
         controls.PlayerInteraction.EnterLeaveEditMode.performed += _ => SwitchEditMode();
     }
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeUseLeftobject.started -= _ => OnInteract(leftHandContent);
-        controls.PlayerInteraction.TakeUseRightobject.started -= _ => OnInteract(rightHandContent);
+        controls.PlayerInteraction.TakeUseObject.started -= _ => OnInteract();
 
-        controls.PlayerInteraction.TakeUseLeftobject.canceled -= _ => PlaceObject(leftHandContent);
-        controls.PlayerInteraction.TakeUseRightobject.canceled -= _ => PlaceObject(rightHandContent);
+        controls.PlayerInteraction.TakeUseObject.canceled -= _ => PlaceObject();
 
         controls.PlayerInteraction.EnterLeaveEditMode.performed -= _ => SwitchEditMode();
     }

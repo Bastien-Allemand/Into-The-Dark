@@ -49,13 +49,19 @@ public class PickUp : MonoBehaviour
 
         return itemType.NONE;
     }
-    private void OnInteract(HandContent hand)
+    private void OnInteract()
     {
-        if (hand == null)
+        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
+        HandContent hand;
+
+        if (side < 0) hand = leftHandContent;
+        else if (side > 0) hand = rightHandContent;
+        else
         {
-            Debug.Log($"hand == {hand}");
+            Debug.Log($"hand = {side}");
             return;
         }
+
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -94,13 +100,11 @@ public class PickUp : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeUseLeftobject.performed += _ => OnInteract(leftHandContent);
-        controls.PlayerInteraction.TakeUseRightobject.performed += _ => OnInteract(rightHandContent);
+        controls.PlayerInteraction.TakeUseObject.performed += _ => OnInteract();
     }
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeUseLeftobject.performed -= _ => OnInteract(leftHandContent);
-        controls.PlayerInteraction.TakeUseRightobject.performed -= _ => OnInteract(rightHandContent);
+        controls.PlayerInteraction.TakeUseObject.performed -= _ => OnInteract();
     }
     private void Awake()
     {

@@ -3,7 +3,7 @@
     "name": "PlayerAction",
     "maps": [
         {
-            "name": "GeneralMove",
+            "name": "GeneriqueMove",
             "id": "cca2b4f5-b1c8-4011-90a1-ab0f55f81554",
             "actions": [
                 {
@@ -117,6 +117,45 @@
             ]
         },
         {
+            "name": "DroneUniqueMove",
+            "id": "f4065eba-d843-4a8d-bb03-15ccd6f12b04",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "c18397e7-5fe1-452e-8f55-ad38d95e9bb1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f8d078a5-3878-4865-9985-c13f1bdf7523",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05693330-a65a-4d6f-981a-366a1386f65d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "PlayerUniqueMove",
             "id": "f2a117f2-449a-4e07-be10-296164fca2d2",
             "actions": [
@@ -191,6 +230,15 @@
             "id": "91e805a1-a4ee-4ee7-9479-df584b45414b",
             "actions": [
                 {
+                    "name": "TakeUseObject",
+                    "type": "Button",
+                    "id": "eb4bf238-291f-4b0c-83fd-18f2d5998404",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Throw Object",
                     "type": "Button",
                     "id": "995325c4-b9ce-4883-89cd-f86cf955e9f1",
@@ -212,15 +260,6 @@
                     "name": "Look at camera",
                     "type": "Button",
                     "id": "94c1b3fd-01be-4131-94bf-cf8143ff175a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Take/Place object",
-                    "type": "Button",
-                    "id": "eb4bf238-291f-4b0c-83fd-18f2d5998404",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -390,7 +429,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Take/Place object",
+                    "action": "TakeUseObject",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -401,7 +440,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Take/Place object",
+                    "action": "TakeUseObject",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -412,7 +451,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Take/Place object",
+                    "action": "TakeUseObject",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -423,7 +462,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Take/Place object",
+                    "action": "TakeUseObject",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -434,7 +473,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Take/Place object",
+                    "action": "TakeUseObject",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -445,7 +484,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Take/Place object",
+                    "action": "TakeUseObject",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -645,45 +684,6 @@
             ]
         },
         {
-            "name": "DroneUniqueMove",
-            "id": "f4065eba-d843-4a8d-bb03-15ccd6f12b04",
-            "actions": [
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "c18397e7-5fe1-452e-8f55-ad38d95e9bb1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f8d078a5-3878-4865-9985-c13f1bdf7523",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05693330-a65a-4d6f-981a-366a1386f65d",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Menu",
             "id": "1736e705-2882-426b-a6f2-548e6e0eb41b",
             "actions": [
@@ -706,6 +706,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PcInteract",
+            "id": "6fa0d805-e7e4-4a25-a79b-dba8fcb969d4",
+            "actions": [
+                {
+                    "name": "SwitchCamera",
+                    "type": "Button",
+                    "id": "b477f126-578d-4bb1-97e2-12f6f356c24a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1b0fab60-f4c7-4daf-b810-f44500931f9a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
