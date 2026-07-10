@@ -67,7 +67,7 @@ public class RadarScript : MonoBehaviour
             rectCanva.transform.localRotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
         }
 
-        Debug.Log(player.position.y);
+        //Debug.Log(player.position.y);
 
         if (player.position.y >= firstFloorHeight)
         {
