@@ -5,7 +5,7 @@ public class PauseMenu : UI
 {
     PlayerAction controls => InputManager.controls;
 
-                        //  first letter of var, then what it does
+    //  first letter of var, then what it does
     [SerializeField] public GameObject GO_Controls_Content;
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
@@ -50,32 +50,22 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
-        //   ugly code ...
-        foreach (InputAction action in controls.GeneriqueMove.Get())
+        foreach (InputActionMap map in controls.asset.actionMaps)
         {
-            if (action.name == "Look")
-                continue;
-            CreateBoutonFromAction(action, GO_Controls_Content.transform);
-        }
-
-        foreach (InputAction action in controls.PlayerUniqueMove.Get())
-        {
-            CreateBoutonFromAction(action, GO_Controls_Content.transform);
-        }
-
-        foreach (InputAction action in controls.PlayerInteraction.Get())
-        {
-            CreateBoutonFromAction(action, GO_Controls_Content.transform);
-        }
-
-        foreach (InputAction action in controls.Menu.Get())
-        {
-            CreateBoutonFromAction(action, GO_Controls_Content.transform);
-        }
-
-        foreach (InputAction action in controls.CameraUnique.Get())
-        {
-            CreateBoutonFromAction(action, GO_Controls_Content.transform);
+            if (map.name == controls.GeneriqueMove.Get().name)
+            {
+                foreach (InputAction action in controls.GeneriqueMove.Get())
+                {
+                    if (action.name == "Look")
+                        continue;
+                    CreateBoutonFromAction(action, GO_Controls_Content.transform);
+                }
+            }
+            else
+                foreach (InputAction action in map)
+                {
+                    CreateBoutonFromAction(action, GO_Controls_Content.transform);
+                }
         }
     }
     private void OnEnable()

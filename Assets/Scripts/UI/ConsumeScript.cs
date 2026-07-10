@@ -34,37 +34,43 @@ public class ConsumeScript : MonoBehaviour
         controls = InputManager.controls;
     }
 
-    private void OnEnable() => controls.PlayerInteraction.Inventory.performed += OnInteract;
-    private void OnDisable() => controls.PlayerInteraction.Inventory.performed -= OnInteract;
+    private void OnEnable()
+    {
+        controls.PlayerInteraction.ConsumeItem1.performed += _ => OnInteract(ConsumableType.BATTERY);
+        controls.PlayerInteraction.ConsumeItem2.performed += _ => OnInteract(ConsumableType.PILL);
+        controls.PlayerInteraction.ConsumeItem3.performed += _ => OnInteract(ConsumableType.VENTOLINE);
+
+    }
+    private void OnDisable()
+    {
+        controls.PlayerInteraction.ConsumeItem1.performed -= _ => OnInteract(ConsumableType.BATTERY);
+        controls.PlayerInteraction.ConsumeItem2.performed -= _ => OnInteract(ConsumableType.PILL);
+        controls.PlayerInteraction.ConsumeItem3.performed -= _ => OnInteract(ConsumableType.VENTOLINE);
+    }
 
     private void Update()
     {
         CheckConsume();
     }
 
-    void OnInteract(InputAction.CallbackContext context)
+    void OnInteract(ConsumableType item)
     {
-        if (playerInventory == null) return;
+        if (playerInventory == null || item == ConsumableType.NONE) return;
 
-        targetType = ConsumableType.NONE;
+        targetType = item;
         
-        if (context.control.name == "1")
+        switch(targetType)
         {
-            targetType = ConsumableType.BATTERY;
-            reloadCamera = true;
+            case ConsumableType.BATTERY:
+                reloadCamera = true;
+                break;
+            case ConsumableType.PILL:
+                takingPills = true;
+                break;
+            case ConsumableType.VENTOLINE:
+                takingVentolin = true;
+                break;
         }
-        else if (context.control.name == "2")
-        {
-            targetType = ConsumableType.PILL;
-            takingPills = true;
-
-        }
-        //else if (context.control.name == "2")
-        //{
-        //    targetedType = ConsumableType.VENTOLINE;
-        //    takingVentolin = true;
-
-        //}
     }
 
     void CheckConsume()

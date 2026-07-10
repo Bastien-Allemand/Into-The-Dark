@@ -691,7 +691,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""id"": ""3227c441-a5a1-4635-8efb-74e5128d3a40"",
             ""actions"": [
                 {
-                    ""name"": ""Swap between camera's"",
+                    ""name"": ""SwapCamera"",
                     ""type"": ""Button"",
                     ""id"": ""af1bd292-8de5-4ca3-a0b9-fa06d9a46204"",
                     ""expectedControlType"": """",
@@ -708,7 +708,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap between camera's"",
+                    ""action"": ""SwapCamera"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -719,7 +719,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap between camera's"",
+                    ""action"": ""SwapCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -730,7 +730,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap between camera's"",
+                    ""action"": ""SwapCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -741,7 +741,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap between camera's"",
+                    ""action"": ""SwapCamera"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -752,7 +752,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap between camera's"",
+                    ""action"": ""SwapCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -763,7 +763,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap between camera's"",
+                    ""action"": ""SwapCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -796,34 +796,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""PcInteract"",
-            ""id"": ""6fa0d805-e7e4-4a25-a79b-dba8fcb969d4"",
-            ""actions"": [
-                {
-                    ""name"": ""SwitchCamera"",
-                    ""type"": ""Button"",
-                    ""id"": ""b477f126-578d-4bb1-97e2-12f6f356c24a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""1b0fab60-f4c7-4daf-b810-f44500931f9a"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -852,13 +824,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_PlayerInteraction_Interact = m_PlayerInteraction.FindAction("Interact", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
-        m_Camera_Swapbetweencameras = m_Camera.FindAction("Swap between camera's", throwIfNotFound: true);
+        m_Camera_SwapCamera = m_Camera.FindAction("SwapCamera", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
-        // PcInteract
-        m_PcInteract = asset.FindActionMap("PcInteract", throwIfNotFound: true);
-        m_PcInteract_SwitchCamera = m_PcInteract.FindAction("SwitchCamera", throwIfNotFound: true);
     }
 
     ~@PlayerAction()
@@ -869,7 +838,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_PlayerInteraction.enabled, "This will cause a leak and performance issues, PlayerAction.PlayerInteraction.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerAction.Camera.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerAction.Menu.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_PcInteract.enabled, "This will cause a leak and performance issues, PlayerAction.PcInteract.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1439,7 +1407,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     // Camera
     private readonly InputActionMap m_Camera;
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
-    private readonly InputAction m_Camera_Swapbetweencameras;
+    private readonly InputAction m_Camera_SwapCamera;
     /// <summary>
     /// Provides access to input actions defined in input action map "Camera".
     /// </summary>
@@ -1452,9 +1420,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public CameraActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Camera/Swapbetweencameras".
+        /// Provides access to the underlying input action "Camera/SwapCamera".
         /// </summary>
-        public InputAction @Swapbetweencameras => m_Wrapper.m_Camera_Swapbetweencameras;
+        public InputAction @SwapCamera => m_Wrapper.m_Camera_SwapCamera;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1481,9 +1449,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
-            @Swapbetweencameras.started += instance.OnSwapbetweencameras;
-            @Swapbetweencameras.performed += instance.OnSwapbetweencameras;
-            @Swapbetweencameras.canceled += instance.OnSwapbetweencameras;
+            @SwapCamera.started += instance.OnSwapCamera;
+            @SwapCamera.performed += instance.OnSwapCamera;
+            @SwapCamera.canceled += instance.OnSwapCamera;
         }
 
         /// <summary>
@@ -1495,9 +1463,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="CameraActions" />
         private void UnregisterCallbacks(ICameraActions instance)
         {
-            @Swapbetweencameras.started -= instance.OnSwapbetweencameras;
-            @Swapbetweencameras.performed -= instance.OnSwapbetweencameras;
-            @Swapbetweencameras.canceled -= instance.OnSwapbetweencameras;
+            @SwapCamera.started -= instance.OnSwapCamera;
+            @SwapCamera.performed -= instance.OnSwapCamera;
+            @SwapCamera.canceled -= instance.OnSwapCamera;
         }
 
         /// <summary>
@@ -1627,102 +1595,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="MenuActions" /> instance referencing this action map.
     /// </summary>
     public MenuActions @Menu => new MenuActions(this);
-
-    // PcInteract
-    private readonly InputActionMap m_PcInteract;
-    private List<IPcInteractActions> m_PcInteractActionsCallbackInterfaces = new List<IPcInteractActions>();
-    private readonly InputAction m_PcInteract_SwitchCamera;
-    /// <summary>
-    /// Provides access to input actions defined in input action map "PcInteract".
-    /// </summary>
-    public struct PcInteractActions
-    {
-        private @PlayerAction m_Wrapper;
-
-        /// <summary>
-        /// Construct a new instance of the input action map wrapper class.
-        /// </summary>
-        public PcInteractActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "PcInteract/SwitchCamera".
-        /// </summary>
-        public InputAction @SwitchCamera => m_Wrapper.m_PcInteract_SwitchCamera;
-        /// <summary>
-        /// Provides access to the underlying input action map instance.
-        /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_PcInteract; }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-        public void Enable() { Get().Enable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-        public void Disable() { Get().Disable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-        public bool enabled => Get().enabled;
-        /// <summary>
-        /// Implicitly converts an <see ref="PcInteractActions" /> to an <see ref="InputActionMap" /> instance.
-        /// </summary>
-        public static implicit operator InputActionMap(PcInteractActions set) { return set.Get(); }
-        /// <summary>
-        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <param name="instance">Callback instance.</param>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-        /// </remarks>
-        /// <seealso cref="PcInteractActions" />
-        public void AddCallbacks(IPcInteractActions instance)
-        {
-            if (instance == null || m_Wrapper.m_PcInteractActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PcInteractActionsCallbackInterfaces.Add(instance);
-            @SwitchCamera.started += instance.OnSwitchCamera;
-            @SwitchCamera.performed += instance.OnSwitchCamera;
-            @SwitchCamera.canceled += instance.OnSwitchCamera;
-        }
-
-        /// <summary>
-        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <remarks>
-        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-        /// </remarks>
-        /// <seealso cref="PcInteractActions" />
-        private void UnregisterCallbacks(IPcInteractActions instance)
-        {
-            @SwitchCamera.started -= instance.OnSwitchCamera;
-            @SwitchCamera.performed -= instance.OnSwitchCamera;
-            @SwitchCamera.canceled -= instance.OnSwitchCamera;
-        }
-
-        /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PcInteractActions.UnregisterCallbacks(IPcInteractActions)" />.
-        /// </summary>
-        /// <seealso cref="PcInteractActions.UnregisterCallbacks(IPcInteractActions)" />
-        public void RemoveCallbacks(IPcInteractActions instance)
-        {
-            if (m_Wrapper.m_PcInteractActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        /// <summary>
-        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-        /// </summary>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-        /// </remarks>
-        /// <seealso cref="PcInteractActions.AddCallbacks(IPcInteractActions)" />
-        /// <seealso cref="PcInteractActions.RemoveCallbacks(IPcInteractActions)" />
-        /// <seealso cref="PcInteractActions.UnregisterCallbacks(IPcInteractActions)" />
-        public void SetCallbacks(IPcInteractActions instance)
-        {
-            foreach (var item in m_Wrapper.m_PcInteractActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_PcInteractActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    /// <summary>
-    /// Provides a new <see cref="PcInteractActions" /> instance referencing this action map.
-    /// </summary>
-    public PcInteractActions @PcInteract => new PcInteractActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "GeneriqueMove" which allows adding and removing callbacks.
     /// </summary>
@@ -1861,12 +1733,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     public interface ICameraActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Swap between camera's" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SwapCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwapbetweencameras(InputAction.CallbackContext context);
+        void OnSwapCamera(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.
@@ -1882,20 +1754,5 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
-    }
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PcInteract" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="PcInteractActions.AddCallbacks(IPcInteractActions)" />
-    /// <seealso cref="PcInteractActions.RemoveCallbacks(IPcInteractActions)" />
-    public interface IPcInteractActions
-    {
-        /// <summary>
-        /// Method invoked when associated input action "SwitchCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwitchCamera(InputAction.CallbackContext context);
     }
 }
