@@ -27,7 +27,7 @@ public class GhostChaseState : IState
             stateMachine.ChangeState(new GhostPatrolState(stateMachine, pathfinding));
             return;
         }
-        //pathfinding.agent.SetDestination(pathfinding.target.position);
+        pathfinding.agent.SetDestination(pathfinding.target.position);
     }
 
     public void Exit()
