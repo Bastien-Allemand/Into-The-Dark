@@ -69,7 +69,11 @@ public class PickUp : MonoBehaviour
                     if (itemScript.deployed)
                     {
                         if (itemScript.canBeRepickUp)
+                        {
                             itemScript.deployed = false;
+                            itemScript.PickUpItem();
+                            Debug.Log("get it");
+                        }
                         else
                             return;
                     }
@@ -81,7 +85,11 @@ public class PickUp : MonoBehaviour
                     if (itemScript.deployed)
                     {
                         if (itemScript.canBeRepickUp)
+                        {
                             itemScript.deployed = false;
+                            itemScript.PickUpItem();
+                            Debug.Log("get it");
+                        }
                         else
                             return;
                     }

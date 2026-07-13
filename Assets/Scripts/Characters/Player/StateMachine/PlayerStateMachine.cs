@@ -75,17 +75,18 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private CrouchSettings crouchSettings;
     public CrouchSettings crouchConfigs => crouchSettings;
 
+
+
     [Space(5)]
 
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject itemPhone;
 
     public Vector2 moveInput;
 
     void Awake()
     {
         controls = InputManager.controls;
-
-        //        controls = new PlayerAction();
 
         IdleState = new PlayerIdleState(this, rb, transform);
         WalkState = new PlayerWalkState(this, rb, transform);
@@ -116,7 +117,12 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Update()
     {
-        moveInput = InputManager.controls.GamePlay.Movement.ReadValue<Vector2>();
+        PhoneState phoneState = itemPhone.GetComponent<PhoneController>().GetCurrentPhoneState();
+
+        if (phoneState != PhoneState.Camera)
+        {
+            moveInput = InputManager.controls.GamePlay.Movement.ReadValue<Vector2>();
+        }
 
         if (currentState != SprintState)
         {
@@ -141,14 +147,6 @@ public class PlayerStateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
-    //    Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
-    //}
-
-    
-
     void RegenStamina()
     {
         if (staminaSettings.isOutOfStamina == true && staminaSettings.staminaLeft > 3f)
@@ -172,10 +170,6 @@ public class PlayerStateMachine : MonoBehaviour
         {
             staminaSettings.staminaLeft = staminaSettings.maxStamina;
         }
-
-        
-
-    //UpdateSprintUI();
     }
 
    public float StaminaRatio

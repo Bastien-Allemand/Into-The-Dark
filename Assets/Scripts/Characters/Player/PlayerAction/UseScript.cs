@@ -70,6 +70,11 @@ public class PlaceScript : MonoBehaviour
             else
             {
                 leftHandContent.itemScript.deployed = true;
+                ItemScript itemScript = leftHandContent.GetComponentInChildren<ItemScript>();
+                if(itemScript != null)
+                {
+                    itemScript.DeployItem();
+                }
             }
         }
         else if (_context.control.name == "rightButton" && rightHandContent.filled)
@@ -86,6 +91,11 @@ public class PlaceScript : MonoBehaviour
             else
             {
                 rightHandContent.itemScript.deployed = true;
+                ItemScript itemScript = leftHandContent.GetComponentInChildren<ItemScript>();
+                if (itemScript != null)
+                {
+                    itemScript.DeployItem();
+                }
             }
         }
     }
@@ -191,9 +201,9 @@ public class PlaceScript : MonoBehaviour
 
                 preview.transform.localRotation = Quaternion.Euler(0, currentRotation, 0);
             }
-            Debug.Log(preview);
-            Debug.Log(playerView);
-            Debug.Log(controls);
+            //Debug.Log(preview);
+            //Debug.Log(playerView);
+            //Debug.Log(controls);
         }
     }
 
