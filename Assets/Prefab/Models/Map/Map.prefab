@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6937378653923126867}
   - component: {fileID: 8561814758944845851}
   - component: {fileID: 938483250485020468}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,8 +321,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -17.27372, y: 0.33068892, z: -20.323051}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -394,7 +394,9 @@ GameObject:
   - component: {fileID: 4605784717541912509}
   - component: {fileID: 6853278695798821406}
   - component: {fileID: 3276020192903067573}
-  m_Layer: 0
+  - component: {fileID: 6256767600575883507}
+  - component: {fileID: 3785721498695548550}
+  m_Layer: 15
   m_Name: bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,6 +480,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6256767600575883507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116196044370151769}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.05402605, y: 0.013384909, z: 0.06058906}
+  m_Center: {x: 0, y: -2.3283064e-10, z: -0.000000014901161}
+--- !u!208 &3785721498695548550
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116196044370151769}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.027, y: 0.007, z: 0.030000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &146144842760136473
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +528,8 @@ GameObject:
   - component: {fileID: 4720665001659700535}
   - component: {fileID: 5367841954530839908}
   - component: {fileID: 8417396056115172302}
-  m_Layer: 0
+  - component: {fileID: 5837567480815040847}
+  m_Layer: 15
   m_Name: Box.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,6 +609,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5837567480815040847
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146144842760136473}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &154132443228595211
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +636,7 @@ GameObject:
   - component: {fileID: 6213034599884709638}
   - component: {fileID: 7964258010298917519}
   - component: {fileID: 5849576434124873640}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,8 +743,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 22.782173, y: -0.3300824, z: 6.9449077}
-  m_LocalScale: {x: 39.082775, y: 39.082775, z: 39.082775}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -760,7 +816,7 @@ GameObject:
   - component: {fileID: 5260690509571166100}
   - component: {fileID: 8849410689737940559}
   - component: {fileID: 7653638040375048419}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1176,7 @@ GameObject:
   - component: {fileID: 6553048135215773006}
   - component: {fileID: 6938628884168459120}
   - component: {fileID: 3290767277473875247}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1136,7 +1192,7 @@ Transform:
   m_GameObject: {fileID: 331055340706571009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0039888, y: 0.024999987, z: 0.059999533}
+  m_LocalPosition: {x: -0.0039888, y: 0.025, z: 0.0994}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1210,7 +1266,7 @@ GameObject:
   - component: {fileID: 3600603341945121016}
   - component: {fileID: 3815064147665564224}
   - component: {fileID: 392019679557890666}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1356,9 @@ GameObject:
   - component: {fileID: 2555997019124956834}
   - component: {fileID: 5672592503094884387}
   - component: {fileID: 1384080685000310055}
-  m_Layer: 0
+  - component: {fileID: 9218482331116498823}
+  - component: {fileID: 5853277130934872347}
+  m_Layer: 15
   m_Name: workstation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,6 +1443,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9218482331116498823
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406354210367383815}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.02, z: 0.080176674}
+  m_Center: {x: 0.000000007450581, y: -0.0000000037252903, z: -0.0000000018626451}
+--- !u!208 &5853277130934872347
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406354210367383815}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.040000003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &432069567905581766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1581,8 @@ GameObject:
   - component: {fileID: 1516145588573112916}
   - component: {fileID: 3390890914206885580}
   - component: {fileID: 4214943649824400222}
-  m_Layer: 0
+  - component: {fileID: 2498781825240461408}
+  m_Layer: 15
   m_Name: geometry_chair.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1565,6 +1661,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &2498781825240461408
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435396972334747573}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &453605395958552160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,7 +1688,7 @@ GameObject:
   - component: {fileID: 5436733494771560185}
   - component: {fileID: 5455159941432453028}
   - component: {fileID: 5847509990236277768}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Middle_Plant.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1666,7 +1778,8 @@ GameObject:
   - component: {fileID: 5523397400865154137}
   - component: {fileID: 8914044803114848650}
   - component: {fileID: 7859973594081175585}
-  m_Layer: 0
+  - component: {fileID: 1250434719526598423}
+  m_Layer: 15
   m_Name: Fridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1747,6 +1860,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1250434719526598423
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491332048422550867}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.006, y: 0.022000002, z: 0.009000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &517050915626434698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,8 +1994,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -11.474692, y: -0.45570433, z: 13.201919}
-  m_LocalScale: {x: 26.897234, y: 26.897234, z: 26.897234}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2028,7 +2157,8 @@ GameObject:
   - component: {fileID: 7508319497930807805}
   - component: {fileID: 6973705323902541235}
   - component: {fileID: 4583676010536047565}
-  m_Layer: 0
+  - component: {fileID: 6351160559146464390}
+  m_Layer: 15
   m_Name: Cupboard.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2109,6 +2239,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6351160559146464390
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616713340758897082}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &635303180822881711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,8 +2283,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -20.297638, y: 3.1341634, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2210,7 +2356,7 @@ GameObject:
   - component: {fileID: 8921349098025975574}
   - component: {fileID: 1476826602221546283}
   - component: {fileID: 7375986753256975979}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2226,7 +2372,7 @@ Transform:
   m_GameObject: {fileID: 639583648356864880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0039888, y: 0.0047871647, z: 0.01980707}
+  m_LocalPosition: {x: -0.0039888, y: 0.0524, z: 0.0198}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2300,7 +2446,7 @@ GameObject:
   - component: {fileID: 3020311193807515993}
   - component: {fileID: 7775293490757855899}
   - component: {fileID: 2233836557956704461}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2316,7 +2462,7 @@ Transform:
   m_GameObject: {fileID: 695912341867507434}
   serializedVersion: 2
   m_LocalRotation: {x: -1.7099743e-13, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0002922821, y: 0.006692104, z: -0.029816356}
+  m_LocalPosition: {x: 0.0002922821, y: 0.00669, z: 0.0206}
   m_LocalScale: {x: 0.908201, y: 0.21390587, z: 0.6331586}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2480,7 +2626,9 @@ GameObject:
   - component: {fileID: 5981054276891775061}
   - component: {fileID: 7795384712516637650}
   - component: {fileID: 5712900944397322392}
-  m_Layer: 0
+  - component: {fileID: 3684701088160490411}
+  - component: {fileID: 3685957567336777033}
+  m_Layer: 15
   m_Name: Cylinder.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2559,6 +2707,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3684701088160490411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717321148208300207}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04345243, y: 0.12892613, z: 0.01947096}
+  m_Center: {x: 0, y: 0, z: -0.000000014901161}
+--- !u!208 &3685957567336777033
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717321148208300207}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.022000002, y: 0.064, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &745675218601335489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,7 +2935,8 @@ GameObject:
   - component: {fileID: 5041133509769216214}
   - component: {fileID: 1743107999703070826}
   - component: {fileID: 4647003324231018496}
-  m_Layer: 0
+  - component: {fileID: 5288231575710330112}
+  m_Layer: 15
   m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2830,6 +3016,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5288231575710330112
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814280569253704383}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.060000002, y: 0.018000001, z: 0.024}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &833916803358290848
 GameObject:
   m_ObjectHideFlags: 0
@@ -3021,7 +3223,7 @@ GameObject:
   - component: {fileID: 8577541541316724200}
   - component: {fileID: 7317239420056254737}
   - component: {fileID: 2945069316088057650}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Top_hover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3111,7 +3313,7 @@ GameObject:
   - component: {fileID: 3266037958692909538}
   - component: {fileID: 1643705252261682771}
   - component: {fileID: 8312302334453948420}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3201,7 +3403,7 @@ GameObject:
   - component: {fileID: 8006515524561534620}
   - component: {fileID: 1307596606579312096}
   - component: {fileID: 8612449120987002213}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Right_handle_sink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3291,7 +3493,7 @@ GameObject:
   - component: {fileID: 7388564562982500267}
   - component: {fileID: 8674898922133910132}
   - component: {fileID: 6022175141409101567}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer_Left.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3381,7 +3583,7 @@ GameObject:
   - component: {fileID: 2271812834141589555}
   - component: {fileID: 3202922070158338440}
   - component: {fileID: 4780283478795014492}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: door.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3397,7 +3599,7 @@ Transform:
   m_GameObject: {fileID: 939074726572577297}
   serializedVersion: 2
   m_LocalRotation: {x: -3.9974428e-13, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008876591, y: 0.00217906, z: -0.021575501}
+  m_LocalPosition: {x: -0.008876591, y: -0.02592, z: -0.021575501}
   m_LocalScale: {x: 0.018081296, y: 0.0068390537, z: 0.21901238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3651,7 +3853,9 @@ GameObject:
   - component: {fileID: 81137314253348124}
   - component: {fileID: 5805885218615752267}
   - component: {fileID: 4840560243434657355}
-  m_Layer: 0
+  - component: {fileID: 4080403158281251011}
+  - component: {fileID: 8069135165730217462}
+  m_Layer: 15
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3731,6 +3935,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4080403158281251011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983719960647740838}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.016319899, y: 0.022560481, z: 0.01666609}
+  m_Center: {x: 0, y: 0.0000000037252903, z: -0.000000007450581}
+--- !u!208 &8069135165730217462
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983719960647740838}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.011000001, z: 0.008}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1019439462209669015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,7 +3983,7 @@ GameObject:
   - component: {fileID: 5570722175737383356}
   - component: {fileID: 8973488165441632188}
   - component: {fileID: 6652386662197382542}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Open Shelf.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3832,7 +4073,7 @@ GameObject:
   - component: {fileID: 6957615082804985936}
   - component: {fileID: 1990006689140587868}
   - component: {fileID: 3345180481799217705}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3848,7 +4089,7 @@ Transform:
   m_GameObject: {fileID: 1048573170431553167}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.020907097, y: -0.020000027, z: 0.019999828}
+  m_LocalPosition: {x: -0.020907097, y: 0.0597, z: 0.02}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3939,8 +4180,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -16.760937, y: -0.13854788, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4192,7 +4433,7 @@ GameObject:
   - component: {fileID: 4554677923909053277}
   - component: {fileID: 5531134670040808330}
   - component: {fileID: 8316882815504334697}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door_hover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4208,7 +4449,7 @@ Transform:
   m_GameObject: {fileID: 1066884939854515009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.020482292, y: -0.0037299674, z: -0.019949827}
+  m_LocalPosition: {x: -0.020482292, y: 0.0677, z: -0.0199}
   m_LocalScale: {x: 0.9999999, y: 1.0549861, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4642,7 +4883,8 @@ GameObject:
   - component: {fileID: 3583051117260702469}
   - component: {fileID: 5459683740181194729}
   - component: {fileID: 5686718751074385099}
-  m_Layer: 0
+  - component: {fileID: 9092969256744885214}
+  m_Layer: 15
   m_Name: Box.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4658,7 +4900,7 @@ Transform:
   m_GameObject: {fileID: 1129556596748979835}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7098148, y: 0, z: 0, w: 0.70438844}
-  m_LocalPosition: {x: -27.385733, y: 6.632059, z: 10.5633}
+  m_LocalPosition: {x: -27.385733, y: 6.63, z: 10.57}
   m_LocalScale: {x: 60.18232, y: 60.182323, z: 60.182323}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4722,6 +4964,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &9092969256744885214
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129556596748979835}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1137689158491631437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,8 +5098,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.496599, y: -0.000654161, z: 18.157633}
-  m_LocalScale: {x: 52.94187, y: 52.94187, z: 52.94187}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5183,7 +5441,8 @@ GameObject:
   - component: {fileID: 4410240751963002432}
   - component: {fileID: 7816158890955029344}
   - component: {fileID: 8519369684347979672}
-  m_Layer: 0
+  - component: {fileID: 7074950997868502521}
+  m_Layer: 15
   m_Name: office_desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5262,6 +5521,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7074950997868502521
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248694637815425417}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.022000002, y: 0.031000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1258175768875416888
 GameObject:
   m_ObjectHideFlags: 0
@@ -5273,7 +5548,8 @@ GameObject:
   - component: {fileID: 6743769040519767054}
   - component: {fileID: 2443612550187087544}
   - component: {fileID: 5184388551598988476}
-  m_Layer: 0
+  - component: {fileID: 4921554183118134381}
+  m_Layer: 15
   m_Name: geometry_chair.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5352,6 +5628,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &4921554183118134381
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258175768875416888}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1286884126900792036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5363,7 +5655,7 @@ GameObject:
   - component: {fileID: 7633048960357072623}
   - component: {fileID: 3902717606555807675}
   - component: {fileID: 3916698775999030076}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Toolbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5470,8 +5762,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 23.005278, y: -0.5798575, z: 0.09806585}
-  m_LocalScale: {x: 18.29361, y: 18.29361, z: 18.29361}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5650,8 +5942,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.474692, y: -0.13854788, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5723,7 +6015,7 @@ GameObject:
   - component: {fileID: 9048760219943492164}
   - component: {fileID: 2653404823257508553}
   - component: {fileID: 1252710575327590866}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5830,8 +6122,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 23.497667, y: -0.3300824, z: 10.610752}
-  m_LocalScale: {x: 56.068794, y: 56.068794, z: 56.068794}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5993,7 +6285,7 @@ GameObject:
   - component: {fileID: 3477612858982142876}
   - component: {fileID: 1882119142011402645}
   - component: {fileID: 8527322618587855815}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6009,7 +6301,7 @@ Transform:
   m_GameObject: {fileID: 1384357828694198219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.004180183, y: -0.025000054, z: -0.020000638}
+  m_LocalPosition: {x: -0.004180183, y: 0.066, z: -0.02}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6083,7 +6375,8 @@ GameObject:
   - component: {fileID: 1614096601830748153}
   - component: {fileID: 3568042839528489209}
   - component: {fileID: 3965827236139848628}
-  m_Layer: 0
+  - component: {fileID: 6363995072426390290}
+  m_Layer: 15
   m_Name: Cube.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6162,6 +6455,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6363995072426390290
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395745931056857312}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.003, y: 0.003, z: 0.003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1432009531275051114
 GameObject:
   m_ObjectHideFlags: 0
@@ -6263,7 +6572,7 @@ GameObject:
   - component: {fileID: 3850994703888891565}
   - component: {fileID: 4128091794107934511}
   - component: {fileID: 5560509958444754612}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tiroir_de_chevet.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6646,7 +6955,8 @@ GameObject:
   - component: {fileID: 2812407979810647114}
   - component: {fileID: 8274848097114297192}
   - component: {fileID: 3871446630378217917}
-  m_Layer: 0
+  - component: {fileID: 1483552444931292363}
+  m_Layer: 15
   m_Name: Cube.019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6725,6 +7035,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1483552444931292363
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499552218670401721}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.003, y: 0.003, z: 0.012}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1504796029756509887
 GameObject:
   m_ObjectHideFlags: 0
@@ -6973,7 +7299,7 @@ GameObject:
   - component: {fileID: 1380594705314195854}
   - component: {fileID: 7563609097060221949}
   - component: {fileID: 3853862217944053130}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6989,7 +7315,7 @@ Transform:
   m_GameObject: {fileID: 1570798890140960975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0039888, y: -0.02006853, z: 0.059999533}
+  m_LocalPosition: {x: -0.0039888, y: -0.0201, z: 0.1005}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7063,7 +7389,7 @@ GameObject:
   - component: {fileID: 2886824343115344520}
   - component: {fileID: 6276124808447348092}
   - component: {fileID: 2799448183453286188}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7168,7 +7494,7 @@ Transform:
   m_GameObject: {fileID: 1600673774889627317}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.371, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7204,7 +7530,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 061cec7fa55a56245b8a127175930166, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ce4612a5f03c69f4aadafa8d70c90cc3, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1622516715689735134
 GameObject:
@@ -7397,7 +7723,8 @@ GameObject:
   - component: {fileID: 645845291259080124}
   - component: {fileID: 7853114682786880189}
   - component: {fileID: 8233880546220978679}
-  m_Layer: 0
+  - component: {fileID: 835229969709361807}
+  m_Layer: 15
   m_Name: garage_closet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7476,6 +7803,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &835229969709361807
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679452045916465085}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.030000001, z: 0.028}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1733993975026579125
 GameObject:
   m_ObjectHideFlags: 0
@@ -7577,7 +7920,7 @@ GameObject:
   - component: {fileID: 243188662202157662}
   - component: {fileID: 1731033896246163440}
   - component: {fileID: 3318255059122822642}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Feet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7667,7 +8010,8 @@ GameObject:
   - component: {fileID: 3704357451856966016}
   - component: {fileID: 1851408231472854646}
   - component: {fileID: 1875784092721077052}
-  m_Layer: 0
+  - component: {fileID: 3693422205036769948}
+  m_Layer: 15
   m_Name: geometry_chair.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7746,6 +8090,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &3693422205036769948
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795150656800193313}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1874261678967085339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7847,7 +8207,9 @@ GameObject:
   - component: {fileID: 8234368032337537233}
   - component: {fileID: 8192710965551066192}
   - component: {fileID: 3969164536607385313}
-  m_Layer: 0
+  - component: {fileID: 4954376715905222679}
+  - component: {fileID: 2334390243496873222}
+  m_Layer: 15
   m_Name: Cylinder.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7926,6 +8288,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4954376715905222679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892928560653951640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00466753, y: 0.004665751, z: 0.00466536}
+  m_Center: {x: -3.4741586e-23, y: 0.0000000024447218, z: -0.000000014784746}
+--- !u!208 &2334390243496873222
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892928560653951640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.002, y: 0.002, z: 0.002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1893138384191746789
 GameObject:
   m_ObjectHideFlags: 0
@@ -7937,7 +8336,7 @@ GameObject:
   - component: {fileID: 7276773342737757277}
   - component: {fileID: 6337298735486570368}
   - component: {fileID: 3815698063148363982}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8027,7 +8426,7 @@ GameObject:
   - component: {fileID: 8810164819729571300}
   - component: {fileID: 3273559292264933875}
   - component: {fileID: 8847856268520386040}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NumLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8118,7 +8517,7 @@ GameObject:
   - component: {fileID: 7056747785364331465}
   - component: {fileID: 3603307917212201261}
   - component: {fileID: 2722005575119007918}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Mouse.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8225,8 +8624,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -27.390688, y: 6.624766, z: 10.620018}
-  m_LocalScale: {x: 51.908237, y: 51.908237, z: 51.908237}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8388,7 +8787,7 @@ GameObject:
   - component: {fileID: 3872202535052128276}
   - component: {fileID: 3438425823437556443}
   - component: {fileID: 2919007478592874616}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer_Left.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8478,7 +8877,7 @@ GameObject:
   - component: {fileID: 5154503021464134845}
   - component: {fileID: 8271302441628538561}
   - component: {fileID: 3757030374531689481}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: StairsPlank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8568,7 +8967,7 @@ GameObject:
   - component: {fileID: 2414086723631556482}
   - component: {fileID: 5522857863312382443}
   - component: {fileID: 5227266100110718376}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BoxCap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8658,7 +9057,7 @@ GameObject:
   - component: {fileID: 7768392664617251575}
   - component: {fileID: 1813035554731835692}
   - component: {fileID: 8034345309867233119}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BoxCap.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8928,7 +9327,7 @@ GameObject:
   - component: {fileID: 398500424684831974}
   - component: {fileID: 3973323207000186193}
   - component: {fileID: 1053857077647115599}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: door.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9018,7 +9417,8 @@ GameObject:
   - component: {fileID: 8121932643432136446}
   - component: {fileID: 7742847217209700897}
   - component: {fileID: 7596429427831816985}
-  m_Layer: 0
+  - component: {fileID: 3093260322140072657}
+  m_Layer: 15
   m_Name: Siphon.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9098,6 +9498,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &3093260322140072657
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113957323564850105}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.012, z: 0.008}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2130547130763494576
 GameObject:
   m_ObjectHideFlags: 0
@@ -9109,7 +9525,9 @@ GameObject:
   - component: {fileID: 8291873760272633985}
   - component: {fileID: 7300475019892863733}
   - component: {fileID: 5538171281620892783}
-  m_Layer: 0
+  - component: {fileID: 17643396267525941}
+  - component: {fileID: 655943255168381963}
+  m_Layer: 15
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9188,6 +9606,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &17643396267525941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130547130763494576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0013226601, y: 0.0037953297, z: 0.0037953204}
+  m_Center: {x: -2.0679515e-24, y: -5.8207657e-11, z: -0.000000007450581}
+--- !u!208 &655943255168381963
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130547130763494576}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.001, y: 0.002, z: 0.002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2130694389316794888
 GameObject:
   m_ObjectHideFlags: 0
@@ -9289,7 +9744,8 @@ GameObject:
   - component: {fileID: 1965040208504333865}
   - component: {fileID: 4315145213099962358}
   - component: {fileID: 3936979963743554947}
-  m_Layer: 0
+  - component: {fileID: 1470811352937434676}
+  m_Layer: 15
   m_Name: geometry_chair.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9368,6 +9824,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1470811352937434676
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148716291792329043}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2158869320596605597
 GameObject:
   m_ObjectHideFlags: 0
@@ -9469,7 +9941,7 @@ GameObject:
   - component: {fileID: 7845701319117459406}
   - component: {fileID: 7583657174403424742}
   - component: {fileID: 1678575016085833550}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Top_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9485,7 +9957,7 @@ Transform:
   m_GameObject: {fileID: 2192616976873484838}
   serializedVersion: 2
   m_LocalRotation: {x: 2.4074124e-35, y: -1.0048594e-14, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: 0.0061339377, y: 0.0062157447, z: 0.0000014591217}
+  m_LocalPosition: {x: 0.0061, y: 0.0062, z: 0.0149}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9672,7 +10144,7 @@ GameObject:
   - component: {fileID: 4832866440381079084}
   - component: {fileID: 1326178695614785031}
   - component: {fileID: 6156144661505777795}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bottom_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9688,7 +10160,7 @@ Transform:
   m_GameObject: {fileID: 2232472290438533001}
   serializedVersion: 2
   m_LocalRotation: {x: 2.4074124e-35, y: -1.0048594e-14, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: 0.006133957, y: -0.015728936, z: 0.0000014495849}
+  m_LocalPosition: {x: 0.0061, y: -0.0157, z: 0.0162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9779,8 +10251,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -14.862275, y: 0.9345616, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10032,7 +10504,7 @@ GameObject:
   - component: {fileID: 1439228374945782887}
   - component: {fileID: 1083712001214213154}
   - component: {fileID: 5576329342757474285}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BoxCap.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10122,7 +10594,7 @@ GameObject:
   - component: {fileID: 8464492133344054179}
   - component: {fileID: 8510637350778367586}
   - component: {fileID: 7269582727333080846}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer_Left.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10212,7 +10684,9 @@ GameObject:
   - component: {fileID: 224283256093671296}
   - component: {fileID: 4515271208625753648}
   - component: {fileID: 8118179357228914300}
-  m_Layer: 0
+  - component: {fileID: 8187782436635853587}
+  - component: {fileID: 359853573633132185}
+  m_Layer: 15
   m_Name: closet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10293,6 +10767,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8187782436635853587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300025033436281979}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.01835681, y: 0.06040705, z: 0.04843541}
+  m_Center: {x: 0.000000029802322, y: -9.313226e-10, z: -6.617445e-24}
+--- !u!208 &359853573633132185
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300025033436281979}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.009000001, y: 0.030000001, z: 0.024}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2372560659933373850
 GameObject:
   m_ObjectHideFlags: 0
@@ -10394,7 +10905,8 @@ GameObject:
   - component: {fileID: 4944613069209696548}
   - component: {fileID: 5359212726363536619}
   - component: {fileID: 6430006073882434021}
-  m_Layer: 0
+  - component: {fileID: 1780487950724269222}
+  m_Layer: 15
   m_Name: Table_de_chevet.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10474,6 +10986,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1780487950724269222
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395248487149239094}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.007, y: 0.008, z: 0.007}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2411500819100204910
 GameObject:
   m_ObjectHideFlags: 0
@@ -10575,7 +11103,8 @@ GameObject:
   - component: {fileID: 3574702516678183243}
   - component: {fileID: 5952636651930348735}
   - component: {fileID: 6553202991236408743}
-  m_Layer: 0
+  - component: {fileID: 2036016324213658896}
+  m_Layer: 15
   m_Name: closet.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10656,6 +11185,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &2036016324213658896
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430369535606034351}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.009000001, y: 0.030000001, z: 0.024}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2447297341735528082
 GameObject:
   m_ObjectHideFlags: 0
@@ -10755,7 +11300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928091513547435355}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: geometry_map_content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10858,7 +11403,7 @@ GameObject:
   - component: {fileID: 3022502040776244318}
   - component: {fileID: 8866865236901250605}
   - component: {fileID: 3326249805139877270}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Middle_Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11038,7 +11583,9 @@ GameObject:
   - component: {fileID: 6304100169139022187}
   - component: {fileID: 310142722794490419}
   - component: {fileID: 1089083211624096453}
-  m_Layer: 0
+  - component: {fileID: 152509166629107231}
+  - component: {fileID: 2037055818473528907}
+  m_Layer: 15
   m_Name: Cylinder.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11118,6 +11665,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &152509166629107231
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637878003877539530}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0163199, y: 0.022560475, z: 0.016666092}
+  m_Center: {x: 0, y: -2.3283064e-10, z: 0}
+--- !u!208 &2037055818473528907
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637878003877539530}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.011000001, z: 0.008}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2679007610921391592
 GameObject:
   m_ObjectHideFlags: 0
@@ -11146,8 +11730,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -30.576593, y: -0.21923286, z: -8.571818}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11236,8 +11820,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -29.080173, y: 6.624766, z: 11.954765}
-  m_LocalScale: {x: 51.908237, y: 51.908237, z: 51.908237}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11579,7 +12163,7 @@ GameObject:
   - component: {fileID: 6290149457699076377}
   - component: {fileID: 4157502861164555839}
   - component: {fileID: 3771118812266689687}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Left_handle_sink.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11687,8 +12271,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 13.979062, y: 7.3084984, z: -22.059792}
-  m_LocalScale: {x: 12.268002, y: 12.268002, z: 12.268002}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11760,7 +12344,7 @@ GameObject:
   - component: {fileID: 4549658954218111354}
   - component: {fileID: 4470469684711835196}
   - component: {fileID: 4252159839858799898}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Pillow_Left.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11940,7 +12524,7 @@ GameObject:
   - component: {fileID: 7864034685305429382}
   - component: {fileID: 5833015820211958508}
   - component: {fileID: 2941631424197273033}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12120,7 +12704,7 @@ GameObject:
   - component: {fileID: 7309342409772078704}
   - component: {fileID: 8894292684640228047}
   - component: {fileID: 2774508415370293079}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer_Left.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12317,8 +12901,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.496599, y: -0.000654161, z: 16.450216}
-  m_LocalScale: {x: 52.94187, y: 52.94187, z: 52.94187}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12407,8 +12991,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -31.498173, y: 0.18860036, z: -1.6496425}
-  m_LocalScale: {x: 63.81749, y: 63.81749, z: 63.81749}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12840,7 +13424,8 @@ GameObject:
   - component: {fileID: 8865907068760706415}
   - component: {fileID: 8697998265948203932}
   - component: {fileID: 2373355278523951395}
-  m_Layer: 0
+  - component: {fileID: 1845332254684123826}
+  m_Layer: 15
   m_Name: Sofa.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12919,6 +13504,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1845332254684123826
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181822930081426492}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.016, y: 0.014, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3201437711983345379
 GameObject:
   m_ObjectHideFlags: 0
@@ -12930,7 +13531,8 @@ GameObject:
   - component: {fileID: 1137432490025394573}
   - component: {fileID: 1370469569994795425}
   - component: {fileID: 5274257206312059346}
-  m_Layer: 0
+  - component: {fileID: 1723257237455968575}
+  m_Layer: 15
   m_Name: Box.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13010,6 +13612,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1723257237455968575
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201437711983345379}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3233108237693723967
 GameObject:
   m_ObjectHideFlags: 0
@@ -13111,7 +13729,7 @@ GameObject:
   - component: {fileID: 2903739399551568465}
   - component: {fileID: 612155375683143177}
   - component: {fileID: 2677624017723786390}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Gas_Stove.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13291,7 +13909,8 @@ GameObject:
   - component: {fileID: 1667920416071692481}
   - component: {fileID: 5850069188400522966}
   - component: {fileID: 1220343116743395670}
-  m_Layer: 0
+  - component: {fileID: 9053887037286964621}
+  m_Layer: 15
   m_Name: Sofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13370,6 +13989,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &9053887037286964621
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3379343688364506520}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.016, y: 0.014, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3390080428724018404
 GameObject:
   m_ObjectHideFlags: 0
@@ -13471,7 +14106,7 @@ GameObject:
   - component: {fileID: 1014602187427601755}
   - component: {fileID: 4101697599280447511}
   - component: {fileID: 4385709768519068880}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13561,7 +14196,8 @@ GameObject:
   - component: {fileID: 5295696695753185635}
   - component: {fileID: 6662164653931553771}
   - component: {fileID: 5442712909517545591}
-  m_Layer: 0
+  - component: {fileID: 4797739378459394806}
+  m_Layer: 15
   m_Name: Table_de_chevet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13640,6 +14276,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &4797739378459394806
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456358374330565549}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.007, y: 0.008, z: 0.007}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3457294421052493192
 GameObject:
   m_ObjectHideFlags: 0
@@ -13831,7 +14483,7 @@ GameObject:
   - component: {fileID: 869432668148509480}
   - component: {fileID: 2287810572671442177}
   - component: {fileID: 3214788159610188950}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Support.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13938,8 +14590,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.474692, y: 0.62097967, z: 13.201919}
-  m_LocalScale: {x: 13.751279, y: 13.751279, z: 13.751279}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14011,7 +14663,7 @@ GameObject:
   - component: {fileID: 3303974563387203636}
   - component: {fileID: 6688476425721689522}
   - component: {fileID: 5111874507647295105}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14208,8 +14860,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.782173, y: 0.6264322, z: 5.215716}
-  m_LocalScale: {x: 18.638308, y: 18.638308, z: 18.638308}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14281,7 +14933,7 @@ GameObject:
   - component: {fileID: 4441499000320998981}
   - component: {fileID: 5475691550984977821}
   - component: {fileID: 1055967252735771198}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Middle_Plant.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14461,7 +15113,7 @@ GameObject:
   - component: {fileID: 9069333150047220849}
   - component: {fileID: 7364133983544544774}
   - component: {fileID: 5086751207260263970}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Left_Buton_hover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14568,8 +15220,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 22.782173, y: -0.49395087, z: 1.9261346}
-  m_LocalScale: {x: 39.082775, y: 39.082775, z: 39.082775}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14641,7 +15293,7 @@ GameObject:
   - component: {fileID: 3920382823889747638}
   - component: {fileID: 5384675627422694287}
   - component: {fileID: 4774930551332386339}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14911,7 +15563,9 @@ GameObject:
   - component: {fileID: 1377537462449339510}
   - component: {fileID: 4944552502652697443}
   - component: {fileID: 1371473689387593581}
-  m_Layer: 0
+  - component: {fileID: 5651791774122255266}
+  - component: {fileID: 7589876658394857913}
+  m_Layer: 15
   m_Name: bed.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14995,6 +15649,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5651791774122255266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866704770544952870}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.05402604, y: 0.013384909, z: 0.06058906}
+  m_Center: {x: 0, y: 0.000000007450581, z: -0.000000029802322}
+--- !u!208 &7589876658394857913
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866704770544952870}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.027, y: 0.007, z: 0.030000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3869960327075346568
 GameObject:
   m_ObjectHideFlags: 0
@@ -15113,8 +15804,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -30.52249, y: -0.6042717, z: -15.188575}
-  m_LocalScale: {x: 24.915249, y: 24.915249, z: 24.915249}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15186,7 +15877,8 @@ GameObject:
   - component: {fileID: 4759540348086988075}
   - component: {fileID: 126555819078978355}
   - component: {fileID: 7587333759591234327}
-  m_Layer: 0
+  - component: {fileID: 8848780991048282575}
+  m_Layer: 15
   m_Name: Double_bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15265,6 +15957,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8848780991048282575
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904339183712353169}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.025, y: 0.011000001, z: 0.018000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3936868945669710492
 GameObject:
   m_ObjectHideFlags: 0
@@ -15471,8 +16179,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7147, y: 13.86583, z: 56.98802}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1259782619265195830}
   - {fileID: 7407629566894393781}
@@ -15942,7 +16650,7 @@ GameObject:
   - component: {fileID: 3772578864253189020}
   - component: {fileID: 7287574341781866160}
   - component: {fileID: 2101586325400801322}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16122,7 +16830,8 @@ GameObject:
   - component: {fileID: 490163022462738484}
   - component: {fileID: 974151417714835153}
   - component: {fileID: 794274033809073448}
-  m_Layer: 0
+  - component: {fileID: 3494142303820378110}
+  m_Layer: 15
   m_Name: geometry_chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16201,6 +16910,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &3494142303820378110
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103575273064308030}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.007, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4138160934702663471
 GameObject:
   m_ObjectHideFlags: 0
@@ -16392,7 +17117,7 @@ GameObject:
   - component: {fileID: 1019576140979815619}
   - component: {fileID: 4035874292844049883}
   - component: {fileID: 6800247348798240252}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16482,7 +17207,7 @@ GameObject:
   - component: {fileID: 8476040686138428249}
   - component: {fileID: 6920421931079993631}
   - component: {fileID: 103999585438442911}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Big_Drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16498,7 +17223,7 @@ Transform:
   m_GameObject: {fileID: 4288505802890496721}
   serializedVersion: 2
   m_LocalRotation: {x: 3.5527145e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0054916, y: 0.000876634, z: -0.000000018328429}
+  m_LocalPosition: {x: -0.0054916, y: 0.0862, z: -0}
   m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16662,7 +17387,7 @@ GameObject:
   - component: {fileID: 6419763579833198989}
   - component: {fileID: 3016104685927256481}
   - component: {fileID: 8255670622202799042}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Little_Drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16678,7 +17403,7 @@ Transform:
   m_GameObject: {fileID: 4395066985195124323}
   serializedVersion: 2
   m_LocalRotation: {x: 3.5527145e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0049745175, y: -0.027078671, z: -0.000000014305114}
+  m_LocalPosition: {x: -0.0049745175, y: 0.1039, z: -0}
   m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16769,8 +17494,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 22.782173, y: -0.49395087, z: 5.2550344}
-  m_LocalScale: {x: 39.082775, y: 39.082775, z: 39.082775}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16949,8 +17674,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.496599, y: -0.000654161, z: 14.855994}
-  m_LocalScale: {x: 52.94187, y: 52.94187, z: 52.94187}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17422,8 +18147,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.782173, y: -0.63540304, z: 3.5667586}
-  m_LocalScale: {x: 18.638308, y: 18.638308, z: 18.638308}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17512,8 +18237,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 28.073856, y: 6.802124, z: -9.474743}
-  m_LocalScale: {x: 43.92577, y: 43.92577, z: 43.92577}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17585,7 +18310,8 @@ GameObject:
   - component: {fileID: 4526235588142728358}
   - component: {fileID: 910352545062746505}
   - component: {fileID: 5100484392438427955}
-  m_Layer: 0
+  - component: {fileID: 8592356147562271158}
+  m_Layer: 15
   m_Name: Open Shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17664,6 +18390,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8592356147562271158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666413299435216755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000001, y: 0.02, z: 0.020000001}
+  m_Center: {x: 0, y: -0.000000029802322, z: 0}
 --- !u!1 &4700808164107221399
 GameObject:
   m_ObjectHideFlags: 0
@@ -17675,7 +18422,7 @@ GameObject:
   - component: {fileID: 9033332101764686898}
   - component: {fileID: 4312647453614170285}
   - component: {fileID: 4496088695224279820}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: closet_right_door.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17691,7 +18438,7 @@ Transform:
   m_GameObject: {fileID: 4700808164107221399}
   serializedVersion: 2
   m_LocalRotation: {x: 3.5527128e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009483376, y: -0.0010111617, z: 0.01111969}
+  m_LocalPosition: {x: -0.009483376, y: -0.001, z: -0.0964}
   m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17945,7 +18692,8 @@ GameObject:
   - component: {fileID: 5388059180910765664}
   - component: {fileID: 4754454137561222682}
   - component: {fileID: 6739004313861905756}
-  m_Layer: 0
+  - component: {fileID: 1981505028934070830}
+  m_Layer: 15
   m_Name: toilette.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18024,6 +18772,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1981505028934070830
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4753798878919883711}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.019000001, y: 0.038000003, z: 0.042000003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4792378030064837818
 GameObject:
   m_ObjectHideFlags: 0
@@ -18035,7 +18799,7 @@ GameObject:
   - component: {fileID: 8659823595631927194}
   - component: {fileID: 5471594778596497756}
   - component: {fileID: 2076335742988743503}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: door.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18051,7 +18815,7 @@ Transform:
   m_GameObject: {fileID: 4792378030064837818}
   serializedVersion: 2
   m_LocalRotation: {x: -3.9974428e-13, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008876591, y: -0.0023901653, z: -0.021575503}
+  m_LocalPosition: {x: -0.008876591, y: -0.01358, z: -0.021575503}
   m_LocalScale: {x: 0.018081296, y: 0.0068390537, z: 0.21901238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18125,7 +18889,7 @@ GameObject:
   - component: {fileID: 1405494618756767704}
   - component: {fileID: 3732219537422884555}
   - component: {fileID: 1545974088738255924}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18215,7 +18979,8 @@ GameObject:
   - component: {fileID: 3680139268409902667}
   - component: {fileID: 7926744467114184963}
   - component: {fileID: 20481746979779498}
-  m_Layer: 0
+  - component: {fileID: 954087375318964672}
+  m_Layer: 15
   m_Name: Box.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18295,6 +19060,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &954087375318964672
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4839241492789022168}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4905070632691597317
 GameObject:
   m_ObjectHideFlags: 0
@@ -18306,7 +19087,8 @@ GameObject:
   - component: {fileID: 7715077917398390044}
   - component: {fileID: 2072496522423598160}
   - component: {fileID: 2879886045312229197}
-  m_Layer: 0
+  - component: {fileID: 5806678774673387139}
+  m_Layer: 15
   m_Name: 'washing_machine '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18389,6 +19171,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5806678774673387139
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905070632691597317}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4909713597534630259
 GameObject:
   m_ObjectHideFlags: 0
@@ -18400,7 +19198,8 @@ GameObject:
   - component: {fileID: 1997609436073863638}
   - component: {fileID: 4333014285061909710}
   - component: {fileID: 5916754880315801048}
-  m_Layer: 0
+  - component: {fileID: 3508074765936540772}
+  m_Layer: 15
   m_Name: garage_closet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18479,6 +19278,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &3508074765936540772
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4909713597534630259}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.030000001, z: 0.028}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4910263331969918385
 GameObject:
   m_ObjectHideFlags: 0
@@ -18670,7 +19485,7 @@ GameObject:
   - component: {fileID: 6546011131470711050}
   - component: {fileID: 612522341698975515}
   - component: {fileID: 5596768450011726077}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Big_Door_Left.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18867,8 +19682,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -14.862275, y: 3.1341634, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18940,7 +19755,7 @@ GameObject:
   - component: {fileID: 321262566602226290}
   - component: {fileID: 7038908979329143489}
   - component: {fileID: 4141767055234474889}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19304,7 +20119,8 @@ GameObject:
   - component: {fileID: 1703257913496722857}
   - component: {fileID: 2024768623658254679}
   - component: {fileID: 4912597049376990292}
-  m_Layer: 0
+  - component: {fileID: 6637336626612603573}
+  m_Layer: 15
   m_Name: closet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19385,6 +20201,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6637336626612603573
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087647417432580028}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.009000001, y: 0.030000001, z: 0.024}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5114795391807231146
 GameObject:
   m_ObjectHideFlags: 0
@@ -19396,7 +20228,7 @@ GameObject:
   - component: {fileID: 3830082297554597440}
   - component: {fileID: 8163928437744229670}
   - component: {fileID: 2589196403107853258}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Plate_next_to_the_sink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19486,7 +20318,8 @@ GameObject:
   - component: {fileID: 5982509507532322200}
   - component: {fileID: 4555143315115491585}
   - component: {fileID: 5175413452403746622}
-  m_Layer: 0
+  - component: {fileID: 8128241081096393391}
+  m_Layer: 15
   m_Name: toilette.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19565,6 +20398,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8128241081096393391
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143849403425500751}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.019000001, y: 0.038000003, z: 0.042000003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5213589648665727619
 GameObject:
   m_ObjectHideFlags: 0
@@ -19593,8 +20442,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.782173, y: 1.5053909, z: 6.921267}
-  m_LocalScale: {x: 18.638308, y: 18.638308, z: 18.638308}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19666,7 +20515,7 @@ GameObject:
   - component: {fileID: 7290588496182325328}
   - component: {fileID: 6493015367983792232}
   - component: {fileID: 5222910971801854553}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19773,8 +20622,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 23.679882, y: 3.224323, z: 10.659172}
-  m_LocalScale: {x: 52.94187, y: 52.94187, z: 52.94187}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19936,7 +20785,9 @@ GameObject:
   - component: {fileID: 8101518563745741294}
   - component: {fileID: 6370105658331172207}
   - component: {fileID: 9118942669651312458}
-  m_Layer: 0
+  - component: {fileID: 7721577642634789569}
+  - component: {fileID: 562387962143089548}
+  m_Layer: 15
   m_Name: worktop_kitchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20033,6 +20884,44 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7721577642634789569
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369996558933991014}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.019000001, y: 0.035, z: 0.080000006}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!64 &562387962143089548
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369996558933991014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1295315834276973624, guid: 49bb68c1b69ae234faebb89efa580aef, type: 3}
 --- !u!1 &5427445119035206029
 GameObject:
   m_ObjectHideFlags: 0
@@ -20044,7 +20933,7 @@ GameObject:
   - component: {fileID: 6192151134956246300}
   - component: {fileID: 5672592050110067848}
   - component: {fileID: 6865651326425397413}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20060,7 +20949,7 @@ Transform:
   m_GameObject: {fileID: 5427445119035206029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0039888, y: 0.02499999, z: 0.01980707}
+  m_LocalPosition: {x: -0.0039888, y: 0.0515, z: 0.0198}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20134,7 +21023,8 @@ GameObject:
   - component: {fileID: 7323998494488383675}
   - component: {fileID: 1400849588652394639}
   - component: {fileID: 6383442748663442475}
-  m_Layer: 0
+  - component: {fileID: 5061781759992258393}
+  m_Layer: 15
   m_Name: Cube.023
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20219,6 +21109,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5061781759992258393
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514548937672543284}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.011000001, y: 0.011000001, z: 0.034}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5661290058566135405
 GameObject:
   m_ObjectHideFlags: 0
@@ -20230,7 +21136,8 @@ GameObject:
   - component: {fileID: 4446309334374358483}
   - component: {fileID: 7835605536768871012}
   - component: {fileID: 4263941175789329373}
-  m_Layer: 0
+  - component: {fileID: 9043408514771064879}
+  m_Layer: 15
   m_Name: Cube.017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20309,6 +21216,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &9043408514771064879
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661290058566135405}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.003, y: 0.003, z: 0.003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5672787559382356068
 GameObject:
   m_ObjectHideFlags: 0
@@ -20320,7 +21243,7 @@ GameObject:
   - component: {fileID: 4914680627971696468}
   - component: {fileID: 4855762759234295834}
   - component: {fileID: 4913975465224604209}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Pillow_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20427,8 +21350,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -31.498173, y: 0.8810069, z: -15.188575}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20590,7 +21513,9 @@ GameObject:
   - component: {fileID: 6972533081885081353}
   - component: {fileID: 3805779607092068718}
   - component: {fileID: 604016295266986597}
-  m_Layer: 0
+  - component: {fileID: 5620590014302525486}
+  - component: {fileID: 8664438299854030861}
+  m_Layer: 15
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20669,6 +21594,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5620590014302525486
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741141797364554697}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.019999998, y: 0.02, z: 0.012594323}
+  m_Center: {x: 0.0000000037252903, y: -0.0000000018626451, z: 0}
+--- !u!208 &8664438299854030861
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741141797364554697}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.006}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5776770511037812152
 GameObject:
   m_ObjectHideFlags: 0
@@ -20697,8 +21659,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -20.297638, y: 0.9469137, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20770,7 +21732,7 @@ GameObject:
   - component: {fileID: 8942128760748459241}
   - component: {fileID: 5537759916595618402}
   - component: {fileID: 2617277360260705149}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21063,7 +22025,8 @@ GameObject:
   - component: {fileID: 1535620312872663830}
   - component: {fileID: 1938182180738082315}
   - component: {fileID: 2613496026677693131}
-  m_Layer: 0
+  - component: {fileID: 5733946475514056046}
+  m_Layer: 15
   m_Name: Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21154,6 +22117,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5733946475514056046
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872649618892158312}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.014, y: 0.010000001, z: 0.014}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5894522458334968297
 GameObject:
   m_ObjectHideFlags: 0
@@ -21165,7 +22144,7 @@ GameObject:
   - component: {fileID: 5361478858837243952}
   - component: {fileID: 2170523578681333278}
   - component: {fileID: 563125050974292792}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: door.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21181,7 +22160,7 @@ Transform:
   m_GameObject: {fileID: 5894522458334968297}
   serializedVersion: 2
   m_LocalRotation: {x: -3.9974428e-13, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008876591, y: -0.006909227, z: -0.02157551}
+  m_LocalPosition: {x: -0.008876591, y: -0.01556, z: -0.02157551}
   m_LocalScale: {x: 0.018081296, y: 0.0068390537, z: 0.21901238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21795,7 +22774,7 @@ GameObject:
   - component: {fileID: 9013076423174985725}
   - component: {fileID: 405604763532142179}
   - component: {fileID: 3424675195918178810}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tiroir_de_chevet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21811,7 +22790,7 @@ Transform:
   m_GameObject: {fileID: 6050783592249318972}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000025063287, y: -0.72427213, z: 0.0000000063155756, w: 0.6895142}
-  m_LocalPosition: {x: 14.003903, y: 7.3082438, z: -22.186996}
+  m_LocalPosition: {x: 10.38, y: 7.3082438, z: -22.37}
   m_LocalScale: {x: 99.99999, y: 100, z: 99.99999}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22065,7 +23044,7 @@ GameObject:
   - component: {fileID: 6956446027784516683}
   - component: {fileID: 681282654997106383}
   - component: {fileID: 9059565791544836158}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: left_buttom_sink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22155,7 +23134,7 @@ GameObject:
   - component: {fileID: 6584567832674939417}
   - component: {fileID: 8184149915401096819}
   - component: {fileID: 7387410025784174303}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tiroir_de_chevet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22245,7 +23224,9 @@ GameObject:
   - component: {fileID: 7908696427777963168}
   - component: {fileID: 6022700804968396148}
   - component: {fileID: 3447423694135928109}
-  m_Layer: 0
+  - component: {fileID: 8310749024266548390}
+  - component: {fileID: 3361976199702722577}
+  m_Layer: 15
   m_Name: Cupboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22326,6 +23307,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8310749024266548390
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180234466451442640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000001, y: 0.02, z: 0.020000001}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &3361976199702722577
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180234466451442640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6193310741487727844
 GameObject:
   m_ObjectHideFlags: 0
@@ -22427,7 +23445,8 @@ GameObject:
   - component: {fileID: 8590280770135437498}
   - component: {fileID: 3419456326123389387}
   - component: {fileID: 4866424408209948693}
-  m_Layer: 0
+  - component: {fileID: 7955563439987855565}
+  m_Layer: 15
   m_Name: geometry_chair.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22506,6 +23525,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7955563439987855565
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6280750105914976431}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.008, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6291118533012435930
 GameObject:
   m_ObjectHideFlags: 0
@@ -22607,7 +23642,8 @@ GameObject:
   - component: {fileID: 7028579902705811828}
   - component: {fileID: 7921776288913063469}
   - component: {fileID: 2343232554035241225}
-  m_Layer: 0
+  - component: {fileID: 7053225996992807203}
+  m_Layer: 15
   m_Name: Cylinder.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22623,7 +23659,7 @@ Transform:
   m_GameObject: {fileID: 6311580869800766886}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -1.2528249, y: 6.4422283, z: 7.9147973}
+  m_LocalPosition: {x: -1.2528249, y: 6.028, z: 7.9147973}
   m_LocalScale: {x: 290.91608, y: 290.91608, z: 8.109352}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22686,6 +23722,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7053225996992807203
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311580869800766886}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6344585101294298653
 GameObject:
   m_ObjectHideFlags: 0
@@ -22894,8 +23946,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.474692, y: 2.0541449, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23417,7 +24469,8 @@ GameObject:
   - component: {fileID: 5390324493918793886}
   - component: {fileID: 8117920777326138156}
   - component: {fileID: 1960566062888854852}
-  m_Layer: 0
+  - component: {fileID: 4947694123655927708}
+  m_Layer: 15
   m_Name: Table_de_chevet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23497,6 +24550,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &4947694123655927708
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582098719780001281}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.007, y: 0.008, z: 0.007}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6587113004028310517
 GameObject:
   m_ObjectHideFlags: 0
@@ -23509,7 +24578,7 @@ GameObject:
   - component: {fileID: 671374507772904331}
   - component: {fileID: 754900940839449010}
   - component: {fileID: 5614460846007907140}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23621,7 +24690,7 @@ GameObject:
   - component: {fileID: 2215911305684755455}
   - component: {fileID: 2355084528803493089}
   - component: {fileID: 1381049788013105456}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TableContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23718,7 +24787,8 @@ GameObject:
   - component: {fileID: 7060887753003879049}
   - component: {fileID: 499436606668252512}
   - component: {fileID: 6466387963984686461}
-  m_Layer: 0
+  - component: {fileID: 8787028806907517709}
+  m_Layer: 15
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23797,6 +24867,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8787028806907517709
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621566913597868885}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.009000001, y: 0.011000001, z: 0.014}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6624528995394692449
 GameObject:
   m_ObjectHideFlags: 0
@@ -24005,8 +25091,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -30.576593, y: 0.30777824, z: -8.571818}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24168,7 +25254,7 @@ GameObject:
   - component: {fileID: 7398501053045726152}
   - component: {fileID: 7023866545091552895}
   - component: {fileID: 3400879114388679316}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: poster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24258,7 +25344,7 @@ GameObject:
   - component: {fileID: 7884662302464882520}
   - component: {fileID: 6352164814495355898}
   - component: {fileID: 2989133035175577942}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24365,8 +25451,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -26.313585, y: 6.624766, z: 13.782841}
-  m_LocalScale: {x: 51.908237, y: 51.908237, z: 51.908237}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24438,7 +25524,7 @@ GameObject:
   - component: {fileID: 8697437344321424797}
   - component: {fileID: 3951451393548131541}
   - component: {fileID: 8079714908959147662}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24708,7 +25794,7 @@ GameObject:
   - component: {fileID: 2354779433710207262}
   - component: {fileID: 8802123473659313730}
   - component: {fileID: 8757751371264414805}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24724,7 +25810,7 @@ Transform:
   m_GameObject: {fileID: 6875036048418535843}
   serializedVersion: 2
   m_LocalRotation: {x: -1.6944657e-13, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0002922821, y: 0.006692104, z: -0.019169066}
+  m_LocalPosition: {x: 0.0002922821, y: 0.00669, z: 0.0155}
   m_LocalScale: {x: 0.908201, y: 0.21390587, z: 0.39664227}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24995,8 +26081,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -30.576593, y: -0.7611349, z: -8.571818}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25085,8 +26171,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.782173, y: 0.70188904, z: 6.921267}
-  m_LocalScale: {x: 18.638308, y: 18.638308, z: 18.638308}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25338,7 +26424,7 @@ GameObject:
   - component: {fileID: 2310829491306550021}
   - component: {fileID: 2083898711834065525}
   - component: {fileID: 426406545741331758}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer_Left.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25518,7 +26604,7 @@ GameObject:
   - component: {fileID: 4209084695919356831}
   - component: {fileID: 3257528191783849742}
   - component: {fileID: 1036961479601594330}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BoxCap.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25715,8 +26801,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -29.109936, y: 6.624766, z: 13.7024765}
-  m_LocalScale: {x: 51.908237, y: 51.908237, z: 51.908237}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25788,7 +26874,7 @@ GameObject:
   - component: {fileID: 4248832442311386389}
   - component: {fileID: 4301853192272189481}
   - component: {fileID: 5909178369901892024}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Screan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25968,7 +27054,8 @@ GameObject:
   - component: {fileID: 8447423920405799070}
   - component: {fileID: 3708878361305121147}
   - component: {fileID: 7685396587002269801}
-  m_Layer: 0
+  - component: {fileID: 8563160031754751558}
+  m_Layer: 15
   m_Name: Cube.021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26047,6 +27134,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8563160031754751558
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252939196454291652}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.16600001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7262935728313650066
 GameObject:
   m_ObjectHideFlags: 0
@@ -26058,7 +27161,7 @@ GameObject:
   - component: {fileID: 656146210729595217}
   - component: {fileID: 2370542902736062748}
   - component: {fileID: 385732460151731625}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: closet_left_door.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26074,7 +27177,7 @@ Transform:
   m_GameObject: {fileID: 7262935728313650066}
   serializedVersion: 2
   m_LocalRotation: {x: 3.5527128e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009483376, y: -0.00101116, z: -0.011134233}
+  m_LocalPosition: {x: -0.009483376, y: -0.001, z: -0.0792}
   m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26148,7 +27251,7 @@ GameObject:
   - component: {fileID: 518248360500155783}
   - component: {fileID: 938676521848708722}
   - component: {fileID: 3502022940450747072}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: closet_left_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26164,7 +27267,7 @@ Transform:
   m_GameObject: {fileID: 7308497420021299954}
   serializedVersion: 2
   m_LocalRotation: {x: -1.74e-43, y: 3.7932383e-22, z: -1.0048594e-14, w: 1}
-  m_LocalPosition: {x: -0.009483394, y: -0.0010111454, z: -0.011134209}
+  m_LocalPosition: {x: -0.0095, y: -0.001, z: -0.0257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26868,7 +27971,9 @@ GameObject:
   - component: {fileID: 7025289113333639240}
   - component: {fileID: 1328756236522531527}
   - component: {fileID: 7153815180894844906}
-  m_Layer: 0
+  - component: {fileID: 944891782164892404}
+  - component: {fileID: 6417171768006390325}
+  m_Layer: 15
   m_Name: table.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26947,6 +28052,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &944891782164892404
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424699948323172221}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.042559132, y: 0.024998225, z: 0.042559132}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &6417171768006390325
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424699948323172221}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.021000002, y: 0.012, z: 0.021000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7433945466373214102
 GameObject:
   m_ObjectHideFlags: 0
@@ -27048,7 +28190,8 @@ GameObject:
   - component: {fileID: 3942428501433158545}
   - component: {fileID: 3813978225419477340}
   - component: {fileID: 1925667910205497804}
-  m_Layer: 0
+  - component: {fileID: 9051827622294047157}
+  m_Layer: 15
   m_Name: Cube.016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27127,6 +28270,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &9051827622294047157
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479729102604111528}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.051000003, y: 0.078, z: 0.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7496031025039334843
 GameObject:
   m_ObjectHideFlags: 0
@@ -27318,7 +28477,7 @@ GameObject:
   - component: {fileID: 3974836616921802734}
   - component: {fileID: 8348170988232366818}
   - component: {fileID: 2528180306673145333}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27498,7 +28657,7 @@ GameObject:
   - component: {fileID: 8320666411148178571}
   - component: {fileID: 285658620534750253}
   - component: {fileID: 619414544554604764}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27605,8 +28764,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -11.474692, y: 0.1677734, z: 13.201919}
-  m_LocalScale: {x: 13.751279, y: 13.751279, z: 13.751279}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27678,7 +28837,7 @@ GameObject:
   - component: {fileID: 2617953179000531293}
   - component: {fileID: 7817032488273923579}
   - component: {fileID: 302373128816888023}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28038,7 +29197,7 @@ GameObject:
   - component: {fileID: 6709699662595724944}
   - component: {fileID: 5905460310581343232}
   - component: {fileID: 2181395041322007510}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Dish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28128,7 +29287,9 @@ GameObject:
   - component: {fileID: 5365700753705384327}
   - component: {fileID: 8478794237485447622}
   - component: {fileID: 5106857171408095726}
-  m_Layer: 0
+  - component: {fileID: 8298113839622391215}
+  - component: {fileID: 4623729316706738768}
+  m_Layer: 15
   m_Name: bathtup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28207,6 +29368,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8298113839622391215
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743086425225198026}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.035309296, y: 0.02455717, z: 0.07796819}
+  m_Center: {x: 0, y: 0.0000000069849193, z: -1.9387046e-25}
+--- !u!208 &4623729316706738768
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743086425225198026}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.018000001, y: 0.012, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7746235836880142279
 GameObject:
   m_ObjectHideFlags: 0
@@ -28235,8 +29433,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.782173, y: 1.5053909, z: 3.5667586}
-  m_LocalScale: {x: 18.638308, y: 18.638308, z: 18.638308}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28308,7 +29506,7 @@ GameObject:
   - component: {fileID: 8955923830374665316}
   - component: {fileID: 3331593484086314780}
   - component: {fileID: 62039487075541718}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Right_Button_hover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28415,8 +29613,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.782173, y: 1.5053909, z: 5.215716}
-  m_LocalScale: {x: 18.638308, y: 18.638308, z: 18.638308}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28668,7 +29866,8 @@ GameObject:
   - component: {fileID: 2598060231587371316}
   - component: {fileID: 2175213326351895408}
   - component: {fileID: 4530695352409590119}
-  m_Layer: 0
+  - component: {fileID: 825110020210660271}
+  m_Layer: 15
   m_Name: Box.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28748,6 +29947,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &825110020210660271
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849527234244741367}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7875168846322023334
 GameObject:
   m_ObjectHideFlags: 0
@@ -28853,7 +30068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7407629566894393781
 Transform:
   m_ObjectHideFlags: 0
@@ -28943,8 +30158,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 23.005278, y: 0.47677344, z: 0.09806585}
-  m_LocalScale: {x: 50.669403, y: 50.669403, z: 50.669403}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29016,7 +30231,7 @@ GameObject:
   - component: {fileID: 6545117961623540622}
   - component: {fileID: 7977231001700491539}
   - component: {fileID: 365688435477602684}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BoxCap.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29303,8 +30518,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 28.073856, y: 6.802124, z: -6.097496}
-  m_LocalScale: {x: 43.92577, y: 43.92577, z: 43.92577}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29393,8 +30608,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 22.774914, y: 7.3084984, z: -22.059792}
-  m_LocalScale: {x: 12.268002, y: 12.268002, z: 12.268002}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29556,7 +30771,8 @@ GameObject:
   - component: {fileID: 5549359521959678305}
   - component: {fileID: 9048672147215486272}
   - component: {fileID: 6297808881254202123}
-  m_Layer: 0
+  - component: {fileID: 1501137146321757450}
+  m_Layer: 15
   m_Name: Siphon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29636,6 +30852,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1501137146321757450
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049214429948574029}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.012, z: 0.008}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8068317834670229429
 GameObject:
   m_ObjectHideFlags: 0
@@ -29940,7 +31172,7 @@ GameObject:
   - component: {fileID: 6322683440603568698}
   - component: {fileID: 2089385545649218305}
   - component: {fileID: 8399489896008171211}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Big Carpet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29956,7 +31188,7 @@ Transform:
   m_GameObject: {fileID: 8110231628132952774}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 20.18116, y: -0.7481813, z: -14.985392}
+  m_LocalPosition: {x: 20.18116, y: -1, z: -14.985392}
   m_LocalScale: {x: 400, y: 400, z: 53.541122}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30137,8 +31369,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -30.52249, y: 0.8810069, z: -15.188575}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30210,7 +31442,7 @@ GameObject:
   - component: {fileID: 4106627652021650189}
   - component: {fileID: 1492018007910490662}
   - component: {fileID: 3140052304015856875}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: drawer.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30226,7 +31458,7 @@ Transform:
   m_GameObject: {fileID: 8220223749645699378}
   serializedVersion: 2
   m_LocalRotation: {x: -1.6944657e-13, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0002922821, y: 0.006692104, z: -0.010806551}
+  m_LocalPosition: {x: 0.0002922821, y: 0.00669, z: 0.0298}
   m_LocalScale: {x: 0.908201, y: 0.21390587, z: 0.39664227}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30300,7 +31532,7 @@ GameObject:
   - component: {fileID: 2024590116796768567}
   - component: {fileID: 4818539871899298114}
   - component: {fileID: 8655743216392995469}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: handle.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30390,7 +31622,7 @@ GameObject:
   - component: {fileID: 2659306972220089569}
   - component: {fileID: 5340384682284237457}
   - component: {fileID: 3484959366063357994}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30660,7 +31892,7 @@ GameObject:
   - component: {fileID: 8983762696648987322}
   - component: {fileID: 7900188283662951491}
   - component: {fileID: 1112525548560429064}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Pillow_Right.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30750,7 +31982,7 @@ GameObject:
   - component: {fileID: 184128044257286989}
   - component: {fileID: 5868389944290817568}
   - component: {fileID: 3794301709899231139}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bottom_Hover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31015,7 +32247,7 @@ GameObject:
   - component: {fileID: 6417332194192235108}
   - component: {fileID: 5161048177765465502}
   - component: {fileID: 961397917762489059}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31031,7 +32263,7 @@ Transform:
   m_GameObject: {fileID: 8426390887968290482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0040354156, y: 0.024999954, z: -0.020000562}
+  m_LocalPosition: {x: -0.0040354156, y: 0.0582, z: -0.02}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31105,7 +32337,8 @@ GameObject:
   - component: {fileID: 8936969294691778174}
   - component: {fileID: 6262020635455644389}
   - component: {fileID: 6875322380768791427}
-  m_Layer: 0
+  - component: {fileID: 2382483378218664903}
+  m_Layer: 15
   m_Name: Cylinder.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31184,6 +32417,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &2382483378218664903
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451294137914909590}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.002, y: 0.002, z: 0.002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8488772663515361022
 GameObject:
   m_ObjectHideFlags: 0
@@ -31195,7 +32444,7 @@ GameObject:
   - component: {fileID: 1237426774269716125}
   - component: {fileID: 604349481166188264}
   - component: {fileID: 3041460784150308834}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drawer.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31211,7 +32460,7 @@ Transform:
   m_GameObject: {fileID: 8488772663515361022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0039888, y: 0.0047971765, z: 0.059999533}
+  m_LocalPosition: {x: -0.0039888, y: 0.0048, z: 0.1025}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31285,7 +32534,7 @@ GameObject:
   - component: {fileID: 2219785589518919124}
   - component: {fileID: 1814412368983673734}
   - component: {fileID: 8300155696314691312}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31375,7 +32624,7 @@ GameObject:
   - component: {fileID: 7920044694638410083}
   - component: {fileID: 1035850580802920440}
   - component: {fileID: 946083435065341402}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Plane.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31465,7 +32714,8 @@ GameObject:
   - component: {fileID: 7581068883504408874}
   - component: {fileID: 557958490872722823}
   - component: {fileID: 971111481776864582}
-  m_Layer: 0
+  - component: {fileID: 7793836655648203212}
+  m_Layer: 15
   m_Name: geometry_chair.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31544,6 +32794,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7793836655648203212
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8569062827755773925}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.007, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8591925018180945180
 GameObject:
   m_ObjectHideFlags: 0
@@ -31645,7 +32911,7 @@ GameObject:
   - component: {fileID: 713131201947746692}
   - component: {fileID: 892087527307861154}
   - component: {fileID: 7994681656920650605}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: pan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31735,7 +33001,7 @@ GameObject:
   - component: {fileID: 2939924945253135198}
   - component: {fileID: 2083444305847005152}
   - component: {fileID: 98232428653533802}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: closet_left_door.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31751,7 +33017,7 @@ Transform:
   m_GameObject: {fileID: 8672014669376216704}
   serializedVersion: 2
   m_LocalRotation: {x: 3.5527128e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009483299, y: -0.0010111162, z: -0.011134204}
+  m_LocalPosition: {x: -0.009483299, y: -0.001, z: -0.119}
   m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31842,8 +33108,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -30.576593, y: 0.8810069, z: -8.571818}
-  m_LocalScale: {x: 15.365074, y: 15.365074, z: 15.365074}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32275,7 +33541,7 @@ GameObject:
   - component: {fileID: 5262654607764173684}
   - component: {fileID: 5893059511325023658}
   - component: {fileID: 7790949340087195596}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32456,7 +33722,7 @@ GameObject:
   - component: {fileID: 1655457193134882191}
   - component: {fileID: 4457363448739698235}
   - component: {fileID: 3354486843436313307}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: GroundFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32658,7 +33924,8 @@ GameObject:
   - component: {fileID: 1801940430043874315}
   - component: {fileID: 1366675222692551450}
   - component: {fileID: 6297350304932040429}
-  m_Layer: 0
+  - component: {fileID: 8535201924234286492}
+  m_Layer: 15
   m_Name: SmallShelftable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32737,6 +34004,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8535201924234286492
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847333841444857131}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.022000002, y: 0.007, z: 0.014}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8868587509534166978
 GameObject:
   m_ObjectHideFlags: 0
@@ -32765,8 +34048,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -30.52249, y: 0.18860036, z: -15.188575}
-  m_LocalScale: {x: 24.915249, y: 24.915249, z: 24.915249}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32855,8 +34138,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -16.865831, y: 3.1341634, z: 4.0816956}
-  m_LocalScale: {x: 45.365532, y: 45.365532, z: 45.365532}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32928,7 +34211,8 @@ GameObject:
   - component: {fileID: 7213120206613967608}
   - component: {fileID: 7127033777726721216}
   - component: {fileID: 8331085684272150273}
-  m_Layer: 0
+  - component: {fileID: 7378620239116636629}
+  m_Layer: 15
   m_Name: geometry_chair.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33007,6 +34291,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7378620239116636629
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974468472976712207}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.007, y: 0.013, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9021253035373808172
 GameObject:
   m_ObjectHideFlags: 0
@@ -33018,7 +34318,9 @@ GameObject:
   - component: {fileID: 1061488892875167798}
   - component: {fileID: 4354980401855182193}
   - component: {fileID: 2483258830500645805}
-  m_Layer: 0
+  - component: {fileID: 875695554963900014}
+  - component: {fileID: 8943765957251038139}
+  m_Layer: 15
   m_Name: Gas_Stove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33101,6 +34403,44 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &875695554963900014
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021253035373808172}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.025, y: 0.039, z: 0.025}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!64 &8943765957251038139
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021253035373808172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 727758346874387661, guid: 49bb68c1b69ae234faebb89efa580aef, type: 3}
 --- !u!1 &9062053679359771852
 GameObject:
   m_ObjectHideFlags: 0
@@ -33112,7 +34452,7 @@ GameObject:
   - component: {fileID: 2987570080254335321}
   - component: {fileID: 7705896934746061417}
   - component: {fileID: 4462113592455312907}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: closet_right_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33128,7 +34468,7 @@ Transform:
   m_GameObject: {fileID: 9062053679359771852}
   serializedVersion: 2
   m_LocalRotation: {x: -1.74e-43, y: 3.7932383e-22, z: -1.0048594e-14, w: 1}
-  m_LocalPosition: {x: -0.009483376, y: -0.001011147, z: 0.011119692}
+  m_LocalPosition: {x: -0.0095, y: -0.001, z: 0.0268}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33202,7 +34542,7 @@ GameObject:
   - component: {fileID: 3874670235900075465}
   - component: {fileID: 513832454640457212}
   - component: {fileID: 4112759463001828935}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaf.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33472,7 +34812,7 @@ GameObject:
   - component: {fileID: 1201037518697178283}
   - component: {fileID: 502038110030242520}
   - component: {fileID: 707304865456423846}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Middle_Plant.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33562,7 +34902,7 @@ GameObject:
   - component: {fileID: 1755352247237625604}
   - component: {fileID: 6871921477571412633}
   - component: {fileID: 9176723958681007001}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed_Pillow_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33652,7 +34992,7 @@ GameObject:
   - component: {fileID: 8684042907574678665}
   - component: {fileID: 8923507100838812568}
   - component: {fileID: 5532801902937449418}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: closet_right_door.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33668,7 +35008,7 @@ Transform:
   m_GameObject: {fileID: 9199264237759201121}
   serializedVersion: 2
   m_LocalRotation: {x: 3.5527128e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009483299, y: -0.0010111178, z: 0.011119704}
+  m_LocalPosition: {x: -0.009483299, y: -0.001, z: -0.1414}
   m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33759,8 +35099,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 22.782173, y: 0.39675334, z: 3.503284}
-  m_LocalScale: {x: 39.082775, y: 39.082775, z: 39.082775}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7407629566894393781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -33922,7 +35262,7 @@ GameObject:
   - component: {fileID: 377322315197937949}
   - component: {fileID: 6083018560662008396}
   - component: {fileID: 4028855753909018061}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
