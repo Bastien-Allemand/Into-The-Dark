@@ -9,6 +9,7 @@ public class DroneScript : MonoBehaviour
     [SerializeField] private Camera droneCamera;
     [SerializeField] private PhoneView phoneView;
     [SerializeField] private PhoneController phoneController;
+    [SerializeField] private DroneBattery droneBattery;
 
     public void Start()
     {
@@ -17,9 +18,14 @@ public class DroneScript : MonoBehaviour
 
     public void PlaceDrone()
     {
+        if (!droneBattery.HasBattery)
+            return;
+
         playerMovement.enabled = false;
         playerView.enabled = false;
         droneMovement.enabled = true;
+
+        droneBattery.StartUsing();
 
         phoneController.RegisterDrone(this);
         phoneView.OpenDroneCamera(droneCamera);
@@ -32,6 +38,8 @@ public class DroneScript : MonoBehaviour
 
     public void StopControl()
     {
+        droneBattery.StopUsing();
+
         droneMovement.enabled = false;
         playerMovement.enabled = true;
         playerView.enabled = true;

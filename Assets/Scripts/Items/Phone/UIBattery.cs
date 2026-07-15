@@ -7,6 +7,7 @@ public class UIBattery : MonoBehaviour
     [SerializeField] private GameObject battery;
     //[SerializeField] public TextMeshProUGUI textBattery;
     [SerializeField] private BatteryScript batteryScript;
+    [SerializeField] private PhoneController phoneController;
     [SerializeField] private Light phoneLight;
 
 
@@ -17,7 +18,7 @@ public class UIBattery : MonoBehaviour
     PhoneController phoneStateScript;
     [SerializeField] private float coeffBatteryLightUse = 5f;
 
-
+    private bool batteryEmpty;
     private float currentBattery;
     private float currentTimer;
 
@@ -52,10 +53,22 @@ public class UIBattery : MonoBehaviour
     private void CheckBattery()
     {
         if (currentTimer > 0)
+        {
+            batteryScript.SetUIOn();
             return;
+        }
+
+        if (batteryEmpty)
+            return;
+
+        batteryEmpty = true;
+
+        batteryScript.SetUIOff();
 
         currentBattery = 0;
         phoneLight.enabled = false;
+
+        phoneController.BatteryEmpty();
     }
 
     public void HandleBatteryDrain()

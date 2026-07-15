@@ -27,6 +27,9 @@ public class PhoneController : MonoBehaviour
 
     public void TogglePhone()
     {
+        if (!uiBattery.HaveBattery)
+            return;
+
         if (currentState == PhoneState.Hidden)
         {
             ChangeState(PhoneState.Idle);
@@ -39,16 +42,16 @@ public class PhoneController : MonoBehaviour
 
     public void ToggleCameraMode()
     {
-        if (currentState == PhoneState.Hidden) return;
+        if (!uiBattery.HaveBattery)
+            return;
+
+        if (currentState == PhoneState.Hidden)
+            return;
 
         if (currentState == PhoneState.Camera)
-        {
             ChangeState(PhoneState.Idle);
-        }
         else
-        {
             ChangeState(PhoneState.Camera);
-        }
     }
 
     private void ChangeState(PhoneState newState)
@@ -85,6 +88,16 @@ public class PhoneController : MonoBehaviour
     public void CloseDroneCamera()
     {
         ChangeState(PhoneState.Idle);
+    }
+
+    public void BatteryEmpty()
+    {
+        if (currentDrone != null)
+        {
+            currentDrone.StopControl();
+        }
+
+        ChangeState(PhoneState.Hidden);
     }
 
 }
