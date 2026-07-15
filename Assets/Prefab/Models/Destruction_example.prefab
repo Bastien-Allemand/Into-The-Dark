@@ -73,10 +73,13 @@ PrefabInstance:
       addedObject: {fileID: 1279563106354085553}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 901613b1acde298449dd34fe7bf5c32e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6403139682640591715}
+      addedObject: {fileID: 2917894276395420010}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 901613b1acde298449dd34fe7bf5c32e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2917894276395420010}
+      addedObject: {fileID: 2918008161436416742}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 901613b1acde298449dd34fe7bf5c32e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8449462831919855984}
   m_SourcePrefab: {fileID: 100100000, guid: 901613b1acde298449dd34fe7bf5c32e, type: 3}
 --- !u!1 &3544888424873775371 stripped
 GameObject:
@@ -110,7 +113,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6403139682640591715
+--- !u!65 &2917894276395420010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544888424873775371}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.185335, y: 2.0330627, z: 3.698439}
+  m_Center: {x: 0.2210025, y: 0.91886544, z: -1.6047024}
+--- !u!114 &2918008161436416742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,11 +147,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RuntimeAssembly::Fracture
   triggerOptions:
-    triggerType: 2
+    triggerType: 0
     minimumCollisionForce: 0
     filterCollisionsByTag: 0
     triggerAllowedTags: []
-    triggerKey: 256
+    triggerKey: 0
   fractureOptions:
     fragmentCount: 10
     xAxis: 1
@@ -150,24 +174,17 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   currentRefractureCount: 0
---- !u!65 &2917894276395420010
-BoxCollider:
+--- !u!114 &8449462831919855984
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3544888424873775371}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.185335, y: 2.0330627, z: 3.698439}
-  m_Center: {x: 0.2210025, y: 0.91886544, z: -1.6047024}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd3a26a2d701824c942248850dadd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OpenFractureSoundController
+  breakSound: {fileID: 0}
+  fragmentImpactSound: {fileID: 0}
