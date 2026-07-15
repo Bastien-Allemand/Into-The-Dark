@@ -572,18 +572,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""id"": ""3f3c66c2-df9a-400e-87be-f1e2b8ae5ab1"",
             ""actions"": [
                 {
-                    ""name"": ""LeftClick"",
+                    ""name"": ""SwitchCameraLeft"",
                     ""type"": ""Button"",
-                    ""id"": ""e4bda3e2-a68e-4033-aa4c-ed0674ae4523"",
+                    ""id"": ""d5e13b2a-d20b-45db-a62f-9a5073929823"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwitchCamera"",
+                    ""name"": ""SwitchCameraRight"",
                     ""type"": ""Button"",
-                    ""id"": ""d5e13b2a-d20b-45db-a62f-9a5073929823"",
+                    ""id"": ""f03eb7cc-8842-41fc-bd14-a3be722db312"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -593,23 +593,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""64d367bd-46d6-4335-ae45-57d1ee2b536e"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c5ae2208-8b27-4a36-a202-4562091f2f9c"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SwitchCamera"",
+                    ""action"": ""SwitchCameraLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -620,7 +609,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SwitchCamera"",
+                    ""action"": ""SwitchCameraRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -651,8 +640,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
         // PcInteract
         m_PcInteract = asset.FindActionMap("PcInteract", throwIfNotFound: true);
-        m_PcInteract_LeftClick = m_PcInteract.FindAction("LeftClick", throwIfNotFound: true);
-        m_PcInteract_SwitchCamera = m_PcInteract.FindAction("SwitchCamera", throwIfNotFound: true);
+        m_PcInteract_SwitchCameraLeft = m_PcInteract.FindAction("SwitchCameraLeft", throwIfNotFound: true);
+        m_PcInteract_SwitchCameraRight = m_PcInteract.FindAction("SwitchCameraRight", throwIfNotFound: true);
     }
 
     ~@PlayerAction()
@@ -1081,8 +1070,8 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     // PcInteract
     private readonly InputActionMap m_PcInteract;
     private List<IPcInteractActions> m_PcInteractActionsCallbackInterfaces = new List<IPcInteractActions>();
-    private readonly InputAction m_PcInteract_LeftClick;
-    private readonly InputAction m_PcInteract_SwitchCamera;
+    private readonly InputAction m_PcInteract_SwitchCameraLeft;
+    private readonly InputAction m_PcInteract_SwitchCameraRight;
     /// <summary>
     /// Provides access to input actions defined in input action map "PcInteract".
     /// </summary>
@@ -1095,13 +1084,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public PcInteractActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "PcInteract/LeftClick".
+        /// Provides access to the underlying input action "PcInteract/SwitchCameraLeft".
         /// </summary>
-        public InputAction @LeftClick => m_Wrapper.m_PcInteract_LeftClick;
+        public InputAction @SwitchCameraLeft => m_Wrapper.m_PcInteract_SwitchCameraLeft;
         /// <summary>
-        /// Provides access to the underlying input action "PcInteract/SwitchCamera".
+        /// Provides access to the underlying input action "PcInteract/SwitchCameraRight".
         /// </summary>
-        public InputAction @SwitchCamera => m_Wrapper.m_PcInteract_SwitchCamera;
+        public InputAction @SwitchCameraRight => m_Wrapper.m_PcInteract_SwitchCameraRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1128,12 +1117,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PcInteractActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PcInteractActionsCallbackInterfaces.Add(instance);
-            @LeftClick.started += instance.OnLeftClick;
-            @LeftClick.performed += instance.OnLeftClick;
-            @LeftClick.canceled += instance.OnLeftClick;
-            @SwitchCamera.started += instance.OnSwitchCamera;
-            @SwitchCamera.performed += instance.OnSwitchCamera;
-            @SwitchCamera.canceled += instance.OnSwitchCamera;
+            @SwitchCameraLeft.started += instance.OnSwitchCameraLeft;
+            @SwitchCameraLeft.performed += instance.OnSwitchCameraLeft;
+            @SwitchCameraLeft.canceled += instance.OnSwitchCameraLeft;
+            @SwitchCameraRight.started += instance.OnSwitchCameraRight;
+            @SwitchCameraRight.performed += instance.OnSwitchCameraRight;
+            @SwitchCameraRight.canceled += instance.OnSwitchCameraRight;
         }
 
         /// <summary>
@@ -1145,12 +1134,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="PcInteractActions" />
         private void UnregisterCallbacks(IPcInteractActions instance)
         {
-            @LeftClick.started -= instance.OnLeftClick;
-            @LeftClick.performed -= instance.OnLeftClick;
-            @LeftClick.canceled -= instance.OnLeftClick;
-            @SwitchCamera.started -= instance.OnSwitchCamera;
-            @SwitchCamera.performed -= instance.OnSwitchCamera;
-            @SwitchCamera.canceled -= instance.OnSwitchCamera;
+            @SwitchCameraLeft.started -= instance.OnSwitchCameraLeft;
+            @SwitchCameraLeft.performed -= instance.OnSwitchCameraLeft;
+            @SwitchCameraLeft.canceled -= instance.OnSwitchCameraLeft;
+            @SwitchCameraRight.started -= instance.OnSwitchCameraRight;
+            @SwitchCameraRight.performed -= instance.OnSwitchCameraRight;
+            @SwitchCameraRight.canceled -= instance.OnSwitchCameraRight;
         }
 
         /// <summary>
@@ -1320,18 +1309,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     public interface IPcInteractActions
     {
         /// <summary>
-        /// Method invoked when associated input action "LeftClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SwitchCameraLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLeftClick(InputAction.CallbackContext context);
+        void OnSwitchCameraLeft(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "SwitchCamera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SwitchCameraRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwitchCamera(InputAction.CallbackContext context);
+        void OnSwitchCameraRight(InputAction.CallbackContext context);
     }
 }

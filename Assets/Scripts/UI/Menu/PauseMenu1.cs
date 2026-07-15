@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-public class PauseMenu : UI
+public class PauseMenu1 : MonoBehaviour
 {
     [SerializeField] public bool debug;
     public PlayerAction controls;
@@ -10,7 +9,7 @@ public class PauseMenu : UI
     [SerializeField] public UI backgroundUI;
 
     public bool OnPause;
-     void Awake()
+    void Awake()
     {
         controls = InputManager.controls;
         pauseMenuUI.enabled = false;
@@ -54,5 +53,4 @@ public class PauseMenu : UI
     {
         controls.Menu.Pause.performed -= OnInteract;
     }
-        
 }

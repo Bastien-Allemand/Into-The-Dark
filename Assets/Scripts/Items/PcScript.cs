@@ -33,9 +33,6 @@ public class PcScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-      
-
         if (debug)
         {
             if (!OnPC && Input.GetKeyDown(KeyCode.T))
@@ -81,13 +78,16 @@ public class PcScript : MonoBehaviour
         pcCamera.enabled = !pcCamera.enabled;
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnInteractLeft(InputAction.CallbackContext context)
     {
-        if (context.control.name == "a")
-            CamerasScript.instance.PreviousCamera();
-        else if (context.control.name == "d")
-            CamerasScript.instance.NextCamera();
+        CamerasScript.instance.PreviousCamera();
     }
+
+    private void OnInteractRight(InputAction.CallbackContext context)
+    {
+        CamerasScript.instance.NextCamera();
+    }
+
     public void ActivateExe()
     {
         uiElement.alpha = 1;
@@ -104,10 +104,12 @@ public class PcScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PcInteract.SwitchCamera.performed += OnInteract;
+        controls.PcInteract.SwitchCameraLeft.performed += OnInteractLeft;
+        controls.PcInteract.SwitchCameraRight.performed += OnInteractRight;
     }
     private void OnDisable()
     {
-        controls.PcInteract.SwitchCamera.performed -= OnInteract;
+        controls.PcInteract.SwitchCameraLeft.performed -= OnInteractLeft;
+        controls.PcInteract.SwitchCameraRight.performed -= OnInteractRight;
     }
 }

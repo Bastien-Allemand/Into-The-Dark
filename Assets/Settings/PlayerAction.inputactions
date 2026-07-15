@@ -486,18 +486,18 @@
             "id": "3f3c66c2-df9a-400e-87be-f1e2b8ae5ab1",
             "actions": [
                 {
-                    "name": "LeftClick",
+                    "name": "SwitchCameraLeft",
                     "type": "Button",
-                    "id": "e4bda3e2-a68e-4033-aa4c-ed0674ae4523",
+                    "id": "d5e13b2a-d20b-45db-a62f-9a5073929823",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchCamera",
+                    "name": "SwitchCameraRight",
                     "type": "Button",
-                    "id": "d5e13b2a-d20b-45db-a62f-9a5073929823",
+                    "id": "f03eb7cc-8842-41fc-bd14-a3be722db312",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -507,23 +507,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "64d367bd-46d6-4335-ae45-57d1ee2b536e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LeftClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c5ae2208-8b27-4a36-a202-4562091f2f9c",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchCamera",
+                    "action": "SwitchCameraLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -534,7 +523,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchCamera",
+                    "action": "SwitchCameraRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
