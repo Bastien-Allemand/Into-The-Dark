@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PauseMenu : UI
 {
@@ -52,27 +53,29 @@ public class PauseMenu : UI
         }
 
         InputDevice[] usedDevice = { Keyboard.current, Mouse.current };
-        foreach (InputActionMap map in controls.asset.actionMaps)
-        {
-            foreach (InputAction action in map)
+        if (!usedDevice.All(device => device == null))
+            foreach (InputActionMap map in controls.asset.actionMaps)
             {
-                Debug.Log("Create Binding Bouton : FirstRun");
+                foreach (InputAction action in map)
+                {
+                    Debug.Log("Create Binding Bouton : FirstRun");
 
-                if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
-                    continue;
+                    if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
+                        continue;
 
-                CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+                    CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+                }
             }
-        }
-        usedDevice = new InputDevice[] { Gamepad.current};
-        foreach (InputActionMap map in controls.asset.actionMaps)
-        {
-            foreach (InputAction action in map)
+        usedDevice = new InputDevice[] { Gamepad.current };
+        if (!usedDevice.All(device => device == null))
+            foreach (InputActionMap map in controls.asset.actionMaps)
             {
-                Debug.Log("Create Binding Bouton : SecondRun");
-                CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+                foreach (InputAction action in map)
+                {
+                    Debug.Log("Create Binding Bouton : SecondRun");
+                    CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+                }
             }
-        }
     }
     private void OnEnable()
     {
@@ -108,7 +111,7 @@ public class PauseMenu : UI
                 Debug.Log($"Binding device is not {deviceUsed}");
                 bindingIndex++;
                 continue;
-               
+
             }
             if (binding.isComposite)
             {
