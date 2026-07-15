@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,22 +51,27 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
+        InputDevice[] usedDevice = { Keyboard.current, Mouse.current };
         foreach (InputActionMap map in controls.asset.actionMaps)
         {
-            if (map.name == controls.GeneriqueMove.Get().name)
+            foreach (InputAction action in map)
             {
-                foreach (InputAction action in controls.GeneriqueMove.Get())
-                {
-                    if (action.name == "Look")
-                        continue;
-                    CreateBoutonFromAction(action, GO_Controls_Content.transform);
-                }
+                Debug.Log("Create Binding Bouton : FirstRun");
+
+                if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
+                    continue;
+
+                CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
             }
-            else
-                foreach (InputAction action in map)
-                {
-                    CreateBoutonFromAction(action, GO_Controls_Content.transform);
-                }
+        }
+        usedDevice = new InputDevice[] { Gamepad.current};
+        foreach (InputActionMap map in controls.asset.actionMaps)
+        {
+            foreach (InputAction action in map)
+            {
+                Debug.Log("Create Binding Bouton : SecondRun");
+                CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+            }
         }
     }
     private void OnEnable()
@@ -91,21 +97,35 @@ public class PauseMenu : UI
         }
     }
 
-    private void CreateBoutonFromAction(InputAction action, Transform parent)
+    private void CreateBoutonFromAction(InputAction action, Transform parent, InputDevice[] deviceUsed)
     {
         int bindingIndex = 0;
         foreach (InputBinding binding in action.bindings)
         {
+            //   regarde si le chemain prie n'est pas l'un définit dedans deviceUsed (KeyBoard,Mouse,GamePad,etc..)
+            if (!deviceUsed.Any(device => InputControlPath.Matches(binding.path, device)))
+            {
+                Debug.Log($"Binding device is not {deviceUsed}");
+                bindingIndex++;
+                continue;
+               
+            }
             if (binding.isComposite)
             {
                 bindingIndex++;
                 continue;
             }
-            Debug.Log($"name={action.name + " " + binding.name} | path={binding.path} | composite={binding.isComposite} | part={binding.isPartOfComposite}");
+            string displayName = binding.name switch
+            {
+                "Negative" => "Left",
+                "Positive" => "Right",
+                _ => binding.name
+            };
+            Debug.Log($"name={action.name + " " + displayName} | path={binding.path} | composite={binding.isComposite} | part={binding.isPartOfComposite}");
 
             GameObject buffer = Instantiate(GO_Prefab_Keybind, parent, false);
             var tmp = buffer.GetComponent<TMPro.TextMeshProUGUI>();
-            tmp.text = $"{action.name} {binding.name}";
+            tmp.text = $"{action.name} {displayName}";
 
             Rebind script = buffer.GetComponentInChildren<Rebind>();
             if (script != null)
