@@ -42,6 +42,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private RectTransform sprintBarTransform;
+    [SerializeField] private Animator animator;
     private float sprintBarInitialWidth;
 
     [Space(10)]
@@ -77,6 +78,7 @@ public class MovePlayer : MonoBehaviour
 
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (playerCollider == null) playerCollider = GetComponent<CapsuleCollider>();
+        if (animator == null) animator = GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -85,6 +87,9 @@ public class MovePlayer : MonoBehaviour
     }
     void Update()
     {
+
+        Debug.Log("MovePlayer Update");
+
         //cameraTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
         moveInputX = 0f;
         moveInputZ = 0f;
@@ -189,7 +194,14 @@ public class MovePlayer : MonoBehaviour
                 }
             }
 
+            if (animator != null)
+            {
+                float animationSpeed = Mathf.Abs(moveInputX) + Mathf.Abs(moveInputZ);
 
+                Debug.Log($"Speed = {animationSpeed}");
+
+                animator.SetFloat("Speed", animationSpeed);
+            }
         }
     }
 
