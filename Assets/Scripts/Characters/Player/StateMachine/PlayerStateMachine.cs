@@ -56,6 +56,7 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private Animator animator;
 
     [Space(5)]
     [Header("Sprint Settings")]
@@ -122,6 +123,8 @@ public class PlayerStateMachine : MonoBehaviour
         {
             RegenStamina();
         }
+
+        animator.SetFloat("Speed", moveInput.magnitude);
 
         currentState?.Update();
     }

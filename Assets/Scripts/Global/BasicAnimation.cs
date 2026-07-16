@@ -32,6 +32,9 @@ public class BasicAnimationScript : MonoBehaviour
 
     public void Interact()
     {
+
+        Debug.Log($"Animation {gameObject.name} Launch");
+
         isOpen = !isOpen;
 
         if (currentAnimation != null)
