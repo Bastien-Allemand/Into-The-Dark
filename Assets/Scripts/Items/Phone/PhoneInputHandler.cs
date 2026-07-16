@@ -5,6 +5,7 @@ public class PhoneInputHandler : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PhoneController phoneController;
+    [SerializeField] private PhoneLightScript phoneLightScript;
 
     private PlayerAction controls;
     private Vector2 moveInput;
@@ -19,12 +20,14 @@ public class PhoneInputHandler : MonoBehaviour
     {
         controls.GamePlay.TakeHidePhone.started += OnTakeHidePhone;
         controls.GamePlay.Lookatcamera.started += OnLookAtCamera;
+        controls.GamePlay.ActiveFlashlight.started += HandleFlashlightInput;
     }
 
     private void OnDisable()
     {
         controls.GamePlay.TakeHidePhone.started -= OnTakeHidePhone;
         controls.GamePlay.Lookatcamera.started -= OnLookAtCamera;
+        controls.GamePlay.ActiveFlashlight.started -= HandleFlashlightInput;
     }
 
     private void Update()
@@ -36,11 +39,13 @@ public class PhoneInputHandler : MonoBehaviour
     {
         if (phoneController == null) return;
         phoneController.TogglePhone();
+        
     }
 
     private void OnLookAtCamera(InputAction.CallbackContext ctx)
     {
         if (phoneController == null) return;
+
         phoneController.ToggleCameraMode();
     }
     private void HandleCameraSwitchInput()
@@ -66,4 +71,14 @@ public class PhoneInputHandler : MonoBehaviour
 
         wasSwitchLastFrame = isSwapThisFrame;
     }
-}
+
+    private void HandleFlashlightInput(InputAction.CallbackContext ctx)
+    {
+        if (phoneController == null || phoneLightScript == null) return;
+
+        if (phoneController.GetCurrentPhoneState() == PhoneState.Idle)
+        {
+            phoneLightScript.ToggleFlashlight();
+        }
+    }
+}                                         
