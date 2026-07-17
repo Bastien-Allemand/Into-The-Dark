@@ -24,7 +24,7 @@ public class PlayerSprintState : PlayerBaseState
         {
             stateMachine.ChangeState(stateMachine.IdleState);
         }
-        else if (sprintInput  == false || stateMachine.staminaConfigs.isOutOfStamina == true)
+        else if (sprintInput == false || stateMachine.staminaConfigs.isOutOfStamina == true)
         {
             stateMachine.ChangeState(stateMachine.WalkState);
         }
