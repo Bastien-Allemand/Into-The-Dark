@@ -59,6 +59,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     [Space(5)]
     [Header("Sprint Settings")]
+    [SerializeField] private Material optiqueMaterial;
     [SerializeField] private MoveSettings moveSettings;
     public MoveSettings moveConfigs => moveSettings;
 
@@ -123,6 +124,9 @@ public class PlayerStateMachine : MonoBehaviour
             RegenStamina();
         }
 
+        float optiqueIntensite = (1 - (staminaSettings.staminaLeft / staminaSettings.maxStamina)) * 3.0f;
+        optiqueMaterial.SetFloat("_Stamina", optiqueIntensite);
+
         currentState?.Update();
     }
 
@@ -173,9 +177,10 @@ public class PlayerStateMachine : MonoBehaviour
             staminaSettings.staminaLeft = staminaSettings.maxStamina;
         }
 
+
         
 
-    //UpdateSprintUI();
+        //UpdateSprintUI();
     }
 
    public float StaminaRatio
