@@ -13,14 +13,29 @@ public class OpenFractureSoundController : MonoBehaviour
     [SerializeField] private float shrinkDuration = 1f;
 
     private Fracture fractureComponent;
+    private bool hasFractured = false;
 
     void Start()
     {
         fractureComponent = GetComponent<Fracture>();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (hasFractured) return;
+
+        float impactForce = collision.relativeVelocity.magnitude;
+
+        if (impactForce >= fractureComponent.triggerOptions.minimumCollisionForce)
+        {
+            ShatterWithSound();
+        }
+    }
+
     public void ShatterWithSound()
     {
+        hasFractured = true;
+
         if (breakSound != null)
         {
             AudioSource.PlayClipAtPoint(breakSound, transform.position, 1.0f);
