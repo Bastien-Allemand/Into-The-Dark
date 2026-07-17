@@ -82,8 +82,8 @@ public class PcScript : MonoBehaviour
     {
         float side = controls.Camera.SwapCamera.ReadValue<float>();
 
-        if (side < 0) CamerasScript.instance.PreviousCamera();
-        else if (side > 0) CamerasScript.instance.NextCamera();
+        if (side < -0.5) CamerasScript.instance.PreviousCamera();
+        else if (side > 0.5) CamerasScript.instance.NextCamera();
     }
     public void ActivateExe()
     {
