@@ -20,12 +20,14 @@ public class PhoneInputHandler : MonoBehaviour
     {
         controls.PlayerInteraction.TakeHidePhone.started += OnTakeHidePhone;
         controls.PlayerInteraction.Lookatcamera.started += OnLookAtCamera;
+        controls.PlayerInteraction.PhoneLight.started += HandleFlashlightInput;
     }
 
     private void OnDisable()
     {
         controls.PlayerInteraction.TakeHidePhone.started -= OnTakeHidePhone;
         controls.PlayerInteraction.Lookatcamera.started -= OnLookAtCamera;
+        controls.PlayerInteraction.PhoneLight.started -= HandleFlashlightInput;
     }
 
     private void Update()

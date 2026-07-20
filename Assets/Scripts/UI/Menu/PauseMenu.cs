@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -52,30 +53,28 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
+        Action<InputDevice[]> InitBouton = (usedDevice) =>
+        {
+            if (!usedDevice.All(device => device == null))
+                foreach (InputActionMap map in controls.asset.actionMaps)
+                {
+                    foreach (InputAction action in map)
+                    {
+                        Debug.Log("Create Binding Bouton : FirstRun");
+
+                        if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
+                            continue;
+
+                        CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+                    }
+                }
+        };
+
         InputDevice[] usedDevice = { Keyboard.current, Mouse.current };
-        if (!usedDevice.All(device => device == null))
-            foreach (InputActionMap map in controls.asset.actionMaps)
-            {
-                foreach (InputAction action in map)
-                {
-                    Debug.Log("Create Binding Bouton : FirstRun");
+        InitBouton(usedDevice);
 
-                    if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
-                        continue;
-
-                    CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
-                }
-            }
         usedDevice = new InputDevice[] { Gamepad.current };
-        if (!usedDevice.All(device => device == null))
-            foreach (InputActionMap map in controls.asset.actionMaps)
-            {
-                foreach (InputAction action in map)
-                {
-                    Debug.Log("Create Binding Bouton : SecondRun");
-                    CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
-                }
-            }
+        InitBouton(usedDevice);
     }
     private void OnEnable()
     {
@@ -106,14 +105,7 @@ public class PauseMenu : UI
         foreach (InputBinding binding in action.bindings)
         {
             //   regarde si le chemain prie n'est pas l'un définit dedans deviceUsed (KeyBoard,Mouse,GamePad,etc..)
-            if (!deviceUsed.Any(device => InputControlPath.Matches(binding.path, device)))
-            {
-                Debug.Log($"Binding device is not {deviceUsed}");
-                bindingIndex++;
-                continue;
-
-            }
-            if (binding.isComposite)
+            if (binding.isComposite || !deviceUsed.Any(device => InputControlPath.Matches(binding.path, device)))
             {
                 bindingIndex++;
                 continue;
