@@ -7,10 +7,14 @@ public class GhostStateMachine : MonoBehaviour
     private Pathfinding pathfinding;
     private MonsterVisionScript monsterVision;
 
+    [SerializeField] public Animator animator; 
+
     void Start()
     {
         pathfinding = GetComponent<Pathfinding>();
         monsterVision = GetComponent<MonsterVisionScript>();
+        animator = GetComponentInChildren<Animator>();
+
         ChangeState(new GhostPatrolState(this,pathfinding));
     }
 

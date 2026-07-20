@@ -19,6 +19,8 @@ public class GhostSearchState : IState
 
         if (pathfinding.target != null)
         {
+            stateMachine.animator.SetInteger("State", 1); // Search
+
             pathfinding.agent.SetDestination(pathfinding.target.position);
         }
     }
