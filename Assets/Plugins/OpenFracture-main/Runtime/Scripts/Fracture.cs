@@ -27,7 +27,7 @@ public class Fracture : MonoBehaviour
     public void PrintMeshInfo()
     {
         var mesh = this.GetComponent<MeshFilter>().mesh;
-        Debug.Log("Positions");
+        Debug.Log("Positions"); 
 
         var positions = mesh.vertices;
         var normals = mesh.normals;
