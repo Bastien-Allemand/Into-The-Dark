@@ -23,6 +23,9 @@ public class GhostPatrolState : IState
 
     public void Update()
     {
+
+        Debug.Log("MovePlayer Update");
+
         swapRoom -= Time.deltaTime;
         if (swapRoom < 0f)
         {

@@ -225,13 +225,13 @@ namespace Assets.Scripts.Items
 
         private void HandleLight()
         {
-            bool isClick = controls.GamePlay.ActiveFlashlight.triggered;
-            if (isClick == true
-                && currentState == PhoneState.Idle
-                && HaveBattery)
-            {
-                phoneLight.enabled = !phoneLight.enabled;
-            }
+            //bool isClick = controls.PlayerInteraction.ActiveFlashlight.triggered;
+            //if (isClick == true
+            //    && currentState == PhoneState.Idle
+            //    && HaveBattery)
+            //{
+            //    phoneLight.enabled = !phoneLight.enabled;
+            //}
         }
 
         private void HandleBatteryDrain()

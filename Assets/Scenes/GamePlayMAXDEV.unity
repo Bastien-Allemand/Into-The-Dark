@@ -2866,6 +2866,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!20 &1315121068 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3751543644556124394, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+  m_PrefabInstance: {fileID: 5050230139285730104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1355636512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,6 +3975,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1733283247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3728395519810939452, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+  m_PrefabInstance: {fileID: 5050230139285730104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733283261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733283247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49071d4a3939cca4884290078f620642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interact
+  playerCamera: {fileID: 1315121068}
+  interactDistance: 5
 --- !u!1 &1733441715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,6 +4271,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809640800}
   m_CullTransparentMesh: 1
+--- !u!1 &1813395059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 163021969887230651, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+  m_PrefabInstance: {fileID: 7359691806498632670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1813395065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813395059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e92fe992b1d7b4187f504212e96101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComplexAnimatorScript
 --- !u!1 &1821952790
 GameObject:
   m_ObjectHideFlags: 0
@@ -5267,7 +5308,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3728395519810939452, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1733283261}
   m_SourcePrefab: {fileID: 100100000, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
 --- !u!4 &5630893175526493309
 Transform:
@@ -5555,6 +5599,10 @@ PrefabInstance:
       propertyPath: m_ProvidesContacts
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6259260490524017288, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1315121068}
     - target: {fileID: 7261541869891903517, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       propertyPath: m_Name
       value: Map Layout
@@ -5563,6 +5611,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 163021969887230651, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1813395065}
     - targetCorrespondingSourceObject: {fileID: 2423474180165827347, guid: 91475126ff85bdb4d8e89401cee75a38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1633608654}

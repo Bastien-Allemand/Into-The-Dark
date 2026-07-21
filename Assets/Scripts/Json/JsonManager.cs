@@ -110,9 +110,9 @@ public class JsonManager : MonoBehaviour
         }
         File.WriteAllText(fullPath, json);
     }
-    public void SaveInputInJson(InputActionMap map, string fileName)
+    public void SaveInputInJson(InputActionAsset asset, string fileName)
     {
-        string json = map.SaveBindingOverridesAsJson();
+        string json = asset.SaveBindingOverridesAsJson();
         Save(path.Input, fileName, json);
     }
 
