@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -13,6 +14,10 @@ public class PauseMenu : UI
     //  first letter of var, then what it does
     [SerializeField] public GameObject Controls_ViewPort;
     [SerializeField] public GameObject Content_Prefab;
+
+    [SerializeField] public GameObject PageLayout;
+    [SerializeField] public GameObject SchemeBouton_Prefab;
+
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
     [SerializeField] private Bouton b_main_menu;
@@ -65,51 +70,64 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
-        Action<IEnumerable<InputDevice>, GameObject> InitBouton = (usedDevices, content) =>
+        //  lambdas
+        Action<InputControlScheme, GameObject> InitBouton = (scheme, content) =>
         {
-            if (!usedDevices.All(device => device == null))
-                foreach (InputActionMap map in controls.asset.actionMaps)
+            foreach (InputActionMap map in controls.asset.actionMaps)
+            {
+                foreach (InputAction action in map)
                 {
-                    foreach (InputAction action in map)
-                    {
-                        if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
-                            continue;
+                    if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
+                        continue;
 
-                        CreateBoutonFromAction(action, content.transform, usedDevices);
-                    }
+                    CreateBoutonFromAction(action, content.transform, scheme);
                 }
+            }
+        };
+        Action<GameObject> nullChild = (parent) =>
+        {
+            foreach (Transform child in parent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        };
+        Action delegatedAction = () =>
+        {
+            foreach (Transform child in Controls_ViewPort.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
         };
 
-        for (int i = 0; i < controls.controlSchemes.Count; i++)
+        nullChild(Controls_ViewPort);
+        nullChild(PageLayout);
+
+        for (int i = 0; i < controls.controlSchemes.Count; i++) //  pour chaque scheme (lors de la creation il y a : 'Keyboard&Mouse' et 'Gamepad')
         {
             InputControlScheme scheme = controls.controlSchemes[i];
 
-            List<InputDevice> usedDevices = new();
 
-            foreach (var requirement in scheme.deviceRequirements)
-            {
-                var device = InputSystem.devices.FirstOrDefault(d =>
-                    InputControlPath.Matches(requirement.controlPath, d));
+            //  les boutons ainsi que le "content" qui tiens les bouton
+            GameObject instance = Instantiate(Content_Prefab);
+            instance.transform.SetParent(Controls_ViewPort.transform, false);
+            instance.name = scheme.name;
+            instance.SetActive(false);
+            gameObjects_Contents.Add(instance);
 
-                if (device != null)
-                    usedDevices.Add(device);
-            }
+            InitBouton(scheme, gameObjects_Contents[i]);
 
-            if (i < gameObjects_Contents.Count)
-                gameObjects_Contents[i].name = scheme.name;
-            else
-            {
-                GameObject instance = Instantiate(Content_Prefab);
-                instance.transform.SetParent(Controls_ViewPort.transform, false);
-                instance.name = scheme.name;
-                instance.SetActive(false);
-                gameObjects_Contents.Add(instance);
-            }
+            //  creer le bouton lié au "content" pour l'afficher
+            GameObject instance2 = Instantiate(SchemeBouton_Prefab);
+            instance2.transform.SetParent(PageLayout.transform, false);
+            instance2.GetComponentInChildren<TextMeshProUGUI>().text = scheme.name;
+            instance2.GetComponent<Bouton>().show_target.Add(instance.transform);
+            instance2.GetComponent<Bouton>().@delegate = delegatedAction;
 
-            InitBouton(usedDevices, gameObjects_Contents[i]);
         }
         if (controls.controlSchemes.Count < gameObjects_Contents.Count) // resize si trop grand (sécurité)
             gameObjects_Contents.RemoveRange(controls.controlSchemes.Count, gameObjects_Contents.Count - controls.controlSchemes.Count);
+
+
 
         gameObjects_Contents[0].SetActive(true);
     }
@@ -136,13 +154,13 @@ public class PauseMenu : UI
         }
     }
 
-    private void CreateBoutonFromAction(InputAction action, Transform parent, IEnumerable<InputDevice> deviceUsed)
+    private void CreateBoutonFromAction(InputAction action, Transform parent, InputControlScheme scheme)
     {
         int bindingIndex = 0;
         foreach (InputBinding binding in action.bindings)
         {
             //   regarde si le chemain prie n'est pas l'un définit dedans deviceUsed (KeyBoard,Mouse,GamePad,etc..)
-            if (binding.isComposite || !deviceUsed.Any(device => InputControlPath.Matches(binding.path, device)))
+            if (binding.isComposite || !binding.groups.Contains(scheme.bindingGroup))
             {
                 bindingIndex++;
                 continue;
