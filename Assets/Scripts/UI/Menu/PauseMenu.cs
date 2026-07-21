@@ -1,19 +1,23 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static Unity.VisualScripting.Metadata;
 
 public class PauseMenu : UI
 {
     PlayerAction controls => InputManager.controls;
 
     //  first letter of var, then what it does
-    [SerializeField] public GameObject GO_Controls_Content;
+    [SerializeField] public GameObject Controls_ViewPort;
+    [SerializeField] public GameObject Content_Prefab;
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
     [SerializeField] private Bouton b_main_menu;
 
+    private List<GameObject> gameObjects_Contents = new List<GameObject>();
     public override bool EnterCondition()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
@@ -36,6 +40,14 @@ public class PauseMenu : UI
         exit = false;
         return result;
     }
+    private void Start()
+    {
+        foreach (Transform child in Controls_ViewPort.transform)
+        {
+            gameObjects_Contents.Add(child.gameObject);
+        }
+        int i = Mathf.Min(gameObjects_Contents.Count, controls.controlSchemes.Count);
+    }
     private void Awake()
     {
         cursorWantedState = CursorLockMode.None;
@@ -53,28 +65,53 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
-        Action<InputDevice[]> InitBouton = (usedDevice) =>
+        Action<IEnumerable<InputDevice>, GameObject> InitBouton = (usedDevices, content) =>
         {
-            if (!usedDevice.All(device => device == null))
+            if (!usedDevices.All(device => device == null))
                 foreach (InputActionMap map in controls.asset.actionMaps)
                 {
                     foreach (InputAction action in map)
                     {
-                        Debug.Log("Create Binding Bouton : FirstRun");
-
                         if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
                             continue;
 
-                        CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
+                        CreateBoutonFromAction(action, content.transform, usedDevices);
                     }
                 }
         };
 
-        InputDevice[] usedDevice = { Keyboard.current, Mouse.current };
-        InitBouton(usedDevice);
+        for (int i = 0; i < controls.controlSchemes.Count; i++)
+        {
+            InputControlScheme scheme = controls.controlSchemes[i];
 
-        usedDevice = new InputDevice[] { Gamepad.current };
-        InitBouton(usedDevice);
+            List<InputDevice> usedDevices = new();
+
+            foreach (var requirement in scheme.deviceRequirements)
+            {
+                var device = InputSystem.devices.FirstOrDefault(d =>
+                    InputControlPath.Matches(requirement.controlPath, d));
+
+                if (device != null)
+                    usedDevices.Add(device);
+            }
+
+            if (i < gameObjects_Contents.Count)
+                gameObjects_Contents[i].name = scheme.name;
+            else
+            {
+                GameObject instance = Instantiate(Content_Prefab);
+                instance.transform.SetParent(Controls_ViewPort.transform, false);
+                instance.name = scheme.name;
+                instance.SetActive(false);
+                gameObjects_Contents.Add(instance);
+            }
+
+            InitBouton(usedDevices, gameObjects_Contents[i]);
+        }
+        if (controls.controlSchemes.Count < gameObjects_Contents.Count) // resize si trop grand (sécurité)
+            gameObjects_Contents.RemoveRange(controls.controlSchemes.Count, gameObjects_Contents.Count - controls.controlSchemes.Count);
+
+        gameObjects_Contents[0].SetActive(true);
     }
     private void OnEnable()
     {
@@ -99,7 +136,7 @@ public class PauseMenu : UI
         }
     }
 
-    private void CreateBoutonFromAction(InputAction action, Transform parent, InputDevice[] deviceUsed)
+    private void CreateBoutonFromAction(InputAction action, Transform parent, IEnumerable<InputDevice> deviceUsed)
     {
         int bindingIndex = 0;
         foreach (InputBinding binding in action.bindings)
