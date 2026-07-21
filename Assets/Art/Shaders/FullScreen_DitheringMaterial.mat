@@ -11,8 +11,14 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 472e385d42f9d99419ca0bfcf4b4dca3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_ValidKeywords:
+  - _DITHERING
+  m_InvalidKeywords:
+  - _CRAZY
+  - _NIGHTVISION
+  - _OPTIQUE
+  - _PAINT
+  - _RUN
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,6 +43,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DEBUG: 0
+    - _DITHERING: 1
     - _Dither_Balance: 1
     - _Dither_Power: 6
     - _Dither_Scale: 120

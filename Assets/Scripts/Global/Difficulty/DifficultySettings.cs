@@ -20,4 +20,7 @@ public class DifficultySettings : ScriptableObject
     public float fovCamGhost = 44.2f;
     public float nearCamGhost = 0.3f;
     public float farCamGhost = 13.6f;
+
+    [Tooltip("Déplacemment Ghost")]
+    public float speedGhost = 1.0f;
 }
