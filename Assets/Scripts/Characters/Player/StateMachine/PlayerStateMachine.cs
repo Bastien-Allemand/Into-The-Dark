@@ -127,6 +127,11 @@ public class PlayerStateMachine : MonoBehaviour
 
         float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
 
+
+        bool isCrouching = currentState == CrouchState;
+
+        animator.SetBool("IsCrouch", isCrouching);
+
         animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
 
         currentState?.Update();
