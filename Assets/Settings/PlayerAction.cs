@@ -529,7 +529,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e9e2aa4d-e982-4300-8f12-cede9fcf687d"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0eab599-e29f-4e46-a26a-d4f1f4cd0300"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
