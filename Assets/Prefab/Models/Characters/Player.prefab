@@ -795,6 +795,7 @@ MonoBehaviour:
   rb: {fileID: 2558153957045355166}
   playerCollider: {fileID: 3259128438521581388}
   animator: {fileID: 0}
+  optiqueMaterial: {fileID: 2100000, guid: 96c7d776de4588d4f88816ab451257a2, type: 2}
   moveSettings:
     walkSpeed: 5
     sprintingMultiplier: 1.4
@@ -832,6 +833,8 @@ MonoBehaviour:
   debug: 0
   insaneMeter: 0
   maxInsaneMeter: 100
+  crazyShader: {fileID: 0}
+  optiqueShader: {fileID: 0}
   visionCam: {fileID: 3102255341727323076}
   targetTag: Ghost
   insanityStack: 0
@@ -852,6 +855,9 @@ MonoBehaviour:
   sensitivity: 0.25
   XMaxAngle: 75
   canLook: 1
+  playerStateMachine: {fileID: 0}
+  sprintForwardOffset: 0.5
+  positionTransitionSpeed: 10
 --- !u!114 &4475905039073347872
 MonoBehaviour:
   m_ObjectHideFlags: 0
