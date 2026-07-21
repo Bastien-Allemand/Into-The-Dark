@@ -13,9 +13,7 @@ public class CamerasScript : MonoBehaviour
     public bool m_onCamera = false;
     private int m_currentCamera = 0;
     public Camera camActive;
-
-    private Camera m_externalCamera;
-    private bool m_usingExternalCamera = false;
+    
 
     void Awake()
     {
@@ -36,41 +34,6 @@ public class CamerasScript : MonoBehaviour
 
         GetItemCamera();
         RemoveItemCamera();
-    }
-
-    public void SetExternalCamera(Camera cam)
-    {
-        DisableAllCam();
-
-        m_externalCamera = cam;
-        m_usingExternalCamera = true;
-        m_onCamera = true;
-
-        cam.enabled = true;
-        cam.targetTexture = m_screenRenderTexture;
-        camActive = cam;
-
-        if (m_cameraUiText != null)
-        {
-            m_cameraUiText.gameObject.SetActive(true);
-            m_cameraUiText.text = "DRONE";
-        }
-    }
-
-    public void DisableExternalCamera()
-    {
-        if (m_externalCamera == null)
-            return;
-
-        m_externalCamera.enabled = false;
-        m_externalCamera.targetTexture = null;
-
-        m_externalCamera = null;
-        m_usingExternalCamera = false;
-        m_onCamera = false;
-
-        if (m_cameraUiText != null)
-            m_cameraUiText.gameObject.SetActive(false);
     }
 
     public void SetCameraViewActive(bool active)
@@ -134,32 +97,25 @@ public class CamerasScript : MonoBehaviour
 
     void LateUpdate()
     {
-        if (m_usingExternalCamera)
-        {
-            if (m_externalCamera != null && m_externalCamera.enabled)
-                m_externalCamera.Render();
-
-            return;
-        }
-
         if (m_onCamera && m_cameras.Count > m_currentCamera)
         {
+            
             if (m_cameras[m_currentCamera].enabled)
+            {
                 m_cameras[m_currentCamera].Render();
+            }
         }
     }
 
     void DisableAllCam()
     {
-        for (int i = 0; i < m_cameras.Count; i++)
+        for(int i = 0; i < m_cameras.Count; i++)
         {
-            m_cameras[i].enabled = false;
+            m_cameras [i].enabled = false;
         }
-
-        DisableExternalCamera();
-
         camActive = null;
         m_onCamera = false;
+
     }
 
     void GetItemCamera()

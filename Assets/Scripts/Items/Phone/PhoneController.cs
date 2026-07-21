@@ -14,18 +14,12 @@ public class PhoneController : MonoBehaviour
     [Header("References")]
     [SerializeField] private UIBattery uiBattery;
 
-    private DroneScript currentDrone;
-
     private PhoneState currentState = PhoneState.Hidden;
 
     public bool IsLookingCamera => currentState == PhoneState.Camera;
 
     public PhoneState GetCurrentPhoneState() => currentState;
 
-    public void RegisterDrone(DroneScript drone)
-    {
-        currentDrone = drone;
-    }
     public bool CanWatchCamera()
     {
         return uiBattery != null && uiBattery.HaveBattery && currentState == PhoneState.Idle;
@@ -33,9 +27,6 @@ public class PhoneController : MonoBehaviour
 
     public void TogglePhone()
     {
-        if (!uiBattery.HaveBattery)
-            return;
-
         if (currentState == PhoneState.Hidden)
         {
             ChangeState(PhoneState.Idle);
@@ -48,30 +39,25 @@ public class PhoneController : MonoBehaviour
 
     public void ToggleCameraMode()
     {
-        if (!uiBattery.HaveBattery)
-            return;
-
-        if (currentState == PhoneState.Hidden)
-            return;
+        if (currentState == PhoneState.Hidden) return;
 
         if (currentState == PhoneState.Camera)
+        {
             ChangeState(PhoneState.Idle);
+        }
        
         else if (currentState == PhoneState.Idle && uiBattery != null && uiBattery.HaveBattery)
-        ChangeState(PhoneState.Camera);
+        {
+            ChangeState(PhoneState.Camera);
+        }
     }
 
     private void ChangeState(PhoneState newState)
     {
-        if (currentState == newState)
-            return;
-
-        if (newState == PhoneState.Hidden && currentDrone != null)
-        {
-            currentDrone.StopControl();
-        }
+        if (currentState == newState) return;
 
         currentState = newState;
+
         OnPhoneStateChanged?.Invoke(currentState);
     }
 
@@ -82,29 +68,4 @@ public class PhoneController : MonoBehaviour
             uiBattery.HandleBatteryDrain();
         }
     }
-    public void OpenDroneCamera()
-    {
-        if (currentState == PhoneState.Hidden)
-        {
-            ChangeState(PhoneState.Idle);
-        }
-
-        ChangeState(PhoneState.Camera);
-    }
-
-    public void CloseDroneCamera()
-    {
-        ChangeState(PhoneState.Idle);
-    }
-
-    public void BatteryEmpty()
-    {
-        if (currentDrone != null)
-        {
-            currentDrone.StopControl();
-        }
-
-        ChangeState(PhoneState.Hidden);
-    }
-
 }

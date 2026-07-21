@@ -93,14 +93,6 @@ public class DropScript : MonoBehaviour
         if (obj == null)
             return;
 
-        DroneScript drone = obj.GetComponent<DroneScript>();
-
-        if (drone != null)
-        {
-            drone.PlaceDrone();
-            return;
-        }
-
         Rigidbody rb = obj.GetComponent<Rigidbody>();
 
         if (rb == null)

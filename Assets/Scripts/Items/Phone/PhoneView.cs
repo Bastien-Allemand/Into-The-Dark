@@ -105,19 +105,4 @@ public class PhoneView : MonoBehaviour
             waitingForHide = false;
         }
     }
-    public void OpenDroneCamera(Camera droneCamera)
-    {
-        if (CamerasScript.instance != null)
-            CamerasScript.instance.SetExternalCamera(droneCamera);
-
-        phoneController.OpenDroneCamera();
-    }
-
-    public void CloseDroneCamera()
-    {
-        if (CamerasScript.instance != null)
-            CamerasScript.instance.DisableExternalCamera();
-
-        phoneController.CloseDroneCamera();
-    }
 }
