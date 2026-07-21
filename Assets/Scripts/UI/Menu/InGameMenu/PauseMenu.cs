@@ -68,7 +68,10 @@ public class PauseMenu : MonoBehaviour
         pauseContainerUI.SetActive(OnPause);
         otherUICanvas.enabled = !OnPause;
     }
-
+    public void EscapeFunction()
+    {
+        pauseContainerUI.SetActive(true);
+    }
     public void OnResumeButton()
     {
         OnPause = !OnPause;
@@ -78,8 +81,10 @@ public class PauseMenu : MonoBehaviour
     }
     public void OnSettingButton()
     {
-
+        GetComponent<SettingMenu>().ActivateSettingUI();
+        pauseContainerUI.SetActive(false);
     }
+
     public void OnlvButton()
     {
 
