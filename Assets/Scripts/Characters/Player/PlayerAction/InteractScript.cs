@@ -19,12 +19,12 @@ public class Interact : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.Interact.performed += ctx => InteractWithObject();
+        controls.PlayerInteraction.Interact.performed += ctx => InteractWithObject();
     }
 
     private void OnDisable()
     {
-        controls.GamePlay.Interact.performed -= ctx => InteractWithObject();
+        controls.PlayerInteraction.Interact.performed -= ctx => InteractWithObject();
     }
 
     private void InteractWithObject()
