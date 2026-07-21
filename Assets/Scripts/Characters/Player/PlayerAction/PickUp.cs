@@ -49,8 +49,19 @@ public class PickUp : MonoBehaviour
 
         return itemType.NONE;
     }
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnInteract()
     {
+        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
+        HandContent hand;
+
+        if (side < 0) hand = leftHandContent;
+        else if (side > 0) hand = rightHandContent;
+        else
+        {
+            Debug.Log($"hand = {side}");
+            return;
+        }
+
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -63,39 +74,18 @@ public class PickUp : MonoBehaviour
         {
             case itemType.GADGET:
 
-                if (context.control.name == "leftButton" && !leftHandContent.filled)
+                if (hand.filled)
                 {
                     ItemScript itemScript = hitObject.GetComponent<ItemScript>();
                     if (itemScript.deployed)
                     {
                         if (itemScript.canBeRepickUp)
-                        {
                             itemScript.deployed = false;
-                            itemScript.PickUpItem();
-                            Debug.Log("get it");
-                        }
                         else
                             return;
                     }
-                    leftHandContent.GiveObject(hitObject);
+                    hand.GiveObject(hitObject);
                 }
-                else if (context.control.name == "rightButton" && !rightHandContent.filled)
-                {
-                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                    if (itemScript.deployed)
-                    {
-                        if (itemScript.canBeRepickUp)
-                        {
-                            itemScript.deployed = false;
-                            itemScript.PickUpItem();
-                            Debug.Log("get it");
-                        }
-                        else
-                            return;
-                    }
-                    rightHandContent.GiveObject(hitObject);
-                }
-
                 break;
 
             case itemType.CONSUMABLE:
@@ -110,11 +100,11 @@ public class PickUp : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.TakePlaceobject.performed += OnInteract;
+        controls.PlayerInteraction.TakeUseObject.performed += _ => OnInteract();
     }
     private void OnDisable()
     {
-        controls.GamePlay.TakePlaceobject.performed -= OnInteract;
+        controls.PlayerInteraction.TakeUseObject.performed -= _ => OnInteract();
     }
     private void Awake()
     {

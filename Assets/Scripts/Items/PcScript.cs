@@ -33,9 +33,6 @@ public class PcScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-      
-
         if (debug)
         {
             if (!OnPC && Input.GetKeyDown(KeyCode.T))
@@ -52,8 +49,8 @@ public class PcScript : MonoBehaviour
     }
     void ActivatePC()
     {
-        controls.GamePlay.Disable();
-        controls.PcInteract.Enable();
+        controls.asset.Disable();
+        controls.Camera.Enable();
         player.GetComponent<PlayerView>().canLook = false;
 
         Cursor.lockState = CursorLockMode.None;
@@ -69,9 +66,9 @@ public class PcScript : MonoBehaviour
     }
     void DesactivatePC()
     {
+        controls.asset.Enable();
+        controls.Camera.Disable();
 
-        controls.PcInteract.Disable();
-        controls.GamePlay.Enable();
         player.GetComponent<PlayerView>().canLook = true;
         OnPC = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,12 +78,12 @@ public class PcScript : MonoBehaviour
         pcCamera.enabled = !pcCamera.enabled;
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnInteract()
     {
-        if (context.control.name == "a")
-            CamerasScript.instance.PreviousCamera();
-        else if (context.control.name == "d")
-            CamerasScript.instance.NextCamera();
+        float side = controls.Camera.SwapCamera.ReadValue<float>();
+
+        if (side < -0.5) CamerasScript.instance.PreviousCamera();
+        else if (side > 0.5) CamerasScript.instance.NextCamera();
     }
     public void ActivateExe()
     {
@@ -104,10 +101,10 @@ public class PcScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PcInteract.SwitchCamera.performed += OnInteract;
+        controls.Camera.SwapCamera.performed += _ => OnInteract();
     }
     private void OnDisable()
     {
-        controls.PcInteract.SwitchCamera.performed -= OnInteract;
+        controls.Camera.SwapCamera.performed -= _ => OnInteract();
     }
 }
