@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: Outline
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 550
   fetchColorBuffer: 1
   requirements: 1
@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: Run
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 550
   fetchColorBuffer: 1
   requirements: 4
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: Paint
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 550
   fetchColorBuffer: 1
   requirements: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: NightVision
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 0
@@ -133,7 +133,8 @@ MonoBehaviour:
   - {fileID: -5937863908229990421}
   - {fileID: 3720713623420034436}
   - {fileID: 2141230931518514671}
-  m_RendererFeatureMap: 654ad6911c248983d5ab05519f0418099789bda7e9327dee085029bfba8fdb785ac6229f41275ffcebb756513c7898ad845de8ca53a1a233ef653dff2f2eb71d
+  - {fileID: 1323789432685099671}
+  m_RendererFeatureMap: 654ad6911c248983d5ab05519f0418099789bda7e9327dee085029bfba8fdb785ac6229f41275ffcebb756513c7898ad845de8ca53a1a233ef653dff2f2eb71d977a9cac790b5f12
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -204,6 +205,26 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &1323789432685099671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: Rain
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
+  m_Active: 1
+  injectionPoint: 550
+  fetchColorBuffer: 1
+  requirements: 0
+  passMaterial: {fileID: 2100000, guid: d96d4c088591feb41b1fbfd95efd2196, type: 2}
+  passIndex: 0
+  bindDepthStencilAttachment: 0
+  m_Version: 1
 --- !u!114 &2141230931518514671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: OptiqueCrazyStamina
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 4
@@ -236,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: Crazy
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 4
@@ -282,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
   m_Name: DitheringRenderDistance
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 550
   fetchColorBuffer: 1
   requirements: 1
