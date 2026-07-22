@@ -56,6 +56,7 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private Animator animator;
 
     [Space(5)]
     [Header("Sprint Settings")]
@@ -103,6 +104,7 @@ public class PlayerStateMachine : MonoBehaviour
         moveSettings.crouchMultiplier = 0.6f;
         currentSpeed = moveSettings.walkSpeed;
 
+        staminaSettings.maxStamina = 100f;
         staminaSettings.staminaRegenDelay = 1.5f;
         staminaSettings.staminaLeft = staminaSettings.maxStamina;
         staminaSettings.staminaTimer = 0f;
@@ -111,23 +113,22 @@ public class PlayerStateMachine : MonoBehaviour
         crouchSettings.standHeight = 2f;
         crouchSettings.standCenterY = 0f;
         crouchSettings.crouchHeight = 1.2f;
-        crouchSettings.crouchHeight = -0.2f;
+        crouchSettings.crouchCenterY = -0.2f;
         crouchSettings.ceilingCheckDistance = 0.6f;
     }
 
     void Update()
     {
-        PhoneState phoneState = itemPhone.GetComponent<PhoneController>().GetCurrentPhoneState();
-
-        if (phoneState != PhoneState.Camera)
-        {
-            moveInput = InputManager.controls.GamePlay.Movement.ReadValue<Vector2>();
-        }
+        moveInput = InputManager.controls.GeneriqueMove.Movement.ReadValue<Vector2>();
 
         if (currentState != SprintState)
         {
             RegenStamina();
         }
+
+        float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
+
+        animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
 
         currentState?.Update();
     }
@@ -183,5 +184,4 @@ public class PlayerStateMachine : MonoBehaviour
 
 }
 
-    
 

@@ -18,16 +18,16 @@ public class PhoneInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.TakeHidePhone.started += OnTakeHidePhone;
-        controls.GamePlay.Lookatcamera.started += OnLookAtCamera;
-        controls.GamePlay.ActiveFlashlight.started += HandleFlashlightInput;
+        controls.PlayerInteraction.TakeHidePhone.started += OnTakeHidePhone;
+        controls.PlayerInteraction.Lookatcamera.started += OnLookAtCamera;
+        controls.PlayerInteraction.PhoneLight.started += HandleFlashlightInput;
     }
 
     private void OnDisable()
     {
-        controls.GamePlay.TakeHidePhone.started -= OnTakeHidePhone;
-        controls.GamePlay.Lookatcamera.started -= OnLookAtCamera;
-        controls.GamePlay.ActiveFlashlight.started -= HandleFlashlightInput;
+        controls.PlayerInteraction.TakeHidePhone.started -= OnTakeHidePhone;
+        controls.PlayerInteraction.Lookatcamera.started -= OnLookAtCamera;
+        controls.PlayerInteraction.PhoneLight.started -= HandleFlashlightInput;
     }
 
     private void Update()
@@ -54,7 +54,7 @@ public class PhoneInputHandler : MonoBehaviour
 
         if (phoneController.GetCurrentPhoneState() != PhoneState.Camera) return;
 
-        moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
+        moveInput = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
         bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
 
         if (isSwapThisFrame && !wasSwitchLastFrame)

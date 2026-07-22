@@ -33,8 +33,6 @@ public class Readable : MonoBehaviour
         originalWorldPosition = transform.position;
         originalWorldRotation = transform.rotation;
 
-        Debug.Log($"Camera = {playerCamera}");
-
         originalParent = transform.parent;
         originalWorldPosition = transform.position;
         originalWorldRotation = transform.rotation;

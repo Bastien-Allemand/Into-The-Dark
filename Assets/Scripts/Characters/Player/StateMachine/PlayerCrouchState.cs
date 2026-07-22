@@ -30,7 +30,7 @@ public class PlayerCrouchState : PlayerBaseState
         Move(stateMachine.currentSpeed);
         CheckIsCeilingAbove();
 
-        bool crouchInput = InputManager.controls.GamePlay.Crouch.ReadValue<float>() > 0.5f;
+        bool crouchInput = InputManager.controls.PlayerUniqueMove.Crouch.ReadValue<float>() > 0.5f;
 
         if (!crouchInput && !stateMachine.crouchConfigs.isCeilingAbove)
         {

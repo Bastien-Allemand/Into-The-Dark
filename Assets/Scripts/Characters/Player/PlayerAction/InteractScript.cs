@@ -10,8 +10,6 @@ public class Interact : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private float interactDistance = 5f;
 
-    private bool wasInteractingLastFrame;
-
     private Readable currentReadObject;
 
     private void Awake()
@@ -19,17 +17,14 @@ public class Interact : MonoBehaviour
         controls = InputManager.controls;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        float interactValue = controls.GamePlay.Interact.ReadValue<float>();
-        bool isInteractingThisFrame = Mathf.Abs(interactValue) > 0.5f;
+        controls.PlayerInteraction.Interact.performed += ctx => InteractWithObject();
+    }
 
-        if (isInteractingThisFrame && !wasInteractingLastFrame)
-        {
-            InteractWithObject();
-        }
-
-        wasInteractingLastFrame = isInteractingThisFrame;
+    private void OnDisable()
+    {
+        controls.PlayerInteraction.Interact.performed -= ctx => InteractWithObject();
     }
 
     private void InteractWithObject()
@@ -52,6 +47,14 @@ public class Interact : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, interactDistance))
             return;
 
+        ComplexAnimatorScript animatorObject = hit.collider.GetComponentInParent<ComplexAnimatorScript>();
+
+        if (animatorObject != null)
+        {
+            animatorObject.Interact();
+            return;
+        }
+
         BasicAnimationScript lootItem = hit.collider.GetComponentInParent<BasicAnimationScript>();
 
         if (lootItem != null)
@@ -68,7 +71,5 @@ public class Interact : MonoBehaviour
             currentReadObject = readable;
             return;
         }
-
-
     }
 }
