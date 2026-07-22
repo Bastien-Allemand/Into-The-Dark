@@ -851,6 +851,9 @@ MonoBehaviour:
   sensitivity: 0.25
   XMaxAngle: 75
   canLook: 1
+  playerStateMachine: {fileID: 0}
+  sprintForwardOffset: 0.5
+  positionTransitionSpeed: 10
 --- !u!114 &4475905039073347872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +953,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interact
   playerCamera: {fileID: 3102255341727323076}
   interactDistance: 5
+  leftHandImageComponent: {fileID: 0}
+  rightHandImageComponent: {fileID: 0}
+  rihtHandOpened: {fileID: 0}
+  leftHandOpened: {fileID: 0}
+  rihtHandClosed: {fileID: 0}
+  leftHandClosed: {fileID: 0}
+  leftHandContent: {fileID: 0}
+  rightHandContent: {fileID: 0}
 --- !u!1 &4260792723468228002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,11 +1771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88100004
+      value: -0.984
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24
+      value: -0.302
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
       propertyPath: m_LocalRotation.w
