@@ -119,7 +119,6 @@ public class PlaceScript : MonoBehaviour
             editMode = !editMode;
             preview.SetActive(editMode);
         }
-
         Debug.Log($"Edit Mode: {editMode}");
     }
 
@@ -129,7 +128,8 @@ public class PlaceScript : MonoBehaviour
 
         controls.PlayerInteraction.TakeUseObject.canceled += _ => PlaceObject();
 
-        controls.PlayerInteraction.EnterLeaveEditMode.performed += _ => SwitchEditMode();
+        controls.PlayerInteraction.SwitchEditMode.performed += _ => SwitchEditMode();
+
     }
     private void OnDisable()
     {
@@ -137,13 +137,17 @@ public class PlaceScript : MonoBehaviour
 
         controls.PlayerInteraction.TakeUseObject.canceled -= _ => PlaceObject();
 
-        controls.PlayerInteraction.EnterLeaveEditMode.performed -= _ => SwitchEditMode();
+        controls.PlayerInteraction.SwitchEditMode.performed -= _ => SwitchEditMode();
+
+        GetComponent<PlaceScript>().enabled = true;
+
     }
 
     private void Awake()
     {
         controls = InputManager.controls;
         previewMesh = preview.GetComponent<MeshFilter>().mesh;
+        GetComponent<PlaceScript>().enabled = true;
     }
 
     public void Update()
