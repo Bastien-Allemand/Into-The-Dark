@@ -30,7 +30,7 @@ public class ItemScript : MonoBehaviour
         batteryScript = GetComponentInChildren<BatteryScript>();
         if (batteryScript != null)
         {
-            batteryScript.SetMaxBattery(maxEnergy);
+            batteryScript.SetMaxBattery((int)maxEnergy);
         }
 
     }
@@ -55,7 +55,7 @@ public class ItemScript : MonoBehaviour
             }
             if(batteryScript != null)
             {
-                batteryScript.SetBattery(energy);
+                batteryScript.SetBattery((int)energy);
             }
         }
 

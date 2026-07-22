@@ -49,19 +49,8 @@ public class PickUp : MonoBehaviour
 
         return itemType.NONE;
     }
-    private void OnInteract()
+    private void OnInteract(InputAction.CallbackContext context)
     {
-        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
-        HandContent hand;
-
-        if (side < 0) hand = leftHandContent;
-        else if (side > 0) hand = rightHandContent;
-        else
-        {
-            Debug.Log($"hand = {side}");
-            return;
-        }
-
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -74,7 +63,7 @@ public class PickUp : MonoBehaviour
         {
             case itemType.GADGET:
 
-                if (hand.filled)
+                if (context.control.name == "leftButton" && !leftHandContent.filled)
                 {
                     ItemScript itemScript = hitObject.GetComponent<ItemScript>();
                     if (itemScript.deployed)
@@ -84,8 +73,21 @@ public class PickUp : MonoBehaviour
                         else
                             return;
                     }
-                    hand.GiveObject(hitObject);
+                    leftHandContent.GiveObject(hitObject);
                 }
+                else if (context.control.name == "rightButton" && !rightHandContent.filled)
+                {
+                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
+                    if (itemScript.deployed)
+                    {
+                        if (itemScript.canBeRepickUp)
+                            itemScript.deployed = false;
+                        else
+                            return;
+                    }
+                    rightHandContent.GiveObject(hitObject);
+                }
+
                 break;
 
             case itemType.CONSUMABLE:
@@ -100,11 +102,11 @@ public class PickUp : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeUseObject.performed += _ => OnInteract();
+        controls.PlayerInteraction.TakeUseObject.performed += OnInteract;
     }
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeUseObject.performed -= _ => OnInteract();
+        controls.PlayerInteraction.TakeUseObject.performed -= OnInteract;
     }
     private void Awake()
     {
