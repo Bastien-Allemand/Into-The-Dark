@@ -51,15 +51,10 @@ public class DisplayInventory : MonoBehaviour
             Mouse => "Keyboard&Mouse",
             _ => "Keyboard&Mouse"
         };
-        Debug.Log($"test : {group}");
 
         Action<TextMeshProUGUI, InputAction> updateTxt = (TMP_UGUI, action) =>
         {
             TMP_UGUI.text = action.GetBindingDisplayString(InputBinding.MaskByGroup(group));
-            Debug.Log($"test : {TMP_UGUI.text}");
-            Debug.Log(
-                $"test : Path: {action.bindings[0].path} | Groups: {action.bindings[0].groups}"
-            );
         };
 
         updateTxt(consumables[0].Keybind, InputManager.controls.PlayerInteraction.ConsumeItem1);
