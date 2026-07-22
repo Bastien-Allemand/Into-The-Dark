@@ -62,7 +62,6 @@ public class PickUp : MonoBehaviour
             Debug.Log($"hand = {side}");
             return;
         }
-        Debug.Log($"test pickup : {hand.name}");
 
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
@@ -71,12 +70,10 @@ public class PickUp : MonoBehaviour
             return;
         if (hitObject == null)
             return;
-        Debug.Log($"test item : {item}");
 
         switch (item)
         {
             case itemType.GADGET:
-                Debug.Log($"test Gadget hand : {hand.filled}");
 
                 if (!hand.filled)
                 {
