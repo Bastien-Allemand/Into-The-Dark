@@ -18,6 +18,9 @@ public class ControleurShader : MonoBehaviour
     {
         public string referenceName;
         public string displayName;
+        public bool isHDR;
+
+        [ColorUsage(true, true)]
         public Color value = Color.white;
     }
 
@@ -40,6 +43,7 @@ public class ControleurShader : MonoBehaviour
 
     [Header("Liste des Matériaux & Effets")]
     [SerializeField] private List<MaterialConfig> materiaux = new List<MaterialConfig>();
+
     [ContextMenu("1. Scanner les Matériaux de la liste")]
     public void ScanMaterialsAndShaders()
     {
@@ -52,7 +56,7 @@ public class ControleurShader : MonoBehaviour
         foreach (var config in materiaux)
         {
             if (config.material == null || config.material.shader == null) continue;
-         
+
             config.nomAffiche = config.material.name;
             Shader shader = config.material.shader;
 
@@ -87,6 +91,9 @@ public class ControleurShader : MonoBehaviour
                 }
                 else if (type == ShaderPropertyType.Color)
                 {
+                    ShaderPropertyFlags flags = shader.GetPropertyFlags(i);
+                    bool propertyIsHDR = flags.HasFlag(ShaderPropertyFlags.HDR);
+
                     Color val = oldColors.ContainsKey(propName)
                         ? oldColors[propName]
                         : (config.material.HasProperty(propName) ? config.material.GetColor(propName) : Color.white);
@@ -95,6 +102,7 @@ public class ControleurShader : MonoBehaviour
                     {
                         referenceName = propName,
                         displayName = description,
+                        isHDR = propertyIsHDR,
                         value = val
                     });
                 }
@@ -120,13 +128,11 @@ public class ControleurShader : MonoBehaviour
 
         foreach (var config in materiaux)
         {
-            // 1. Gestion ON/OFF de la Renderer Feature (Si assignée)
             if (config.rendererFeature != null)
             {
                 config.rendererFeature.SetActive(config.featureActive);
             }
 
-            // 2. Application des Floats et Couleurs sur le Matériau
             if (config.material != null)
             {
                 foreach (var f in config.floatProperties)
