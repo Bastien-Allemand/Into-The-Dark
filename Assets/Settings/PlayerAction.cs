@@ -871,15 +871,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchCameraRight"",
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f443016c-44cf-49ac-887a-0d117baa98e8"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -959,6 +950,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_PlayerInteraction.enabled, "This will cause a leak and performance issues, PlayerAction.PlayerInteraction.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerAction.Camera.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerAction.Menu.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PcInteract.enabled, "This will cause a leak and performance issues, PlayerAction.PcInteract.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1733,12 +1725,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private List<IPcInteractActions> m_PcInteractActionsCallbackInterfaces = new List<IPcInteractActions>();
     private readonly InputAction m_PcInteract_SwitchCameraLeft;
     private readonly InputAction m_PcInteract_SwitchCameraRight;
-    private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
-    /// Provides access to the input control scheme.
+    /// Provides access to input actions defined in input action map "PcInteract".
     /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme KeyboardMouseScheme
+    public struct PcInteractActions
     {
         private @PlayerAction m_Wrapper;
 
@@ -1787,15 +1777,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwitchCameraRight.performed += instance.OnSwitchCameraRight;
             @SwitchCameraRight.canceled += instance.OnSwitchCameraRight;
         }
-    }
-    private int m_GamepadSchemeIndex = -1;
-    /// <summary>
-    /// Provides access to the input control scheme.
-    /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme GamepadScheme
-    {
-        get
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PcInteractActions" />
+        private void UnregisterCallbacks(IPcInteractActions instance)
         {
             @SwitchCameraLeft.started -= instance.OnSwitchCameraLeft;
             @SwitchCameraLeft.performed -= instance.OnSwitchCameraLeft;
@@ -1830,6 +1820,36 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 UnregisterCallbacks(item);
             m_Wrapper.m_PcInteractActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PcInteractActions" /> instance referencing this action map.
+    /// </summary>
+    public PcInteractActions @PcInteract => new PcInteractActions(this);
+    private int m_KeyboardMouseSchemeIndex = -1;
+    /// <summary>
+    /// Provides access to the input control scheme.
+    /// </summary>
+    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
+    public InputControlScheme KeyboardMouseScheme
+    {
+        get
+        {
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard&Mouse");
+            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    /// <summary>
+    /// Provides access to the input control scheme.
+    /// </summary>
+    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
     /// <summary>
