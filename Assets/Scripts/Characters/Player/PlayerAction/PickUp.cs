@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -54,13 +55,14 @@ public class PickUp : MonoBehaviour
         float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
         HandContent hand;
 
-        if (side < 0) hand = leftHandContent;
-        else if (side > 0) hand = rightHandContent;
+        if (side < -0.5) hand = leftHandContent;
+        else if (side > 0.5) hand = rightHandContent;
         else
         {
             Debug.Log($"hand = {side}");
             return;
         }
+        Debug.Log($"test pickup : {hand.name}");
 
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
@@ -69,12 +71,14 @@ public class PickUp : MonoBehaviour
             return;
         if (hitObject == null)
             return;
+        Debug.Log($"test item : {item}");
 
         switch (item)
         {
             case itemType.GADGET:
+                Debug.Log($"test Gadget hand : {hand.filled}");
 
-                if (hand.filled)
+                if (!hand.filled)
                 {
                     ItemScript itemScript = hitObject.GetComponent<ItemScript>();
                     if (itemScript.deployed)
