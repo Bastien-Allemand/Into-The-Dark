@@ -117,6 +117,24 @@ public class CamerasScript : MonoBehaviour
 
     private void UpdateCameraDisplay()
     {
+
+        if (m_cameras == null || m_cameras.Count == 0)
+        {
+            camActive = null;
+
+            if (m_screenRenderTexture != null)
+            {
+                RenderTexture activeBuffer = RenderTexture.active;
+                RenderTexture.active = m_screenRenderTexture;
+                GL.Clear(true, true, Color.black);
+                RenderTexture.active = activeBuffer;
+            }
+
+            return;
+
+
+        }
+
         for (int i = 0; i < m_cameras.Count; i++)
         {
             bool isTarget = (m_onCamera && i == m_currentCamera);
@@ -164,6 +182,79 @@ public class CamerasScript : MonoBehaviour
 
         camActive = null;
         m_onCamera = false;
+
+    }
+
+    void GetItemCamera()
+    {
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
+        {
+            Camera childCam = item.GetComponentInChildren<Camera>();
+            ItemScript itemscript = item.GetComponent<ItemScript>();
+
+            if (childCam != null && itemscript.deployed == true && item.layer == 17)
+            {
+                int nbCam = m_cameras.Count;
+
+                if(nbCam <= 0)
+                {
+                    m_cameras.Add(childCam);
+                    childCam.enabled = false;
+                    childCam.targetTexture = null;
+                    m_CamAmount++;
+                }
+                else
+                {
+                    for (int i = 0; i < nbCam; i++)
+                    {
+                        if (!m_cameras.Contains(childCam))
+                        {
+                            m_cameras.Add(childCam);
+                            childCam.enabled = false;
+                            childCam.targetTexture = null;
+                            m_CamAmount = m_cameras.Count;
+
+                            UpdateCameraDisplay();
+                        }
+                    }
+                } 
+            }
+        }
+    }
+
+    void RemoveItemCamera()
+    {
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
+        {
+            Camera childCam = item.GetComponentInChildren<Camera>();
+            ItemScript itemscript = item.GetComponent<ItemScript>();
+
+            if (childCam != null && itemscript.deployed == false && item.layer == 17)
+            {
+                
+                int nbCam = m_cameras.Count;
+                for (int i = 0; i < nbCam; i++)
+                {
+                    if (m_cameras.Contains(childCam))
+                    {
+                        Debug.Log("removed");
+                        childCam.enabled = false;
+                        childCam.targetTexture = null;
+                        m_cameras.Remove(childCam);
+                        m_CamAmount--;
+
+                        if (m_currentCamera >= m_cameras.Count)
+                        {
+                            m_currentCamera = Mathf.Max(0, m_cameras.Count - 1);
+                        }
+
+                        UpdateCameraDisplay();
+                    }
+                }
+            }
+        }
     }
 
     private void OnDisable()
