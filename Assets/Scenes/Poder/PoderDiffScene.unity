@@ -2538,162 +2538,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020000001, y: 0.02, z: 0.020000001}
   m_Center: {x: 0, y: -0.000000029802322, z: 0}
---- !u!1 &1471292426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7384486620768711599, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-  m_PrefabInstance: {fileID: 2066829363858765108}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1471292433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471292426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76240439dc418eb4e86222fa616f558a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControleurShader
-  materiaux:
-  - nomAffiche: FogMaterial
-    material: {fileID: 2100000, guid: 124d2d4f3b5cb0b4787a3889acbaf263, type: 2}
-    rendererFeature: {fileID: 0}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _BlurIntensity
-      displayName: BlurIntensity
-      value: 0
-    colorProperties: []
-  - nomAffiche: FullScreen_CrazyVisionBlurMaterial
-    material: {fileID: 2100000, guid: 4f28e7711a8f94440a829f8363c3a639, type: 2}
-    rendererFeature: {fileID: 3720713623420034436, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _FolieIntensite
-      displayName: FolieIntensite
-      value: -0.00000017468095
-    - referenceName: _DistorsionIntensite
-      displayName: DistorsionIntensite
-      value: -0.00000026202144
-    - referenceName: _DistorsionVitesse
-      displayName: DistorsionVitesse
-      value: 2
-    - referenceName: _OndulationScale
-      displayName: OndulationScale
-      value: 20
-    colorProperties: []
-  - nomAffiche: FullScreen_DitheringMaterial
-    material: {fileID: 2100000, guid: 5293ad6b71c68cd49aaf71479a5ca26d, type: 2}
-    rendererFeature: {fileID: 8708712336684830728, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _Fade_Start
-      displayName: Fade Start
-      value: 0.747
-    - referenceName: _Fade_End
-      displayName: Fade End
-      value: 16
-    - referenceName: _Fog_Curve
-      displayName: Fog Curve
-      value: 6
-    - referenceName: _Edge_Smooth
-      displayName: Edge Smooth
-      value: 2
-    - referenceName: _Dither_Power
-      displayName: Dither Power
-      value: 6
-    colorProperties:
-    - referenceName: _Color
-      displayName: Color
-      value: {r: 0, g: 0, b: 0, a: 1}
-  - nomAffiche: FullScreen_NightVisionMaterial
-    material: {fileID: 2100000, guid: 111b2b0ef5d657241808f47f9eafe227, type: 2}
-    rendererFeature: {fileID: -261447090567985574, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _Speed
-      displayName: Speed
-      value: 25
-    - referenceName: _Noise_Intensity
-      displayName: Noise Intensity
-      value: 0.004
-    colorProperties:
-    - referenceName: _Color
-      displayName: Color
-      value: {r: 0, g: 0, b: 0, a: 1}
-  - nomAffiche: FullScreen_OptiqueMaterial
-    material: {fileID: 2100000, guid: 96c7d776de4588d4f88816ab451257a2, type: 2}
-    rendererFeature: {fileID: 2141230931518514671, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _Folie
-      displayName: Folie
-      value: -0.000013101072
-    - referenceName: _Stamina
-      displayName: Stamina
-      value: 2.5730793
-    colorProperties: []
-  - nomAffiche: FullScreen_OutlineMaterial
-    material: {fileID: 2100000, guid: 6002c95da8d441446820a78f245e74e1, type: 2}
-    rendererFeature: {fileID: -8968597477807207835, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _Outline_Thickness
-      displayName: Outline Thickness
-      value: 0.0015
-    - referenceName: _Depth_Threshold
-      displayName: Depth Threshold
-      value: 0.8
-    colorProperties:
-    - referenceName: _Outline_Color
-      displayName: Outline Color
-      value: {r: 0, g: 0, b: 0, a: 1}
-  - nomAffiche: FullScreen_PaintMaterial
-    material: {fileID: 2100000, guid: f08675a6f1e46d947bb3b8b550745073, type: 2}
-    rendererFeature: {fileID: -1261796341470885481, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _Radius
-      displayName: Radius
-      value: 3
-    - referenceName: _Intensity
-      displayName: Intensity
-      value: 1.5
-    colorProperties: []
-  - nomAffiche: FullScreen_RunMaterial
-    material: {fileID: 2100000, guid: 8aff9c6acf7a81740b00ecd13d2c1a76, type: 2}
-    rendererFeature: {fileID: -5937863908229990421, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _BlurIntensity
-      displayName: BlurIntensity
-      value: 0
-    colorProperties: []
-  - nomAffiche: ProximityLightMaterial
-    material: {fileID: 2100000, guid: 676468b4040f7fd4e90c9d6a25d10166, type: 2}
-    rendererFeature: {fileID: 0}
-    featureActive: 0
-    floatProperties:
-    - referenceName: _LightRadius
-      displayName: LightRadius
-      value: 0
-    - referenceName: _Hardness
-      displayName: Hardness
-      value: 0.1
-    - referenceName: _ConeAngle
-      displayName: ConeAngle
-      value: 0.7
-    - referenceName: _QueueOffset
-      displayName: _QueueOffset
-      value: 0
-    - referenceName: _QueueControl
-      displayName: _QueueControl
-      value: 0
-    colorProperties:
-    - referenceName: _LightColor
-      displayName: LightColor
-      value: {r: 0.33962262, g: 0.15978765, b: 0.0240299, a: 1}
 --- !u!1 &1498923005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2637878003877539530, guid: 27cd5194aa1d1614e95513e48609cf1a, type: 3}
@@ -4041,122 +3885,6 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1757255580}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: maxGadgetsOnMap
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.data[3].gadgetPrefab
-      value: 
-      objectReference: {fileID: 5723566893807359088, guid: 5848ca6b0d925dd47827aee2caf4d3cd, type: 3}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.data[4].gadgetPrefab
-      value: 
-      objectReference: {fileID: 8242594635773939259, guid: 6fdb0d4354e015f45af7ba974360916c, type: 3}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.data[5].gadgetPrefab
-      value: 
-      objectReference: {fileID: 5462948912438342490, guid: c5fc5d4d1f1cbe34fb7f2226d5ffd5d0, type: 3}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.data[5].maxInstances
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.data[7].gadgetPrefab
-      value: 
-      objectReference: {fileID: 4503481711065067643}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: gadgets.Array.data[7].maxInstances
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[0].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[1].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[2].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[3].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[4].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[5].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[6].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[7].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[8].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[9].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[10].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[11].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[12].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[13].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[14].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[15].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[16].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[17].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[18].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[19].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4612968887107707506, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: sockets.Array.data[20].gadgetSocket
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: modeEasy
       value: 
@@ -4169,10 +3897,6 @@ PrefabInstance:
       propertyPath: modeNormal
       value: 
       objectReference: {fileID: 11400000, guid: a7684e6878f7cb94ea0578f92a13a8f2, type: 2}
-    - target: {fileID: 4914483641251350614, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      propertyPath: timeToSurvive
-      value: 5555
-      objectReference: {fileID: 0}
     - target: {fileID: 7457139514141012330, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: playerStateMachine
       value: 
@@ -4238,14 +3962,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 730014975}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5848493018007826141, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-    - {fileID: 3232599649399460022, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7384486620768711599, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1471292433}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
 --- !u!1001 &3283760246007180095
 PrefabInstance:
@@ -4334,11 +4053,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &4503481711065067643 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462948912438342490, guid: c5fc5d4d1f1cbe34fb7f2226d5ffd5d0, type: 3}
-  m_PrefabInstance: {fileID: 3283760246007180095}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5050230139285730104
 PrefabInstance:
   m_ObjectHideFlags: 0
