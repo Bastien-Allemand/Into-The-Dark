@@ -34,49 +34,54 @@ public class DropScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        controls.PlayerInteraction.ThrowObject.started += _ => OnStart();
-        controls.PlayerInteraction.ThrowObject.canceled += _ => OnRelease();
+        controls.PlayerMoves.ThrowObjectLeft.started += OnLeftStart;
+        controls.PlayerMoves.ThrowObjectLeft.canceled += OnLeftRelease;
+
+        controls.PlayerMoves.ThrowObjectLeft.started += OnRightStart;
+        controls.PlayerMoves.ThrowObjectRight.canceled += OnRightRelease;
     }
 
     private void OnDisable()
     {
-        controls.PlayerInteraction.ThrowObject.started -= _ => OnStart();
-        controls.PlayerInteraction.ThrowObject.canceled -= _ => OnRelease();
+        controls.PlayerMoves.ThrowObjectLeft.started -= OnLeftStart;
+        controls.PlayerMoves.ThrowObjectRight.canceled -= OnLeftRelease;
+
+        controls.PlayerMoves.ThrowObjectLeft.started -= OnRightStart;
+        controls.PlayerMoves.ThrowObjectRight.canceled -= OnRightRelease;
     }
 
-    private void OnStart()
+    private void OnLeftStart(InputAction.CallbackContext ctx)
     {
-        int side = (int)controls.PlayerInteraction.ThrowObject.ReadValue<float>();
-        if (side < 0)
-        {
-            if (!leftHandContent.filled) return;
+        if (!leftHandContent.filled) return;
 
-            chargingLeft = true;
-            leftCharge = 0f;
-        }
-        else if (side > 0)
-        {
-            if (!rightHandContent.filled) return;
-
-            chargingRight = true;
-            rightCharge = 0f;
-        }
-
+        chargingLeft = true;
+        leftCharge = 0f;
     }
 
-    private void OnRelease()
+    private void OnLeftRelease(InputAction.CallbackContext ctx)
     {
-        if (chargingLeft)
-        {
-            chargingLeft = false;
-            Throw(leftHandContent, leftCharge);
-        }
-        if (chargingRight)
-        {
-            chargingRight = false;
-            Throw(rightHandContent, rightCharge);
-        }
+        if (!chargingLeft) return;
+
+        chargingLeft = false;
+        Throw(leftHandContent, leftCharge);
     }
+
+    private void OnRightStart(InputAction.CallbackContext ctx)
+    {
+        if (!rightHandContent.filled) return;
+
+        chargingRight = true;
+        rightCharge = 0f;
+    }
+
+    private void OnRightRelease(InputAction.CallbackContext ctx)
+    {
+        if (!chargingRight) return;
+
+        chargingRight = false;
+        Throw(rightHandContent, rightCharge);
+    }
+
     private void Update()
     {
         if (chargingLeft)
