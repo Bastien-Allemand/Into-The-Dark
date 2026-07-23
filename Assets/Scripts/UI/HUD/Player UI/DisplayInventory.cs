@@ -57,9 +57,9 @@ public class DisplayInventory : MonoBehaviour
             TMP_UGUI.text = action.GetBindingDisplayString(InputBinding.MaskByGroup(group));
         };
 
-        updateTxt(consumables[0].Keybind, InputManager.controls.PlayerInteraction.ConsumeItem1);
-        updateTxt(consumables[1].Keybind, InputManager.controls.PlayerInteraction.ConsumeItem2);
-        updateTxt(consumables[2].Keybind, InputManager.controls.PlayerInteraction.ConsumeItem3);
+        updateTxt(consumables[0].Keybind, InputManager.controls.PlayerMoves.ConsumeItem1);
+        updateTxt(consumables[1].Keybind, InputManager.controls.PlayerMoves.ConsumeItem2);
+        updateTxt(consumables[2].Keybind, InputManager.controls.PlayerMoves.ConsumeItem3);
 
     }
 

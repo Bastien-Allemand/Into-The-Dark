@@ -639,13 +639,22 @@
             ]
         },
         {
-            "name": "Camera",
+            "name": "CameraMoves",
             "id": "3227c441-a5a1-4635-8efb-74e5128d3a40",
             "actions": [
                 {
-                    "name": "SwapCamera",
+                    "name": "PreviousCamera",
                     "type": "Button",
-                    "id": "af1bd292-8de5-4ca3-a0b9-fa06d9a46204",
+                    "id": "812dc282-bc43-40cd-bf48-efb3432e83f5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextCamera",
+                    "type": "Button",
+                    "id": "afe4324a-1439-4dff-b431-4143ac3ec1d8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -654,70 +663,48 @@
             ],
             "bindings": [
                 {
-                    "name": "Keyboard",
-                    "id": "98861444-ad49-43cf-b0a2-0ddba40ba05f",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwapCamera",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Negative",
-                    "id": "66d95f00-283a-40cd-9e99-7c2e0798b2bb",
+                    "name": "",
+                    "id": "3d6af3fe-0925-4d7f-aaef-cf646874cc5a",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "SwapCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Positive",
-                    "id": "bb5e9df0-9b47-4278-baec-ef250382ac0f",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "SwapCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Manette",
-                    "id": "2af897b7-dfb5-49d7-a88d-25c7e5d3ef7b",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
                     "groups": "",
-                    "action": "SwapCamera",
-                    "isComposite": true,
+                    "action": "PreviousCamera",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Negative",
-                    "id": "959c1a83-36a7-4a73-8e70-9fc60f46543f",
+                    "name": "",
+                    "id": "4c312842-f227-47e3-a02f-9a39b71ffc13",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "SwapCamera",
+                    "groups": "",
+                    "action": "PreviousCamera",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "Positive",
-                    "id": "a17ab1af-d6d7-4a06-b7e4-4d62e7895bbd",
+                    "name": "",
+                    "id": "a3997697-be56-4663-9ba5-da385073754d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd343702-342b-4294-8adc-8e567c2627d4",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "SwapCamera",
+                    "groups": "",
+                    "action": "NextCamera",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -744,54 +731,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "PcInteract",
-            "id": "3f3c66c2-df9a-400e-87be-f1e2b8ae5ab1",
-            "actions": [
-                {
-                    "name": "SwitchCameraLeft",
-                    "type": "Button",
-                    "id": "d5e13b2a-d20b-45db-a62f-9a5073929823",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchCameraRight",
-                    "type": "Button",
-                    "id": "f03eb7cc-8842-41fc-bd14-a3be722db312",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "c5ae2208-8b27-4a36-a202-4562091f2f9c",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchCameraLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cc45204d-c6ae-4ba6-b8bd-5fbe4a02f11b",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchCameraRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

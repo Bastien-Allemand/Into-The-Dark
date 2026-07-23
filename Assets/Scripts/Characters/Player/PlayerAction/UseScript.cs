@@ -177,23 +177,23 @@ public class PlaceScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerMove.TakeUseObjectLeft.performed += OnInteractLeft;
-        controls.PlayerMove.TakeUseObjectLeft.canceled += PlaceObjectLeft;
+        controls.PlayerMoves.TakeUseObjectLeft.performed += OnInteractLeft;
+        controls.PlayerMoves.TakeUseObjectLeft.canceled += PlaceObjectLeft;
 
-        controls.PlayerMove.TakeUseObjectRight.performed += OnInteractRight;
-        controls.PlayerMove.TakeUseObjectRight.canceled += PlaceObjectRight;
+        controls.PlayerMoves.TakeUseObjectRight.performed += OnInteractRight;
+        controls.PlayerMoves.TakeUseObjectRight.canceled += PlaceObjectRight;
 
-        controls.PlayerMove.SwitchEditMode.performed += SwitchEditMode;
+        controls.PlayerMoves.EditMode.performed += SwitchEditMode;
     }
     private void OnDisable()
     {
-         controls.PlayerMove.TakeUseObjectLeft.performed -= OnInteractLeft;
-        controls.PlayerMove.TakeUseObjectLeft.canceled -= PlaceObjectLeft;
+         controls.PlayerMoves.TakeUseObjectLeft.performed -= OnInteractLeft;
+        controls.PlayerMoves.TakeUseObjectLeft.canceled -= PlaceObjectLeft;
 
-        controls.PlayerMove.TakeUseObjectRight.performed += OnInteractRight;
-        controls.PlayerMove.TakeUseObjectRight.canceled += PlaceObjectRight;
+        controls.PlayerMoves.TakeUseObjectRight.performed += OnInteractRight;
+        controls.PlayerMoves.TakeUseObjectRight.canceled += PlaceObjectRight;
 
-        controls.PlayerMove.SwitchEditMode.performed -= SwitchEditMode;
+        controls.PlayerMoves.EditMode.performed -= SwitchEditMode;
     }
 
     private void Awake()

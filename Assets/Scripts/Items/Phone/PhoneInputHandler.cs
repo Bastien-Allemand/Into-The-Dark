@@ -9,7 +9,6 @@ public class PhoneInputHandler : MonoBehaviour
 
     private PlayerAction controls;
     private Vector2 moveInput;
-    private bool wasSwitchLastFrame;
 
     private void Awake()
     {
@@ -18,21 +17,27 @@ public class PhoneInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeHidePhone.started += OnTakeHidePhone;
-        controls.PlayerInteraction.Lookatcamera.started += OnLookAtCamera;
-        controls.PlayerInteraction.PhoneLight.started += HandleFlashlightInput;
+
+        controls.CameraMoves.NextCamera.started += NextCamera;
+        controls.CameraMoves.PreviousCamera.started += PreviousCamera;
+        controls.PlayerMoves.TakeHidePhone.started += OnTakeHidePhone;
+        controls.PlayerMoves.CameraMode.started += OnLookAtCamera;
+        controls.PlayerMoves.PhoneLight.started += HandleFlashlightInput;
     }
 
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeHidePhone.started -= OnTakeHidePhone;
-        controls.PlayerInteraction.Lookatcamera.started -= OnLookAtCamera;
-        controls.PlayerInteraction.PhoneLight.started -= HandleFlashlightInput;
+
+        controls.CameraMoves.NextCamera.started -= NextCamera;
+        controls.CameraMoves.PreviousCamera.started -= PreviousCamera;
+        controls.PlayerMoves.TakeHidePhone.started -= OnTakeHidePhone;
+        controls.PlayerMoves.CameraMode.started -= OnLookAtCamera;
+        controls.PlayerMoves.PhoneLight.started -= HandleFlashlightInput;
     }
 
     private void Update()
     {
-        HandleCameraSwitchInput();
+
     }
 
     private void OnTakeHidePhone(InputAction.CallbackContext ctx)
@@ -47,31 +52,27 @@ public class PhoneInputHandler : MonoBehaviour
         if (phoneController == null) return;
 
         phoneController.ToggleCameraMode();
+
+
     }
-    private void HandleCameraSwitchInput()
+
+    private void PreviousCamera(InputAction.CallbackContext ctx)
     {
         if (phoneController == null || CamerasScript.instance == null) return;
 
         if (phoneController.GetCurrentPhoneState() != PhoneState.Camera) return;
 
-        moveInput = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
-        bool isSwapThisFrame = Mathf.Abs(moveInput.x) > 0.5f;
+        CamerasScript.instance.PreviousCamera();
+        Debug.Log("Previous");
+    }
+    private void NextCamera(InputAction.CallbackContext ctx)
+    {
+        if (phoneController == null || CamerasScript.instance == null) return;
 
-        if (isSwapThisFrame && !wasSwitchLastFrame)
-        {
-            if (moveInput.x > 0f)
-            {
-                CamerasScript.instance.NextCamera();
-                Debug.Log("Next");
-            }
-            else if (moveInput.x < 0f)
-            {
-                CamerasScript.instance.PreviousCamera();
-                Debug.Log("Previous");
-            }
-        }
+        if (phoneController.GetCurrentPhoneState() != PhoneState.Camera) return;
 
-        wasSwitchLastFrame = isSwapThisFrame;
+        CamerasScript.instance.NextCamera();
+        Debug.Log("Next");
     }
 
     private void HandleFlashlightInput(InputAction.CallbackContext ctx)

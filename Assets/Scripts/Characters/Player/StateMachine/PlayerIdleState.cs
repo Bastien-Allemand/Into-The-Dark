@@ -17,7 +17,7 @@ public class PlayerIdleState : PlayerBaseState
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         }
 
-        bool crouchInput = InputManager.controls.PlayerUniqueMove.Crouch.ReadValue<float>() > 0.5f;
+        bool crouchInput = InputManager.controls.PlayerMoves.Crouch.ReadValue<float>() > 0.5f;
 
         if (stateMachine.moveInput != Vector2.zero)
         {
