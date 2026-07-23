@@ -1,3 +1,5 @@
+using Assets.Scripts.Items;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,10 +64,12 @@ public class PhoneInputHandler : MonoBehaviour
             if (moveInput.x > 0f)
             {
                 CamerasScript.instance.NextCamera();
+                Debug.Log("Next");
             }
             else if (moveInput.x < 0f)
             {
                 CamerasScript.instance.PreviousCamera();
+                Debug.Log("Previous");
             }
         }
 

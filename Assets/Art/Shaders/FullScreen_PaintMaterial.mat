@@ -12,7 +12,13 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _CRAZY
+  - _DITHERING
+  - _NIGHTVISION
+  - _OPTIQUE
+  - _PAINT
+  - _RUN
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,9 +43,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DEBUG: 0
     - _Inetensity: 0.8
     - _Intensity: 1.5
-    - _Radius: 3
+    - _PAINT: 1
+    - _Radius: 130.74
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
