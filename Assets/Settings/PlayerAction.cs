@@ -93,6 +93,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""id"": ""64d4fdc6-7b32-4be9-90f6-1df4b7dcbc68"",
             ""actions"": [
                 {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8f265d0-d878-46d5-a05b-0bcd6f2217a1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""9543444d-d754-4302-b14e-db31bc79eab7"",
@@ -100,15 +109,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""ca5c3840-4f3c-44a3-a657-8ee3b5918d86"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""MoveForward"",
@@ -145,15 +145,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""f8f265d0-d878-46d5-a05b-0bcd6f2217a1"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,28 +167,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4506a8aa-45b9-4c54-8629-8feeb72e6c28"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""874f09fa-2c92-4148-9585-2a04dbe389aa"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -314,22 +283,94 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""PlayerMove"",
+            ""name"": ""PlayerMoves"",
             ""id"": ""91e805a1-a4ee-4ee7-9479-df584b45414b"",
             ""actions"": [
                 {
-                    ""name"": ""PhoneLight"",
+                    ""name"": ""Sprint"",
                     ""type"": ""Button"",
-                    ""id"": ""df8ad077-142f-4c37-bb8e-581a75fedf77"",
+                    ""id"": ""acb23ba6-f5eb-48c5-91a8-a4cbc51b081e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Switch Edit Mode"",
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""74d06ce1-0104-454a-9d1d-d935c9949ef8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2abff94-0dc7-4906-bbe4-daf6c9e6e707"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""4213090f-de68-4df3-9142-373e94d61e46"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeHidePhone"",
+                    ""type"": ""Button"",
+                    ""id"": ""79b9df62-502b-4abe-88d5-dee1765f7df7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EditMode"",
                     ""type"": ""Button"",
                     ""id"": ""297944be-348f-469b-9af3-c2bc6f36f2d4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowObjectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""32931795-6a6f-4db3-af1f-d2e9eca6964b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowObjectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""e61459b1-54a2-45ed-b205-970561e5268e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeUseObjectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b296b46-0d3b-4320-96f2-d1bd80767f82"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeUseObjectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""55e81940-7bd4-4291-807d-e10e13d46ff3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -363,81 +404,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Crouch"",
+                    ""name"": ""PhoneLight"",
                     ""type"": ""Button"",
-                    ""id"": ""74d06ce1-0104-454a-9d1d-d935c9949ef8"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""f4ebc7ab-a70b-43f5-8dee-15b07b3ee220"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""acb23ba6-f5eb-48c5-91a8-a4cbc51b081e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Take/Hide Phone"",
-                    ""type"": ""Button"",
-                    ""id"": ""79b9df62-502b-4abe-88d5-dee1765f7df7"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Look at camera"",
-                    ""type"": ""Button"",
-                    ""id"": ""e2abff94-0dc7-4906-bbe4-daf6c9e6e707"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TakeUseObjectLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""6b296b46-0d3b-4320-96f2-d1bd80767f82"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TakeUseObjectRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""55e81940-7bd4-4291-807d-e10e13d46ff3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ThrowObjectLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""32931795-6a6f-4db3-af1f-d2e9eca6964b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ThrowObjectRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""e61459b1-54a2-45ed-b205-970561e5268e"",
+                    ""id"": ""df8ad077-142f-4c37-bb8e-581a75fedf77"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -452,7 +421,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Switch Edit Mode"",
+                    ""action"": ""EditMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -463,7 +432,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Switch Edit Mode"",
+                    ""action"": ""EditMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -540,7 +509,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Take/Hide Phone"",
+                    ""action"": ""TakeHidePhone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -551,7 +520,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Take/Hide Phone"",
+                    ""action"": ""TakeHidePhone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -562,7 +531,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Look at camera"",
+                    ""action"": ""CameraMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -573,7 +542,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Look at camera"",
+                    ""action"": ""CameraMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -596,28 +565,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""69117752-ffd7-4172-9815-383b4ebcbb8e"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""30aeee0d-a063-4a66-8dd7-e876240e4ce8"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -646,7 +593,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""322f18ec-316f-47dd-8150-b606760bbdb3"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -750,6 +697,28 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ThrowObjectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed30de3a-fe51-468a-b685-c8f8677eb6b4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4385162b-7345-4c7c-84b3-a2c74b59e477"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -947,29 +916,28 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
 }");
         // Global
         m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
+        m_Global_Pause = m_Global.FindAction("Pause", throwIfNotFound: true);
         m_Global_Look = m_Global.FindAction("Look", throwIfNotFound: true);
-        m_Global_Interact = m_Global.FindAction("Interact", throwIfNotFound: true);
         m_Global_MoveForward = m_Global.FindAction("MoveForward", throwIfNotFound: true);
         m_Global_MoveBackward = m_Global.FindAction("MoveBackward", throwIfNotFound: true);
         m_Global_MoveToLeft = m_Global.FindAction("MoveToLeft", throwIfNotFound: true);
         m_Global_MoveToRight = m_Global.FindAction("MoveToRight", throwIfNotFound: true);
-        m_Global_Pause = m_Global.FindAction("Pause", throwIfNotFound: true);
-        // PlayerMove
-        m_PlayerMove = asset.FindActionMap("PlayerMove", throwIfNotFound: true);
-        m_PlayerMove_PhoneLight = m_PlayerMove.FindAction("PhoneLight", throwIfNotFound: true);
-        m_PlayerMove_SwitchEditMode = m_PlayerMove.FindAction("Switch Edit Mode", throwIfNotFound: true);
-        m_PlayerMove_ConsumeItem1 = m_PlayerMove.FindAction("Consume Item 1", throwIfNotFound: true);
-        m_PlayerMove_ConsumeItem2 = m_PlayerMove.FindAction("Consume Item 2", throwIfNotFound: true);
-        m_PlayerMove_ConsumeItem3 = m_PlayerMove.FindAction("Consume Item 3", throwIfNotFound: true);
-        m_PlayerMove_Crouch = m_PlayerMove.FindAction("Crouch", throwIfNotFound: true);
-        m_PlayerMove_Jump = m_PlayerMove.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerMove_Sprint = m_PlayerMove.FindAction("Sprint", throwIfNotFound: true);
-        m_PlayerMove_TakeHidePhone = m_PlayerMove.FindAction("Take/Hide Phone", throwIfNotFound: true);
-        m_PlayerMove_Lookatcamera = m_PlayerMove.FindAction("Look at camera", throwIfNotFound: true);
-        m_PlayerMove_TakeUseObjectLeft = m_PlayerMove.FindAction("TakeUseObjectLeft", throwIfNotFound: true);
-        m_PlayerMove_TakeUseObjectRight = m_PlayerMove.FindAction("TakeUseObjectRight", throwIfNotFound: true);
-        m_PlayerMove_ThrowObjectLeft = m_PlayerMove.FindAction("ThrowObjectLeft", throwIfNotFound: true);
-        m_PlayerMove_ThrowObjectRight = m_PlayerMove.FindAction("ThrowObjectRight", throwIfNotFound: true);
+        // PlayerMoves
+        m_PlayerMoves = asset.FindActionMap("PlayerMoves", throwIfNotFound: true);
+        m_PlayerMoves_Sprint = m_PlayerMoves.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerMoves_Crouch = m_PlayerMoves.FindAction("Crouch", throwIfNotFound: true);
+        m_PlayerMoves_CameraMode = m_PlayerMoves.FindAction("CameraMode", throwIfNotFound: true);
+        m_PlayerMoves_Interact = m_PlayerMoves.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerMoves_TakeHidePhone = m_PlayerMoves.FindAction("TakeHidePhone", throwIfNotFound: true);
+        m_PlayerMoves_EditMode = m_PlayerMoves.FindAction("EditMode", throwIfNotFound: true);
+        m_PlayerMoves_ThrowObjectLeft = m_PlayerMoves.FindAction("ThrowObjectLeft", throwIfNotFound: true);
+        m_PlayerMoves_ThrowObjectRight = m_PlayerMoves.FindAction("ThrowObjectRight", throwIfNotFound: true);
+        m_PlayerMoves_TakeUseObjectLeft = m_PlayerMoves.FindAction("TakeUseObjectLeft", throwIfNotFound: true);
+        m_PlayerMoves_TakeUseObjectRight = m_PlayerMoves.FindAction("TakeUseObjectRight", throwIfNotFound: true);
+        m_PlayerMoves_ConsumeItem1 = m_PlayerMoves.FindAction("Consume Item 1", throwIfNotFound: true);
+        m_PlayerMoves_ConsumeItem2 = m_PlayerMoves.FindAction("Consume Item 2", throwIfNotFound: true);
+        m_PlayerMoves_ConsumeItem3 = m_PlayerMoves.FindAction("Consume Item 3", throwIfNotFound: true);
+        m_PlayerMoves_PhoneLight = m_PlayerMoves.FindAction("PhoneLight", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_SwapCamera = m_Camera.FindAction("SwapCamera", throwIfNotFound: true);
@@ -985,7 +953,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     ~@PlayerAction()
     {
         UnityEngine.Debug.Assert(!m_Global.enabled, "This will cause a leak and performance issues, PlayerAction.Global.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_PlayerMove.enabled, "This will cause a leak and performance issues, PlayerAction.PlayerMove.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerMoves.enabled, "This will cause a leak and performance issues, PlayerAction.PlayerMoves.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerAction.Camera.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerAction.Menu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PcInteract.enabled, "This will cause a leak and performance issues, PlayerAction.PcInteract.Disable() has not been called.");
@@ -1064,13 +1032,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     // Global
     private readonly InputActionMap m_Global;
     private List<IGlobalActions> m_GlobalActionsCallbackInterfaces = new List<IGlobalActions>();
+    private readonly InputAction m_Global_Pause;
     private readonly InputAction m_Global_Look;
-    private readonly InputAction m_Global_Interact;
     private readonly InputAction m_Global_MoveForward;
     private readonly InputAction m_Global_MoveBackward;
     private readonly InputAction m_Global_MoveToLeft;
     private readonly InputAction m_Global_MoveToRight;
-    private readonly InputAction m_Global_Pause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Global".
     /// </summary>
@@ -1083,13 +1050,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public GlobalActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         /// <summary>
+        /// Provides access to the underlying input action "Global/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_Global_Pause;
+        /// <summary>
         /// Provides access to the underlying input action "Global/Look".
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Global_Look;
-        /// <summary>
-        /// Provides access to the underlying input action "Global/Interact".
-        /// </summary>
-        public InputAction @Interact => m_Wrapper.m_Global_Interact;
         /// <summary>
         /// Provides access to the underlying input action "Global/MoveForward".
         /// </summary>
@@ -1106,10 +1073,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Global/MoveToRight".
         /// </summary>
         public InputAction @MoveToRight => m_Wrapper.m_Global_MoveToRight;
-        /// <summary>
-        /// Provides access to the underlying input action "Global/Pause".
-        /// </summary>
-        public InputAction @Pause => m_Wrapper.m_Global_Pause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1136,12 +1099,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GlobalActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GlobalActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
             @MoveForward.started += instance.OnMoveForward;
             @MoveForward.performed += instance.OnMoveForward;
             @MoveForward.canceled += instance.OnMoveForward;
@@ -1154,9 +1117,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @MoveToRight.started += instance.OnMoveToRight;
             @MoveToRight.performed += instance.OnMoveToRight;
             @MoveToRight.canceled += instance.OnMoveToRight;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
         }
 
         /// <summary>
@@ -1168,12 +1128,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="GlobalActions" />
         private void UnregisterCallbacks(IGlobalActions instance)
         {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
             @MoveForward.started -= instance.OnMoveForward;
             @MoveForward.performed -= instance.OnMoveForward;
             @MoveForward.canceled -= instance.OnMoveForward;
@@ -1186,9 +1146,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @MoveToRight.started -= instance.OnMoveToRight;
             @MoveToRight.performed -= instance.OnMoveToRight;
             @MoveToRight.canceled -= instance.OnMoveToRight;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
         }
 
         /// <summary>
@@ -1223,94 +1180,94 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     /// </summary>
     public GlobalActions @Global => new GlobalActions(this);
 
-    // PlayerMove
-    private readonly InputActionMap m_PlayerMove;
-    private List<IPlayerMoveActions> m_PlayerMoveActionsCallbackInterfaces = new List<IPlayerMoveActions>();
-    private readonly InputAction m_PlayerMove_PhoneLight;
-    private readonly InputAction m_PlayerMove_SwitchEditMode;
-    private readonly InputAction m_PlayerMove_ConsumeItem1;
-    private readonly InputAction m_PlayerMove_ConsumeItem2;
-    private readonly InputAction m_PlayerMove_ConsumeItem3;
-    private readonly InputAction m_PlayerMove_Crouch;
-    private readonly InputAction m_PlayerMove_Jump;
-    private readonly InputAction m_PlayerMove_Sprint;
-    private readonly InputAction m_PlayerMove_TakeHidePhone;
-    private readonly InputAction m_PlayerMove_Lookatcamera;
-    private readonly InputAction m_PlayerMove_TakeUseObjectLeft;
-    private readonly InputAction m_PlayerMove_TakeUseObjectRight;
-    private readonly InputAction m_PlayerMove_ThrowObjectLeft;
-    private readonly InputAction m_PlayerMove_ThrowObjectRight;
+    // PlayerMoves
+    private readonly InputActionMap m_PlayerMoves;
+    private List<IPlayerMovesActions> m_PlayerMovesActionsCallbackInterfaces = new List<IPlayerMovesActions>();
+    private readonly InputAction m_PlayerMoves_Sprint;
+    private readonly InputAction m_PlayerMoves_Crouch;
+    private readonly InputAction m_PlayerMoves_CameraMode;
+    private readonly InputAction m_PlayerMoves_Interact;
+    private readonly InputAction m_PlayerMoves_TakeHidePhone;
+    private readonly InputAction m_PlayerMoves_EditMode;
+    private readonly InputAction m_PlayerMoves_ThrowObjectLeft;
+    private readonly InputAction m_PlayerMoves_ThrowObjectRight;
+    private readonly InputAction m_PlayerMoves_TakeUseObjectLeft;
+    private readonly InputAction m_PlayerMoves_TakeUseObjectRight;
+    private readonly InputAction m_PlayerMoves_ConsumeItem1;
+    private readonly InputAction m_PlayerMoves_ConsumeItem2;
+    private readonly InputAction m_PlayerMoves_ConsumeItem3;
+    private readonly InputAction m_PlayerMoves_PhoneLight;
     /// <summary>
-    /// Provides access to input actions defined in input action map "PlayerMove".
+    /// Provides access to input actions defined in input action map "PlayerMoves".
     /// </summary>
-    public struct PlayerMoveActions
+    public struct PlayerMovesActions
     {
         private @PlayerAction m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public PlayerMoveActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        public PlayerMovesActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/PhoneLight".
+        /// Provides access to the underlying input action "PlayerMoves/Sprint".
         /// </summary>
-        public InputAction @PhoneLight => m_Wrapper.m_PlayerMove_PhoneLight;
+        public InputAction @Sprint => m_Wrapper.m_PlayerMoves_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/SwitchEditMode".
+        /// Provides access to the underlying input action "PlayerMoves/Crouch".
         /// </summary>
-        public InputAction @SwitchEditMode => m_Wrapper.m_PlayerMove_SwitchEditMode;
+        public InputAction @Crouch => m_Wrapper.m_PlayerMoves_Crouch;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/ConsumeItem1".
+        /// Provides access to the underlying input action "PlayerMoves/CameraMode".
         /// </summary>
-        public InputAction @ConsumeItem1 => m_Wrapper.m_PlayerMove_ConsumeItem1;
+        public InputAction @CameraMode => m_Wrapper.m_PlayerMoves_CameraMode;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/ConsumeItem2".
+        /// Provides access to the underlying input action "PlayerMoves/Interact".
         /// </summary>
-        public InputAction @ConsumeItem2 => m_Wrapper.m_PlayerMove_ConsumeItem2;
+        public InputAction @Interact => m_Wrapper.m_PlayerMoves_Interact;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/ConsumeItem3".
+        /// Provides access to the underlying input action "PlayerMoves/TakeHidePhone".
         /// </summary>
-        public InputAction @ConsumeItem3 => m_Wrapper.m_PlayerMove_ConsumeItem3;
+        public InputAction @TakeHidePhone => m_Wrapper.m_PlayerMoves_TakeHidePhone;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/Crouch".
+        /// Provides access to the underlying input action "PlayerMoves/EditMode".
         /// </summary>
-        public InputAction @Crouch => m_Wrapper.m_PlayerMove_Crouch;
+        public InputAction @EditMode => m_Wrapper.m_PlayerMoves_EditMode;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/Jump".
+        /// Provides access to the underlying input action "PlayerMoves/ThrowObjectLeft".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_PlayerMove_Jump;
+        public InputAction @ThrowObjectLeft => m_Wrapper.m_PlayerMoves_ThrowObjectLeft;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/Sprint".
+        /// Provides access to the underlying input action "PlayerMoves/ThrowObjectRight".
         /// </summary>
-        public InputAction @Sprint => m_Wrapper.m_PlayerMove_Sprint;
+        public InputAction @ThrowObjectRight => m_Wrapper.m_PlayerMoves_ThrowObjectRight;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/TakeHidePhone".
+        /// Provides access to the underlying input action "PlayerMoves/TakeUseObjectLeft".
         /// </summary>
-        public InputAction @TakeHidePhone => m_Wrapper.m_PlayerMove_TakeHidePhone;
+        public InputAction @TakeUseObjectLeft => m_Wrapper.m_PlayerMoves_TakeUseObjectLeft;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/Lookatcamera".
+        /// Provides access to the underlying input action "PlayerMoves/TakeUseObjectRight".
         /// </summary>
-        public InputAction @Lookatcamera => m_Wrapper.m_PlayerMove_Lookatcamera;
+        public InputAction @TakeUseObjectRight => m_Wrapper.m_PlayerMoves_TakeUseObjectRight;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/TakeUseObjectLeft".
+        /// Provides access to the underlying input action "PlayerMoves/ConsumeItem1".
         /// </summary>
-        public InputAction @TakeUseObjectLeft => m_Wrapper.m_PlayerMove_TakeUseObjectLeft;
+        public InputAction @ConsumeItem1 => m_Wrapper.m_PlayerMoves_ConsumeItem1;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/TakeUseObjectRight".
+        /// Provides access to the underlying input action "PlayerMoves/ConsumeItem2".
         /// </summary>
-        public InputAction @TakeUseObjectRight => m_Wrapper.m_PlayerMove_TakeUseObjectRight;
+        public InputAction @ConsumeItem2 => m_Wrapper.m_PlayerMoves_ConsumeItem2;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/ThrowObjectLeft".
+        /// Provides access to the underlying input action "PlayerMoves/ConsumeItem3".
         /// </summary>
-        public InputAction @ThrowObjectLeft => m_Wrapper.m_PlayerMove_ThrowObjectLeft;
+        public InputAction @ConsumeItem3 => m_Wrapper.m_PlayerMoves_ConsumeItem3;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMove/ThrowObjectRight".
+        /// Provides access to the underlying input action "PlayerMoves/PhoneLight".
         /// </summary>
-        public InputAction @ThrowObjectRight => m_Wrapper.m_PlayerMove_ThrowObjectRight;
+        public InputAction @PhoneLight => m_Wrapper.m_PlayerMoves_PhoneLight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_PlayerMove; }
+        public InputActionMap Get() { return m_Wrapper.m_PlayerMoves; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -1318,9 +1275,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="PlayerMoveActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="PlayerMovesActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(PlayerMoveActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(PlayerMovesActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -1328,17 +1285,41 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="PlayerMoveActions" />
-        public void AddCallbacks(IPlayerMoveActions instance)
+        /// <seealso cref="PlayerMovesActions" />
+        public void AddCallbacks(IPlayerMovesActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerMoveActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerMoveActionsCallbackInterfaces.Add(instance);
-            @PhoneLight.started += instance.OnPhoneLight;
-            @PhoneLight.performed += instance.OnPhoneLight;
-            @PhoneLight.canceled += instance.OnPhoneLight;
-            @SwitchEditMode.started += instance.OnSwitchEditMode;
-            @SwitchEditMode.performed += instance.OnSwitchEditMode;
-            @SwitchEditMode.canceled += instance.OnSwitchEditMode;
+            if (instance == null || m_Wrapper.m_PlayerMovesActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerMovesActionsCallbackInterfaces.Add(instance);
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
+            @CameraMode.started += instance.OnCameraMode;
+            @CameraMode.performed += instance.OnCameraMode;
+            @CameraMode.canceled += instance.OnCameraMode;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @TakeHidePhone.started += instance.OnTakeHidePhone;
+            @TakeHidePhone.performed += instance.OnTakeHidePhone;
+            @TakeHidePhone.canceled += instance.OnTakeHidePhone;
+            @EditMode.started += instance.OnEditMode;
+            @EditMode.performed += instance.OnEditMode;
+            @EditMode.canceled += instance.OnEditMode;
+            @ThrowObjectLeft.started += instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.performed += instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.canceled += instance.OnThrowObjectLeft;
+            @ThrowObjectRight.started += instance.OnThrowObjectRight;
+            @ThrowObjectRight.performed += instance.OnThrowObjectRight;
+            @ThrowObjectRight.canceled += instance.OnThrowObjectRight;
+            @TakeUseObjectLeft.started += instance.OnTakeUseObjectLeft;
+            @TakeUseObjectLeft.performed += instance.OnTakeUseObjectLeft;
+            @TakeUseObjectLeft.canceled += instance.OnTakeUseObjectLeft;
+            @TakeUseObjectRight.started += instance.OnTakeUseObjectRight;
+            @TakeUseObjectRight.performed += instance.OnTakeUseObjectRight;
+            @TakeUseObjectRight.canceled += instance.OnTakeUseObjectRight;
             @ConsumeItem1.started += instance.OnConsumeItem1;
             @ConsumeItem1.performed += instance.OnConsumeItem1;
             @ConsumeItem1.canceled += instance.OnConsumeItem1;
@@ -1348,33 +1329,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @ConsumeItem3.started += instance.OnConsumeItem3;
             @ConsumeItem3.performed += instance.OnConsumeItem3;
             @ConsumeItem3.canceled += instance.OnConsumeItem3;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @Sprint.started += instance.OnSprint;
-            @Sprint.performed += instance.OnSprint;
-            @Sprint.canceled += instance.OnSprint;
-            @TakeHidePhone.started += instance.OnTakeHidePhone;
-            @TakeHidePhone.performed += instance.OnTakeHidePhone;
-            @TakeHidePhone.canceled += instance.OnTakeHidePhone;
-            @Lookatcamera.started += instance.OnLookatcamera;
-            @Lookatcamera.performed += instance.OnLookatcamera;
-            @Lookatcamera.canceled += instance.OnLookatcamera;
-            @TakeUseObjectLeft.started += instance.OnTakeUseObjectLeft;
-            @TakeUseObjectLeft.performed += instance.OnTakeUseObjectLeft;
-            @TakeUseObjectLeft.canceled += instance.OnTakeUseObjectLeft;
-            @TakeUseObjectRight.started += instance.OnTakeUseObjectRight;
-            @TakeUseObjectRight.performed += instance.OnTakeUseObjectRight;
-            @TakeUseObjectRight.canceled += instance.OnTakeUseObjectRight;
-            @ThrowObjectLeft.started += instance.OnThrowObjectLeft;
-            @ThrowObjectLeft.performed += instance.OnThrowObjectLeft;
-            @ThrowObjectLeft.canceled += instance.OnThrowObjectLeft;
-            @ThrowObjectRight.started += instance.OnThrowObjectRight;
-            @ThrowObjectRight.performed += instance.OnThrowObjectRight;
-            @ThrowObjectRight.canceled += instance.OnThrowObjectRight;
+            @PhoneLight.started += instance.OnPhoneLight;
+            @PhoneLight.performed += instance.OnPhoneLight;
+            @PhoneLight.canceled += instance.OnPhoneLight;
         }
 
         /// <summary>
@@ -1383,15 +1340,39 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="PlayerMoveActions" />
-        private void UnregisterCallbacks(IPlayerMoveActions instance)
+        /// <seealso cref="PlayerMovesActions" />
+        private void UnregisterCallbacks(IPlayerMovesActions instance)
         {
-            @PhoneLight.started -= instance.OnPhoneLight;
-            @PhoneLight.performed -= instance.OnPhoneLight;
-            @PhoneLight.canceled -= instance.OnPhoneLight;
-            @SwitchEditMode.started -= instance.OnSwitchEditMode;
-            @SwitchEditMode.performed -= instance.OnSwitchEditMode;
-            @SwitchEditMode.canceled -= instance.OnSwitchEditMode;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
+            @CameraMode.started -= instance.OnCameraMode;
+            @CameraMode.performed -= instance.OnCameraMode;
+            @CameraMode.canceled -= instance.OnCameraMode;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @TakeHidePhone.started -= instance.OnTakeHidePhone;
+            @TakeHidePhone.performed -= instance.OnTakeHidePhone;
+            @TakeHidePhone.canceled -= instance.OnTakeHidePhone;
+            @EditMode.started -= instance.OnEditMode;
+            @EditMode.performed -= instance.OnEditMode;
+            @EditMode.canceled -= instance.OnEditMode;
+            @ThrowObjectLeft.started -= instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.performed -= instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.canceled -= instance.OnThrowObjectLeft;
+            @ThrowObjectRight.started -= instance.OnThrowObjectRight;
+            @ThrowObjectRight.performed -= instance.OnThrowObjectRight;
+            @ThrowObjectRight.canceled -= instance.OnThrowObjectRight;
+            @TakeUseObjectLeft.started -= instance.OnTakeUseObjectLeft;
+            @TakeUseObjectLeft.performed -= instance.OnTakeUseObjectLeft;
+            @TakeUseObjectLeft.canceled -= instance.OnTakeUseObjectLeft;
+            @TakeUseObjectRight.started -= instance.OnTakeUseObjectRight;
+            @TakeUseObjectRight.performed -= instance.OnTakeUseObjectRight;
+            @TakeUseObjectRight.canceled -= instance.OnTakeUseObjectRight;
             @ConsumeItem1.started -= instance.OnConsumeItem1;
             @ConsumeItem1.performed -= instance.OnConsumeItem1;
             @ConsumeItem1.canceled -= instance.OnConsumeItem1;
@@ -1401,42 +1382,18 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @ConsumeItem3.started -= instance.OnConsumeItem3;
             @ConsumeItem3.performed -= instance.OnConsumeItem3;
             @ConsumeItem3.canceled -= instance.OnConsumeItem3;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Sprint.started -= instance.OnSprint;
-            @Sprint.performed -= instance.OnSprint;
-            @Sprint.canceled -= instance.OnSprint;
-            @TakeHidePhone.started -= instance.OnTakeHidePhone;
-            @TakeHidePhone.performed -= instance.OnTakeHidePhone;
-            @TakeHidePhone.canceled -= instance.OnTakeHidePhone;
-            @Lookatcamera.started -= instance.OnLookatcamera;
-            @Lookatcamera.performed -= instance.OnLookatcamera;
-            @Lookatcamera.canceled -= instance.OnLookatcamera;
-            @TakeUseObjectLeft.started -= instance.OnTakeUseObjectLeft;
-            @TakeUseObjectLeft.performed -= instance.OnTakeUseObjectLeft;
-            @TakeUseObjectLeft.canceled -= instance.OnTakeUseObjectLeft;
-            @TakeUseObjectRight.started -= instance.OnTakeUseObjectRight;
-            @TakeUseObjectRight.performed -= instance.OnTakeUseObjectRight;
-            @TakeUseObjectRight.canceled -= instance.OnTakeUseObjectRight;
-            @ThrowObjectLeft.started -= instance.OnThrowObjectLeft;
-            @ThrowObjectLeft.performed -= instance.OnThrowObjectLeft;
-            @ThrowObjectLeft.canceled -= instance.OnThrowObjectLeft;
-            @ThrowObjectRight.started -= instance.OnThrowObjectRight;
-            @ThrowObjectRight.performed -= instance.OnThrowObjectRight;
-            @ThrowObjectRight.canceled -= instance.OnThrowObjectRight;
+            @PhoneLight.started -= instance.OnPhoneLight;
+            @PhoneLight.performed -= instance.OnPhoneLight;
+            @PhoneLight.canceled -= instance.OnPhoneLight;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerMoveActions.UnregisterCallbacks(IPlayerMoveActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerMovesActions.UnregisterCallbacks(IPlayerMovesActions)" />.
         /// </summary>
-        /// <seealso cref="PlayerMoveActions.UnregisterCallbacks(IPlayerMoveActions)" />
-        public void RemoveCallbacks(IPlayerMoveActions instance)
+        /// <seealso cref="PlayerMovesActions.UnregisterCallbacks(IPlayerMovesActions)" />
+        public void RemoveCallbacks(IPlayerMovesActions instance)
         {
-            if (m_Wrapper.m_PlayerMoveActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerMovesActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -1446,21 +1403,21 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="PlayerMoveActions.AddCallbacks(IPlayerMoveActions)" />
-        /// <seealso cref="PlayerMoveActions.RemoveCallbacks(IPlayerMoveActions)" />
-        /// <seealso cref="PlayerMoveActions.UnregisterCallbacks(IPlayerMoveActions)" />
-        public void SetCallbacks(IPlayerMoveActions instance)
+        /// <seealso cref="PlayerMovesActions.AddCallbacks(IPlayerMovesActions)" />
+        /// <seealso cref="PlayerMovesActions.RemoveCallbacks(IPlayerMovesActions)" />
+        /// <seealso cref="PlayerMovesActions.UnregisterCallbacks(IPlayerMovesActions)" />
+        public void SetCallbacks(IPlayerMovesActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerMoveActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerMovesActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerMoveActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerMovesActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="PlayerMoveActions" /> instance referencing this action map.
+    /// Provides a new <see cref="PlayerMovesActions" /> instance referencing this action map.
     /// </summary>
-    public PlayerMoveActions @PlayerMove => new PlayerMoveActions(this);
+    public PlayerMovesActions @PlayerMoves => new PlayerMovesActions(this);
 
     // Camera
     private readonly InputActionMap m_Camera;
@@ -1794,19 +1751,19 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     public interface IGlobalActions
     {
         /// <summary>
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPause(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteract(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "MoveForward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1835,35 +1792,84 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMoveToRight(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPause(InputAction.CallbackContext context);
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerMove" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerMoves" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="PlayerMoveActions.AddCallbacks(IPlayerMoveActions)" />
-    /// <seealso cref="PlayerMoveActions.RemoveCallbacks(IPlayerMoveActions)" />
-    public interface IPlayerMoveActions
+    /// <seealso cref="PlayerMovesActions.AddCallbacks(IPlayerMovesActions)" />
+    /// <seealso cref="PlayerMovesActions.RemoveCallbacks(IPlayerMovesActions)" />
+    public interface IPlayerMovesActions
     {
         /// <summary>
-        /// Method invoked when associated input action "PhoneLight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPhoneLight(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Switch Edit Mode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwitchEditMode(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CameraMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCameraMode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TakeHidePhone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTakeHidePhone(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "EditMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEditMode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThrowObjectLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrowObjectLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThrowObjectRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrowObjectRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TakeUseObjectLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTakeUseObjectLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TakeUseObjectRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTakeUseObjectRight(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Consume Item 1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1886,68 +1892,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConsumeItem3(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "PhoneLight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrouch(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJump(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSprint(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Take/Hide Phone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTakeHidePhone(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Look at camera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLookatcamera(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "TakeUseObjectLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTakeUseObjectLeft(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "TakeUseObjectRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTakeUseObjectRight(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "ThrowObjectLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnThrowObjectLeft(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "ThrowObjectRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnThrowObjectRight(InputAction.CallbackContext context);
+        void OnPhoneLight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Camera" which allows adding and removing callbacks.

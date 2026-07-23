@@ -104,7 +104,8 @@ public class PlaceScript : MonoBehaviour
             }
         }
     }
-    private void PlaceObject(InputAction.CallbackContext _context)
+
+    private void PlaceObjectLeft(InputAction.CallbackContext _context)
     {
         if (_context.control.name == "leftButton" && leftHandContent.filled)
         {
@@ -133,7 +134,10 @@ public class PlaceScript : MonoBehaviour
                 }
             }
         }
-        else if (_context.control.name == "rightButton" && rightHandContent.filled)
+    }
+    private void PlaceObjectRight(InputAction.CallbackContext _context)
+    {     
+        if (_context.control.name == "rightButton" && rightHandContent.filled)
         {
             if (rightHandContent.itemScript.needsToBePlaced)
             {
@@ -174,20 +178,20 @@ public class PlaceScript : MonoBehaviour
     private void OnEnable()
     {
         controls.PlayerMove.TakeUseObjectLeft.performed += OnInteractLeft;
-        controls.PlayerMove.TakeUseObjectLeft.canceled += PlaceObject;
+        controls.PlayerMove.TakeUseObjectLeft.canceled += PlaceObjectLeft;
 
         controls.PlayerMove.TakeUseObjectRight.performed += OnInteractRight;
-        controls.PlayerMove.TakeUseObjectRight.canceled += PlaceObject;
+        controls.PlayerMove.TakeUseObjectRight.canceled += PlaceObjectRight;
 
         controls.PlayerMove.SwitchEditMode.performed += SwitchEditMode;
     }
     private void OnDisable()
     {
          controls.PlayerMove.TakeUseObjectLeft.performed -= OnInteractLeft;
-        controls.PlayerMove.TakeUseObjectLeft.canceled -= PlaceObject;
+        controls.PlayerMove.TakeUseObjectLeft.canceled -= PlaceObjectLeft;
 
         controls.PlayerMove.TakeUseObjectRight.performed += OnInteractRight;
-        controls.PlayerMove.TakeUseObjectRight.canceled += PlaceObject;
+        controls.PlayerMove.TakeUseObjectRight.canceled += PlaceObjectRight;
 
         controls.PlayerMove.SwitchEditMode.performed -= SwitchEditMode;
     }
@@ -208,15 +212,12 @@ public class PlaceScript : MonoBehaviour
             }
             if (isPlacingLeft || isPlacingRight)
             {
-                Vector2 lookInput = controls.GamePlay.Look.ReadValue<Vector2>();
+                Vector2 lookInput = controls.Global.Look.ReadValue<Vector2>();
 
                 currentRotation += lookInput.x * rotationSpeed * Time.deltaTime;
 
                 preview.transform.localRotation = Quaternion.Euler(0, currentRotation, 0);
             }
-            //Debug.Log(preview);
-            //Debug.Log(playerView);
-            //Debug.Log(controls);
         }
     }
 

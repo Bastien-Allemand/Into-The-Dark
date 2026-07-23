@@ -7,6 +7,15 @@
             "id": "64d4fdc6-7b32-4be9-90f6-1df4b7dcbc68",
             "actions": [
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "f8f265d0-d878-46d5-a05b-0bcd6f2217a1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "9543444d-d754-4302-b14e-db31bc79eab7",
@@ -14,15 +23,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "ca5c3840-4f3c-44a3-a657-8ee3b5918d86",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "MoveForward",
@@ -59,15 +59,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "f8f265d0-d878-46d5-a05b-0bcd6f2217a1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -90,28 +81,6 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4506a8aa-45b9-4c54-8629-8feeb72e6c28",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "874f09fa-2c92-4148-9585-2a04dbe389aa",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -228,49 +197,13 @@
             ]
         },
         {
-            "name": "PlayerMove",
+            "name": "PlayerMoves",
             "id": "91e805a1-a4ee-4ee7-9479-df584b45414b",
             "actions": [
                 {
-                    "name": "PhoneLight",
+                    "name": "Sprint",
                     "type": "Button",
-                    "id": "df8ad077-142f-4c37-bb8e-581a75fedf77",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Switch Edit Mode",
-                    "type": "Button",
-                    "id": "297944be-348f-469b-9af3-c2bc6f36f2d4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Consume Item 1",
-                    "type": "Button",
-                    "id": "fe6fc8f8-1a92-4d59-8d6c-681e830137e4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Consume Item 2",
-                    "type": "Button",
-                    "id": "e60c3f2e-3ea8-4955-b003-2ba87b0cdaac",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Consume Item 3",
-                    "type": "Button",
-                    "id": "edbe64b8-1712-4286-a4b7-d4f2847e68e4",
+                    "id": "acb23ba6-f5eb-48c5-91a8-a4cbc51b081e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -286,25 +219,25 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "CameraMode",
                     "type": "Button",
-                    "id": "f4ebc7ab-a70b-43f5-8dee-15b07b3ee220",
+                    "id": "e2abff94-0dc7-4906-bbe4-daf6c9e6e707",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "acb23ba6-f5eb-48c5-91a8-a4cbc51b081e",
+                    "id": "4213090f-de68-4df3-9142-373e94d61e46",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Take/Hide Phone",
+                    "name": "TakeHidePhone",
                     "type": "Button",
                     "id": "79b9df62-502b-4abe-88d5-dee1765f7df7",
                     "expectedControlType": "",
@@ -313,9 +246,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Look at camera",
+                    "name": "EditMode",
                     "type": "Button",
-                    "id": "e2abff94-0dc7-4906-bbe4-daf6c9e6e707",
+                    "id": "297944be-348f-469b-9af3-c2bc6f36f2d4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThrowObjectLeft",
+                    "type": "Button",
+                    "id": "32931795-6a6f-4db3-af1f-d2e9eca6964b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThrowObjectRight",
+                    "type": "Button",
+                    "id": "e61459b1-54a2-45ed-b205-970561e5268e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -340,18 +291,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ThrowObjectLeft",
+                    "name": "ConsumeItem1",
                     "type": "Button",
-                    "id": "32931795-6a6f-4db3-af1f-d2e9eca6964b",
+                    "id": "fe6fc8f8-1a92-4d59-8d6c-681e830137e4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ThrowObjectRight",
+                    "name": "ConsumeItem2",
                     "type": "Button",
-                    "id": "e61459b1-54a2-45ed-b205-970561e5268e",
+                    "id": "e60c3f2e-3ea8-4955-b003-2ba87b0cdaac",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ConsumeItem3",
+                    "type": "Button",
+                    "id": "edbe64b8-1712-4286-a4b7-d4f2847e68e4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PhoneLight",
+                    "type": "Button",
+                    "id": "df8ad077-142f-4c37-bb8e-581a75fedf77",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -366,7 +335,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Switch Edit Mode",
+                    "action": "EditMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -377,7 +346,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Switch Edit Mode",
+                    "action": "EditMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -388,7 +357,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Consume Item 1",
+                    "action": "ConsumeItem1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -399,7 +368,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Consume Item 1",
+                    "action": "ConsumeItem1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -410,7 +379,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Consume Item 2",
+                    "action": "ConsumeItem2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -421,7 +390,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Consume Item 2",
+                    "action": "ConsumeItem2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -432,7 +401,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Consume Item 3",
+                    "action": "ConsumeItem3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -443,7 +412,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Consume Item 3",
+                    "action": "ConsumeItem3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -454,7 +423,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Take/Hide Phone",
+                    "action": "TakeHidePhone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -465,7 +434,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Take/Hide Phone",
+                    "action": "TakeHidePhone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -476,7 +445,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Look at camera",
+                    "action": "CameraMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -487,7 +456,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Look at camera",
+                    "action": "CameraMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -510,28 +479,6 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "69117752-ffd7-4172-9815-383b4ebcbb8e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "30aeee0d-a063-4a66-8dd7-e876240e4ce8",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -560,7 +507,7 @@
                 {
                     "name": "",
                     "id": "322f18ec-316f-47dd-8150-b606760bbdb3",
-                    "path": "<Keyboard>/g",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -664,6 +611,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ThrowObjectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed30de3a-fe51-468a-b685-c8f8677eb6b4",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4385162b-7345-4c7c-84b3-a2c74b59e477",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
