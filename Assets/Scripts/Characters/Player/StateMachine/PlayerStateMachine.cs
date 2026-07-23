@@ -99,6 +99,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         controls = InputManager.controls;
 
+        animator = GetComponentInChildren<Animator>(true);
 
         IdleState = new PlayerIdleState(this, rb, transform);
         WalkState = new PlayerWalkState(this, rb, transform);
@@ -137,7 +138,19 @@ public class PlayerStateMachine : MonoBehaviour
         crouchSettings.ceilingCheckDistance = 0.6f;
     }
 
+    public void RefreshAnimator()
+    {
+        animator = null;
 
+        foreach (Animator anim in GetComponentsInChildren<Animator>(true))
+        {
+            if (anim.gameObject.activeInHierarchy)
+            {
+                animator = anim;
+                break;
+            }
+        }
+    }
 
     private void Update()
     {
@@ -173,10 +186,7 @@ public class PlayerStateMachine : MonoBehaviour
             speedMultiplier = moveSettings.crouchMultiplier;
         }
 
-        animator.SetFloat(
-            "Speed",
-            moveInput.magnitude * speedMultiplier
-        );
+        animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
     }
 
     public void ChangeState(IState newState)
