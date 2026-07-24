@@ -1,3 +1,4 @@
+using Assets.Scripts.Items;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
@@ -9,11 +10,15 @@ public class CamerasScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_cameraUiText;
     [SerializeField] private RenderTexture m_screenRenderTexture;
     [SerializeField] private int m_CamAmount;
-   private List<Camera> m_cameras = new List<Camera>();
-    public bool m_onCamera = false;
+    [SerializeField] private PhoneController phoneStateScript;
+
+    private List<Camera> m_cameras = new List<Camera>();
+    private bool m_onCamera = false;
     private int m_currentCamera = 0;
     public Camera camActive;
-    
+
+    private Camera m_externalCamera;
+    private bool m_usingExternalCamera = false;
 
     void Awake()
     {
@@ -22,18 +27,61 @@ public class CamerasScript : MonoBehaviour
 
     void Start()
     {
-        
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in allItems)
+        {
+            Camera childCam = item.GetComponentInChildren<Camera>();
+            if (childCam != null)
+            {
+                m_cameras.Add(childCam);
+                childCam.enabled = false;
+                childCam.targetTexture = null;
+                m_CamAmount++;
+            }
+        }
     }
 
     private void Update()
     {
-        if (!m_onCamera)
+        if (phoneStateScript != null && phoneStateScript.GetCurrentPhoneState() != PhoneState.Camera)
         {
             DisableAllCam();
         }
+    }
 
-        GetItemCamera();
-        RemoveItemCamera();
+    public void SetExternalCamera(Camera cam)
+    {
+        DisableAllCam();
+
+        m_externalCamera = cam;
+        m_usingExternalCamera = true;
+        m_onCamera = true;
+
+        cam.enabled = true;
+        cam.targetTexture = m_screenRenderTexture;
+        camActive = cam;
+
+        if (m_cameraUiText != null)
+        {
+            m_cameraUiText.gameObject.SetActive(true);
+            m_cameraUiText.text = "DRONE";
+        }
+    }
+
+    public void DisableExternalCamera()
+    {
+        if (m_externalCamera == null)
+            return;
+
+        m_externalCamera.enabled = false;
+        m_externalCamera.targetTexture = null;
+
+        m_externalCamera = null;
+        m_usingExternalCamera = false;
+        m_onCamera = false;
+
+        if (m_cameraUiText != null)
+            m_cameraUiText.gameObject.SetActive(false);
     }
 
     public void SetCameraViewActive(bool active)
@@ -51,7 +99,6 @@ public class CamerasScript : MonoBehaviour
         {
             m_currentCamera = 0;
         }
-
         UpdateCameraDisplay();
     }
 
@@ -74,7 +121,18 @@ public class CamerasScript : MonoBehaviour
         if (m_cameras == null || m_cameras.Count == 0)
         {
             camActive = null;
+
+            if (m_screenRenderTexture != null)
+            {
+                RenderTexture activeBuffer = RenderTexture.active;
+                RenderTexture.active = m_screenRenderTexture;
+                GL.Clear(true, true, Color.black);
+                RenderTexture.active = activeBuffer;
+            }
+
             return;
+
+
         }
 
         for (int i = 0; i < m_cameras.Count; i++)
@@ -82,6 +140,7 @@ public class CamerasScript : MonoBehaviour
             bool isTarget = (m_onCamera && i == m_currentCamera);
 
             m_cameras[i].enabled = isTarget;
+            m_cameras[i].GetComponentInParent<ItemScript>().usingEnergy = isTarget;
             m_cameras[i].targetTexture = isTarget ? m_screenRenderTexture : null;
         }
 
@@ -97,22 +156,30 @@ public class CamerasScript : MonoBehaviour
 
     void LateUpdate()
     {
+        if (m_usingExternalCamera)
+        {
+            if (m_externalCamera != null && m_externalCamera.enabled)
+                m_externalCamera.Render();
+
+            return;
+        }
+
         if (m_onCamera && m_cameras.Count > m_currentCamera)
         {
-            
             if (m_cameras[m_currentCamera].enabled)
-            {
                 m_cameras[m_currentCamera].Render();
-            }
         }
     }
 
     void DisableAllCam()
     {
-        for(int i = 0; i < m_cameras.Count; i++)
+        for (int i = 0; i < m_cameras.Count; i++)
         {
-            m_cameras [i].enabled = false;
+            m_cameras[i].enabled = false;
         }
+
+        DisableExternalCamera();
+
         camActive = null;
         m_onCamera = false;
 
@@ -141,16 +208,17 @@ public class CamerasScript : MonoBehaviour
                 {
                     for (int i = 0; i < nbCam; i++)
                     {
-                        if (m_cameras[i] != childCam)
+                        if (!m_cameras.Contains(childCam))
                         {
                             m_cameras.Add(childCam);
                             childCam.enabled = false;
                             childCam.targetTexture = null;
-                            m_CamAmount++;
+                            m_CamAmount = m_cameras.Count;
+
+                            UpdateCameraDisplay();
                         }
                     }
-                }
-                    
+                } 
             }
         }
     }
@@ -169,13 +237,20 @@ public class CamerasScript : MonoBehaviour
                 int nbCam = m_cameras.Count;
                 for (int i = 0; i < nbCam; i++)
                 {
-                    if (m_cameras[i] == childCam)
+                    if (m_cameras.Contains(childCam))
                     {
                         Debug.Log("removed");
-                        m_cameras.Remove(childCam);
                         childCam.enabled = false;
                         childCam.targetTexture = null;
+                        m_cameras.Remove(childCam);
                         m_CamAmount--;
+
+                        if (m_currentCamera >= m_cameras.Count)
+                        {
+                            m_currentCamera = Mathf.Max(0, m_cameras.Count - 1);
+                        }
+
+                        UpdateCameraDisplay();
                     }
                 }
             }
