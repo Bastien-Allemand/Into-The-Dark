@@ -7,6 +7,8 @@ public class DroneMovement : MonoBehaviour
 
     private PlayerAction controls;
 
+    public bool IsMoving { get; private set; }
+
     private void Awake()
     {
         controls = InputManager.controls;
@@ -16,8 +18,9 @@ public class DroneMovement : MonoBehaviour
     {
         Vector2 input = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
 
-        transform.position += transform.forward * input.y * moveSpeed * Time.deltaTime;
+        IsMoving = input.sqrMagnitude > 0.01f;
 
+        transform.position += transform.forward * input.y * moveSpeed * Time.deltaTime;
         transform.Rotate(0f, input.x * rotationSpeed * Time.deltaTime, 0f);
 
         Vector3 euler = transform.eulerAngles;

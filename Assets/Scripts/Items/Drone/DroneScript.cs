@@ -24,14 +24,31 @@ public class DroneScript : MonoBehaviour
         {
             audioSource.clip = droneSound;
             audioSource.loop = true;
-            audioSource.playOnAwake = false;   
+            audioSource.playOnAwake = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (!droneMovement.enabled || audioSource == null)
+            return;
+
+        if (droneMovement.IsMoving)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+                audioSource.Stop();
         }
     }
 
     public void PlaceDrone()
     {
         if (!droneBattery.HasBattery)
-        { 
+        {
             return;
         }
 
@@ -44,11 +61,6 @@ public class DroneScript : MonoBehaviour
         phoneController.RegisterDrone(this);
 
         phoneView.OpenDroneCamera(droneCamera);
-
-        if (audioSource != null && !audioSource.isPlaying)
-        {
-            audioSource.Play();
-        }
     }
 
     public void PickupDrone()

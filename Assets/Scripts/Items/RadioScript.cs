@@ -2,27 +2,55 @@ using UnityEngine;
 
 public class RadioScript : MonoBehaviour
 {
-    public string targetTag = "Ghost";
-    public bool isActivated = false;
+    [Header("Detection")]
+    [SerializeField] private string targetTag = "Ghost";
+    private bool isActivated = false;
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip radioSound;
+
+    private void Start()
+    {
+        if (audioSource != null)
+        {
+            audioSource.clip = radioSound;
+            audioSource.loop = true;
+            audioSource.playOnAwake = false;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(targetTag))
         {
             Debug.Log("Ghost entered detection zone");
+
             isActivated = true;
+
+            if (audioSource != null && !audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
     }
-    //maybe start audio when enter and stop audio when exit
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(targetTag))
         {
             Debug.Log("Ghost left detection zone");
+
             isActivated = false;
+
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
-    void Update()
+
+    private void Update()
     {
         if (isActivated)
         {
