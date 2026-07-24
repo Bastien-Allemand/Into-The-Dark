@@ -54,7 +54,6 @@ public class UIBattery : MonoBehaviour
     {
         if (currentTimer > 0)
         {
-            batteryScript.SetUIOn();
             return;
         }
 

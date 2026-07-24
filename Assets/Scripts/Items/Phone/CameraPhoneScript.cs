@@ -19,7 +19,7 @@ public class CameraPhoneScript : MonoBehaviour
 
     private void Update()
     {
-        DisplayCanvaCamera();
+
     }
 
     private void DisplayCanvaCamera()

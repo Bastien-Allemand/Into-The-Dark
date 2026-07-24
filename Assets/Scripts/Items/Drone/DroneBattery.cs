@@ -31,8 +31,6 @@ public class DroneBattery : MonoBehaviour
         if (!isUsingDrone)
             return;
 
-        batteryUI.SetUIOn();
-
         HandleBatteryDrain();
     }
 

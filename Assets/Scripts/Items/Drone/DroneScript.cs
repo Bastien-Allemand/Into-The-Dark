@@ -66,7 +66,7 @@ public class DroneScript : MonoBehaviour
 
         phoneView.CloseDroneCamera();
 
-        if (audioSource != null && !audioSource.isPlaying)
+        if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Stop();
         }

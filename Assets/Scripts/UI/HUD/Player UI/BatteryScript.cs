@@ -10,7 +10,6 @@ public class BatteryScript : MonoBehaviour
 
     public void Start()
     {
-        SetUIOn();
     }
 
     public void SetMaxBattery(int battery)
