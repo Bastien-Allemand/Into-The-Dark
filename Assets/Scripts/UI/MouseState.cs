@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LockWhenInFocus : MonoBehaviour
+public class MouseState : MonoBehaviour
 {
     void Start()
     {
