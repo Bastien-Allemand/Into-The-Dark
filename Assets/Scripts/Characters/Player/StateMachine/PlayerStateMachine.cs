@@ -28,6 +28,7 @@ public class StaminaSettings
     public float maxStamina;
     public float staminaRegenDelay;
     public bool isOutOfStamina;
+    public float staminaRegenRate;
 }
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -109,6 +110,7 @@ public class PlayerStateMachine : MonoBehaviour
         staminaSettings.staminaLeft = staminaSettings.maxStamina;
         staminaSettings.staminaTimer = 0f;
         staminaSettings.isOutOfStamina = false;
+        staminaSettings.staminaRegenRate = GameManager.Instance.activeDifficulty.recuperationStamina;
 
         crouchSettings.standHeight = 2f;
         crouchSettings.standCenterY = 0f;
@@ -172,7 +174,7 @@ public class PlayerStateMachine : MonoBehaviour
             }
             else
             {
-                staminaSettings.staminaLeft += (Time.deltaTime * 0.75f);
+                staminaSettings.staminaLeft += (Time.deltaTime * staminaRegenRate);
             }
         }
         else
