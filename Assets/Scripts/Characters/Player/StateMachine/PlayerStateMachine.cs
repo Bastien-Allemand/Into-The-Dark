@@ -56,9 +56,11 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private Animator animator;
 
     [Space(5)]
     [Header("Sprint Settings")]
+    [SerializeField] private Material optiqueMaterial;
     [SerializeField] private MoveSettings moveSettings;
     public MoveSettings moveConfigs => moveSettings;
 
@@ -75,18 +77,17 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private CrouchSettings crouchSettings;
     public CrouchSettings crouchConfigs => crouchSettings;
 
-
-
     [Space(5)]
 
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private GameObject itemPhone;
 
     public Vector2 moveInput;
 
     void Awake()
     {
         controls = InputManager.controls;
+
+        //        controls = new PlayerAction();
 
         IdleState = new PlayerIdleState(this, rb, transform);
         WalkState = new PlayerWalkState(this, rb, transform);
@@ -103,6 +104,7 @@ public class PlayerStateMachine : MonoBehaviour
         moveSettings.crouchMultiplier = 0.6f;
         currentSpeed = moveSettings.walkSpeed;
 
+        staminaSettings.maxStamina = 100f;
         staminaSettings.staminaRegenDelay = 1.5f;
         staminaSettings.staminaLeft = staminaSettings.maxStamina;
         staminaSettings.staminaTimer = 0f;
@@ -111,23 +113,24 @@ public class PlayerStateMachine : MonoBehaviour
         crouchSettings.standHeight = 2f;
         crouchSettings.standCenterY = 0f;
         crouchSettings.crouchHeight = 1.2f;
-        crouchSettings.crouchHeight = -0.2f;
+        crouchSettings.crouchCenterY = -0.2f;
         crouchSettings.ceilingCheckDistance = 0.6f;
     }
 
     void Update()
     {
-        PhoneState phoneState = itemPhone.GetComponent<PhoneController>().GetCurrentPhoneState();
-
-        if (phoneState != PhoneState.Camera)
-        {
-            moveInput = InputManager.controls.GamePlay.Movement.ReadValue<Vector2>();
-        }
+        moveInput = InputManager.controls.GeneriqueMove.Movement.ReadValue<Vector2>();
 
         if (currentState != SprintState)
         {
             RegenStamina();
         }
+
+        float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
+
+        animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
+        float optiqueIntensite = (1 - (staminaSettings.staminaLeft / staminaSettings.maxStamina)) * 3.0f;
+        optiqueMaterial.SetFloat("_Stamina", optiqueIntensite);
 
         currentState?.Update();
     }
@@ -146,6 +149,12 @@ public class PlayerStateMachine : MonoBehaviour
 
         currentState.Enter();
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+    //    Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
+    //}
 
     void RegenStamina()
     {
@@ -170,6 +179,8 @@ public class PlayerStateMachine : MonoBehaviour
         {
             staminaSettings.staminaLeft = staminaSettings.maxStamina;
         }
+
+        //UpdateSprintUI();
     }
 
    public float StaminaRatio
@@ -183,5 +194,4 @@ public class PlayerStateMachine : MonoBehaviour
 
 }
 
-    
 

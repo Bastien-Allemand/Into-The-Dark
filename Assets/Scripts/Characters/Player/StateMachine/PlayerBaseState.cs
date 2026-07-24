@@ -38,6 +38,6 @@ public class PlayerBaseState : IState
         Vector3 currentVel = rb.linearVelocity;
         Vector3 desiredVel = new Vector3(targetVel.x, currentVel.y, targetVel.z);
 
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.fixedDeltaTime);
+        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, desiredVel, ref velocity, 0.05f, Mathf.Infinity, Time.deltaTime);
     }
 }
