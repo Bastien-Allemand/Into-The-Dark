@@ -12,9 +12,20 @@ public class DroneScript : MonoBehaviour
     [SerializeField] private PhoneController phoneController;
     [SerializeField] private DroneBattery droneBattery;
 
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip droneSound;
+
     public void Start()
     {
         droneMovement.enabled = false;
+
+        if (audioSource != null && droneSound != null)
+        {
+            audioSource.clip = droneSound;
+            audioSource.loop = true;
+            audioSource.playOnAwake = false;   
+        }
     }
 
     public void PlaceDrone()
@@ -33,6 +44,11 @@ public class DroneScript : MonoBehaviour
         phoneController.RegisterDrone(this);
 
         phoneView.OpenDroneCamera(droneCamera);
+
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 
     public void PickupDrone()
@@ -49,5 +65,10 @@ public class DroneScript : MonoBehaviour
         playerView.enabled = true;
 
         phoneView.CloseDroneCamera();
+
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
     }
 }

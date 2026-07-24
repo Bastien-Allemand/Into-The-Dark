@@ -27,8 +27,8 @@ public class RadarScript : MonoBehaviour
     public Transform ghost;
 
     [Header("Map Bounds")]
-    public Vector2 worldMin = new Vector2(-27f, -18.3f);
-    public Vector2 worldMax = new Vector2(26.7f, 21.6f);
+    public Vector2 worldMin;
+    public Vector2 worldMax;
 
     [Header("Radar Size")]
     [SerializeField] private float radarWidth = 740f;
@@ -91,24 +91,28 @@ public class RadarScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        InputManager.controls.PlayerInteraction.TakeUseObject.performed += _ => tmp();
+        InputManager.controls.PlayerInteraction.TakeUseObject.performed += OnScan;
     }
+
     private void OnDisable()
     {
-        InputManager.controls.PlayerInteraction.TakeUseObject.performed -= _ => tmp();
-
+        InputManager.controls.PlayerInteraction.TakeUseObject.performed -= OnScan;
     }
-    private void tmp()
-    {
-        if (!isScanning)
-        {
-            if (audioSource != null && radarSound != null)
-            {
-                audioSource.PlayOneShot(radarSound);
-            }
 
-            StartCoroutine(ShowRadar());
-        }
+    private void OnScan(InputAction.CallbackContext context)
+    {
+        Scan();
+    }
+
+    private void Scan()
+    {
+        if (radar.transform.parent == null || isScanning)
+            return;
+
+        if (audioSource != null && radarSound != null)
+            audioSource.PlayOneShot(radarSound);
+
+        StartCoroutine(ShowRadar());
     }
 
     private IEnumerator StopRadarSoundAfterDelay(float delay)
