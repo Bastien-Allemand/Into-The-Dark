@@ -636,7 +636,6 @@ GameObject:
   - component: {fileID: 5174197489393403408}
   - component: {fileID: 3259128438521581388}
   - component: {fileID: 2558153957045355166}
-  - component: {fileID: 1815887968740831673}
   - component: {fileID: 3497286405205952969}
   - component: {fileID: 5118822022645332707}
   - component: {fileID: 4475905039073347872}
@@ -777,45 +776,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1815887968740831673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3215761595656198418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37676ecb33b71c249af34ae2f11e3437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
-  debug: 0
-  rb: {fileID: 2558153957045355166}
-  playerCollider: {fileID: 3259128438521581388}
-  animator: {fileID: 0}
-  moveSettings:
-    walkSpeed: 5
-    sprintingMultiplier: 1.4
-    crouchMultiplier: 0.6
-  currentSpeed: 0
-  staminaSettings:
-    staminaLeft: 0
-    staminaTimer: 0
-    maxStamina: 0
-    staminaRegenDelay: 0
-    isOutOfStamina: 0
-  crouchSettings:
-    standHeight: 0
-    standCenterY: 0
-    crouchHeight: 0
-    crouchCenterY: 0
-    ceilingCheckDistance: 0
-    isCeilingAbove: 0
-    crouchCenterZ: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  moveInput: {x: 0, y: 0}
 --- !u!114 &3497286405205952969
 MonoBehaviour:
   m_ObjectHideFlags: 0

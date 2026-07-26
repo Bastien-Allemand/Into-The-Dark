@@ -10,6 +10,14 @@ public class SwapMesh : MonoBehaviour
 
     [SerializeField] private GameObject currentCharacter;
 
+    private void Awake()
+    {
+        if (currentCharacter != null)
+        {
+            currentCharacter.SetActive(true);
+        }
+    }
+
     public void Swap(int index)
     {
         if (currentCharacter != null)

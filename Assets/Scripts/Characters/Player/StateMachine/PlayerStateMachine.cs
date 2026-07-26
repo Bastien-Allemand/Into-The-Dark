@@ -66,6 +66,7 @@ public class PlayerStateMachine : MonoBehaviour
 
 
     [Header("References")]
+    public Transform activePlayerTransform;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private Animator animator;
@@ -99,15 +100,40 @@ public class PlayerStateMachine : MonoBehaviour
     {
         controls = InputManager.controls;
 
-        animator = GetComponentInChildren<Animator>(true);
+        RefreshActivePlayer();
 
-        IdleState = new PlayerIdleState(this, rb, transform);
-        WalkState = new PlayerWalkState(this, rb, transform);
-        SprintState = new PlayerSprintState(this, rb, transform);
-        CrouchState = new PlayerCrouchState(this, rb, transform, playerCollider);
+        IdleState = new PlayerIdleState(this, rb, activePlayerTransform);
+        WalkState = new PlayerWalkState(this, rb, activePlayerTransform);
+        SprintState = new PlayerSprintState(this, rb, activePlayerTransform);
+        CrouchState = new PlayerCrouchState(this, rb, activePlayerTransform, playerCollider);
         OnPhoneState = new PlayerOnPhoneState(this);
     }
 
+    public void RefreshActivePlayer()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                activePlayerTransform = child;
+                
+                rb = child.GetComponent<Rigidbody>();
+                if (rb == null) rb = child.GetComponentInChildren<Rigidbody>();
+                
+                playerCollider = child.GetComponent<CapsuleCollider>();
+                if (playerCollider == null) playerCollider = child.GetComponentInChildren<CapsuleCollider>();
+                
+                break;
+            }
+        }
+
+        if (activePlayerTransform == null)
+        {
+            activePlayerTransform = transform;
+        }
+
+        RefreshAnimator();
+    }
 
     private void Start()
     {
