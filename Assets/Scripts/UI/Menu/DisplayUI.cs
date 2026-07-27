@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class DisplayUI : MonoBehaviour
 {
     [SerializeField] public PlayerAction controls;
+    [SerializeField] public GameObject player;
     [SerializeField] public GameObject PauseUi;
     [SerializeField] public GameObject PlayerUi;
     [SerializeField] public MouseState locker;
@@ -17,6 +19,8 @@ public class DisplayUI : MonoBehaviour
     {
         if (status)
         {
+
+            player.GetComponent<PlayerView>().canLook = true;
             PlayerUi.SetActive(true);
             PauseUi.SetActive(false);
             locker.lockMouse();
@@ -25,6 +29,7 @@ public class DisplayUI : MonoBehaviour
         }
         else
         {
+            player.GetComponent<PlayerView>().canLook = false;
             PlayerUi.SetActive(false);
             PauseUi.SetActive(true);
             locker.unlockMouse();
@@ -40,4 +45,15 @@ public class DisplayUI : MonoBehaviour
     {
         controls.Global.Pause.performed -= OnInteract;
     }
+
+    public void ResumeButton()
+    {
+        player.GetComponent<PlayerView>().canLook = true;
+        PlayerUi.SetActive(true);
+        PauseUi.SetActive(false);
+        locker.lockMouse();
+        Time.timeScale = 1f;
+        status = false;
+    }
+
 }
