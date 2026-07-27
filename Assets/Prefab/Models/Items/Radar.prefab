@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 6050798632436110899}
   - component: {fileID: 5212213572227548405}
   - component: {fileID: 8642560907655932953}
+  - component: {fileID: 7214288252541848661}
   - component: {fileID: 1600645290679532598}
   m_Layer: 0
   m_Name: Radar
@@ -528,7 +529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5462948912438342490}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 8.05, y: 13.99, z: 31.92881}
   m_LocalScale: {x: 0.65, y: 0.035000008, z: 0.64999986}
   m_ConstrainProportionsScale: 0
@@ -767,7 +768,20 @@ MonoBehaviour:
   energy: 100
   maxEnergy: 100
   rechargable: 0
+  batteryScript: {fileID: 0}
   type: 0
+--- !u!114 &7214288252541848661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462948912438342490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbfd9087cb1a834bb8f2b17ab2700d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundDebug
 --- !u!54 &1600645290679532598
 Rigidbody:
   m_ObjectHideFlags: 0
