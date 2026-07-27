@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class MouseState : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         lockMouse();
     }
 
-    void lockMouse()
+    public void lockMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Debug.Log("locking");
     }
-    void unlockMouse()
+    public void unlockMouse()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Debug.Log("unlocking");
     }
 }
