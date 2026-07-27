@@ -14,7 +14,7 @@ public class DroneMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 input = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
+        Vector2 input = controls.Global.MoveForward.ReadValue<Vector2>();
 
         transform.position += transform.forward * input.y * moveSpeed * Time.deltaTime;
 

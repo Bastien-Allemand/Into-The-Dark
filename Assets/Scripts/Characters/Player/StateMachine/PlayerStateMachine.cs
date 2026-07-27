@@ -191,7 +191,8 @@ public class PlayerStateMachine : MonoBehaviour
     void Update()
     {
         float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
-        moveInput = InputManager.controls.GeneriqueMove.Movement.ReadValue<Vector2>();
+
+
 
         if (currentState != SprintState)
         {

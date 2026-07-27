@@ -84,19 +84,16 @@ public class RadarScript : MonoBehaviour
 
         playerIcon.anchoredPosition = WorldToRadar(player.position);
         ghostIcon.anchoredPosition = WorldToRadar(ghost.position);
-
-
-
-
     }
     private void OnEnable()
     {
-        InputManager.controls.PlayerInteraction.TakeUseObject.performed += _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed += _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed += _ => tmp();
     }
     private void OnDisable()
     {
-        InputManager.controls.PlayerInteraction.TakeUseObject.performed -= _ => tmp();
-
+        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed -= _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed -= _ => tmp();
     }
     private void tmp()
     {
