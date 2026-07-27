@@ -180,7 +180,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Update()
     {
-        moveInput = controls.GamePlay.Movement.ReadValue<Vector2>();
+        moveInput = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
 
         if (currentState != SprintState)
         {

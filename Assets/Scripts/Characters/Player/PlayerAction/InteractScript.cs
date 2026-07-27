@@ -42,14 +42,14 @@ public class Interact : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.Interact.performed += OnInteractPressed;
-        controls.GamePlay.Interact.canceled += OnInteractReleased;
+        controls.PlayerInteraction.Interact.performed += OnInteractPressed;
+        controls.PlayerInteraction.Interact.canceled += OnInteractReleased;
     }
 
     private void OnDisable()
     {
-        controls.GamePlay.Interact.performed -= OnInteractPressed;
-        controls.GamePlay.Interact.canceled -= OnInteractReleased;
+        controls.PlayerInteraction.Interact.performed -= OnInteractPressed;
+        controls.PlayerInteraction.Interact.canceled -= OnInteractReleased;
 
         isHoldingLeft = false;
         isHoldingRight = false;
