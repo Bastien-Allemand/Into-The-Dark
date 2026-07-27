@@ -18,7 +18,7 @@ public class PlayerSprintState : PlayerBaseState
         DecreaseStamina();
 
 
-        bool sprintInput = InputManager.controls.GamePlay.Sprint.ReadValue<float>() > 0.5f;
+        bool sprintInput = InputManager.controls.PlayerUniqueMove.Sprint.ReadValue<float>() > 0.5f;
 
         if (stateMachine.moveInput == Vector2.zero)
         {

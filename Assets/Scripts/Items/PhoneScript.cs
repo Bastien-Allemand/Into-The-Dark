@@ -58,6 +58,7 @@ namespace Assets.Scripts.Items
 
         private void Start()
         {
+            maxBattery = GameManager.Instance.activeDifficulty.tailleBatteriePhone;
             currentBattery = maxBattery;
             currentTimer = maxTime;
 
@@ -225,13 +226,13 @@ namespace Assets.Scripts.Items
 
         private void HandleLight()
         {
-            bool isClick = controls.GamePlay.ActiveFlashlight.triggered;
-            if (isClick == true
-                && currentState == PhoneState.Idle
-                && HaveBattery)
-            {
-                phoneLight.enabled = !phoneLight.enabled;
-            }
+            //bool isClick = controls.PlayerInteraction.ActiveFlashlight.triggered;
+            //if (isClick == true
+            //    && currentState == PhoneState.Idle
+            //    && HaveBattery)
+            //{
+            //    phoneLight.enabled = !phoneLight.enabled;
+            //}
         }
 
         private void HandleBatteryDrain()
@@ -284,6 +285,30 @@ namespace Assets.Scripts.Items
                 return;
             fogMaterial.SetVector("_FlashlightPos", phoneLight.transform.position);
             fogMaterial.SetVector("_FlashlightDir", phoneLight.transform.forward);
+        }
+        public void OpenDroneCamera(Camera droneCamera)
+        {
+            if (currentState == PhoneState.Hidden)
+            {
+                Debug.Log("tamer uwu");
+                TogglePhone();
+            }
+
+            Debug.Log("tamer");
+
+            currentState = PhoneState.Camera;
+            screenPhone.SetActive(true);
+            isLookingCamera = true;
+
+            CamerasScript.instance.SetExternalCamera(droneCamera);
+        }
+        public void CloseDroneCamera()
+        {
+            currentState = PhoneState.Idle;
+            screenPhone.SetActive(false);
+            isLookingCamera = false;
+
+            CamerasScript.instance.DisableExternalCamera();
         }
     }
 }

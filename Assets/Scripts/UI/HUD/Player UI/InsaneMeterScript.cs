@@ -5,6 +5,9 @@ public class InsaneMeterScript : MonoBehaviour
     [SerializeField] private bool debug = false;
     [SerializeField] public float insaneMeter = 0f;
     [SerializeField] public float maxInsaneMeter = 100f;
+    [SerializeField] public float insaneMeterDecreaseRate;
+    [SerializeField] private Material crazyShader;
+    [SerializeField] private Material optiqueShader;
 
 
     public Camera visionCam;
@@ -15,6 +18,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     private void Start()
     {
+        insaneMeterDecreaseRate = GameManager.Instance.activeDifficulty.recuperationFolie;
     }
 
     private void OnEnable()
@@ -43,6 +47,7 @@ public class InsaneMeterScript : MonoBehaviour
         }
 
         UpdateInsanity(target);
+        UpdateCrazyShader();
         CheckUsePill();
     }
 
@@ -75,7 +80,7 @@ public class InsaneMeterScript : MonoBehaviour
         else if (insaneMeter > 0)
         {
             insanityStack = 0f; // Reset the insanity stack when the target is not visible
-            insaneMeter -= Time.deltaTime * 0.5f; // Decrease the insane meter over time when the target is not visible
+            insaneMeter -= Time.deltaTime * insaneMeterDecreaseRate; // Decrease the insane meter over time when the target is not visible
         }
 
         float distanceToTarget = Vector3.Distance(visionCam.transform.position, _target.transform.position);
@@ -130,5 +135,15 @@ public class InsaneMeterScript : MonoBehaviour
             if (insaneMeter <= 0) return 0f;
             return insaneMeter / 100;
         }
+    }
+
+    void UpdateCrazyShader()
+    {
+        float crazyIntensiteShader = insaneMeter / maxInsaneMeter * 0.04f;
+        float distortionIntensiteShader = insaneMeter / maxInsaneMeter * 0.06f;
+        float optiqueIntensiteShader = insaneMeter / maxInsaneMeter * 3.0f;
+        crazyShader.SetFloat("_FolieIntensite", crazyIntensiteShader);
+        crazyShader.SetFloat("_DistorsionIntensite", distortionIntensiteShader);
+        optiqueShader.SetFloat("_Folie", optiqueIntensiteShader);
     }
 }

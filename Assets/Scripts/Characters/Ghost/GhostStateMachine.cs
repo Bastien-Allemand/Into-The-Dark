@@ -6,6 +6,7 @@ public class GhostStateMachine : MonoBehaviour
     [SerializeField] public IState currentState;
     private Pathfinding pathfinding;
     private MonsterVisionScript monsterVision;
+    public UnityEngine.AI.NavMeshAgent agent { get; private set; }
 
     [SerializeField] public Animator animator; 
 
@@ -16,6 +17,9 @@ public class GhostStateMachine : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         ChangeState(new GhostPatrolState(this,pathfinding));
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent != null)
+            agent.speed = GameManager.Instance.activeDifficulty.speedGhost;
     }
 
     void Update()

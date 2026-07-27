@@ -102,11 +102,11 @@ public class PickUp : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GamePlay.TakePlaceobject.performed += OnInteract;
+        controls.PlayerInteraction.TakeUseObject.performed += OnInteract;
     }
     private void OnDisable()
     {
-        controls.GamePlay.TakePlaceobject.performed -= OnInteract;
+        controls.PlayerInteraction.TakeUseObject.performed -= OnInteract;
     }
     private void Awake()
     {
