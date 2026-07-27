@@ -8,14 +8,15 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public bool debug;
     public PlayerAction controls;
     [SerializeField] public GameObject pauseContainerUI;
+    [SerializeField] public GameObject otherUICanvas;
     [SerializeField] public Image backgroundUI;
-    [SerializeField] public Canvas otherUICanvas;
     [SerializeField] public GameObject player;
+
     public bool OnPause;
      void Awake()
     {
+        controls.Global.Enable();
         controls = InputManager.controls;
-        backgroundUI.enabled = false;
         pauseContainerUI.SetActive(false);
         OnPause = false;
     }
@@ -66,7 +67,7 @@ public class PauseMenu : MonoBehaviour
         OnPause = !OnPause;
         backgroundUI.enabled = OnPause;
         pauseContainerUI.SetActive(OnPause);
-        otherUICanvas.enabled = !OnPause;
+        otherUICanvas.SetActive(!OnPause);
     }
     public void EscapeFunction()
     {
@@ -77,7 +78,7 @@ public class PauseMenu : MonoBehaviour
         OnPause = !OnPause;
         backgroundUI.enabled = OnPause;
         pauseContainerUI.SetActive(OnPause);
-        otherUICanvas.enabled = !OnPause;
+        otherUICanvas.SetActive(!OnPause);
     }
     public void OnSettingButton()
     {
@@ -95,11 +96,11 @@ public class PauseMenu : MonoBehaviour
     }
     private void OnEnable()
     {
-        controls.Menu.Pause.performed += OnInteract;
+        controls.Global.Pause.performed += OnInteract;
     }
     private void OnDisable()
     {
-        controls.Menu.Pause.performed -= OnInteract;
+        controls.Global.Pause.performed -= OnInteract;
     }
         
 }
