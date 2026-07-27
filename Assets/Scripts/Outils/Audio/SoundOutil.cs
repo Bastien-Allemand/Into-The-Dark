@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 
-public class SoundDebug : MonoBehaviour
+public class SoundOutil : MonoBehaviour
 {
     private struct visualDebug
     {
