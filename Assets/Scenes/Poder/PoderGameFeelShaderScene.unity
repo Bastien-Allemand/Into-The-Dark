@@ -2949,7 +2949,7 @@ PrefabInstance:
     - target: {fileID: 4104112020343721038, guid: 27cd5194aa1d1614e95513e48609cf1a, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: ce4612a5f03c69f4aadafa8d70c90cc3, type: 2}
+      objectReference: {fileID: 23800000, guid: 4a580e0b7d788b844b4debcc5403cbb4, type: 2}
     - target: {fileID: 4300090493014356102, guid: 27cd5194aa1d1614e95513e48609cf1a, type: 3}
       propertyPath: m_Layer
       value: 15
@@ -3819,6 +3819,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.015194188, y: 0.0609441, z: 0.055533346}
   m_Center: {x: -8.8225395e-25, y: -9.313225e-10, z: -0.000000014901161}
+--- !u!114 &1906538880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8935542243040255669, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+  m_PrefabInstance: {fileID: 5050230139285730104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!4 &1910565299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2332232957353729551, guid: 27cd5194aa1d1614e95513e48609cf1a, type: 3}
@@ -4056,6 +4067,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global
       objectReference: {fileID: 0}
+    - target: {fileID: 1507817457392369553, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16.200134
+      objectReference: {fileID: 0}
     - target: {fileID: 2711352336041245852, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4165,6 +4180,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1134248025}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[2].featureActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].featureActive
       value: 1
       objectReference: {fileID: 0}
@@ -4174,23 +4193,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[9].featureActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[5].floatProperties.Array.size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].colorProperties.Array.data[0].isHDR
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].isHDR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].floatProperties.Array.data[0].value
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].floatProperties.Array.data[1].value
-      value: 0.04
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[2].value
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[3].value
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[4].value
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[5].value
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[5].floatProperties.Array.data[0].value
@@ -4233,16 +4284,64 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.data[4].value
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.data[5].value
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].colorProperties.Array.data[0].value.b
-      value: 0.23
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].colorProperties.Array.data[0].value.g
-      value: 0.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[3].colorProperties.Array.data[0].value.r
-      value: 0.17
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].value.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].value.b
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].value.g
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].value.r
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].displayName
+      value: Phosphor Color
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[1].displayName
+      value: Gain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[2].displayName
+      value: Noise Intensity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[3].displayName
+      value: Vignette Radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[4].displayName
+      value: Scanline Intensity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[5].displayName
+      value: Effect Intensity
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[5].floatProperties.Array.data[1].displayName
@@ -4261,6 +4360,38 @@ PrefabInstance:
       value: Fade End Distance
       objectReference: {fileID: 0}
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.data[4].displayName
+      value: Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.data[5].displayName
+      value: Distortion Strength
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].colorProperties.Array.data[1].referenceName
+      value: _Phosphor_Color
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[1].referenceName
+      value: _Gain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[2].referenceName
+      value: _Noise_Intensity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[3].referenceName
+      value: _Vignette_Radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[4].referenceName
+      value: _Scanline_Intensity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[3].floatProperties.Array.data[5].referenceName
+      value: _Effect_Intensity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[5].floatProperties.Array.data[1].referenceName
       value: _Depth_Sensitivity
       objectReference: {fileID: 0}
@@ -4275,6 +4406,14 @@ PrefabInstance:
     - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
       propertyPath: materiaux.Array.data[5].floatProperties.Array.data[4].referenceName
       value: _Fade_End_Distance
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.data[4].referenceName
+      value: _Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982026238106427114, guid: 0065445606bf2e54c83bfa9a10326138, type: 3}
+      propertyPath: materiaux.Array.data[9].floatProperties.Array.data[5].referenceName
+      value: _Distortion_Strength
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4523,6 +4662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180.701
       objectReference: {fileID: 0}
+    - target: {fileID: 6637237714116919554, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
+      propertyPath: border
+      value: 
+      objectReference: {fileID: 1906538880}
     - target: {fileID: 6920534379100613054, guid: 2acb3d488b2fc654d9484d523df1ea75, type: 3}
       propertyPath: pickUpScript
       value: 
