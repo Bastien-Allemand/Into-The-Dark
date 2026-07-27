@@ -61,6 +61,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     [Space(5)]
     [Header("Sprint Settings")]
+    [SerializeField] private Material optiqueMaterial;
     [SerializeField] private MoveSettings moveSettings;
     public MoveSettings moveConfigs => moveSettings;
 
@@ -77,18 +78,17 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private CrouchSettings crouchSettings;
     public CrouchSettings crouchConfigs => crouchSettings;
 
-
-
     [Space(5)]
 
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private GameObject itemPhone;
 
     public Vector2 moveInput;
 
     void Awake()
     {
         controls = InputManager.controls;
+
+        //        controls = new PlayerAction();
 
         IdleState = new PlayerIdleState(this, rb, transform);
         WalkState = new PlayerWalkState(this, rb, transform);
@@ -191,11 +191,15 @@ public class PlayerStateMachine : MonoBehaviour
     void Update()
     {
         float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
+        moveInput = InputManager.controls.GeneriqueMove.Movement.ReadValue<Vector2>();
+
         if (currentState != SprintState)
         {
             RegenStamina();
         }
         animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
+        float optiqueIntensite = (1 - (staminaSettings.staminaLeft / staminaSettings.maxStamina)) * 3.0f;
+        optiqueMaterial.SetFloat("_Stamina", optiqueIntensite);
 
         currentState?.Update();
     } 
@@ -214,6 +218,12 @@ public class PlayerStateMachine : MonoBehaviour
 
         currentState.Enter();
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+    //    Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
+    //}
 
     void RegenStamina()
     {

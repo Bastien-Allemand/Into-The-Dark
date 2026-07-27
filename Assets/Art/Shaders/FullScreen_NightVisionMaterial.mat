@@ -12,7 +12,13 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _CRAZY
+  - _DITHERING
+  - _NIGHTVISION
+  - _OPTIQUE
+  - _PAINT
+  - _RUN
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,9 +43,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Noise_Intensity: 0.004
+    - _DEBUG: 0
+    - _Effect_Intensity: 0.8
+    - _Gain: 4
+    - _NIGHTVISION: 1
+    - _Noise_Intensity: 0.6
+    - _Scanline_Intensity: 0.6
     - _Speed: 25
+    - _Vignette_Radius: 0.7
     m_Colors:
-    - _Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0.21176471}
+    - _Color: {r: 0.34, g: 0.4, b: 0.46, a: 1}
+    - _Phosphor_Color: {r: 0.2, g: 0.4, b: 0.3, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
