@@ -62,7 +62,6 @@ public class PickUp : MonoBehaviour
             Debug.Log($"hand = {side}");
             return;
         }
-
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -85,19 +84,7 @@ public class PickUp : MonoBehaviour
                         else
                             return;
                     }
-                    leftHandContent.GiveObject(hitObject);
-                }
-                else if (context.control.name == "rightButton" && !rightHandContent.filled)
-                {
-                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                    if (itemScript.deployed)
-                    {
-                        if (itemScript.canBeRepickUp)
-                            itemScript.deployed = false;
-                        else
-                            return;
-                    }
-                    rightHandContent.GiveObject(hitObject);
+                    hand.GiveObject(hitObject);
                 }
 
                 break;
