@@ -7,6 +7,7 @@ public class UIStack : MonoBehaviour
     [SerializeField] private GameObject initialPanel;
     private Stack<GameObject> history = new Stack<GameObject>();
     private GameObject currentPanel;
+    public bool HasHistory => history.Count > 0;
 
     private void Start()
     {
@@ -38,14 +39,16 @@ public class UIStack : MonoBehaviour
             {
                 currentPanel.SetActive(false);
             }
+
             currentPanel = history.Pop();
             currentPanel.SetActive(true);
         }
         else
         {
-            Debug.LogWarning("Aucun panneau dans l'historique !");
+            CloseAll();
         }
     }
+
     public void OpenPanelDirectly(GameObject panel)
     {
         if (panel == null) return;
@@ -55,7 +58,20 @@ public class UIStack : MonoBehaviour
             currentPanel.SetActive(false);
         }
 
+        history.Clear();
+
         currentPanel = panel;
         currentPanel.SetActive(true);
+    }
+
+    public void CloseAll()
+    {
+        if (currentPanel != null)
+        {
+            currentPanel.SetActive(false);
+            currentPanel = null;
+        }
+
+        history.Clear();
     }
 }

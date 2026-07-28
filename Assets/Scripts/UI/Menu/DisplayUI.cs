@@ -9,52 +9,79 @@ public class DisplayUI : MonoBehaviour
     [SerializeField] public GameObject PauseUi;
     [SerializeField] public GameObject PlayerUi;
     [SerializeField] public MouseState locker;
+    [SerializeField] public UIStack uiStack;
     public bool status = false;
     private void Awake()
     {
         controls = InputManager.controls;
+    }
+    private void OnEnable()
+    {
+        controls.Global.Pause.performed += OnInteract;
+    }
+
+    private void OnDisable()
+    {
+        controls.Global.Pause.performed -= OnInteract;
     }
 
     public void OnInteract(InputAction.CallbackContext _context)
     {
         if (status)
         {
-            if (!PauseUi.activeSelf)
-                return;
-                player.GetComponent<PlayerView>().canLook = true;
-            PlayerUi.SetActive(true);
-            PauseUi.SetActive(false);
-            locker.lockMouse();
-            Time.timeScale = 1f;
-            status = false;
+            if (uiStack.HasHistory)
+            {
+                uiStack.GoBack();
+            }
+            else
+            {
+                ResumeGame();
+            }
         }
         else
         {
-            player.GetComponent<PlayerView>().canLook = false;
-            PlayerUi.SetActive(false);
-            PauseUi.SetActive(true);
-            locker.unlockMouse();
-            Time.timeScale = 0f;
-            status = true;
+            PauseGame();
         }
     }
-    private void OnEnable()
+    public void PauseGame()
     {
-        controls.Global.Pause.performed += OnInteract;
+        status = true;
+        Time.timeScale = 0f;
+
+        if (player != null)
+            player.GetComponent<PlayerView>().canLook = false;
+
+        if (PlayerUi != null)
+            PlayerUi.SetActive(false);
+
+        if (locker != null)
+            locker.unlockMouse();
+
+        if (uiStack != null && PauseUi != null)
+            uiStack.OpenPanelDirectly(PauseUi);
     }
-    private void OnDisable()
+
+    public void ResumeGame()
     {
-        controls.Global.Pause.performed -= OnInteract;
+        status = false;
+        Time.timeScale = 1f;
+
+        if (player != null)
+            player.GetComponent<PlayerView>().canLook = true;
+
+        if (PlayerUi != null)
+            PlayerUi.SetActive(true);
+
+        if (locker != null)
+            locker.lockMouse();
+
+        if (uiStack != null)
+            uiStack.CloseAll();
     }
 
     public void ResumeButton()
     {
-        player.GetComponent<PlayerView>().canLook = true;
-        PlayerUi.SetActive(true);
-        PauseUi.SetActive(false);
-        locker.lockMouse();
-        Time.timeScale = 1f;
-        status = false;
+        ResumeGame();
     }
 
 }
