@@ -307,7 +307,7 @@ public class PlayerStateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    private void RegenStamina()
+    void RegenStamina()
     {
         if (staminaSettings.isOutOfStamina &&
             staminaSettings.staminaLeft > 3f)

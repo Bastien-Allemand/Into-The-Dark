@@ -84,10 +84,6 @@ public class RadarScript : MonoBehaviour
 
         playerIcon.anchoredPosition = WorldToRadar(player.position);
         ghostIcon.anchoredPosition = WorldToRadar(ghost.position);
-
-
-
-
     }
     private void OnEnable()
     {
