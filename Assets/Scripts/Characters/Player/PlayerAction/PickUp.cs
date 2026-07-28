@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,19 +49,44 @@ public class PickUp : MonoBehaviour
 
         return itemType.NONE;
     }
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnInteractLeft(InputAction.CallbackContext context)
     {
-        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
-        HandContent hand;
-
-        if (side < -0.5) hand = leftHandContent;
-        else if (side > 0.5) hand = rightHandContent;
-        else
-        {
-            Debug.Log($"hand = {side}");
+        GameObject hitObject;
+        itemType item = CheckHit(out hitObject);
+        if (item == itemType.NONE)
             return;
-        }
+        if (hitObject == null)
+            return;
+        switch (item)
+        {
+            case itemType.GADGET:
 
+                ItemScript itemScript = hitObject.GetComponent<ItemScript>();
+                if (itemScript.deployed)
+                {
+                    if (itemScript.canBeRepickUp)
+                    {
+                        itemScript.deployed = false;
+                        itemScript.PickUpItem();
+                        Debug.Log("get it");
+                    }
+                    else
+                        return;
+                }
+                leftHandContent.GiveObject(hitObject);
+                break;
+
+            case itemType.CONSUMABLE:
+
+                inventoryscript.AddConsumable(hitObject);
+
+                Destroy(hitObject);
+
+                break;
+        }
+    }
+    private void OnInteractRight(InputAction.CallbackContext context)
+    {
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -70,35 +94,25 @@ public class PickUp : MonoBehaviour
             return;
         if (hitObject == null)
             return;
-
         switch (item)
         {
             case itemType.GADGET:
 
-                if (!hand.filled)
+
+                ItemScript itemScript = hitObject.GetComponent<ItemScript>();
+                if (itemScript.deployed)
                 {
-                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                    if (itemScript.deployed)
+                    if (itemScript.canBeRepickUp)
                     {
-                        if (itemScript.canBeRepickUp)
-                            itemScript.deployed = false;
-                        else
-                            return;
+                        itemScript.deployed = false;
+                        itemScript.PickUpItem();
+                        Debug.Log("get it");
                     }
-                    leftHandContent.GiveObject(hitObject);
+                    else
+                        return;
+
                 }
-                else if (context.control.name == "rightButton" && !rightHandContent.filled)
-                {
-                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                    if (itemScript.deployed)
-                    {
-                        if (itemScript.canBeRepickUp)
-                            itemScript.deployed = false;
-                        else
-                            return;
-                    }
-                    rightHandContent.GiveObject(hitObject);
-                }
+                rightHandContent.GiveObject(hitObject);
 
                 break;
 
@@ -114,11 +128,13 @@ public class PickUp : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeUseObject.performed += OnInteract;
+        controls.PlayerMoves.TakeUseObjectRight.performed += OnInteractRight;
+        controls.PlayerMoves.TakeUseObjectLeft.performed += OnInteractLeft;
     }
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeUseObject.performed -= OnInteract;
+        controls.PlayerMoves.TakeUseObjectRight.performed -= OnInteractRight;
+        controls.PlayerMoves.TakeUseObjectLeft.performed -= OnInteractLeft;
     }
     private void Awake()
     {

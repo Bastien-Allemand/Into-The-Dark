@@ -37,7 +37,7 @@ public class DropScript : MonoBehaviour
         controls.PlayerMoves.ThrowObjectLeft.started += OnLeftStart;
         controls.PlayerMoves.ThrowObjectLeft.canceled += OnLeftRelease;
 
-        controls.PlayerMoves.ThrowObjectLeft.started += OnRightStart;
+        controls.PlayerMoves.ThrowObjectRight.started += OnRightStart;
         controls.PlayerMoves.ThrowObjectRight.canceled += OnRightRelease;
     }
 

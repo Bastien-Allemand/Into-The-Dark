@@ -249,11 +249,6 @@ public class PlayerStateMachine : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-        moveInput = controls.GeneriqueMove.Movement.ReadValue<Vector2>();
-
     void Update()
     {
         float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
@@ -266,7 +261,7 @@ public class PlayerStateMachine : MonoBehaviour
         animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
 
         currentState?.Update();
-    } 
+    }
 
     private void UpdateAnimator()
     {
