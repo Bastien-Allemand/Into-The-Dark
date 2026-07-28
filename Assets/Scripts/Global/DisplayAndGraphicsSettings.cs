@@ -14,7 +14,6 @@ public class DisplayAndGraphicsSettings : MonoBehaviour
     [SerializeField] private TMP_Dropdown fpsDropdown;
 
     [Header("UI - Graphismes")]
-    [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private TMP_Dropdown aaDropdown;
     [SerializeField] private Slider renderScaleSlider;
     [SerializeField] private TMP_Dropdown textureQualityDropdown;
@@ -100,14 +99,6 @@ public class DisplayAndGraphicsSettings : MonoBehaviour
 
     #region --- GRAPHISMES ---
 
-    public void SetQualityPreset(int index)
-    {
-        QualitySettings.SetQualityLevel(index, true);
-
-        PlayerPrefs.SetInt("QualityPreset", index);
-        PlayerPrefs.Save();
-    }
-
     public void SetAntiAliasing(int index)
     {
         PlayerPrefs.SetInt("AntiAliasing", index);
@@ -161,37 +152,27 @@ public class DisplayAndGraphicsSettings : MonoBehaviour
     private void LoadSettings()
     {
         bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", Screen.fullScreen ? 1 : 0) == 1;
-        if (fullscreenToggle != null) fullscreenToggle.isOn = isFullscreen;
+        if (fullscreenToggle != null) fullscreenToggle.SetIsOnWithoutNotify(isFullscreen);
         Screen.fullScreen = isFullscreen;
 
         bool isVSync = PlayerPrefs.GetInt("VSync", QualitySettings.vSyncCount > 0 ? 1 : 0) == 1;
-        if (vsyncToggle != null) vsyncToggle.isOn = isVSync;
+        if (vsyncToggle != null) vsyncToggle.SetIsOnWithoutNotify(isVSync);
         QualitySettings.vSyncCount = isVSync ? 1 : 0;
 
         int fpsIndex = PlayerPrefs.GetInt("FPSLimitIndex", 1);
-        if (fpsDropdown != null) fpsDropdown.value = fpsIndex;
+        if (fpsDropdown != null) fpsDropdown.SetValueWithoutNotify(fpsIndex);
         SetFPSLimit(fpsIndex);
 
-        int qualityIndex = PlayerPrefs.GetInt("QualityPreset", QualitySettings.GetQualityLevel());
-        if (qualityDropdown != null)
-        {
-            qualityDropdown.ClearOptions();
-            qualityDropdown.AddOptions(new List<string>(QualitySettings.names));
-            qualityDropdown.value = qualityIndex;
-            qualityDropdown.RefreshShownValue();
-        }
-        QualitySettings.SetQualityLevel(qualityIndex, true);
-
         int aaIndex = PlayerPrefs.GetInt("AntiAliasing", 2);
-        if (aaDropdown != null) aaDropdown.value = aaIndex;
+        if (aaDropdown != null) aaDropdown.SetValueWithoutNotify(aaIndex);
         SetAntiAliasing(aaIndex);
 
         float renderScale = PlayerPrefs.GetFloat("RenderScale", 1.0f);
-        if (renderScaleSlider != null) renderScaleSlider.value = renderScale;
+        if (renderScaleSlider != null) renderScaleSlider.SetValueWithoutNotify(renderScale);
         SetRenderScale(renderScale);
 
         int texIndex = PlayerPrefs.GetInt("TextureQuality", 0);
-        if (textureQualityDropdown != null) textureQualityDropdown.value = texIndex;
+        if (textureQualityDropdown != null) textureQualityDropdown.SetValueWithoutNotify(texIndex);
         SetTextureQuality(texIndex);
     }
 
