@@ -94,13 +94,6 @@ public class PickUp : MonoBehaviour
 
                 inventoryscript.AddConsumable(hitObject);
 
-                AudioScript audioScript = hitObject.GetComponent<AudioScript>();
-
-                if (audioScript != null)
-                {
-                    audioScript.PlayConsumeSound();
-                }
-
                 Destroy(hitObject);
 
                 break;

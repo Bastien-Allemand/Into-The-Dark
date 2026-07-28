@@ -2,34 +2,26 @@ using UnityEngine;
 
 public class AudioScript : MonoBehaviour
 {
-    [Header("Sound")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip consumeSound;
-
     private void Awake()
     {
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
-
-        audioSource.playOnAwake = false;
     }
 
-    public void PlayConsumeSound()
+    public void PlaySound(AudioClip clip, AudioSource audioSource)
     {
-        if (consumeSound == null)
+        if (clip == null)
             return;
 
-        GameObject emitter = new GameObject("ConsumeSound");
+        GameObject emitter = new GameObject("Sound");
 
-        AudioSource newSource = emitter.AddComponent<AudioSource>();
+        AudioSource source = emitter.AddComponent<AudioSource>();
 
-        newSource.clip = consumeSound;
-        newSource.volume = audioSource.volume;
-        newSource.spatialBlend = audioSource.spatialBlend;
-        newSource.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
+        source.clip = clip;
+        source.volume = audioSource.volume;
+        source.spatialBlend = audioSource.spatialBlend;
+        source.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
 
-        newSource.Play();
+        source.Play();
 
-        Destroy(emitter, consumeSound.length);
+        Destroy(emitter, clip.length);
     }
 }

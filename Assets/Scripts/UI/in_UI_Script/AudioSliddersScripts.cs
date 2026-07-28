@@ -20,7 +20,7 @@ public class AudioSliddersScripts : MonoBehaviour
         sliderSFX.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
         sliderMaster.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
         sliderUI.onValueChanged.AddListener(AudioManager.Instance.SetUIVolume);
-        sliderMusic.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
+        sliderMusic.onValueChanged.AddListener(AudioManager.Instance.SetAmbientVolume);
     }
 
     void Update()

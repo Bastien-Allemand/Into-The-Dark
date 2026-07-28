@@ -30,9 +30,9 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
     }
 
-    public void SetMusicVolume(float volume)
+    public void SetAmbientVolume(float volume)
     {
-        mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+        mixer.SetFloat("AmbientVolume", Mathf.Log10(volume) * 20);
     }
     public void SetUIVolume(float volume)
     {

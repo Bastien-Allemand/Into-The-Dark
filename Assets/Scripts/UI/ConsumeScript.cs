@@ -11,6 +11,13 @@ public class ConsumeScript : MonoBehaviour
     [SerializeField] private GameObject rightHand;
     [SerializeField] private GameObject leftHand;
 
+    [Header("Audio")]
+    [SerializeField] private AudioScript audioScript;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pillSound;
+    [SerializeField] private AudioClip batterySound;
+    [SerializeField] private AudioClip ventolineSound;
+
     [Header("Effects Configurations")]
     [SerializeField] private EffectBattery batteryEffect; 
     [SerializeField] private GameEffect pillEffect;
@@ -165,29 +172,56 @@ public class ConsumeScript : MonoBehaviour
 
     bool TryConsumeBattery(GameObject targetObject)
     {
-        if (batteryEffect == null) 
+        if (batteryEffect == null)
             return false;
 
-      
         batteryEffect.ApplyBatteryEffect(targetObject);
 
-
         playerInventory.Remove(1, ConsumableType.BATTERY);
+
+        switch (targetType)
+        {
+            case ConsumableType.PILL:
+                audioScript.PlaySound(pillSound, audioSource);
+                break;
+
+            case ConsumableType.BATTERY:
+                audioScript.PlaySound(batterySound, audioSource);
+                break;
+
+            case ConsumableType.VENTOLINE:
+                audioScript.PlaySound(ventolineSound, audioSource);
+                break;
+        }
 
         return true;
     }
 
     bool TryConsume(GameEffect effectToApply)
     {
-       
-        if (targetType == ConsumableType.NONE || effectToApply == null) return false;
+        if (targetType == ConsumableType.NONE || effectToApply == null)
+            return false;
 
         effectToApply.ApplyEffect();
 
         playerInventory.Remove(1, targetType);
 
+        switch (targetType)
+        {
+            case ConsumableType.PILL:
+                audioScript.PlaySound(pillSound, audioSource);
+                break;
+
+            case ConsumableType.BATTERY:
+                audioScript.PlaySound(batterySound, audioSource);
+                break;
+
+            case ConsumableType.VENTOLINE:
+                audioScript.PlaySound(ventolineSound, audioSource);
+                break;
+        }
+
         return true;
-      
     }
 }
 
