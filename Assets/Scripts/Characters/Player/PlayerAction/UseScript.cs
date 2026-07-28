@@ -1,8 +1,5 @@
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlaceScript : MonoBehaviour
 {
@@ -11,7 +8,6 @@ public class PlaceScript : MonoBehaviour
     [SerializeField] public PlayerView playerView;
     [SerializeField] public PlayerAction controls;
 
-    private HandContent hand;
     public HandContent leftHandContent;
     public HandContent rightHandContent;
 
@@ -31,14 +27,14 @@ public class PlaceScript : MonoBehaviour
 
     [SerializeField] private float rotationSpeed = 100f;
 
-    private  bool CheckSurface(out Vector3 _hitPoint)
+    private bool CheckSurface(out Vector3 _hitPoint)
     {
         Raycast.RaycastResult ray = Raycast.CheckRaycast(playerCamera, 4);
-        bool result = false;    
+        bool result = false;
         _hitPoint = Vector3.zero;
-        if (ray != null )
+        if (ray != null)
         {
-            if(!preview.activeSelf)
+            if (!preview.activeSelf)
             {
                 preview.SetActive(true);
             }
@@ -55,44 +51,70 @@ public class PlaceScript : MonoBehaviour
                 preview.SetActive(false);
             }
         }
-            return result;
+        return result;
     }
-    private void OnInteract()
+
+    private void OnInteractLeft(InputAction.CallbackContext _context)
     {
-        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
-
-        if (side < 0) hand = leftHandContent;
-        else if (side > 0) hand = rightHandContent;
-        else return;
-
-        if (hand.filled)
+        if (_context.control.name == "leftButton" && leftHandContent.filled)
         {
-            if(hand.itemScript.needsToBePlaced)
+            if (leftHandContent.itemScript.needsToBePlaced)
             {
-                if(editMode && preview.activeSelf)
+                if (editMode && preview.activeSelf)
                 {
                     isPlacingLeft = true;
                     playerView.canLook = false;
-                    preview.GetComponent<MeshFilter>().mesh = hand.inHand.GetComponent<MeshFilter>().mesh;
+                    preview.GetComponent<MeshFilter>().mesh = leftHandContent.inHand.GetComponent<MeshFilter>().mesh;
                 }
             }
             else
             {
-                hand.itemScript.deployed = true;
+                leftHandContent.itemScript.deployed = true;
+                ItemScript itemScript = leftHandContent.GetComponentInChildren<ItemScript>();
+                if (itemScript != null)
+                {
+                    itemScript.DeployItem();
+                }
             }
         }
     }
-    private void PlaceObject()
+    private void OnInteractRight(InputAction.CallbackContext _context)
     {
-        if (hand.filled)
+      
+        if (_context.control.name == "rightButton" && rightHandContent.filled)
         {
-            if(hand.itemScript.needsToBePlaced)
+            if (rightHandContent.itemScript.needsToBePlaced)
             {
-                if(editMode && isPlacingLeft && preview.activeSelf)
+                if (editMode && preview.activeSelf)
+                {
+                    isPlacingRight = true;
+                    playerView.canLook = false;
+                    preview.GetComponent<MeshFilter>().mesh = rightHandContent.inHand.GetComponent<MeshFilter>().mesh;
+                }
+            }
+            else
+            {
+                rightHandContent.itemScript.deployed = true;
+                ItemScript itemScript = leftHandContent.GetComponentInChildren<ItemScript>();
+                if (itemScript != null)
+                {
+                    itemScript.DeployItem();
+                }
+            }
+        }
+    }
+
+    private void PlaceObjectLeft(InputAction.CallbackContext _context)
+    {
+        if (_context.control.name == "leftButton" && leftHandContent.filled)
+        {
+            if (leftHandContent.itemScript.needsToBePlaced)
+            {
+                if (editMode && isPlacingLeft && preview.activeSelf)
                 {
                     isPlacingLeft = false;
-                    hand.itemScript.deployed = true;
-                    GameObject obj = hand.TakeOutObject(false);
+                    leftHandContent.itemScript.deployed = true;
+                    GameObject obj = leftHandContent.TakeOutObject(false);
 
                     if (obj != null && preview != null)
                     {
@@ -101,7 +123,7 @@ public class PlaceScript : MonoBehaviour
                         preview.GetComponent<MeshFilter>().mesh = previewMesh;
                     }
 
-                    if (!rightHandContent.filled && !hand.filled)
+                    if (!rightHandContent.filled && !leftHandContent.filled)
                     {
                         editMode = false;
                         preview.SetActive(editMode);
@@ -112,42 +134,71 @@ public class PlaceScript : MonoBehaviour
             }
         }
     }
-    private void SwitchEditMode()
+    private void PlaceObjectRight(InputAction.CallbackContext _context)
+    {     
+        if (_context.control.name == "rightButton" && rightHandContent.filled)
+        {
+            if (rightHandContent.itemScript.needsToBePlaced)
+            {
+                if (editMode && isPlacingRight && preview.activeSelf)
+                {
+                    isPlacingRight = false;
+                    rightHandContent.itemScript.deployed = true;
+                    GameObject obj = rightHandContent.TakeOutObject(false);
+
+                    if (obj != null && preview != null)
+                    {
+                        obj.transform.position = preview.transform.position;
+                        obj.transform.rotation = preview.transform.rotation;
+                        preview.GetComponent<MeshFilter>().mesh = previewMesh;
+                    }
+
+                    if (!rightHandContent.filled && !leftHandContent.filled)
+                    {
+                        editMode = false;
+                        preview.SetActive(editMode);
+                    }
+                    playerView.canLook = true;
+                }
+            }
+        }
+    }
+    private void SwitchEditMode(InputAction.CallbackContext _context)
     {
         if (rightHandContent.filled || leftHandContent.filled)
         {
             editMode = !editMode;
             preview.SetActive(editMode);
         }
+
         Debug.Log($"Edit Mode: {editMode}");
     }
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.TakeUseObject.started += _ => OnInteract();
+        controls.PlayerMoves.TakeUseObjectLeft.performed += OnInteractLeft;
+        controls.PlayerMoves.TakeUseObjectLeft.canceled += PlaceObjectLeft;
 
-        controls.PlayerInteraction.TakeUseObject.canceled += _ => PlaceObject();
+        controls.PlayerMoves.TakeUseObjectRight.performed += OnInteractRight;
+        controls.PlayerMoves.TakeUseObjectRight.canceled += PlaceObjectRight;
 
-        controls.PlayerInteraction.SwitchEditMode.performed += _ => SwitchEditMode();
-
+        controls.PlayerMoves.EditMode.performed += SwitchEditMode;
     }
     private void OnDisable()
     {
-        controls.PlayerInteraction.TakeUseObject.started -= _ => OnInteract();
+         controls.PlayerMoves.TakeUseObjectLeft.performed -= OnInteractLeft;
+        controls.PlayerMoves.TakeUseObjectLeft.canceled -= PlaceObjectLeft;
 
-        controls.PlayerInteraction.TakeUseObject.canceled -= _ => PlaceObject();
+        controls.PlayerMoves.TakeUseObjectRight.performed += OnInteractRight;
+        controls.PlayerMoves.TakeUseObjectRight.canceled += PlaceObjectRight;
 
-        controls.PlayerInteraction.SwitchEditMode.performed -= _ => SwitchEditMode();
-
-        GetComponent<PlaceScript>().enabled = true;
-
+        controls.PlayerMoves.EditMode.performed -= SwitchEditMode;
     }
 
     private void Awake()
     {
         controls = InputManager.controls;
         previewMesh = preview.GetComponent<MeshFilter>().mesh;
-        GetComponent<PlaceScript>().enabled = true;
     }
 
     public void Update()
@@ -160,15 +211,12 @@ public class PlaceScript : MonoBehaviour
             }
             if (isPlacingLeft || isPlacingRight)
             {
-                Vector2 lookInput = controls.GeneriqueMove.Look.ReadValue<Vector2>();
+                Vector2 lookInput = controls.Global.Look.ReadValue<Vector2>();
 
                 currentRotation += lookInput.x * rotationSpeed * Time.deltaTime;
 
                 preview.transform.localRotation = Quaternion.Euler(0, currentRotation, 0);
             }
-            Debug.Log(preview);
-            Debug.Log(playerView);
-            Debug.Log(controls);
         }
     }
 

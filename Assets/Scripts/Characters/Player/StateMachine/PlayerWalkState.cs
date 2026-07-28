@@ -14,8 +14,8 @@ public class PlayerWalkState : PlayerBaseState
         Move(stateMachine.moveConfigs.walkSpeed);
 
       
-        bool sprintInput = InputManager.controls.PlayerUniqueMove.Sprint.ReadValue<float>() > 0.5f;
-        bool crouchInput = InputManager.controls.PlayerUniqueMove.Crouch.ReadValue<float>() > 0.5f;
+        bool sprintInput = InputManager.controls.PlayerMoves.Sprint.ReadValue<float>() > 0.5f;
+        bool crouchInput = InputManager.controls.PlayerMoves.Crouch.ReadValue<float>() > 0.5f;
 
         if (stateMachine.moveInput == Vector2.zero)
         {

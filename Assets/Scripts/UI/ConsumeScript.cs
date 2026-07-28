@@ -36,16 +36,16 @@ public class ConsumeScript : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerInteraction.ConsumeItem1.performed += _ => OnInteract(ConsumableType.BATTERY);
-        controls.PlayerInteraction.ConsumeItem2.performed += _ => OnInteract(ConsumableType.PILL);
-        controls.PlayerInteraction.ConsumeItem3.performed += _ => OnInteract(ConsumableType.VENTOLINE);
+        controls.PlayerMoves.ConsumeItem1.performed += _ => OnInteract(ConsumableType.BATTERY);
+        controls.PlayerMoves.ConsumeItem2.performed += _ => OnInteract(ConsumableType.PILL);
+        controls.PlayerMoves.ConsumeItem3.performed += _ => OnInteract(ConsumableType.VENTOLINE);
 
     }
     private void OnDisable()
     {
-        controls.PlayerInteraction.ConsumeItem1.performed -= _ => OnInteract(ConsumableType.BATTERY);
-        controls.PlayerInteraction.ConsumeItem2.performed -= _ => OnInteract(ConsumableType.PILL);
-        controls.PlayerInteraction.ConsumeItem3.performed -= _ => OnInteract(ConsumableType.VENTOLINE);
+        controls.PlayerMoves.ConsumeItem1.performed -= _ => OnInteract(ConsumableType.BATTERY);
+        controls.PlayerMoves.ConsumeItem2.performed -= _ => OnInteract(ConsumableType.PILL);
+        controls.PlayerMoves.ConsumeItem3.performed -= _ => OnInteract(ConsumableType.VENTOLINE);
     }
 
     private void Update()

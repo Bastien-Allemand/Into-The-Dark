@@ -49,9 +49,8 @@ public class PcScript : MonoBehaviour
     }
     void ActivatePC()
     {
-        controls.asset.Disable();
-        controls.Camera.Enable();
-        player.GetComponent<PlayerView>().canLook = false;
+        controls.CameraMoves.Enable();
+        player.gameObject.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -66,8 +65,8 @@ public class PcScript : MonoBehaviour
     }
     void DesactivatePC()
     {
-        controls.asset.Enable();
-        controls.Camera.Disable();
+        controls.CameraMoves.Disable();
+        player.gameObject.SetActive(false);
 
         player.GetComponent<PlayerView>().canLook = true;
         OnPC = false;
@@ -76,14 +75,6 @@ public class PcScript : MonoBehaviour
 
         playerCamera.enabled = !playerCamera.enabled;
         pcCamera.enabled = !pcCamera.enabled;
-    }
-
-    private void OnInteract()
-    {
-        float side = controls.Camera.SwapCamera.ReadValue<float>();
-
-        if (side < -0.5) CamerasScript.instance.PreviousCamera();
-        else if (side > 0.5) CamerasScript.instance.NextCamera();
     }
     public void ActivateExe()
     {
@@ -99,12 +90,22 @@ public class PcScript : MonoBehaviour
         CamerasScript.instance.SetCameraViewActive(false);
     }
 
+    private void NextCamera(InputAction.CallbackContext ctx)
+    {
+        CamerasScript.instance.NextCamera();
+    }
+    private void PreviousCamera(InputAction.CallbackContext ctx)
+    {
+        CamerasScript.instance.PreviousCamera();
+    }
     private void OnEnable()
     {
-        controls.Camera.SwapCamera.performed += _ => OnInteract();
+        controls.CameraMoves.NextCamera.performed += NextCamera;
+        controls.CameraMoves.PreviousCamera.performed += PreviousCamera;
     }
     private void OnDisable()
     {
-        controls.Camera.SwapCamera.performed -= _ => OnInteract();
+        controls.CameraMoves.NextCamera.performed -= NextCamera;
+        controls.CameraMoves.PreviousCamera.performed -= PreviousCamera;
     }
 }
