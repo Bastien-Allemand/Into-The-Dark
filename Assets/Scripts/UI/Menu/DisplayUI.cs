@@ -15,12 +15,13 @@ public class DisplayUI : MonoBehaviour
         controls = InputManager.controls;
     }
 
-    void OnInteract(InputAction.CallbackContext _context)
+    public void OnInteract(InputAction.CallbackContext _context)
     {
         if (status)
         {
-
-            player.GetComponent<PlayerView>().canLook = true;
+            if (!PauseUi.activeSelf)
+                return;
+                player.GetComponent<PlayerView>().canLook = true;
             PlayerUi.SetActive(true);
             PauseUi.SetActive(false);
             locker.lockMouse();
