@@ -213,6 +213,18 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.48887518
       objectReference: {fileID: 0}
+    - target: {fileID: 3497286405205952969, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
+      propertyPath: crazyShader
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: ae3a37c1d22a0b046b2b034287d7e011, type: 3}
+    - target: {fileID: 3497286405205952969, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
+      propertyPath: optiqueShader
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 5146356a28ec7924095c5a103bc320fa, type: 3}
+    - target: {fileID: 4828264879042376236, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
+      propertyPath: border
+      value: 
+      objectReference: {fileID: 3724235634134328974}
     - target: {fileID: 5118822022645332707, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
       propertyPath: playerStateMachine
       value: 
@@ -336,14 +348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interact
   playerCamera: {fileID: 2505855613682143559}
   interactDistance: 5
-  leftHandImageComponent: {fileID: 0}
-  rightHandImageComponent: {fileID: 0}
-  rihtHandOpened: {fileID: 21300000, guid: 78e3dcab1d0f09a49829ed9c2292141f, type: 3}
-  leftHandOpened: {fileID: 21300000, guid: e86a26d98c6851540bbaf0ac573f81ed, type: 3}
-  rihtHandClosed: {fileID: 21300000, guid: 90768b1c2a6879044803987768973c2f, type: 3}
-  leftHandClosed: {fileID: 21300000, guid: 6af7e350e0012c440939855a9bbae49c, type: 3}
-  leftHandContent: {fileID: 1949958699895530234}
-  rightHandContent: {fileID: 7394667959690392235}
 --- !u!1001 &2216461482578734250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -410,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7431766884686123514, guid: 266c4ddc680c9024b87fd8dcfcb17028, type: 3}
       propertyPath: rooms.Array.size
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8414357651127454385, guid: 266c4ddc680c9024b87fd8dcfcb17028, type: 3}
       propertyPath: m_ProvidesContacts
@@ -828,6 +832,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5761888650938315030}
   m_SourcePrefab: {fileID: 100100000, guid: ae572f5f6e573964d951dbe600953674, type: 3}
+--- !u!114 &3724235634134328974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7141628779049921947, guid: ae572f5f6e573964d951dbe600953674, type: 3}
+  m_PrefabInstance: {fileID: 5815005951544494869}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!4 &5108750280546518899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1609720527858994278, guid: ae572f5f6e573964d951dbe600953674, type: 3}
@@ -857,11 +872,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interact
   playerCamera: {fileID: 8916671864439347409}
   interactDistance: 5
-  leftHandImageComponent: {fileID: 0}
-  rightHandImageComponent: {fileID: 0}
-  rihtHandOpened: {fileID: 21300000, guid: 78e3dcab1d0f09a49829ed9c2292141f, type: 3}
-  leftHandOpened: {fileID: 21300000, guid: e86a26d98c6851540bbaf0ac573f81ed, type: 3}
-  rihtHandClosed: {fileID: 21300000, guid: 90768b1c2a6879044803987768973c2f, type: 3}
-  leftHandClosed: {fileID: 21300000, guid: 6af7e350e0012c440939855a9bbae49c, type: 3}
-  leftHandContent: {fileID: 1949958699895530234}
-  rightHandContent: {fileID: 7394667959690392235}
