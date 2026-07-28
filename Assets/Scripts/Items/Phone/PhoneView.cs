@@ -1,3 +1,5 @@
+using Assets.Scripts.Items;
+using System;
 using UnityEngine;
 
 public class PhoneView : MonoBehaviour
@@ -104,5 +106,20 @@ public class PhoneView : MonoBehaviour
             phoneTransform.localPosition = targetAnchor.localPosition;
             waitingForHide = false;
         }
+    }
+    public void OpenDroneCamera(Camera droneCamera)
+    {
+        if (CamerasScript.instance != null)
+            CamerasScript.instance.SetExternalCamera(droneCamera);
+
+        phoneController.OpenDroneCamera();
+    }
+
+    public void CloseDroneCamera()
+    {
+        if (CamerasScript.instance != null)
+            CamerasScript.instance.DisableExternalCamera();
+
+        phoneController.CloseDroneCamera();
     }
 }

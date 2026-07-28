@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.InputSystem;
+using System;
 
 public class RadarScript : MonoBehaviour
 {
@@ -82,8 +84,20 @@ public class RadarScript : MonoBehaviour
 
         playerIcon.anchoredPosition = WorldToRadar(player.position);
         ghostIcon.anchoredPosition = WorldToRadar(ghost.position);
-
-        if (Input.GetKeyDown(KeyCode.F) && !isScanning)
+    }
+    private void OnEnable()
+    {
+        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed += _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed += _ => tmp();
+    }
+    private void OnDisable()
+    {
+        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed -= _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed -= _ => tmp();
+    }
+    private void tmp()
+    {
+        if (!isScanning)
         {
             if (audioSource != null && radarSound != null)
             {

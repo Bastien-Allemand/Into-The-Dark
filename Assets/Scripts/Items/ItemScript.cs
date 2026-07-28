@@ -42,7 +42,7 @@ public class ItemScript : MonoBehaviour
 
         if (batteryScript != null)
         {
-            batteryScript.SetMaxBattery(maxEnergy);
+            batteryScript.SetMaxBattery((int)maxEnergy);
         }
 
         if (deployed && type == ItemType.ITEM_CAMERA && _camera != null && gameObject.layer == 17)
@@ -75,7 +75,7 @@ public class ItemScript : MonoBehaviour
 
             if (batteryScript != null)
             {
-                batteryScript.SetBattery(energy);
+                batteryScript.SetBattery((int)energy);
             }
         }
     }

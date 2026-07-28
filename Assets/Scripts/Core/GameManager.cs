@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour
     [Header("Story Progression")]
     [SerializeField] private List<ChapterData> chaptersSequence = new List<ChapterData>();
 
+    [Header("Actual Difficulty")]
+    public DifficultySettings activeDifficulty;
+
+    [Header("Bank of Difficulties")]
+    public DifficultySettings modeEasy;
+    public DifficultySettings modeNormal;
+    public DifficultySettings modeHard;
+
     [Header("Sequence Informations Settings")]
     [SerializeField] private TextMeshProUGUI nightNameText;
     [SerializeField] private TextMeshProUGUI timerText;
@@ -99,6 +107,11 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (activeDifficulty == null)
+        {
+            activeDifficulty = modeNormal;
+        }
     }
 
     void Start()
@@ -498,5 +511,25 @@ public class GameManager : MonoBehaviour
 
         if (isGameOver || isTransitioning) return;
         HandleTimer();
+    }
+
+    public void SetDifficultyByIndex(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                activeDifficulty = modeEasy;
+                break;
+            case 1:
+                activeDifficulty = modeNormal;
+                break;
+            case 2:
+                activeDifficulty = modeHard;
+                break;
+            default:
+                Debug.LogWarning("Index de difficulté inconnu !");
+                break;
+        }
+        Debug.Log("Difficulté modifiée par index. Mode actuel : " + activeDifficulty.name);
     }
 }

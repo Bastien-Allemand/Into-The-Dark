@@ -15,6 +15,10 @@ public class MonsterVisionScript : MonoBehaviour
 
     void Start()
     {
+        enemyCamera.fieldOfView = GameManager.Instance.activeDifficulty.fovCamGhost;
+        enemyCamera.nearClipPlane = GameManager.Instance.activeDifficulty.nearCamGhost;
+        enemyCamera.farClipPlane = GameManager.Instance.activeDifficulty.farCamGhost;
+
         Collider[] allColliders = Object.FindObjectsByType<Collider>(FindObjectsSortMode.None);
 
         foreach (Collider col in allColliders)
@@ -22,8 +26,8 @@ public class MonsterVisionScript : MonoBehaviour
             if (col.CompareTag("Player"))
                 targetObj = col.gameObject;
         }
-
     }
+
     void Update()
     {
         EnnemyChase();
