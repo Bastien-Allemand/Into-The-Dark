@@ -1,19 +1,28 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static Unity.VisualScripting.Metadata;
 
 public class PauseMenu : UI
 {
     PlayerAction controls => InputManager.controls;
 
     //  first letter of var, then what it does
-    [SerializeField] public GameObject GO_Controls_Content;
+    [SerializeField] public GameObject Controls_ViewPort;
+    [SerializeField] public GameObject Content_Prefab;
+
+    [SerializeField] public GameObject PageLayout;
+    [SerializeField] public GameObject SchemeBouton_Prefab;
+
     [SerializeField] public GameObject GO_Prefab_Keybind;
     [SerializeField] private Bouton b_continue;
     [SerializeField] private Bouton b_main_menu;
 
+    private List<GameObject> gameObjects_Contents = new List<GameObject>();
     public override bool EnterCondition()
     {
         if (controls.Menu.Pause.WasPressedThisFrame())
@@ -36,6 +45,14 @@ public class PauseMenu : UI
         exit = false;
         return result;
     }
+    private void Start()
+    {
+        foreach (Transform child in Controls_ViewPort.transform)
+        {
+            gameObjects_Contents.Add(child.gameObject);
+        }
+        int i = Mathf.Min(gameObjects_Contents.Count, controls.controlSchemes.Count);
+    }
     private void Awake()
     {
         cursorWantedState = CursorLockMode.None;
@@ -53,28 +70,66 @@ public class PauseMenu : UI
             b_main_menu.gameObject.SetActive(true);
         }
 
-        Action<InputDevice[]> InitBouton = (usedDevice) =>
+        //  lambdas
+        Action<InputControlScheme, GameObject> InitBouton = (scheme, content) =>
         {
-            if (!usedDevice.All(device => device == null))
-                foreach (InputActionMap map in controls.asset.actionMaps)
+            foreach (InputActionMap map in controls.asset.actionMaps)
+            {
+                foreach (InputAction action in map)
                 {
-                    foreach (InputAction action in map)
-                    {
-                        Debug.Log("Create Binding Bouton : FirstRun");
+                    if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
+                        continue;
 
-                        if (map.name == controls.GeneriqueMove.Get().name && action.name == "Look")
-                            continue;
-
-                        CreateBoutonFromAction(action, GO_Controls_Content.transform, usedDevice);
-                    }
+                    CreateBoutonFromAction(action, content.transform, scheme);
                 }
+            }
+        };
+        Action<GameObject> nullChild = (parent) =>
+        {
+            foreach (Transform child in parent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        };
+        Action delegatedAction = () =>
+        {
+            foreach (Transform child in Controls_ViewPort.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
         };
 
-        InputDevice[] usedDevice = { Keyboard.current, Mouse.current };
-        InitBouton(usedDevice);
+        nullChild(Controls_ViewPort);
+        nullChild(PageLayout);
 
-        usedDevice = new InputDevice[] { Gamepad.current };
-        InitBouton(usedDevice);
+        for (int i = 0; i < controls.controlSchemes.Count; i++) //  pour chaque scheme (lors de la creation il y a : 'Keyboard&Mouse' et 'Gamepad')
+        {
+            InputControlScheme scheme = controls.controlSchemes[i];
+
+
+            //  les boutons ainsi que le "content" qui tiens les bouton
+            GameObject instance = Instantiate(Content_Prefab);
+            instance.transform.SetParent(Controls_ViewPort.transform, false);
+            instance.name = scheme.name;
+            instance.SetActive(false);
+            gameObjects_Contents.Add(instance);
+
+            InitBouton(scheme, gameObjects_Contents[i]);
+
+            //  creer le bouton lié au "content" pour l'afficher
+            GameObject instance2 = Instantiate(SchemeBouton_Prefab);
+            instance2.transform.SetParent(PageLayout.transform, false);
+            instance2.GetComponentInChildren<TextMeshProUGUI>().text = scheme.name;
+            instance2.GetComponent<Bouton>().show_target.Add(instance.transform);
+            instance2.GetComponent<Bouton>().@delegate = delegatedAction;
+
+        }
+        if (controls.controlSchemes.Count < gameObjects_Contents.Count) // resize si trop grand (sécurité)
+            gameObjects_Contents.RemoveRange(controls.controlSchemes.Count, gameObjects_Contents.Count - controls.controlSchemes.Count);
+
+
+
+        gameObjects_Contents[0].SetActive(true);
     }
     private void OnEnable()
     {
@@ -99,13 +154,13 @@ public class PauseMenu : UI
         }
     }
 
-    private void CreateBoutonFromAction(InputAction action, Transform parent, InputDevice[] deviceUsed)
+    private void CreateBoutonFromAction(InputAction action, Transform parent, InputControlScheme scheme)
     {
         int bindingIndex = 0;
         foreach (InputBinding binding in action.bindings)
         {
             //   regarde si le chemain prie n'est pas l'un définit dedans deviceUsed (KeyBoard,Mouse,GamePad,etc..)
-            if (binding.isComposite || !deviceUsed.Any(device => InputControlPath.Matches(binding.path, device)))
+            if (binding.isComposite || !binding.groups.Contains(scheme.bindingGroup))
             {
                 bindingIndex++;
                 continue;

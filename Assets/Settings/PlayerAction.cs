@@ -361,7 +361,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Enter/Leave Edit Mode"",
+                    ""name"": ""Switch Edit Mode"",
                     ""type"": ""Button"",
                     ""id"": ""297944be-348f-469b-9af3-c2bc6f36f2d4"",
                     ""expectedControlType"": """",
@@ -590,7 +590,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Enter/Leave Edit Mode"",
+                    ""action"": ""Switch Edit Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -601,7 +601,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Enter/Leave Edit Mode"",
+                    ""action"": ""Switch Edit Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -904,6 +904,11 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
                 }
             ]
         },
@@ -938,7 +943,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_PlayerInteraction_TakeHidePhone = m_PlayerInteraction.FindAction("Take/Hide Phone", throwIfNotFound: true);
         m_PlayerInteraction_Lookatcamera = m_PlayerInteraction.FindAction("Look at camera", throwIfNotFound: true);
         m_PlayerInteraction_PhoneLight = m_PlayerInteraction.FindAction("PhoneLight", throwIfNotFound: true);
-        m_PlayerInteraction_EnterLeaveEditMode = m_PlayerInteraction.FindAction("Enter/Leave Edit Mode", throwIfNotFound: true);
+        m_PlayerInteraction_SwitchEditMode = m_PlayerInteraction.FindAction("Switch Edit Mode", throwIfNotFound: true);
         m_PlayerInteraction_ConsumeItem1 = m_PlayerInteraction.FindAction("Consume Item 1", throwIfNotFound: true);
         m_PlayerInteraction_ConsumeItem2 = m_PlayerInteraction.FindAction("Consume Item 2", throwIfNotFound: true);
         m_PlayerInteraction_ConsumeItem3 = m_PlayerInteraction.FindAction("Consume Item 3", throwIfNotFound: true);
@@ -1349,7 +1354,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInteraction_TakeHidePhone;
     private readonly InputAction m_PlayerInteraction_Lookatcamera;
     private readonly InputAction m_PlayerInteraction_PhoneLight;
-    private readonly InputAction m_PlayerInteraction_EnterLeaveEditMode;
+    private readonly InputAction m_PlayerInteraction_SwitchEditMode;
     private readonly InputAction m_PlayerInteraction_ConsumeItem1;
     private readonly InputAction m_PlayerInteraction_ConsumeItem2;
     private readonly InputAction m_PlayerInteraction_ConsumeItem3;
@@ -1386,9 +1391,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @PhoneLight => m_Wrapper.m_PlayerInteraction_PhoneLight;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerInteraction/EnterLeaveEditMode".
+        /// Provides access to the underlying input action "PlayerInteraction/SwitchEditMode".
         /// </summary>
-        public InputAction @EnterLeaveEditMode => m_Wrapper.m_PlayerInteraction_EnterLeaveEditMode;
+        public InputAction @SwitchEditMode => m_Wrapper.m_PlayerInteraction_SwitchEditMode;
         /// <summary>
         /// Provides access to the underlying input action "PlayerInteraction/ConsumeItem1".
         /// </summary>
@@ -1446,9 +1451,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @PhoneLight.started += instance.OnPhoneLight;
             @PhoneLight.performed += instance.OnPhoneLight;
             @PhoneLight.canceled += instance.OnPhoneLight;
-            @EnterLeaveEditMode.started += instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.performed += instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.canceled += instance.OnEnterLeaveEditMode;
+            @SwitchEditMode.started += instance.OnSwitchEditMode;
+            @SwitchEditMode.performed += instance.OnSwitchEditMode;
+            @SwitchEditMode.canceled += instance.OnSwitchEditMode;
             @ConsumeItem1.started += instance.OnConsumeItem1;
             @ConsumeItem1.performed += instance.OnConsumeItem1;
             @ConsumeItem1.canceled += instance.OnConsumeItem1;
@@ -1487,9 +1492,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @PhoneLight.started -= instance.OnPhoneLight;
             @PhoneLight.performed -= instance.OnPhoneLight;
             @PhoneLight.canceled -= instance.OnPhoneLight;
-            @EnterLeaveEditMode.started -= instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.performed -= instance.OnEnterLeaveEditMode;
-            @EnterLeaveEditMode.canceled -= instance.OnEnterLeaveEditMode;
+            @SwitchEditMode.started -= instance.OnSwitchEditMode;
+            @SwitchEditMode.performed -= instance.OnSwitchEditMode;
+            @SwitchEditMode.canceled -= instance.OnSwitchEditMode;
             @ConsumeItem1.started -= instance.OnConsumeItem1;
             @ConsumeItem1.performed -= instance.OnConsumeItem1;
             @ConsumeItem1.canceled -= instance.OnConsumeItem1;
@@ -1855,12 +1860,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPhoneLight(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Enter/Leave Edit Mode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Switch Edit Mode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEnterLeaveEditMode(InputAction.CallbackContext context);
+        void OnSwitchEditMode(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Consume Item 1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
