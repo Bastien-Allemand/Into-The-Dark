@@ -53,7 +53,7 @@ public class GhostPatrolState : IState
         stateMachine.animator.SetInteger("State", 0); // Patrol
     }
 
-        Vector3 RandomPosition(Room _room)
+    Vector3 RandomPosition(Room _room)
     {
         Vector3 pos = Vector3.zero;
         pos.x = Random.Range(_room.min.position.x, _room.max.position.x);
