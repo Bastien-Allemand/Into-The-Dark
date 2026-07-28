@@ -3053,7 +3053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &277907242589458157
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8626,7 +8626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &550610925374102859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10925,6 +10925,7 @@ GameObject:
   - component: {fileID: 8517085899264067316}
   - component: {fileID: 6218056582736253072}
   - component: {fileID: 957851300523099043}
+  - component: {fileID: 6504505143899908868}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -11039,6 +11040,19 @@ MonoBehaviour:
   PlayerUi: {fileID: 6211679639469998955}
   locker: {fileID: 1221234278125144572}
   status: 0
+--- !u!114 &6504505143899908868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110594767143948576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf4b73151c3dcc4596d04c7c27e67dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIStack
+  initialPanel: {fileID: 6569369320889798645}
 --- !u!1 &9158240402269630563
 GameObject:
   m_ObjectHideFlags: 0
