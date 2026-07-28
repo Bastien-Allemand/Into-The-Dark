@@ -54,7 +54,6 @@ public class InputSettingsGenerator : MonoBehaviour
     {
         if (content == null) return;
 
-        // 1. Immediately detach old children so the Layout Group ignores them
         for (int i = content.childCount - 1; i >= 0; i--)
         {
             GameObject child = content.GetChild(i).gameObject;
@@ -99,6 +98,19 @@ public class InputSettingsGenerator : MonoBehaviour
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
         }
+    }
+    public void ResetAllBindings()
+    {
+        if (inputAsset == null) return;
+        inputAsset.Disable(); 
+        foreach (var map in inputAsset.actionMaps)
+        {
+            map.RemoveAllBindingOverrides(); 
+        }
+        PlayerPrefs.DeleteKey(SaveKey); PlayerPrefs.Save();
+        inputAsset.Enable(); 
+        Generate();
+        Debug.Log("All bindings reset to default");
     }
 
     private void ResetZCoordinate(GameObject obj)

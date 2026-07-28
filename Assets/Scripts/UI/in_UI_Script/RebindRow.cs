@@ -76,7 +76,12 @@ public class RebindRow : MonoBehaviour
         Refresh();
         button.interactable = true;
     }
-
+    public void ResetBinding()
+    {
+        action.RemoveBindingOverride(bindingIndex);
+        PlayerPrefs.SetString(saveKey, action.actionMap.asset.SaveBindingOverridesAsJson());
+        Refresh();
+    }
     private void OnDisable()
     {
         // RÈGLE 4 : Si la ligne UI est masquée/détruite pendant une réassignation, 
