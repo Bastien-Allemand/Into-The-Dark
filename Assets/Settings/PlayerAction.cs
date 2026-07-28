@@ -325,7 +325,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Throw Object"",
+                    ""name"": ""Throw Object Right"",
                     ""type"": ""Button"",
                     ""id"": ""995325c4-b9ce-4883-89cd-f86cf955e9f1"",
                     ""expectedControlType"": """",
@@ -404,74 +404,39 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw Object Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5fe1d76-a0cb-470e-ae89-6447bd8eb5fc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""8f032c5f-44ae-4965-b5dc-8e07bf52e499"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throw Object"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Negative"",
-                    ""id"": ""39b561a8-f2fd-4f9c-a401-dc4e93e26d9a"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Throw Object"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""cacc38e5-5036-4dc5-ba49-41219b1104ca"",
+                    ""name"": """",
+                    ""id"": ""230f5b58-6883-4879-8f02-8f0b16d54b7e"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Throw Object"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Manette"",
-                    ""id"": ""3621c655-d5eb-4ec0-bd68-fc29cbb9014b"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Throw Object"",
-                    ""isComposite"": true,
+                    ""action"": ""Throw Object Right"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""6b555ab9-296b-4e7e-9c67-323e4fb99943"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Throw Object"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""c59bce4a-d680-41fa-a998-a85902280a48"",
+                    ""name"": """",
+                    ""id"": ""ddfdcf66-2958-42df-95f4-253d5385324e"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Throw Object"",
+                    ""groups"": """",
+                    ""action"": ""Throw Object Right"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -769,6 +734,28 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""PhoneLight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dd55a16-b653-424d-85fb-333d61be0156"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Object Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b27271b-0575-473c-9610-3aba058207e7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw Object Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -939,7 +926,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         // PlayerInteraction
         m_PlayerInteraction = asset.FindActionMap("PlayerInteraction", throwIfNotFound: true);
         m_PlayerInteraction_TakeUseObject = m_PlayerInteraction.FindAction("TakeUseObject", throwIfNotFound: true);
-        m_PlayerInteraction_ThrowObject = m_PlayerInteraction.FindAction("Throw Object", throwIfNotFound: true);
+        m_PlayerInteraction_ThrowObjectRight = m_PlayerInteraction.FindAction("Throw Object Right", throwIfNotFound: true);
         m_PlayerInteraction_TakeHidePhone = m_PlayerInteraction.FindAction("Take/Hide Phone", throwIfNotFound: true);
         m_PlayerInteraction_Lookatcamera = m_PlayerInteraction.FindAction("Look at camera", throwIfNotFound: true);
         m_PlayerInteraction_PhoneLight = m_PlayerInteraction.FindAction("PhoneLight", throwIfNotFound: true);
@@ -948,6 +935,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_PlayerInteraction_ConsumeItem2 = m_PlayerInteraction.FindAction("Consume Item 2", throwIfNotFound: true);
         m_PlayerInteraction_ConsumeItem3 = m_PlayerInteraction.FindAction("Consume Item 3", throwIfNotFound: true);
         m_PlayerInteraction_Interact = m_PlayerInteraction.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerInteraction_ThrowObjectLeft = m_PlayerInteraction.FindAction("Throw Object Left", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_SwapCamera = m_Camera.FindAction("SwapCamera", throwIfNotFound: true);
@@ -1350,7 +1338,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerInteraction;
     private List<IPlayerInteractionActions> m_PlayerInteractionActionsCallbackInterfaces = new List<IPlayerInteractionActions>();
     private readonly InputAction m_PlayerInteraction_TakeUseObject;
-    private readonly InputAction m_PlayerInteraction_ThrowObject;
+    private readonly InputAction m_PlayerInteraction_ThrowObjectRight;
     private readonly InputAction m_PlayerInteraction_TakeHidePhone;
     private readonly InputAction m_PlayerInteraction_Lookatcamera;
     private readonly InputAction m_PlayerInteraction_PhoneLight;
@@ -1359,6 +1347,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInteraction_ConsumeItem2;
     private readonly InputAction m_PlayerInteraction_ConsumeItem3;
     private readonly InputAction m_PlayerInteraction_Interact;
+    private readonly InputAction m_PlayerInteraction_ThrowObjectLeft;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerInteraction".
     /// </summary>
@@ -1375,9 +1364,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @TakeUseObject => m_Wrapper.m_PlayerInteraction_TakeUseObject;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerInteraction/ThrowObject".
+        /// Provides access to the underlying input action "PlayerInteraction/ThrowObjectRight".
         /// </summary>
-        public InputAction @ThrowObject => m_Wrapper.m_PlayerInteraction_ThrowObject;
+        public InputAction @ThrowObjectRight => m_Wrapper.m_PlayerInteraction_ThrowObjectRight;
         /// <summary>
         /// Provides access to the underlying input action "PlayerInteraction/TakeHidePhone".
         /// </summary>
@@ -1411,6 +1400,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_PlayerInteraction_Interact;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerInteraction/ThrowObjectLeft".
+        /// </summary>
+        public InputAction @ThrowObjectLeft => m_Wrapper.m_PlayerInteraction_ThrowObjectLeft;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_PlayerInteraction; }
@@ -1439,9 +1432,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @TakeUseObject.started += instance.OnTakeUseObject;
             @TakeUseObject.performed += instance.OnTakeUseObject;
             @TakeUseObject.canceled += instance.OnTakeUseObject;
-            @ThrowObject.started += instance.OnThrowObject;
-            @ThrowObject.performed += instance.OnThrowObject;
-            @ThrowObject.canceled += instance.OnThrowObject;
+            @ThrowObjectRight.started += instance.OnThrowObjectRight;
+            @ThrowObjectRight.performed += instance.OnThrowObjectRight;
+            @ThrowObjectRight.canceled += instance.OnThrowObjectRight;
             @TakeHidePhone.started += instance.OnTakeHidePhone;
             @TakeHidePhone.performed += instance.OnTakeHidePhone;
             @TakeHidePhone.canceled += instance.OnTakeHidePhone;
@@ -1466,6 +1459,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @ThrowObjectLeft.started += instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.performed += instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.canceled += instance.OnThrowObjectLeft;
         }
 
         /// <summary>
@@ -1480,9 +1476,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @TakeUseObject.started -= instance.OnTakeUseObject;
             @TakeUseObject.performed -= instance.OnTakeUseObject;
             @TakeUseObject.canceled -= instance.OnTakeUseObject;
-            @ThrowObject.started -= instance.OnThrowObject;
-            @ThrowObject.performed -= instance.OnThrowObject;
-            @ThrowObject.canceled -= instance.OnThrowObject;
+            @ThrowObjectRight.started -= instance.OnThrowObjectRight;
+            @ThrowObjectRight.performed -= instance.OnThrowObjectRight;
+            @ThrowObjectRight.canceled -= instance.OnThrowObjectRight;
             @TakeHidePhone.started -= instance.OnTakeHidePhone;
             @TakeHidePhone.performed -= instance.OnTakeHidePhone;
             @TakeHidePhone.canceled -= instance.OnTakeHidePhone;
@@ -1507,6 +1503,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @ThrowObjectLeft.started -= instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.performed -= instance.OnThrowObjectLeft;
+            @ThrowObjectLeft.canceled -= instance.OnThrowObjectLeft;
         }
 
         /// <summary>
@@ -1832,12 +1831,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTakeUseObject(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Throw Object" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Throw Object Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnThrowObject(InputAction.CallbackContext context);
+        void OnThrowObjectRight(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Take/Hide Phone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1894,6 +1893,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Throw Object Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrowObjectLeft(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Camera" which allows adding and removing callbacks.

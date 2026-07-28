@@ -239,7 +239,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Throw Object",
+                    "name": "Throw Object Right",
                     "type": "Button",
                     "id": "995325c4-b9ce-4883-89cd-f86cf955e9f1",
                     "expectedControlType": "",
@@ -318,74 +318,39 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Throw Object Left",
+                    "type": "Button",
+                    "id": "b5fe1d76-a0cb-470e-ae89-6447bd8eb5fc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "Keyboard",
-                    "id": "8f032c5f-44ae-4965-b5dc-8e07bf52e499",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Throw Object",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Negative",
-                    "id": "39b561a8-f2fd-4f9c-a401-dc4e93e26d9a",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Throw Object",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Positive",
-                    "id": "cacc38e5-5036-4dc5-ba49-41219b1104ca",
+                    "name": "",
+                    "id": "230f5b58-6883-4879-8f02-8f0b16d54b7e",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Throw Object",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Manette",
-                    "id": "3621c655-d5eb-4ec0-bd68-fc29cbb9014b",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
                     "groups": "",
-                    "action": "Throw Object",
-                    "isComposite": true,
+                    "action": "Throw Object Right",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "6b555ab9-296b-4e7e-9c67-323e4fb99943",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Throw Object",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "c59bce4a-d680-41fa-a998-a85902280a48",
+                    "name": "",
+                    "id": "ddfdcf66-2958-42df-95f4-253d5385324e",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Throw Object",
+                    "groups": "",
+                    "action": "Throw Object Right",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -681,6 +646,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "PhoneLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dd55a16-b653-424d-85fb-333d61be0156",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw Object Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b27271b-0575-473c-9610-3aba058207e7",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw Object Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

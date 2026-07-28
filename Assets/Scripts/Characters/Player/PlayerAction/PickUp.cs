@@ -85,21 +85,9 @@ public class PickUp : MonoBehaviour
                         else
                             return;
                     }
-                    leftHandContent.GiveObject(hitObject);
+                    hand.GiveObject(hitObject);
                 }
-                else if (context.control.name == "rightButton" && !rightHandContent.filled)
-                {
-                    ItemScript itemScript = hitObject.GetComponent<ItemScript>();
-                    if (itemScript.deployed)
-                    {
-                        if (itemScript.canBeRepickUp)
-                            itemScript.deployed = false;
-                        else
-                            return;
-                    }
-                    rightHandContent.GiveObject(hitObject);
-                }
-
+               
                 break;
 
             case itemType.CONSUMABLE:
