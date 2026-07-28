@@ -257,7 +257,6 @@ MonoBehaviour:
   m_cameraUiText: {fileID: 0}
   m_screenRenderTexture: {fileID: 8400000, guid: 5951d2779d5240040a133b1c31bd8fbd, type: 2}
   m_CamAmount: 0
-  m_onCamera: 0
   phoneStateScript: {fileID: 8523647177080753401}
   camActive: {fileID: 3102255341727323076}
 --- !u!114 &3634712952109286734
@@ -273,8 +272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneScript
   battery: {fileID: 8659944106694131525}
-  noBatteryScreen: {fileID: 7428182979986227411}
   batteryScript: {fileID: 4828264879042376236}
+  phoneController: {fileID: 0}
   phoneLight: {fileID: 6846377873392358750}
   maxBattery: 100
   maxTime: 60
@@ -795,7 +794,7 @@ MonoBehaviour:
   debug: 0
   rb: {fileID: 2558153957045355166}
   playerCollider: {fileID: 3259128438521581388}
-  animator: {fileID: 0}
+  animator: {fileID: 2120015502874632249}
   optiqueMaterial: {fileID: 2100000, guid: 96c7d776de4588d4f88816ab451257a2, type: 2}
   moveSettings:
     walkSpeed: 5
@@ -818,7 +817,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  itemPhone: {fileID: 1215166630931501594}
   moveInput: {x: 0, y: 0}
 --- !u!114 &3497286405205952969
 MonoBehaviour:
@@ -1593,6 +1591,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 6027479028572763740}
+  border: {fileID: 0}
 --- !u!1 &8674823192554793988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,8 +1828,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120015502874632249}
   m_SourcePrefab: {fileID: 100100000, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
+--- !u!1 &1715180500811836165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
+  m_PrefabInstance: {fileID: 1949181512253298260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2120015502874632249
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715180500811836165}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c86dd65e49b919642b4cc36557846258, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &2055430607795696063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 11c64f17fbab3a242b40b33654ba406f, type: 3}
