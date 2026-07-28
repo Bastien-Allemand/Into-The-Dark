@@ -51,9 +51,20 @@ public class PickUp : MonoBehaviour
     }
     private void OnInteractLeft(InputAction.CallbackContext context)
     {
+<<<<<<< HEAD
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
         if (item == itemType.NONE)
+=======
+        float side = controls.PlayerInteraction.TakeUseObject.ReadValue<float>();
+        HandContent hand;
+
+        if (side < -0.5) hand = leftHandContent;
+        else if (side > 0.5) hand = rightHandContent;
+        else
+        {
+            Debug.Log($"hand = {side}");
+>>>>>>> DEV3
             return;
         if (hitObject == null)
             return;
@@ -61,6 +72,7 @@ public class PickUp : MonoBehaviour
         {
             case itemType.GADGET:
 
+<<<<<<< HEAD
                 ItemScript itemScript = hitObject.GetComponent<ItemScript>();
                 if (itemScript.deployed)
                 {
@@ -87,6 +99,8 @@ public class PickUp : MonoBehaviour
     }
     private void OnInteractRight(InputAction.CallbackContext context)
     {
+=======
+>>>>>>> DEV3
         GameObject hitObject;
         itemType item = CheckHit(out hitObject);
 
@@ -98,9 +112,13 @@ public class PickUp : MonoBehaviour
         {
             case itemType.GADGET:
 
+<<<<<<< HEAD
 
                 ItemScript itemScript = hitObject.GetComponent<ItemScript>();
                 if (itemScript.deployed)
+=======
+                if (!hand.filled)
+>>>>>>> DEV3
                 {
                     if (itemScript.canBeRepickUp)
                     {

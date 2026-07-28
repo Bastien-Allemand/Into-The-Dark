@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1776765458352454867}
   - component: {fileID: 1494734432435714726}
   - component: {fileID: 5653995394759779760}
+  - component: {fileID: 6411982330093054061}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -51,6 +52,10 @@ MonoBehaviour:
   infiniteMode: 0
   keepTimerInInfiniteMode: 1
   chaptersSequence: []
+  activeDifficulty: {fileID: 0}
+  modeEasy: {fileID: 0}
+  modeNormal: {fileID: 0}
+  modeHard: {fileID: 0}
   nightNameText: {fileID: 0}
   timerText: {fileID: 0}
   gameOverPanel: {fileID: 0}
@@ -122,3 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7794b6b17b5679f4fa73712f82f043cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LastDeviceDetector
+--- !u!114 &6411982330093054061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663081242504654695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8189dda583f066744b45fbfcd016cb75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutilSoundManager
+  debug: 1
