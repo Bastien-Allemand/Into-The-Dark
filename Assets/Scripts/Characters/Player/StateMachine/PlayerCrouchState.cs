@@ -10,7 +10,6 @@ public class PlayerCrouchState : PlayerBaseState
         this.playerCollider = playerCollider;
     }
     public override void Enter()
-
     {
         if (stateMachine.debug)
             Debug.Log("Player: Enter Mode CROUCH");
@@ -18,10 +17,17 @@ public class PlayerCrouchState : PlayerBaseState
         if (playerCollider != null)
         {
             playerCollider.height = stateMachine.crouchConfigs.crouchHeight;
-            playerCollider.center = new Vector3(0f, stateMachine.crouchConfigs.crouchCenterY, 0f);
+
+            playerCollider.center = new Vector3(
+                0f,
+                stateMachine.crouchConfigs.crouchCenterY,
+                stateMachine.crouchConfigs.crouchCenterZ
+            );
         }
 
-        stateMachine.currentSpeed = stateMachine.moveConfigs.walkSpeed * stateMachine.moveConfigs.crouchMultiplier;
+        stateMachine.currentSpeed =
+            stateMachine.moveConfigs.walkSpeed *
+            stateMachine.moveConfigs.crouchMultiplier;
     }
 
     public override void Update()
@@ -46,7 +52,6 @@ public class PlayerCrouchState : PlayerBaseState
     }
     public override void Exit()
     {
-        
         if (stateMachine.crouchConfigs.isCeilingAbove)
             return;
 
@@ -56,7 +61,12 @@ public class PlayerCrouchState : PlayerBaseState
         if (playerCollider != null)
         {
             playerCollider.height = stateMachine.crouchConfigs.standHeight;
-            playerCollider.center = new Vector3(0f, stateMachine.crouchConfigs.standCenterY, 0f);
+
+            playerCollider.center = new Vector3(
+                0f,
+                stateMachine.crouchConfigs.standCenterY,
+                0f
+            );
         }
     }
 

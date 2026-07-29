@@ -58,6 +58,7 @@ namespace Assets.Scripts.Items
 
         private void Start()
         {
+            maxBattery = GameManager.Instance.activeDifficulty.tailleBatteriePhone;
             currentBattery = maxBattery;
             currentTimer = maxTime;
 

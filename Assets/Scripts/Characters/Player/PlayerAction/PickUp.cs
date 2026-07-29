@@ -112,7 +112,7 @@ public class PickUp : MonoBehaviour
                         return;
 
                 }
-                    rightHandContent.GiveObject(hitObject);
+                rightHandContent.GiveObject(hitObject);
 
                 break;
 

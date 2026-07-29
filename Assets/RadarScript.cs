@@ -87,15 +87,16 @@ public class RadarScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed += _ => tmp();
-        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed += _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed += tmp;
+        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed += tmp;
     }
     private void OnDisable()
     {
-        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed -= _ => tmp();
-        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed -= _ => tmp();
+        InputManager.controls.PlayerMoves.TakeUseObjectLeft.performed -= tmp;
+        InputManager.controls.PlayerMoves.TakeUseObjectRight.performed -= tmp;
+
     }
-    private void tmp()
+    private void tmp(InputAction.CallbackContext ctx)
     {
         if (!isScanning)
         {

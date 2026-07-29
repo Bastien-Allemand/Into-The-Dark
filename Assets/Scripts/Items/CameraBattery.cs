@@ -15,6 +15,7 @@ public class CameraBattery : MonoBehaviour
     void Start()
     {
         blackScreen.SetActive(false);
+        maxBattery = GameManager.Instance.activeDifficulty.tailleBatterieCamera;
         batteryRemaining = maxBattery;
         myCam = GetComponentInChildren<Camera>();
     }

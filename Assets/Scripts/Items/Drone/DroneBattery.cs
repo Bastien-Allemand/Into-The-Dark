@@ -18,6 +18,7 @@ public class DroneBattery : MonoBehaviour
 
     private void Start()
     {
+        maxBattery = GameManager.Instance.activeDifficulty.tailleBatterieDrone;
         currentBattery = maxBattery;
         currentTimer = maxTime;
 

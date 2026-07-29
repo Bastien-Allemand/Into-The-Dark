@@ -3,17 +3,22 @@ using Assets.Scripts.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 [System.Serializable]
 public class CrouchSettings
 {
     public float standHeight;
     public float standCenterY;
+
     public float crouchHeight;
     public float crouchCenterY;
+
     public float ceilingCheckDistance;
     public bool isCeilingAbove;
+
+    [Header("Collider Offset")]
+    public float crouchCenterZ = 1f;
 }
+
 [System.Serializable]
 public class MoveSettings
 {
@@ -21,6 +26,7 @@ public class MoveSettings
     public float sprintingMultiplier;
     public float crouchMultiplier;
 }
+
 [System.Serializable]
 public class StaminaSettings
 {
@@ -30,11 +36,13 @@ public class StaminaSettings
     public float staminaRegenDelay;
     public bool isOutOfStamina;
 }
+
 public class PlayerStateMachine : MonoBehaviour
 {
     [SerializeField] public bool debug = false;
 
-    PlayerAction controls;
+    private PlayerAction controls;
+
 
     public enum state
     {
@@ -42,86 +50,125 @@ public class PlayerStateMachine : MonoBehaviour
         IDLE,
         WALK,
         SPRINT
-
     }
+
+
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerSprintState SprintState { get; private set; }
     public PlayerCrouchState CrouchState { get; private set; }
     public PlayerOnPhoneState OnPhoneState { get; private set; }
+
+
     public deathCause LastDeathCause { get; set; }
 
 
-
+    [Header("State")]
     [SerializeField] public IState currentState;
+
+
     [Header("References")]
+    public Transform activePlayerTransform;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private Animator animator;
 
-    [Space(5)]
-    [Header("Sprint Settings")]
-    [SerializeField] private Material optiqueMaterial;
+
+    [Header("Movement Settings")]
     [SerializeField] private MoveSettings moveSettings;
     public MoveSettings moveConfigs => moveSettings;
 
     public float currentSpeed;
 
-    [Space(5)]
+
     [Header("Stamina Settings")]
     [SerializeField] private StaminaSettings staminaSettings;
     public StaminaSettings staminaConfigs => staminaSettings;
 
 
-    [Space(5)]
     [Header("Crouch Settings")]
     [SerializeField] private CrouchSettings crouchSettings;
     public CrouchSettings crouchConfigs => crouchSettings;
 
-    [Space(5)]
 
+    [Header("Collision")]
     [SerializeField] private LayerMask layerMask;
+
 
     public Vector2 moveInput;
 
-    void Awake()
+
+    private void Awake()
     {
         controls = InputManager.controls;
 
-        //        controls = new PlayerAction();
+        RefreshActivePlayer();
 
-        IdleState = new PlayerIdleState(this, rb, transform);
-        WalkState = new PlayerWalkState(this, rb, transform);
-        SprintState = new PlayerSprintState(this, rb, transform);
-        CrouchState = new PlayerCrouchState(this, rb, transform, playerCollider);
+        IdleState = new PlayerIdleState(this, rb, activePlayerTransform);
+        WalkState = new PlayerWalkState(this, rb, activePlayerTransform);
+        SprintState = new PlayerSprintState(this, rb, activePlayerTransform);
+        CrouchState = new PlayerCrouchState(this, rb, activePlayerTransform, playerCollider);
         OnPhoneState = new PlayerOnPhoneState(this);
     }
-    void Start()
+
+    public void RefreshActivePlayer()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                activePlayerTransform = child;
+                
+                rb = child.GetComponent<Rigidbody>();
+                if (rb == null) rb = child.GetComponentInChildren<Rigidbody>();
+                
+                playerCollider = child.GetComponent<CapsuleCollider>();
+                if (playerCollider == null) playerCollider = child.GetComponentInChildren<CapsuleCollider>();
+                
+                break;
+            }
+        }
+
+        if (activePlayerTransform == null)
+        {
+            activePlayerTransform = transform;
+        }
+
+        RefreshAnimator();
+    }
+
+    private void Start()
     {
         currentState = IdleState;
 
+        // Movement
         moveSettings.walkSpeed = 5f;
         moveSettings.sprintingMultiplier = 1.4f;
         moveSettings.crouchMultiplier = 0.6f;
+
         currentSpeed = moveSettings.walkSpeed;
 
+        // Stamina
         staminaSettings.maxStamina = 100f;
         staminaSettings.staminaRegenDelay = 1.5f;
         staminaSettings.staminaLeft = staminaSettings.maxStamina;
         staminaSettings.staminaTimer = 0f;
         staminaSettings.isOutOfStamina = false;
 
+        // Crouch
         crouchSettings.standHeight = 2f;
         crouchSettings.standCenterY = 0f;
+        crouchSettings.crouchCenterZ = 0.15f;
+
         crouchSettings.crouchHeight = 1.2f;
         crouchSettings.crouchCenterY = -0.2f;
+
         crouchSettings.ceilingCheckDistance = 0.6f;
     }
     private void OnEnable()
     {
         InputManager.controls.Global.MoveForward.performed +=Forward;
         InputManager.controls.Global.MoveForward.canceled += ForwardCanceled;
-
         InputManager.controls.Global.MoveBackward.performed += Backward;
         InputManager.controls.Global.MoveBackward.canceled += BackwardCanceled;
 
@@ -188,61 +235,95 @@ public class PlayerStateMachine : MonoBehaviour
             return;
         moveInput.x = 0;
     }
+    
+    public void RefreshAnimator()
+    {
+        animator = null;
+
+        foreach (Animator anim in GetComponentsInChildren<Animator>(true))
+        {
+            if (anim.gameObject.activeInHierarchy)
+            {
+                animator = anim;
+                break;
+            }
+        }
+    }
     void Update()
     {
         float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
-
-
-
         if (currentState != SprintState)
         {
             RegenStamina();
         }
+
+        UpdateAnimator();
         animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
-        float optiqueIntensite = (1 - (staminaSettings.staminaLeft / staminaSettings.maxStamina)) * 3.0f;
-        optiqueMaterial.SetFloat("_Stamina", optiqueIntensite);
 
         currentState?.Update();
-    } 
+    }
+
+    private void UpdateAnimator()
+    {
+        if (animator == null)
+            return;
+
+        bool isCrouching = currentState == CrouchState;
+
+        animator.SetBool("IsCrouch", isCrouching);
+
+        float speedMultiplier = 1f;
+
+        if (currentState == SprintState)
+        {
+            speedMultiplier = moveSettings.sprintingMultiplier;
+        }
+        else if (currentState == CrouchState)
+        {
+            speedMultiplier = moveSettings.crouchMultiplier;
+        }
+
+        animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
+    }
 
     public void ChangeState(IState newState)
     {
-        if (newState == null || currentState.GetType() == newState.GetType())
+        if (newState == null)
+            return;
+
+        if (currentState != null &&
+            currentState.GetType() == newState.GetType())
         {
             return;
         }
-        else if (currentState != null)
+
+        if (currentState != null)
         {
             currentState.Exit();
         }
+
         currentState = newState;
 
         currentState.Enter();
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Vector3 origin = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
-    //    Gizmos.DrawWireCube(origin, ceilingCheckSize * .75f);
-    //}
-
     void RegenStamina()
     {
-        if (staminaSettings.isOutOfStamina == true && staminaSettings.staminaLeft > 3f)
+        if (staminaSettings.isOutOfStamina &&
+            staminaSettings.staminaLeft > 3f)
         {
             staminaSettings.isOutOfStamina = false;
         }
 
         if (staminaSettings.staminaLeft < staminaSettings.maxStamina)
         {
-
             if (staminaSettings.staminaTimer < staminaSettings.staminaRegenDelay)
             {
                 staminaSettings.staminaTimer += Time.deltaTime;
             }
             else
             {
-                staminaSettings.staminaLeft += (Time.deltaTime * 0.75f);
+                staminaSettings.staminaLeft += Time.deltaTime * 0.75f;
             }
         }
         else
@@ -250,16 +331,17 @@ public class PlayerStateMachine : MonoBehaviour
             staminaSettings.staminaLeft = staminaSettings.maxStamina;
         }
     }
-
-   public float StaminaRatio
-   {
+    public float StaminaRatio
+    {
         get
         {
-            if (staminaConfigs == null || staminaConfigs.staminaLeft <= 0) return 0f;
+            if (staminaConfigs == null ||
+                staminaConfigs.maxStamina <= 0)
+            {
+                return 0f;
+            }
+
             return staminaConfigs.staminaLeft / staminaConfigs.maxStamina;
         }
     }
-
 }
-
-

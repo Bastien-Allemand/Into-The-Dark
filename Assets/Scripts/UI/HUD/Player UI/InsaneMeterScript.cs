@@ -5,6 +5,7 @@ public class InsaneMeterScript : MonoBehaviour
     [SerializeField] private bool debug = false;
     [SerializeField] public float insaneMeter = 0f;
     [SerializeField] public float maxInsaneMeter = 100f;
+    [SerializeField] public float insaneMeterDecreaseRate;
     [SerializeField] private Material crazyShader;
     [SerializeField] private Material optiqueShader;
 
@@ -17,6 +18,7 @@ public class InsaneMeterScript : MonoBehaviour
 
     private void Start()
     {
+        insaneMeterDecreaseRate = GameManager.Instance.activeDifficulty.recuperationFolie;
     }
 
     private void OnEnable()
@@ -78,7 +80,7 @@ public class InsaneMeterScript : MonoBehaviour
         else if (insaneMeter > 0)
         {
             insanityStack = 0f; // Reset the insanity stack when the target is not visible
-            insaneMeter -= Time.deltaTime * 0.5f; // Decrease the insane meter over time when the target is not visible
+            insaneMeter -= Time.deltaTime * insaneMeterDecreaseRate; // Decrease the insane meter over time when the target is not visible
         }
 
         float distanceToTarget = Vector3.Distance(visionCam.transform.position, _target.transform.position);
