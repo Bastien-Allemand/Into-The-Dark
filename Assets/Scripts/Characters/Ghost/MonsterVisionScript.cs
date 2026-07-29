@@ -15,6 +15,11 @@ public class MonsterVisionScript : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(enemyCamera + "tadaronne1");
+        Debug.Log(enemyCamera.fieldOfView.ToString() + "tadaronne2");
+        Debug.Log(GameManager.Instance.activeDifficulty.fovCamGhost + "tadaronne3");
+        Debug.Log(GameManager.Instance + "tadaronne3");
+
         enemyCamera.fieldOfView = GameManager.Instance.activeDifficulty.fovCamGhost;
         enemyCamera.nearClipPlane = GameManager.Instance.activeDifficulty.nearCamGhost;
         enemyCamera.farClipPlane = GameManager.Instance.activeDifficulty.farCamGhost;
