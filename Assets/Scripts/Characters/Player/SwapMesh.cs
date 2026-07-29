@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class SwapMesh : MonoBehaviour
 {
@@ -10,8 +12,10 @@ public class SwapMesh : MonoBehaviour
 
     [SerializeField] private GameObject currentCharacter;
 
+    private List<GameObject> NightList  = new List<GameObject>();
     private void Awake()
     {
+
         if (currentCharacter != null)
         {
             currentCharacter.SetActive(true);

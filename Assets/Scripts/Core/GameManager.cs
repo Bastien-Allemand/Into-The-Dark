@@ -1,6 +1,8 @@
-using System.Collections.Generic;
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,14 +14,25 @@ public class GameManager : MonoBehaviour
     public static int CurrentNightIndex => currentNightIndex;
 
     [System.Serializable]
+
+    public struct CharacterData
+    {
+        public GameObject Character;
+        public Camera cam;
+        public GameObject rightHand;
+        public GameObject leftHand;
+
+    }
     public struct NightData
     {
+        public GameObject night;
         public string nightName;
         public float duration;
         public bool changeScene;
         public string sceneToLoad;
         [Tooltip("Objects that will activate or spawn for this specific night")]
         public GameObject[] objectsToSpawn;
+        public CharacterData characterOfTheNight;
     }
 
     [System.Serializable]
@@ -37,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Story Progression")]
     [SerializeField] private List<ChapterData> chaptersSequence = new List<ChapterData>();
-
+    [SerializeField] private List<NightData> NightSequence = new List<NightData>();
     [Header("Actual Difficulty")]
     public DifficultySettings activeDifficulty;
 
@@ -168,19 +181,45 @@ public class GameManager : MonoBehaviour
 
     private void GenerateDefaultData()
     {
-        NightData defaultNight = new NightData
-        {
-            nightName = "Nuit 1",
-            duration = 300f,
-            changeScene = true,
-            sceneToLoad = SceneManager.GetActiveScene().name,
-            objectsToSpawn = new GameObject[0]
-        };
+        GameObject nightManager = GetComponentInChildren<GameObject>();
 
+        int NightCount = 1;
+        foreach (Transform child in nightManager.transform)
+        {
+            List < GameObject> CharacterDataList = new List < GameObject>();
+            GameObject NightGO = child.gameObject;
+
+            foreach (Transform child2 in NightGO.transform)
+            {
+                CharacterDataList.Add(child2.gameObject);
+            }
+
+            CharacterData defaultCharacter = new CharacterData
+            {
+                Character = CharacterDataList[0],
+                cam = CharacterDataList[1].GetComponent<Camera>(),
+                rightHand = CharacterDataList[2],
+                leftHand = CharacterDataList[3],
+            };
+
+
+            NightData defaultNight = new NightData
+            {
+                night = NightGO,
+                nightName ="Nuit " + NightCount.ToString(),
+                duration = 300f,
+                changeScene = true,
+                sceneToLoad = SceneManager.GetActiveScene().name,
+                objectsToSpawn = new GameObject[0],
+                characterOfTheNight = defaultCharacter
+            };
+            NightSequence.Add(defaultNight);
+            NightCount++;
+        }
         ChapterData defaultChapter = new ChapterData
         {
             chapterName = "Chapitre 1",
-            nights = new List<NightData> { defaultNight }
+            nights = NightSequence ,
         };
         chaptersSequence = new List<ChapterData> { defaultChapter };
     }

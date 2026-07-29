@@ -13,7 +13,6 @@ public class NightSelector : MonoBehaviour
         leftButton.onClick.AddListener(Previous);
         rightButton.onClick.AddListener(Next);
 
-
     }
     void Previous()
     {
