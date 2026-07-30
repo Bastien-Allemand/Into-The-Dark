@@ -16,7 +16,7 @@ public class GhostDeathState : IState
         if (stateMachine.debug)
             Debug.Log("Ghost: Mode DEATH");
 
-        stateMachine.animator.SetTrigger("Death");
+        //stateMachine.animator.SetTrigger("Death");
     }
 
     public void Update()
