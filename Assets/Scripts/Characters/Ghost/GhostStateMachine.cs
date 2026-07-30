@@ -8,7 +8,7 @@ public class GhostStateMachine : MonoBehaviour
     private MonsterVisionScript monsterVision;
     public UnityEngine.AI.NavMeshAgent agent { get; private set; }
 
-    [SerializeField] public Animator animator; 
+    public Animator animator; 
 
     void Start()
     {

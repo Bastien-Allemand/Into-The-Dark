@@ -16,7 +16,7 @@ public class GhostChaseState : IState
         if (stateMachine.debug)
             Debug.Log("Ghost: Mode CHASE");
 
-        stateMachine.animator.SetInteger("State", 2); // Chase
+        //stateMachine.animator.SetInteger("State", 2); // Chase
     }
 
     public void Update()
