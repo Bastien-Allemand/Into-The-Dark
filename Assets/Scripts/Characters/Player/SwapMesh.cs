@@ -24,20 +24,5 @@ public class SwapMesh : MonoBehaviour
 
     public void Swap(int index)
     {
-        if (currentCharacter != null)
-            currentCharacter.SetActive(false);
-
-        currentCharacter = index switch
-        {
-            1 => Night1,
-            2 => Night2,
-            3 => Night3,
-            _ => currentCharacter
-        };
-
-        if (currentCharacter != null)
-            currentCharacter.SetActive(true);
-
-        playerStateMachine.RefreshAnimator();
     }
 }

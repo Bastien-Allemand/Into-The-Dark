@@ -62,17 +62,16 @@ public class PlayerStateMachine : MonoBehaviour
 
     public deathCause LastDeathCause { get; set; }
 
+    bool InGame = false;
 
     [Header("State")]
     [SerializeField] public IState currentState;
 
 
     [Header("References")]
-    public Transform activePlayerTransform;
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private CapsuleCollider playerCollider;
-    [SerializeField] private Animator animator;
-
+    public GameManager.CharacterData character;
+    public Transform PlayerTransform;
+    public Animator PlayerAnimator;
 
     [Header("Movement Settings")]
     [SerializeField] private MoveSettings moveSettings;
@@ -100,40 +99,30 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        controls = InputManager.controls;
+
+        if (character.PlayerObject == null)
+        {
+            InGame = false; 
+            return;
+        }
+        InGame = true;
+            controls = InputManager.controls;
+
+        PlayerAnimator = character.PlayerObject.GetComponent<Animator>();
+        PlayerTransform = character.PlayerObject.transform;
+        Rigidbody rb = character.PlayerObject.GetComponent<Rigidbody>();
+
+        IdleState = new PlayerIdleState(this, rb, PlayerTransform);
+        WalkState = new PlayerWalkState(this, rb, PlayerTransform);
+        SprintState = new PlayerSprintState(this, rb, PlayerTransform);
+        CrouchState = new PlayerCrouchState(this, rb, PlayerTransform, character.PlayerObject.GetComponent<CapsuleCollider>());
+        OnPhoneState = new PlayerOnPhoneState(this);
 
         RefreshActivePlayer();
-
-        IdleState = new PlayerIdleState(this, rb, activePlayerTransform);
-        WalkState = new PlayerWalkState(this, rb, activePlayerTransform);
-        SprintState = new PlayerSprintState(this, rb, activePlayerTransform);
-        CrouchState = new PlayerCrouchState(this, rb, activePlayerTransform, playerCollider);
-        OnPhoneState = new PlayerOnPhoneState(this);
     }
 
     public void RefreshActivePlayer()
     {
-        foreach (Transform child in transform)
-        {
-            if (child.gameObject.activeSelf)
-            {
-                activePlayerTransform = child;
-                
-                rb = child.GetComponent<Rigidbody>();
-                if (rb == null) rb = child.GetComponentInChildren<Rigidbody>();
-                
-                playerCollider = child.GetComponent<CapsuleCollider>();
-                if (playerCollider == null) playerCollider = child.GetComponentInChildren<CapsuleCollider>();
-                
-                break;
-            }
-        }
-
-        if (activePlayerTransform == null)
-        {
-            activePlayerTransform = transform;
-        }
-
         RefreshAnimator();
     }
 
@@ -238,19 +227,23 @@ public class PlayerStateMachine : MonoBehaviour
     
     public void RefreshAnimator()
     {
-        animator = null;
+
+       PlayerAnimator = null;
 
         foreach (Animator anim in GetComponentsInChildren<Animator>(true))
         {
             if (anim.gameObject.activeInHierarchy)
             {
-                animator = anim;
+                PlayerAnimator = anim;
                 break;
             }
         }
     }
     void Update()
     {
+        if (!InGame)
+            return;
+
         float speedMultiplier = currentState == SprintState ? moveSettings.sprintingMultiplier : 1f;
         if (currentState != SprintState)
         {
@@ -258,19 +251,19 @@ public class PlayerStateMachine : MonoBehaviour
         }
 
         UpdateAnimator();
-        animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
+        PlayerAnimator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
 
         currentState?.Update();
     }
 
     private void UpdateAnimator()
     {
-        if (animator == null)
+        if (PlayerAnimator == null)
             return;
 
         bool isCrouching = currentState == CrouchState;
 
-        animator.SetBool("IsCrouch", isCrouching);
+        PlayerAnimator.SetBool("IsCrouch", isCrouching);
 
         float speedMultiplier = 1f;
 
@@ -283,7 +276,7 @@ public class PlayerStateMachine : MonoBehaviour
             speedMultiplier = moveSettings.crouchMultiplier;
         }
 
-        animator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
+        PlayerAnimator.SetFloat("Speed", moveInput.magnitude * speedMultiplier);
     }
 
     public void ChangeState(IState newState)
@@ -343,5 +336,11 @@ public class PlayerStateMachine : MonoBehaviour
 
             return staminaConfigs.staminaLeft / staminaConfigs.maxStamina;
         }
+    }
+
+    public void CharacterSelected(GameManager.CharacterData characterData)
+    {
+        character = characterData;
+        Awake();
     }
 }

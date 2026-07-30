@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public struct CharacterData
     {
-        public GameObject Character;
+        public GameObject PlayerObject;
         public Camera cam;
         public GameObject rightHand;
         public GameObject leftHand;
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
 
             CharacterData defaultCharacter = new CharacterData
             {
-                Character = CharacterDataList[0],
+                PlayerObject = CharacterDataList[0],
                 cam = CharacterDataList[1].GetComponent<Camera>(),
                 rightHand = CharacterDataList[2],
                 leftHand = CharacterDataList[3],
