@@ -27,18 +27,6 @@ public class CamerasScript : MonoBehaviour
 
     void Start()
     {
-        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
-        foreach (GameObject item in allItems)
-        {
-            Camera childCam = item.GetComponentInChildren<Camera>();
-            if (childCam != null)
-            {
-                m_cameras.Add(childCam);
-                childCam.enabled = false;
-                childCam.targetTexture = null;
-                m_CamAmount++;
-            }
-        }
     }
 
     private void Update()
@@ -47,6 +35,9 @@ public class CamerasScript : MonoBehaviour
         {
             DisableAllCam();
         }
+
+        GetItemCamera();
+        RemoveItemCamera();
     }
 
     public void SetExternalCamera(Camera cam)
@@ -193,7 +184,7 @@ public class CamerasScript : MonoBehaviour
             Camera childCam = item.GetComponentInChildren<Camera>();
             ItemScript itemscript = item.GetComponent<ItemScript>();
 
-            if (childCam != null && itemscript.deployed == true && item.layer == 17)
+            if (childCam != null && itemscript.deployed == true && itemscript.type == ItemScript.ItemType.ITEM_CAMERA)
             {
                 int nbCam = m_cameras.Count;
 
@@ -231,7 +222,7 @@ public class CamerasScript : MonoBehaviour
             Camera childCam = item.GetComponentInChildren<Camera>();
             ItemScript itemscript = item.GetComponent<ItemScript>();
 
-            if (childCam != null && itemscript.deployed == false && item.layer == 17)
+            if (childCam != null && itemscript.deployed == false && itemscript.type == ItemScript.ItemType.ITEM_CAMERA)
             {
                 
                 int nbCam = m_cameras.Count;
@@ -259,11 +250,11 @@ public class CamerasScript : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("PhoneStateScrip DISABLED");
+        Debug.Log("PhoneStateScript DISABLED");
     }
 
     private void OnEnable()
     {
-        Debug.Log("PhoneStateScrip ENABLED");
+        Debug.Log("PhoneStateScript ENABLED");
     }
 }

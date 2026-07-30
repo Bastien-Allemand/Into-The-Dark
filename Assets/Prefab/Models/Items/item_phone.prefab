@@ -265,7 +265,7 @@ MonoBehaviour:
   m_cameraUiText: {fileID: 0}
   m_screenRenderTexture: {fileID: 0}
   m_CamAmount: 0
-  phoneScript: {fileID: 0}
+  phoneStateScript: {fileID: 0}
   camActive: {fileID: 0}
 --- !u!114 &1155319888405279508
 MonoBehaviour:
@@ -279,23 +279,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcebc1edecf1da49a118099e9967779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneScript
-  phoneTransform: {fileID: 6683689409644554644}
   battery: {fileID: 5773040341602521001}
-  phoneLight: {fileID: 7447064034265946738}
   batteryScript: {fileID: 2046907572109329349}
-  screenPhone: {fileID: 1038750199947099078}
-  phoneCanvaRectTransform: {fileID: 1573895398671340447}
-  hiddenAnchor: {fileID: 2956093825434875775}
-  idleAnchor: {fileID: 8851966474543706527}
-  cameraAnchor: {fileID: 6851332359940162767}
-  transitionSpeed: 8
+  phoneController: {fileID: 0}
+  phoneLight: {fileID: 7447064034265946738}
   maxBattery: 100
   maxTime: 60
   coeffBatteryLightUse: 5
-  fogMaterial: {fileID: 0}
-  isLookingCamera: 0
-  moveInput: {x: 0, y: 0}
-  hideDistanceThreshold: 0.01
 --- !u!1 &5405384092929202536
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +495,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 6798920791978174649}
+  border: {fileID: 0}
 --- !u!1 &6039339967962852764
 GameObject:
   m_ObjectHideFlags: 0
