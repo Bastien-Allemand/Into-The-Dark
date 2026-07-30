@@ -2,18 +2,27 @@ using UnityEngine;
 
 public class DisplayThrowMeter : MonoBehaviour
 {
+    GameManager.NightData? night = null;
     [SerializeField] private GameObject throwMeterUI;
-    [SerializeField] private DropScript dropScript;
+     private DropScript dropScript;
     private float maxlength = 125f;
     private Vector3 initialScale;
+    bool InGame = false;
 
-    private void Start()
+    private void Awake()
     {
         initialScale = throwMeterUI.transform.localScale;
+        if (!night.HasValue)
+            return;
+        InGame = true;
+        dropScript = night.Value.nightGO.GetComponent<DropScript>();
     }
 
     private void Update()
     {
+        if (!InGame)
+            return;
+
         if (dropScript.chargingLeft || dropScript.chargingRight)
         {
             throwMeterUI.SetActive(true);
@@ -31,5 +40,10 @@ public class DisplayThrowMeter : MonoBehaviour
         {
             throwMeterUI.SetActive(false);
         }
+    }
+    public void ActivateThrowUI(GameManager.NightData nightSelection)
+    {
+        night = nightSelection;
+        Awake();
     }
 }

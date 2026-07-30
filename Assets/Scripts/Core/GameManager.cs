@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     public struct NightData
     {
-        public GameObject night;
+        public GameObject nightGO;
         public string nightName;
         public float duration;
         public bool changeScene;
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     private bool isTransitioning = false;
 
     private Coroutine blinkCoroutine;
+    public NightData actualNight;
     public List<ChapterData> ChaptersSequence => chaptersSequence;
 
     private void Awake()
@@ -181,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     private void GenerateDefaultData()
     {
-        GameObject nightManager = GetComponentInChildren<GameObject>();
+        GameObject nightManager = GetComponentInChildren<Transform>().gameObject;
 
         int NightCount = 1;
         foreach (Transform child in nightManager.transform)
@@ -205,7 +206,7 @@ public class GameManager : MonoBehaviour
 
             NightData defaultNight = new NightData
             {
-                night = NightGO,
+                nightGO = NightGO,
                 nightName ="Nuit " + NightCount.ToString(),
                 duration = 300f,
                 changeScene = true,

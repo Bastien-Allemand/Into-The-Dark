@@ -6,10 +6,13 @@ using static ItemScript;
 public class ConsumeScript : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Inventory playerInventory;
-    [SerializeField] private Camera playerCamera; 
-    [SerializeField] private GameObject rightHand;
-    [SerializeField] private GameObject leftHand;
+
+    GameManager.NightData? Night = null;
+
+    private Inventory CharacterInventory;
+    private Camera CharacterCamera;
+    private GameObject rightHand;
+    private GameObject leftHand;
 
     [Header("Effects Configurations")]
     [SerializeField] private EffectBattery batteryEffect; 
@@ -18,6 +21,7 @@ public class ConsumeScript : MonoBehaviour
     [SerializeField] ConsumableType targetType = ConsumableType.NONE;
 
     private bool reloadCamera = true;
+    private bool InGame = false;
 
     private bool takingPills;
     private float takingPillsDuration = 2f;
@@ -31,7 +35,19 @@ public class ConsumeScript : MonoBehaviour
 
     private void Awake()
     {
+        if (!Night.HasValue)
+        {
+            InGame = false;
+            return;
+        }
+        InGame = true; 
+        CharacterInventory = Night.Value.nightGO.GetComponent<Inventory>();
+        CharacterCamera = Night.Value.characterOfTheNight.cam.GetComponent<Camera>();
+        rightHand = Night.Value.characterOfTheNight.rightHand;
+        leftHand = Night.Value.characterOfTheNight.leftHand;
+
         controls = InputManager.controls;
+
     }
 
     private void OnEnable()
@@ -50,12 +66,14 @@ public class ConsumeScript : MonoBehaviour
 
     private void Update()
     {
+        if (!InGame)
+            return;
         CheckConsume();
     }
 
     void OnInteract(ConsumableType item)
     {
-        if (playerInventory == null || item == ConsumableType.NONE) return;
+        if (CharacterInventory == null || item == ConsumableType.NONE) return;
 
         targetType = item;
         
@@ -75,7 +93,7 @@ public class ConsumeScript : MonoBehaviour
 
     void CheckConsume()
     {
-        bool availableCount = playerInventory.GetConsumableCount(targetType) > 0;
+        bool availableCount = CharacterInventory.GetConsumableCount(targetType) > 0;
         switch (targetType)
         {
             case ConsumableType.BATTERY:
@@ -172,7 +190,7 @@ public class ConsumeScript : MonoBehaviour
         batteryEffect.ApplyBatteryEffect(targetObject);
 
 
-        playerInventory.Remove(1, ConsumableType.BATTERY);
+        CharacterInventory.Remove(1, ConsumableType.BATTERY);
 
         return true;
     }
@@ -184,10 +202,16 @@ public class ConsumeScript : MonoBehaviour
 
         effectToApply.ApplyEffect();
 
-        playerInventory.Remove(1, targetType);
+        CharacterInventory.Remove(1, targetType);
 
         return true;
       
+    }
+
+    void ActivateConsumeScript(GameManager.NightData nightSelected)
+    {
+        Night = nightSelected;
+        Awake();
     }
 }
 
