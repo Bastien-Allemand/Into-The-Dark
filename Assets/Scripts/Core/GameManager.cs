@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
         [TextArea(3, 10)] public string chapterIntroText;
         public List<NightData> nights;
     }
-
+    [Header("Night")]
+    [SerializeField] public GameObject NightManager;
 
     [Header("Debug / Sandbox Settings")]
     [SerializeField] private bool infiniteMode = false;
@@ -210,7 +211,7 @@ public class GameManager : MonoBehaviour
 
     private void GenerateDefaultData()
     {
-        GameObject nightManager = GetComponentInChildren<Transform>().gameObject;
+        GameObject nightManager = NightManager.GetComponentInChildren<Transform>().gameObject;
 
         int NightCount = 1;
         foreach (Transform child in nightManager.transform)
@@ -603,6 +604,6 @@ public class GameManager : MonoBehaviour
     public void ActivateGame()
     {
         transform.parent.GameObject().GetComponentInChildren<SetUIiToPlayer>().ActivateUI(actualNight);
-        GetComponentInChildren<PlayerStateMachine>().ActivateStateMachine(actualNight.characterOfTheNight);
+        NightManager.GetComponent<PlayerStateMachine>().ActivateStateMachine(actualNight.characterOfTheNight);
     }
 }

@@ -6,7 +6,7 @@ public class DisplayUI : MonoBehaviour
 {
     GameManager.CharacterData? character;
     [SerializeField] public PlayerAction controls;
-    [SerializeField] private GameObject player;
+     private GameObject player;
     [SerializeField] public GameObject PauseUi;
     [SerializeField] public GameObject PlayerUi;
     [SerializeField] public MouseState locker;
@@ -16,13 +16,13 @@ public class DisplayUI : MonoBehaviour
     private bool InGame = false;
     private void Awake()
     {
+        controls = InputManager.controls;
         if (!character.HasValue)
         {
             InGame = false;
             return;
         }
         player = character.Value.PlayerObject;
-        controls = InputManager.controls;
     }
     private void OnEnable()
     {
@@ -36,11 +36,6 @@ public class DisplayUI : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext _context)
     {
-        if (!InGame)
-            return;
-        {
-
-        }
         if (status)
         {
             if (uiStack.HasHistory)
