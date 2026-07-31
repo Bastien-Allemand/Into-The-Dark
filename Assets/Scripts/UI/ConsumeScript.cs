@@ -208,7 +208,7 @@ public class ConsumeScript : MonoBehaviour
       
     }
 
-    void ActivateConsumeScript(GameManager.NightData nightSelected)
+    public void ActivateConsumeScriptUI(GameManager.NightData nightSelected)
     {
         Night = nightSelected;
         Awake();

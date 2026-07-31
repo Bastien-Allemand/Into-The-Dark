@@ -4,15 +4,24 @@ using UnityEngine.UIElements;
 
 public class DisplayUI : MonoBehaviour
 {
+    GameManager.CharacterData? character;
     [SerializeField] public PlayerAction controls;
-    [SerializeField] public GameObject player;
+    [SerializeField] private GameObject player;
     [SerializeField] public GameObject PauseUi;
     [SerializeField] public GameObject PlayerUi;
     [SerializeField] public MouseState locker;
     [SerializeField] public UIStack uiStack;
+
     public bool status = false;
+    private bool InGame = false;
     private void Awake()
     {
+        if (!character.HasValue)
+        {
+            InGame = false;
+            return;
+        }
+        player = character.Value.PlayerObject;
         controls = InputManager.controls;
     }
     private void OnEnable()
@@ -27,6 +36,11 @@ public class DisplayUI : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext _context)
     {
+        if (!InGame)
+            return;
+        {
+
+        }
         if (status)
         {
             if (uiStack.HasHistory)
@@ -83,5 +97,9 @@ public class DisplayUI : MonoBehaviour
     {
         ResumeGame();
     }
-
+    public void ActivateUI(GameManager.CharacterData characterSelection) 
+    {
+        player = characterSelection.PlayerObject;
+        Awake();
+    }
 }

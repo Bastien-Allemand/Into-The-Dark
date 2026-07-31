@@ -572,4 +572,9 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Difficulté modifiée par index. Mode actuel : " + activeDifficulty.name);
     }
+    public void ActivateGame()
+    {
+        transform.parent.GameObject().GetComponentInChildren<SetUIiToPlayer>().ActivateUI(actualNight);
+        GetComponentInChildren<PlayerStateMachine>().ActivateStateMachine(actualNight.characterOfTheNight);
+    }
 }

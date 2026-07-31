@@ -69,7 +69,7 @@ public class PlayerStateMachine : MonoBehaviour
 
 
     [Header("References")]
-    public GameManager.CharacterData character;
+    public GameManager.CharacterData? character;
     public Transform PlayerTransform;
     public Animator PlayerAnimator;
 
@@ -100,7 +100,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Awake()
     {
 
-        if (character.PlayerObject == null)
+        if (!character.HasValue)
         {
             InGame = false; 
             return;
@@ -108,14 +108,14 @@ public class PlayerStateMachine : MonoBehaviour
         InGame = true;
             controls = InputManager.controls;
 
-        PlayerAnimator = character.PlayerObject.GetComponent<Animator>();
-        PlayerTransform = character.PlayerObject.transform;
-        Rigidbody rb = character.PlayerObject.GetComponent<Rigidbody>();
+        PlayerAnimator = character.Value.PlayerObject.GetComponent<Animator>();
+        PlayerTransform = character.Value.PlayerObject.transform;
+        Rigidbody rb = character.Value.PlayerObject.GetComponent<Rigidbody>();
 
         IdleState = new PlayerIdleState(this, rb, PlayerTransform);
         WalkState = new PlayerWalkState(this, rb, PlayerTransform);
         SprintState = new PlayerSprintState(this, rb, PlayerTransform);
-        CrouchState = new PlayerCrouchState(this, rb, PlayerTransform, character.PlayerObject.GetComponent<CapsuleCollider>());
+        CrouchState = new PlayerCrouchState(this, rb, PlayerTransform, character.Value.PlayerObject.GetComponent<CapsuleCollider>());
         OnPhoneState = new PlayerOnPhoneState(this);
 
         RefreshActivePlayer();
@@ -338,7 +338,7 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
-    public void CharacterSelected(GameManager.CharacterData characterData)
+    public void ActivateStateMachine(GameManager.CharacterData characterData)
     {
         character = characterData;
         Awake();

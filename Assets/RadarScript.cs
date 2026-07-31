@@ -53,7 +53,7 @@ public class RadarScript : MonoBehaviour
 
     private
 
-    void Start()
+    void Awake()
     {
         ghostIcon.gameObject.SetActive(false);
         circle.gameObject.SetActive(false);

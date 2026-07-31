@@ -7,7 +7,7 @@ public class DisplayID : MonoBehaviour
 
     public float interactDistance = 3f;
     public TextMeshProUGUI itemText;
-    public Camera playerCamera;
+    private Camera playerCamera;
 
     bool Ingame = false;
 
@@ -40,7 +40,7 @@ public class DisplayID : MonoBehaviour
             }
         }
     }
-    void ActivateUI(GameManager.CharacterData characterSelection)
+    public void ActivateUI(GameManager.CharacterData characterSelection)
     {
         character = characterSelection;
         Awake();
