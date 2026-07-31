@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550330548}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 10.9999695, y: 2.8, z: -31.725826}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -44.3, y: 4.7000003, z: -20.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 633862863}
   - component: {fileID: 633862862}
+  - component: {fileID: 633862864}
   m_Layer: 0
   m_Name: Cinmatic
   m_TagString: Untagged
@@ -346,6 +347,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &633862864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633862861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15e632ef2e76784f9e77525485da855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Night2
+  playableDirector: {fileID: 633862862}
 --- !u!1 &763827810
 GameObject:
   m_ObjectHideFlags: 0

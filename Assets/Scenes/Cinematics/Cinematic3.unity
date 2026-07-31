@@ -583,6 +583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 680038830}
   - component: {fileID: 680038831}
+  - component: {fileID: 680038832}
   m_Layer: 0
   m_Name: Cinematic
   m_TagString: Untagged
@@ -633,6 +634,19 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - 772012c4a33036c40b085be14e8d2e5d: {fileID: 899635466}
+--- !u!114 &680038832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680038829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de4b589c24dc344a95b8fbbcbb7cd58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Night3
+  playableDirector: {fileID: 680038831}
 --- !u!1001 &741427249
 PrefabInstance:
   m_ObjectHideFlags: 0
