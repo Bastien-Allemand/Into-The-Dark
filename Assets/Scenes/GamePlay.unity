@@ -510,6 +510,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6537826386929854505, guid: 8ac4578f6fd31dc438ba0b4f49a6c900, type: 3}
   m_PrefabInstance: {fileID: 3012912607989467094}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1418399915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5691576259131910472, guid: 26c844129639ee8409e6d0d8b2c04076, type: 3}
+  m_PrefabInstance: {fileID: 1084259816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4d31c3783f3934d87f900c456b786c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayInventory
 --- !u!4 &1452074757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 148715254992125523, guid: 8ac4578f6fd31dc438ba0b4f49a6c900, type: 3}
@@ -528,6 +539,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 145965305260459668, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
+      propertyPath: leftHandUI
+      value: 
+      objectReference: {fileID: 1954504343}
+    - target: {fileID: 145965305260459668, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
+      propertyPath: rightHandUI
+      value: 
+      objectReference: {fileID: 402485184}
+    - target: {fileID: 145965305260459668, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
+      propertyPath: rightHandClosed
+      value: 
+      objectReference: {fileID: 21300000, guid: 90768b1c2a6879044803987768973c2f, type: 3}
+    - target: {fileID: 145965305260459668, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
+      propertyPath: rightHandOpened
+      value: 
+      objectReference: {fileID: 21300000, guid: 78e3dcab1d0f09a49829ed9c2292141f, type: 3}
     - target: {fileID: 321570028648502692, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
       propertyPath: crazyShader
       value: 
@@ -607,7 +634,7 @@ PrefabInstance:
     - target: {fileID: 6675907807860523631, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1418399915}
     - target: {fileID: 6771712325495453611, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
       propertyPath: m_Name
       value: Characters
