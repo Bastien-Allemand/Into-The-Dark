@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class InputSettingsGenerator : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class InputSettingsGenerator : MonoBehaviour
     public Transform content;
     public GameObject headerPrefab;
     public RebindRow rowPrefab;
+
+    [Header("Font & Styling Override")]
+    public TMP_FontAsset customFontAsset;
+    [Tooltip("Taille du texte pour le titre")]
+    public float headerFontSize = 50f;
+    [Tooltip("Taille du texte pour les touches et descriptions")]
+    public float rowFontSize = 35f;
 
     private const string SaveKey = "InputBindings";
 
@@ -63,14 +71,14 @@ public class InputSettingsGenerator : MonoBehaviour
 
         foreach (var map in inputAsset.actionMaps)
         {
-            // Spawn Header
             var header = Instantiate(headerPrefab, content, false);
             ResetZCoordinate(header);
 
-            var tmpText = header.GetComponent<TMPro.TMP_Text>() ?? header.GetComponentInChildren<TMPro.TMP_Text>();
+            var tmpText = header.GetComponent<TMP_Text>() ?? header.GetComponentInChildren<TMP_Text>();
             if (tmpText != null)
             {
                 tmpText.text = map.name;
+                ApplyTextStyle(tmpText, headerFontSize);
             }
 
             foreach (var action in map.actions)
@@ -82,33 +90,52 @@ public class InputSettingsGenerator : MonoBehaviour
                     if (binding.isComposite)
                         continue;
 
-                    // Spawn Row
                     var row = Instantiate(rowPrefab, content, false);
                     ResetZCoordinate(row.gameObject);
 
-                    // Initialize Row
                     row.Initialize(action, i, SaveKey);
+
+                    TMP_Text[] rowTexts = row.GetComponentsInChildren<TMP_Text>(true);
+                    foreach (var txt in rowTexts)
+                    {
+                        ApplyTextStyle(txt, rowFontSize);
+                    }
                 }
             }
         }
 
-        // 2. Force Unity UI Layout Group to refresh positions immediately
         Canvas.ForceUpdateCanvases();
         if (content.TryGetComponent<RectTransform>(out var contentRect))
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
         }
     }
+
+    private void ApplyTextStyle(TMP_Text textComponent, float fontSize)
+    {
+        if (textComponent == null) return;
+
+        if (customFontAsset != null)
+        {
+            textComponent.font = customFontAsset;
+        }
+
+        if (fontSize > 0)
+        {
+            textComponent.fontSize = fontSize;
+        }
+    }
+
     public void ResetAllBindings()
     {
         if (inputAsset == null) return;
-        inputAsset.Disable(); 
+        inputAsset.Disable();
         foreach (var map in inputAsset.actionMaps)
         {
-            map.RemoveAllBindingOverrides(); 
+            map.RemoveAllBindingOverrides();
         }
         PlayerPrefs.DeleteKey(SaveKey); PlayerPrefs.Save();
-        inputAsset.Enable(); 
+        inputAsset.Enable();
         Generate();
         Debug.Log("All bindings reset to default");
     }

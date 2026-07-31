@@ -20,7 +20,7 @@ public class GhostPatrolState : IState
         if (stateMachine.debug)
             Debug.Log("Ghost: Mode PATROL");
 
-        stateMachine.animator.SetBool("Patrol", true);
+        //stateMachine.animator.SetBool("Patrol", true);
     }
 
     public void Update()
@@ -50,7 +50,7 @@ public class GhostPatrolState : IState
        if (stateMachine.debug)
             Debug.Log("Ghost: Exit Mode PATROL.");
 
-        stateMachine.animator.SetInteger("State", 0); // Patrol
+        //stateMachine.animator.SetInteger("State", 0); // Patrol
     }
 
     Vector3 RandomPosition(Room _room)
