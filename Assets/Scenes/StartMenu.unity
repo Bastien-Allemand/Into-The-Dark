@@ -264,6 +264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 367834552706434162, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 569056954347418701, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_fontSize
       value: 65
@@ -482,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2319450696949478379, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2319450696949478379, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -516,6 +520,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 941295379120968842, guid: 5929fe94cbbdd974c99b8d3bce293b25, type: 2}
+    - target: {fileID: 2598339447820093408, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2993293977859191950, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_SizeDelta.x
       value: 250
@@ -844,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5909546515398798779, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6236436734814888964, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1132,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801128688677686422, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801128688677686422, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1140,7 +1148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801128688677686422, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8839917320930738162, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1178,11 +1186,58 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9108733292312276199, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6206144971917947120}
+    - target: {fileID: 9108733292312276199, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108733292312276199, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayCinematic, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3897006219226367298, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6206144971917947120}
   m_SourcePrefab: {fileID: 100100000, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+--- !u!1 &6206144971917947118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3897006219226367298, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+  m_PrefabInstance: {fileID: 6206144971917947117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6206144971917947119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6191597401135266356, guid: da728f05ea1389a4e81f49f1c2dffd2b, type: 3}
+  m_PrefabInstance: {fileID: 6206144971917947117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b594ffa965d59b4459904de0d09127bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NightSelector
+--- !u!114 &6206144971917947120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6206144971917947118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee7407b7268a89438ed21db43234048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayCinematic
+  scene1: Cinematic1
+  scene2: Cinematic2
+  scene3: Cinematic3
+  nightSelector: {fileID: 6206144971917947119}
 --- !u!1001 &6493145259366486773
 PrefabInstance:
   m_ObjectHideFlags: 0
