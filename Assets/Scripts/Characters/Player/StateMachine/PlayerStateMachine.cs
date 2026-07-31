@@ -70,8 +70,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     [Header("References")]
     public GameManager.NightData? night;
-    public Transform PlayerTransform;
-    public Animator PlayerAnimator;
+    private Transform PlayerTransform;
+    private Animator PlayerAnimator;
 
     [Header("Movement Settings")]
     [SerializeField] private MoveSettings moveSettings;
@@ -109,8 +109,12 @@ public class PlayerStateMachine : MonoBehaviour
             controls = InputManager.controls;
 
         PlayerAnimator = night.Value.nightGO.GetComponentInChildren<Animator>();
-        PlayerTransform = night.Value.nightGO.transform;
-        Rigidbody rb = night.Value.nightGO.GetComponent<Rigidbody>();
+        Rigidbody rb = night.Value.nightGO.GetComponentInChildren<Rigidbody>();
+
+        PlayerTransform = rb.GetComponent<Transform>();
+
+        Debug.Log("RB : " + rb);
+        Debug.Log("Transform : " + PlayerTransform);
 
         IdleState = new PlayerIdleState(this, rb, PlayerTransform);
         WalkState = new PlayerWalkState(this, rb, PlayerTransform);

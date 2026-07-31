@@ -15,7 +15,8 @@ public class DisplayThrowMeter : MonoBehaviour
         if (!night.HasValue)
             return;
         InGame = true;
-        dropScript = night.Value.nightGO.GetComponent<DropScript>();
+
+        dropScript = night.Value.characterOfTheNight.PlayerObject.GetComponentInParent<DropScript>();
     }
 
     private void Update()

@@ -214,44 +214,43 @@ public class GameManager : MonoBehaviour
     {
         GameObject nightManager = NightManager.GetComponentInChildren<Transform>().gameObject;
 
-        int NightCount = 1;
-        foreach (Transform child in nightManager.transform)
-        {
-            List < GameObject> CharacterDataList = new List < GameObject>();
-            GameObject NightGO = child.gameObject;
+        int nightCount = 1;
 
-            foreach (Transform child2 in NightGO.transform)
-            {
-                CharacterDataList.Add(child2.gameObject);
-            }
+        foreach (Transform nightTransform in nightManager.transform)
+        {
+            GameObject nightGO = nightTransform.gameObject;
+
+            Transform characterRoot = nightTransform.GetChild(0);
 
             CharacterData defaultCharacter = new CharacterData
             {
-                PlayerObject = CharacterDataList[0],
-                cam = CharacterDataList[1].GetComponent<Camera>(),
-                rightHand = CharacterDataList[2],
-                leftHand = CharacterDataList[3],
+                PlayerObject = characterRoot.GetChild(0).gameObject,
+                cam = characterRoot.GetChild(1).GetComponent<Camera>(),
+                rightHand = characterRoot.GetChild(2).gameObject,
+                leftHand = characterRoot.GetChild(3).gameObject,
             };
-
 
             NightData defaultNight = new NightData
             {
-                nightGO = NightGO,
-                nightName ="Nuit " + NightCount.ToString(),
+                nightGO = nightGO,
+                nightName = "Nuit " + nightCount,
                 duration = 300f,
                 changeScene = true,
                 sceneToLoad = SceneManager.GetActiveScene().name,
                 objectsToSpawn = new GameObject[0],
                 characterOfTheNight = defaultCharacter
             };
+
             NightSequence.Add(defaultNight);
-            NightCount++;
+            nightCount++;
         }
+
         ChapterData defaultChapter = new ChapterData
         {
             chapterName = "Chapitre 1",
-            nights = NightSequence ,
+            nights = NightSequence
         };
+
         chaptersSequence = new List<ChapterData> { defaultChapter };
     }
 

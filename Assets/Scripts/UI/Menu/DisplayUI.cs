@@ -22,7 +22,7 @@ public class DisplayUI : MonoBehaviour
             InGame = false;
             return;
         }
-        player = night.Value.nightGO;
+        player = night.Value.nightGO.GetComponentInChildren<PlayerView>().gameObject;
     }
     private void OnEnable()
     {

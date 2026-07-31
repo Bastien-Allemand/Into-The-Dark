@@ -1,5 +1,101 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &996771074772103635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9171114609726385964}
+  m_Layer: 0
+  m_Name: Night 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9171114609726385964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996771074772103635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5108750280546518899}
+  m_Father: {fileID: 4452260443750582722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3835712788311485942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4501921951887300568}
+  m_Layer: 0
+  m_Name: Night 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4501921951887300568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3835712788311485942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2497326268977745931}
+  m_Father: {fileID: 4452260443750582722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5207764775728588650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310420165883358518}
+  m_Layer: 0
+  m_Name: Night 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1310420165883358518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207764775728588650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2278006561856474853}
+  m_Father: {fileID: 4452260443750582722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6771712325495453611
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,9 +160,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2497326268977745931}
-  - {fileID: 2278006561856474853}
-  - {fileID: 5108750280546518899}
+  - {fileID: 4501921951887300568}
+  - {fileID: 1310420165883358518}
+  - {fileID: 9171114609726385964}
   m_Father: {fileID: 5905602389308847880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1614331520742052834
@@ -98,10 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
   debug: 0
-  activePlayerTransform: {fileID: 0}
-  rb: {fileID: 1693012819163340531}
-  playerCollider: {fileID: 1856724687487816481}
-  animator: {fileID: 0}
+  PlayerTransform: {fileID: 0}
+  PlayerAnimator: {fileID: 0}
   moveSettings:
     walkSpeed: 5
     sprintingMultiplier: 1.4
@@ -131,7 +225,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4452260443750582722}
+    m_TransformParent: {fileID: 1310420165883358518}
     m_Modifications:
     - target: {fileID: 1254260394377263234, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
       propertyPath: m_LocalPosition.x
@@ -151,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609720527858994278, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2
+      value: -1.1999999
       objectReference: {fileID: 0}
     - target: {fileID: 1609720527858994278, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
       propertyPath: m_LocalPosition.z
@@ -199,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
       propertyPath: m_Name
-      value: Night 2
+      value: Character Night 2
       objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: 9330efa32acc8af468a4370e31bffade, type: 3}
       propertyPath: m_IsActive
@@ -348,6 +442,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interact
   playerCamera: {fileID: 2505855613682143559}
   interactDistance: 5
+  leftHandImageComponent: {fileID: 0}
+  rightHandImageComponent: {fileID: 0}
+  rihtHandOpened: {fileID: 0}
+  leftHandOpened: {fileID: 0}
+  rihtHandClosed: {fileID: 0}
+  leftHandClosed: {fileID: 0}
+  leftHandContent: {fileID: 0}
+  rightHandContent: {fileID: 0}
 --- !u!1001 &2216461482578734250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,7 +538,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4452260443750582722}
+    m_TransformParent: {fileID: 4501921951887300568}
     m_Modifications:
     - target: {fileID: 681917515319855294, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: playerCamera
@@ -460,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609720527858994278, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1609720527858994278, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_LocalRotation.y
@@ -468,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609720527858994278, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1609720527858994278, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -508,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_Name
-      value: Night 1
+      value: Character Night 1
       objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
       propertyPath: m_IsActive
@@ -636,19 +738,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
---- !u!54 &1693012819163340531 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 2558153957045355166, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
-  m_PrefabInstance: {fileID: 3818675660828384365}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1755849057163887999 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3215761595656198418, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
-  m_PrefabInstance: {fileID: 3818675660828384365}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &1856724687487816481 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 3259128438521581388, guid: 406d477104297224ea2cb83e5ad148b1, type: 3}
   m_PrefabInstance: {fileID: 3818675660828384365}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1949958699895530234 stripped
@@ -694,7 +786,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4452260443750582722}
+    m_TransformParent: {fileID: 9171114609726385964}
     m_Modifications:
     - target: {fileID: 1609720527858994278, guid: ae572f5f6e573964d951dbe600953674, type: 3}
       propertyPath: m_LocalPosition.x
@@ -770,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: ae572f5f6e573964d951dbe600953674, type: 3}
       propertyPath: m_Name
-      value: Night 3
+      value: Character Night 3
       objectReference: {fileID: 0}
     - target: {fileID: 3215761595656198418, guid: ae572f5f6e573964d951dbe600953674, type: 3}
       propertyPath: m_IsActive
@@ -872,3 +964,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interact
   playerCamera: {fileID: 8916671864439347409}
   interactDistance: 5
+  leftHandImageComponent: {fileID: 0}
+  rightHandImageComponent: {fileID: 0}
+  rihtHandOpened: {fileID: 0}
+  leftHandOpened: {fileID: 0}
+  rihtHandClosed: {fileID: 0}
+  leftHandClosed: {fileID: 0}
+  leftHandContent: {fileID: 0}
+  rightHandContent: {fileID: 0}

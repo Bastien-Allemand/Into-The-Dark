@@ -46,7 +46,7 @@ public class ConsumeScript : MonoBehaviour
             return;
         }
         InGame = true;
-        CharacterInventory = Night.Value.nightGO.GetComponent<Inventory>();
+        CharacterInventory = Night.Value.characterOfTheNight.PlayerObject.GetComponentInParent<Inventory>();
         CharacterCamera = Night.Value.characterOfTheNight.cam.GetComponent<Camera>();
         rightHand = Night.Value.characterOfTheNight.rightHand;
         leftHand = Night.Value.characterOfTheNight.leftHand;
