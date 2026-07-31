@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
@@ -9,35 +8,36 @@ public class Interact : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera playerCamera;
 
-    [SerializeField] private GameObject displayHands;
-
-    [SerializeField] private GameObject leftHand;
-    [SerializeField] private GameObject rightHand;
-
-    [Header("Sprites")]
-    [SerializeField] private Image openedLeft;
-    [SerializeField] private Image closedLeft;
-    [SerializeField] private Image openedRight;
-    [SerializeField] private Image closedRight;
-
     [Header("Interaction")]
     [SerializeField] private float interactDistance = 5f;
-    [SerializeField] private LayerMask interactableLayers = ~0;
+
+    [SerializeField] private Image leftHandImageComponent;
+    [SerializeField] private Image rightHandImageComponent;
+
+    [Header("UI Sprites")]
+    [SerializeField] private Sprite rihtHandOpened;
+    [SerializeField] private Sprite leftHandOpened;
+    [SerializeField] private Sprite rihtHandClosed;
+    [SerializeField] private Sprite leftHandClosed;
+
+    [Header("HandContent References")]
+    [SerializeField] private HandContent leftHandContent;
+    [SerializeField] private HandContent rightHandContent;
 
     private Readable currentReadObject;
+    private bool isHoveringInteractive = false;
 
-    private bool isHoveringInteractive;
-    private bool isHoldingLeft;
-    private bool isHoldingRight;
+    private bool isHoldingLeft = false;
+    private bool isHoldingRight = false;
 
     private void Awake()
     {
         controls = InputManager.controls;
+    }
 
-        if (playerCamera == null)
-            playerCamera = Camera.main;
-
-        HideHandsUI();
+    private void Start()
+    {
+        HideUIHands();
     }
 
     private void OnEnable()
@@ -51,7 +51,9 @@ public class Interact : MonoBehaviour
         controls.PlayerMoves.Interact.performed -= OnInteractPressed;
         controls.PlayerMoves.Interact.canceled -= OnInteractReleased;
 
-        HideHandsUI();
+        isHoldingLeft = false;
+        isHoldingRight = false;
+        HideUIHands();
     }
 
     private void Update()
@@ -59,113 +61,152 @@ public class Interact : MonoBehaviour
         CheckHoverObject();
     }
 
-    private bool LeftHandOccupied()
+    private void OnInteractPressed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        return leftHand != null && leftHand.transform.childCount > 0;
-    }
+        bool isLeft = ctx.control.name == "leftButton";
+        bool isRight = ctx.control.name == "rightButton";
 
-    private bool RightHandOccupied()
-    {
-        return rightHand != null && rightHand.transform.childCount > 0;
-    }
-
-    private void UpdateHandsUI(bool leftClosed, bool rightClosed)
-    {
-        displayHands.SetActive(true);
-
-        bool leftFree = !LeftHandOccupied();
-        bool rightFree = !RightHandOccupied();
-
-        openedLeft.enabled = leftFree && !leftClosed;
-        closedLeft.enabled = leftFree && leftClosed;
-
-        openedRight.enabled = rightFree && !rightClosed;
-        closedRight.enabled = rightFree && rightClosed;
-    }
-
-    private void HideHandsUI()
-    {
-        displayHands.SetActive(false);
-    }
-
-    private void OnInteractPressed(InputAction.CallbackContext ctx)
-    {
-        if (ctx.control.name == "leftButton")
+        if (isLeft)
+        {
             isHoldingLeft = true;
-
-        if (ctx.control.name == "rightButton")
+        }
+        else if (isRight)
+        {
             isHoldingRight = true;
+        }
+        else
+        {
+            isHoldingLeft = true;
+            isHoldingRight = true;
+        }
 
         if (isHoveringInteractive)
-            UpdateHandsUI(isHoldingLeft, isHoldingRight);
+        {
+            SetHandsUIState(isHoldingLeft, isHoldingRight);
+        }
 
-        InteractWithObject(ctx.control.name == "leftButton",
-                           ctx.control.name == "rightButton");
+        InteractWithObject(isLeft, isRight);
     }
 
-    private void OnInteractReleased(InputAction.CallbackContext ctx)
+    private void OnInteractReleased(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
         if (ctx.control.name == "leftButton")
+        {
             isHoldingLeft = false;
-
-        if (ctx.control.name == "rightButton")
+        }
+        else if (ctx.control.name == "rightButton")
+        {
             isHoldingRight = false;
+        }
+        else
+        {
+            isHoldingLeft = false;
+            isHoldingRight = false;
+        }
 
         if (isHoveringInteractive)
-            UpdateHandsUI(isHoldingLeft, isHoldingRight);
+        {
+            SetHandsUIState(isHoldingLeft, isHoldingRight);
+        }
         else
-            HideHandsUI();
+        {
+            HideUIHands();
+        }
+    }
+
+    private bool LeftHandHasObject()
+    {
+        return leftHandContent != null && leftHandContent.filled;
+    }
+
+    private bool RightHandHasObject()
+    {
+        return rightHandContent != null && rightHandContent.filled;
     }
 
     private void CheckHoverObject()
     {
-        if (playerCamera == null)
-            return;
-
         if (currentReadObject != null)
         {
-            if (isHoveringInteractive)
+            if (isHoveringInteractive || (leftHandImageComponent != null && leftHandImageComponent.enabled) || (rightHandImageComponent != null && rightHandImageComponent.enabled))
             {
                 isHoveringInteractive = false;
-                HideHandsUI();
+                HideUIHands();
             }
             return;
         }
 
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         bool lookingAtTarget = false;
 
-        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayers, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
         {
-            lookingAtTarget =
-                hit.collider.GetComponentInParent<ComplexAnimatorScript>() != null ||
-                hit.collider.GetComponentInParent<BasicAnimationScript>() != null ||
-                hit.collider.GetComponentInParent<Readable>() != null ||
-                hit.collider.CompareTag("Readable") ||
-                hit.collider.CompareTag("Lootable") ||
-                hit.collider.CompareTag("Item") ||
-                (hit.collider.transform.parent != null &&
-                 hit.collider.transform.parent.CompareTag("Item"));
+            bool isReadable = hit.collider.GetComponentInParent<Readable>() != null || hit.collider.CompareTag("Readable");
+            bool isLootable = hit.collider.GetComponentInParent<BasicAnimationScript>() != null || hit.collider.CompareTag("Lootable");
+            bool isGadjet = hit.collider.CompareTag("Item") || (hit.collider.transform.parent != null && hit.collider.transform.parent.CompareTag("Item"));
+
+            if (isReadable || isLootable || isGadjet)
+            {
+                lookingAtTarget = true;
+            }
         }
 
         if (lookingAtTarget != isHoveringInteractive)
         {
             isHoveringInteractive = lookingAtTarget;
 
-            if (lookingAtTarget)
-                UpdateHandsUI(isHoldingLeft, isHoldingRight);
+            if (isHoveringInteractive)
+            {
+                SetHandsUIState(isHoldingLeft, isHoldingRight);
+            }
             else
-                HideHandsUI();
+            {
+                HideUIHands();
+            }
         }
     }
 
-    private void InteractWithObject(bool leftClick, bool rightClick)
+    private void SetHandsUIState(bool leftClosed, bool rightClosed)
     {
-        if (leftClick && LeftHandOccupied())
+        if (leftHandImageComponent != null)
+        {
+            if (LeftHandHasObject())
+            {
+                leftHandImageComponent.enabled = false;
+            }
+            else
+            {
+                leftHandImageComponent.sprite = leftClosed ? leftHandClosed : leftHandOpened;
+                leftHandImageComponent.enabled = (leftHandImageComponent.sprite != null);
+            }
+        }
+
+        if (rightHandImageComponent != null)
+        {
+            if (RightHandHasObject())
+            {
+                rightHandImageComponent.enabled = false;
+            }
+            else
+            {
+                rightHandImageComponent.sprite = rightClosed ? rihtHandClosed : rihtHandOpened;
+                rightHandImageComponent.enabled = (rightHandImageComponent.sprite != null);
+            }
+        }
+    }
+
+    private void HideUIHands()
+    {
+        if (leftHandImageComponent != null) leftHandImageComponent.enabled = false;
+        if (rightHandImageComponent != null) rightHandImageComponent.enabled = false;
+    }
+
+    private void InteractWithObject(bool isLeftClick, bool isRightClick)
+    {
+        if (isLeftClick && LeftHandHasObject())
             return;
 
-        if (rightClick && RightHandOccupied())
+        if (isRightClick && RightHandHasObject())
             return;
 
         if (currentReadObject != null)
@@ -181,24 +222,24 @@ public class Interact : MonoBehaviour
             return;
         }
 
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayers, QueryTriggerInteraction.Ignore))
+        if (!Physics.Raycast(ray, out RaycastHit hit, interactDistance))
             return;
 
-        ComplexAnimatorScript animator = hit.collider.GetComponentInParent<ComplexAnimatorScript>();
+        ComplexAnimatorScript animatorObject = hit.collider.GetComponentInParent<ComplexAnimatorScript>();
 
-        if (animator != null)
+        if (animatorObject != null)
         {
-            animator.Interact();
+            animatorObject.Interact();
             return;
         }
 
-        BasicAnimationScript loot = hit.collider.GetComponentInParent<BasicAnimationScript>();
+        BasicAnimationScript lootItem = hit.collider.GetComponentInParent<BasicAnimationScript>();
 
-        if (loot != null)
+        if (lootItem != null)
         {
-            loot.Interact();
+            lootItem.Interact();
             return;
         }
 
@@ -208,6 +249,7 @@ public class Interact : MonoBehaviour
         {
             readable.PlaceObjectInFOV();
             currentReadObject = readable;
+            return;
         }
     }
 }

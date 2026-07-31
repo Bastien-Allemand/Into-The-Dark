@@ -230,7 +230,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 390, y: 300}
-  m_SizeDelta: {x: 175, y: 175}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524897533
 MonoBehaviour:
@@ -366,7 +366,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1350, y: 300}
-  m_SizeDelta: {x: 175, y: 175}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817073249
 MonoBehaviour:
@@ -792,6 +792,14 @@ PrefabInstance:
       propertyPath: rightHandOpened
       value: 
       objectReference: {fileID: 21300000, guid: 78e3dcab1d0f09a49829ed9c2292141f, type: 3}
+    - target: {fileID: 145965305260459668, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
+      propertyPath: leftHandImageComponent
+      value: 
+      objectReference: {fileID: 524897533}
+    - target: {fileID: 145965305260459668, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
+      propertyPath: rightHandImageComponent
+      value: 
+      objectReference: {fileID: 817073249}
     - target: {fileID: 321570028648502692, guid: 39a5d783aeba4624692a8c5d0881c860, type: 3}
       propertyPath: crazyShader
       value: 
@@ -1008,7 +1016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1566071088
 RectTransform:
   m_ObjectHideFlags: 0
