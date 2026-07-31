@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Readable : MonoBehaviour
 {
-    [Header("Player Camera")]
-    [SerializeField] private Camera playerCamera;
-
     [Header("Reading Position")]
     [SerializeField] private Vector3 readLocalPosition = new Vector3(0f, -0.1f, 0.5f);
     [SerializeField] private Vector3 readLocalRotation = Vector3.zero;
@@ -27,15 +24,38 @@ public class Readable : MonoBehaviour
 
     private Coroutine currentAnimation;
 
+    private Camera playerCamera;
+
     private void Start()
     {
-        originalParent = transform.parent;
-        originalWorldPosition = transform.position;
-        originalWorldRotation = transform.rotation;
+        playerCamera = GetActivePlayerCamera();
 
         originalParent = transform.parent;
         originalWorldPosition = transform.position;
         originalWorldRotation = transform.rotation;
+    }
+
+    private Camera GetActivePlayerCamera()
+    {
+        GameObject nightManager = GameObject.Find("Night Manager");
+
+        if (nightManager == null)
+        {
+            Debug.LogError("Night Manager Doesn't Exist.");
+            return null;
+        }
+
+        foreach (Transform child in nightManager.transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                Camera cam = child.GetComponentInChildren<Camera>();
+
+                if (cam != null)
+                    return cam;
+            }
+        }
+        return null;
     }
 
     public void PlaceObjectInFOV()

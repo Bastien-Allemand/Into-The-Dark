@@ -35,33 +35,59 @@ public class ConsumeScript : MonoBehaviour
 
     private void Awake()
     {
+        SetupNight();
+    }
+
+    void SetupNight()
+    {
         if (!Night.HasValue)
         {
             InGame = false;
             return;
         }
-        InGame = true; 
+        InGame = true;
         CharacterInventory = Night.Value.nightGO.GetComponent<Inventory>();
         CharacterCamera = Night.Value.characterOfTheNight.cam.GetComponent<Camera>();
         rightHand = Night.Value.characterOfTheNight.rightHand;
         leftHand = Night.Value.characterOfTheNight.leftHand;
 
         controls = InputManager.controls;
-
     }
+
 
     private void OnEnable()
     {
-        controls.PlayerMoves.ConsumeItem1.performed += _ => OnInteract(ConsumableType.BATTERY);
-        controls.PlayerMoves.ConsumeItem2.performed += _ => OnInteract(ConsumableType.PILL);
-        controls.PlayerMoves.ConsumeItem3.performed += _ => OnInteract(ConsumableType.VENTOLINE);
+        if (controls == null)
+            return;
 
+        controls.PlayerMoves.ConsumeItem1.performed += OnBattery;
+        controls.PlayerMoves.ConsumeItem2.performed += OnPill;
+        controls.PlayerMoves.ConsumeItem3.performed += OnVentoline;
     }
+
     private void OnDisable()
     {
-        controls.PlayerMoves.ConsumeItem1.performed -= _ => OnInteract(ConsumableType.BATTERY);
-        controls.PlayerMoves.ConsumeItem2.performed -= _ => OnInteract(ConsumableType.PILL);
-        controls.PlayerMoves.ConsumeItem3.performed -= _ => OnInteract(ConsumableType.VENTOLINE);
+        if (controls == null)
+            return;
+
+        controls.PlayerMoves.ConsumeItem1.performed -= OnBattery;
+        controls.PlayerMoves.ConsumeItem2.performed -= OnPill;
+        controls.PlayerMoves.ConsumeItem3.performed -= OnVentoline;
+    }
+
+    private void OnBattery(InputAction.CallbackContext ctx)
+    {
+        OnInteract(ConsumableType.BATTERY);
+    }
+
+    private void OnPill(InputAction.CallbackContext ctx)
+    {
+        OnInteract(ConsumableType.PILL);
+    }
+
+    private void OnVentoline(InputAction.CallbackContext ctx)
+    {
+        OnInteract(ConsumableType.VENTOLINE);
     }
 
     private void Update()
@@ -211,7 +237,7 @@ public class ConsumeScript : MonoBehaviour
     public void ActivateConsumeScriptUI(GameManager.NightData nightSelected)
     {
         Night = nightSelected;
-        Awake();
+        SetupNight();
     }
 }
 
