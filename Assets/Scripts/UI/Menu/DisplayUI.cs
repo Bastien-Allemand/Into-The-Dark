@@ -57,7 +57,7 @@ public class DisplayUI : MonoBehaviour
         status = true;
         Time.timeScale = 0f;
 
-        if (player != null)
+        if (character.HasValue)
             player.GetComponent<PlayerView>().canLook = false;
 
         if (PlayerUi != null)
@@ -74,8 +74,7 @@ public class DisplayUI : MonoBehaviour
     {
         status = false;
         Time.timeScale = 1f;
-
-        if (player != null)
+        if (character.HasValue)
             player.GetComponent<PlayerView>().canLook = true;
 
         if (PlayerUi != null)
