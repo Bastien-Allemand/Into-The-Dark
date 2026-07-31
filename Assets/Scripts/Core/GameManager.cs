@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(StartGameWithIntroSequence(currentChapter));
         }
+        ActivateGame();
     }
 
     private void OnEnable()
@@ -603,7 +604,8 @@ public class GameManager : MonoBehaviour
     }
     public void ActivateGame()
     {
+        actualNight = chaptersSequence[currentChapterIndex].nights[currentNightIndex];
         transform.parent.GameObject().GetComponentInChildren<SetUIiToPlayer>().ActivateUI(actualNight);
-        NightManager.GetComponent<PlayerStateMachine>().ActivateStateMachine(actualNight.characterOfTheNight);
+        NightManager.GetComponent<PlayerStateMachine>().ActivateStateMachine(actualNight);
     }
 }

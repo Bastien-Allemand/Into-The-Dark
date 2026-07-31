@@ -69,7 +69,7 @@ public class PlayerStateMachine : MonoBehaviour
 
 
     [Header("References")]
-    public GameManager.CharacterData? character;
+    public GameManager.NightData? night;
     public Transform PlayerTransform;
     public Animator PlayerAnimator;
 
@@ -100,7 +100,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Awake()
     {
 
-        if (!character.HasValue)
+        if (!night.HasValue)
         {
             InGame = false; 
             return;
@@ -108,23 +108,18 @@ public class PlayerStateMachine : MonoBehaviour
         InGame = true;
             controls = InputManager.controls;
 
-        PlayerAnimator = character.Value.PlayerObject.GetComponent<Animator>();
-        PlayerTransform = character.Value.PlayerObject.transform;
-        Rigidbody rb = character.Value.PlayerObject.GetComponent<Rigidbody>();
+        PlayerAnimator = night.Value.nightGO.GetComponentInChildren<Animator>();
+        PlayerTransform = night.Value.nightGO.transform;
+        Rigidbody rb = night.Value.nightGO.GetComponent<Rigidbody>();
 
         IdleState = new PlayerIdleState(this, rb, PlayerTransform);
         WalkState = new PlayerWalkState(this, rb, PlayerTransform);
         SprintState = new PlayerSprintState(this, rb, PlayerTransform);
-        CrouchState = new PlayerCrouchState(this, rb, PlayerTransform, character.Value.PlayerObject.GetComponent<CapsuleCollider>());
+        CrouchState = new PlayerCrouchState(this, rb, PlayerTransform, night.Value.nightGO.GetComponent<CapsuleCollider>());
         OnPhoneState = new PlayerOnPhoneState(this);
 
-        RefreshActivePlayer();
     }
 
-    public void RefreshActivePlayer()
-    {
-        RefreshAnimator();
-    }
 
     private void Start()
     {
@@ -225,20 +220,6 @@ public class PlayerStateMachine : MonoBehaviour
         moveInput.x = 0;
     }
     
-    public void RefreshAnimator()
-    {
-
-       PlayerAnimator = null;
-
-        foreach (Animator anim in GetComponentsInChildren<Animator>(true))
-        {
-            if (anim.gameObject.activeInHierarchy)
-            {
-                PlayerAnimator = anim;
-                break;
-            }
-        }
-    }
     void Update()
     {
         if (!InGame)
@@ -338,9 +319,9 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
-    public void ActivateStateMachine(GameManager.CharacterData characterData)
+    public void ActivateStateMachine(GameManager.NightData NightData)
     {
-        character = characterData;
+        night = NightData;
         Awake();
     }
 }
