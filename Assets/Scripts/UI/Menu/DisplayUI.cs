@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class DisplayUI : MonoBehaviour
 {
-    GameManager.CharacterData? character;
+    GameManager.NightData? night;
     [SerializeField] public PlayerAction controls;
      private GameObject player;
     [SerializeField] public GameObject PauseUi;
@@ -17,12 +17,12 @@ public class DisplayUI : MonoBehaviour
     private void Awake()
     {
         controls = InputManager.controls;
-        if (!character.HasValue)
+        if (!night.HasValue)
         {
             InGame = false;
             return;
         }
-        player = character.Value.PlayerObject;
+        player = night.Value.nightGO;
     }
     private void OnEnable()
     {
@@ -57,8 +57,9 @@ public class DisplayUI : MonoBehaviour
         status = true;
         Time.timeScale = 0f;
 
-        if (character.HasValue)
-            player.GetComponent<PlayerView>().canLook = false;
+        if (night.HasValue)
+            if(player != null)
+                player.GetComponent<PlayerView>().canLook = false;
 
         if (PlayerUi != null)
             PlayerUi.SetActive(false);
@@ -74,8 +75,10 @@ public class DisplayUI : MonoBehaviour
     {
         status = false;
         Time.timeScale = 1f;
-        if (character.HasValue)
-            player.GetComponent<PlayerView>().canLook = true;
+
+        if (night.HasValue)
+            if (player != null)
+                player.GetComponent<PlayerView>().canLook = true;
 
         if (PlayerUi != null)
             PlayerUi.SetActive(true);
@@ -91,9 +94,10 @@ public class DisplayUI : MonoBehaviour
     {
         ResumeGame();
     }
-    public void ActivateUI(GameManager.CharacterData characterSelection) 
+    public void ActivateUI(GameManager.NightData nightSelection) 
     {
-        player = characterSelection.PlayerObject;
+        night = nightSelection;
         Awake();
+
     }
 }

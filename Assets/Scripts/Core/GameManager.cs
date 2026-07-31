@@ -607,5 +607,6 @@ public class GameManager : MonoBehaviour
         actualNight = chaptersSequence[currentChapterIndex].nights[currentNightIndex];
         transform.parent.GameObject().GetComponentInChildren<SetUIiToPlayer>().ActivateUI(actualNight);
         NightManager.GetComponent<PlayerStateMachine>().ActivateStateMachine(actualNight);
+        actualNight.nightGO.SetActive(true);
     }
 }

@@ -6,7 +6,7 @@ public class SetUIiToPlayer : MonoBehaviour
 
     public void ActivateUI(GameManager.NightData game)
     {
-        GetComponent<DisplayUI>().ActivateUI(game.characterOfTheNight);
+        GetComponent<DisplayUI>().ActivateUI(game);
         UIhud.GetComponentInChildren<InsaneBarScript>().ActivateUI(game);
         UIhud.GetComponentInChildren<DisplayThrowMeter>().ActivateThrowUI(game);
         UIhud.GetComponentInChildren<ConsumeScript>().ActivateConsumeScriptUI(game);
