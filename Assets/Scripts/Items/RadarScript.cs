@@ -51,7 +51,8 @@ public class RadarScript : MonoBehaviour
     private bool isScanning = false;
     private float firstFloorHeight = 17f;
 
-    private
+    public HandContent leftHandContent;
+    public HandContent rightHandContent;
 
     void Awake()
     {
@@ -59,7 +60,6 @@ public class RadarScript : MonoBehaviour
         circle.gameObject.SetActive(false);
         imageFloor2.enabled = false;
     }
-
     void Update()
     {
         if (radar.transform.parent != null)
@@ -98,14 +98,17 @@ public class RadarScript : MonoBehaviour
     }
     private void tmp(InputAction.CallbackContext ctx)
     {
-        if (!isScanning)
+        if (leftHandContent.inHand == this.gameObject || rightHandContent.inHand == this.gameObject)
         {
-            if (audioSource != null && radarSound != null)
+            if (!isScanning)
             {
-                audioSource.PlayOneShot(radarSound);
-            }
+                if (audioSource != null && radarSound != null)
+                {
+                    audioSource.PlayOneShot(radarSound);
+                }
 
-            StartCoroutine(ShowRadar());
+                StartCoroutine(ShowRadar());
+            }
         }
     }
 
