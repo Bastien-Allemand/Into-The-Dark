@@ -1,4 +1,4 @@
 # Into-The-Dark
-un jeu
+Into the dark is a Horror game made during a 2 month project.
 horreur game
-test
+This game was built on Unity 
